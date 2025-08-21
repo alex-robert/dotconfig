@@ -1,0 +1,23 @@
+## TODO : FIX BEFORE COMMIT
+# Contain a private key
+config/zsh/.zshenv
+
+## Claude
+**/claude/projects/*
+**/claude/auth.json
+**/claude/session*
+**/claude/cache/
+**/claude/*.key
+
+## Zsh
+**/.zsh_*
+**/.zc*
+
+## Copilot
+gh*
+
+## Deezer
+deezer*
+
+## Raycast
+raycast*
