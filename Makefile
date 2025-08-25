@@ -9,7 +9,7 @@ uninstall:
 
 restow:
 	stow -R -t ~/.config config
-#	stow -R -t ~ home
+	stow -R -t ~ home
 
 sync:
 	@./scripts/sync.sh

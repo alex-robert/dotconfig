@@ -37,9 +37,62 @@ stow_package() {
     echo "✓ $package installed successfully"
 }
 
+stow_git_hooks() {
+    local hooks_source="$DOTCONFIG_DIR/scripts/git_hooks"
+    local hooks_target="$DOTCONFIG_DIR/.git/hooks"
+    
+    echo "Installing git hooks..."
+    
+    # Check if .git/hooks directory exists
+    if [ ! -d "$hooks_target" ]; then
+        echo "Warning: .git/hooks directory not found at $hooks_target"
+        return 1
+    fi
+    
+    # Check if git_hooks source directory exists
+    if [ ! -d "$hooks_source" ]; then
+        echo "Warning: git_hooks source directory not found at $hooks_source"
+        return 1
+    fi
+    
+    # Create backup directory for existing hooks
+    backup_dir="$HOME/.dotconfig-hooks-backup-$(date +%Y%m%d-%H%M%S)"
+    
+    # Install each hook file
+    for hook_file in "$hooks_source"/*; do
+        if [ -f "$hook_file" ]; then
+            hook_name="$(basename "$hook_file")"
+            target_hook="$hooks_target/$hook_name"
+            
+            # Backup existing hook if it exists and is not already a symlink to our file
+            if [ -e "$target_hook" ] && [ ! -L "$target_hook" ]; then
+                mkdir -p "$backup_dir"
+                echo "Backing up existing hook: $hook_name"
+                mv "$target_hook" "$backup_dir/$hook_name"
+            elif [ -L "$target_hook" ] && [ "$(readlink "$target_hook")" != "$hook_file" ]; then
+                mkdir -p "$backup_dir"
+                echo "Backing up existing symlink: $hook_name"
+                mv "$target_hook" "$backup_dir/$hook_name"
+            fi
+            
+            # Create symlink
+            ln -sf "$hook_file" "$target_hook"
+            chmod +x "$target_hook"
+            echo "✓ Installed git hook: $hook_name"
+        fi
+    done
+    
+    if [ -d "$backup_dir" ]; then
+        echo "Git hook backups saved to: $backup_dir"
+    fi
+    
+    echo "✓ Git hooks installed successfully"
+}
+
 # Install packages
 stow_package "config" "$HOME/.config"
 stow_package "home" "$HOME"
+stow_git_hooks
 
 echo "All packages installed!"
 echo "To uninstall: stow -D -t ~/.config config && stow -D -t ~ home"

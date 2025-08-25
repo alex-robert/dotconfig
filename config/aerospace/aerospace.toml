@@ -19,7 +19,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # Possible values: tiles|accordion
 default-root-container-layout = 'accordion'
 default-root-container-orientation = 'auto'
-accordion-padding = 6
+accordion-padding = 10
 
 # Mouse follows focus when focused monitor changes
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
@@ -30,11 +30,11 @@ automatically-unhide-macos-hidden-apps = true
 
 [gaps]
 outer.top = [{ monitor.'built-in.*' = 4 }, 2]
-outer.right = 2
-outer.bottom = 2
-outer.left = 2
-inner.horizontal = 4
-inner.vertical = 4
+outer.right      = 6
+outer.bottom     = 6
+outer.left       = 6
+inner.horizontal = 10 # gap beetween windows on Horizontal layout (window in vertival mode)
+inner.vertical   = 10  # same but when windows are on Horizontal mode (vertival layout)
 
 
 ###################
@@ -203,8 +203,12 @@ backspace = ['close-all-windows-but-current', 'mode main']
 
 
 ###########################
-# Window detection hooks  #
+# Hooks & Event           #
 ###########################
+
+exec-on-workspace-change = ['/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
 
 [[on-window-detected]]
     if.app-id = 'com.microsoft.VSCode'
@@ -244,10 +248,12 @@ backspace = ['close-all-windows-but-current', 'mode main']
 
 [[on-window-detected]]
     if.app-id = 'net.battle.app'
+    check-further-callbacks = true
     run = ['layout floating']
 
 [[on-window-detected]]
     if.app-id = 'unity.Blizzard Entertainment.Hearthstone'
+    check-further-callbacks = true
     run = ['layout floating', 'move-node-to-workspace alpha']
 
 [[on-window-detected]]
@@ -275,3 +281,4 @@ backspace = ['close-all-windows-but-current', 'mode main']
 #  com.apple.systempreferences                     | System Settings
 #  net.battle.app                                  | Battle.net
 #  com.dashlane.dashlanephonefinal
+#  glcom.cron.electron                               | Notion Calendar
