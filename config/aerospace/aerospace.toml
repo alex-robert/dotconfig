@@ -1,7 +1,7 @@
 ### Startup & config ###
 after-startup-command = [
     #   'exec-and-forget sketchybar',
-    #   'exec-and-forget borders'
+    'exec-and-forget borders'
 ]
 
 start-at-login = false
@@ -25,7 +25,7 @@ accordion-padding = 6
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
-automatically-unhide-macos-hidden-apps = false
+automatically-unhide-macos-hidden-apps = true
 
 
 [gaps]
@@ -36,19 +36,12 @@ outer.left = 2
 inner.horizontal = 4
 inner.vertical = 4
 
-# Assign certain workspaces to
-# See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
-[workspace-to-monitor-force-assignment]
-echo = ['secondary', 'M27Q']
-foxtrot = ['AORUS']
-
 
 ###################
 ### Key Mapping ###
 ###################
 
 [key-mapping.key-notation-to-key-code]
-# Letters that map cleanly
 alpha     = "q"          # A -> Q
 bravo     = "b"          # B -> B
 charlie   = "c"          # C -> C
@@ -56,7 +49,7 @@ delta     = "d"          # D -> D
 echo      = "e"          # E -> E
 foxtrot   = "f"          # F -> F
 golf      = "g"          # G -> G
-hotel     = "h"          # H -> H
+hotel     = "h"          # H -> Hgmkkmkmkmkmk
 india     = "i"          # I -> I
 juliett   = "j"          # J -> J
 kilo      = "k"          # K -> K
@@ -76,130 +69,142 @@ xray      = "x"          # X -> X
 yankee    = "y"          # Y -> Y
 zulu      = "w"          # Z -> W
 
+#######################################################################################################
+## All possible keys:
+## - Letters.        a, b, c, ..., z
+#
+## - Numbers.        0, 1, 2, ..., 9
+#
+## - Keypad numbers. keypad0, keypad1, keypad2, ..., keypad9
+## - F-keys.         f1, f2, ..., f20
+#
+## - Special keys.   minus, equal, period, comma, slash, backslash, quote, semicolon,
+##                   backtick, leftSquareBracket, rightSquareBracket, space, enter, esc,
+##                   backspace, tab, pageUp, pageDown, home, end, forwardDelete,
+##                   sectionSign (ISO keyboards only, european keyboards only)
+#
+## - Keypad special. keypadClear, keypadDecimalMark, keypadDivide, keypadEnter, keypadEqual,
+##                   keypadMinus, keypadMultiply, keypadPlus
+#
+## - Arrows.         left, down, up, right
+#######################################################################################################
+
+# Assign certain workspaces to
+# See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
+[workspace-to-monitor-force-assignment]
+alpha = ['M27Q', 'main']
+delta = ['AORUS']
+
+
 
 ####################
 ### Main Bndings ###
 #################### 
-
+# - Focus Workspaces / Monitors
+# - Focus windows
+# - Send window/node to another workspace
+# - Launch Apps
 [mode.main.binding]
 # Open/focus apps using keybinds
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-alt-ctrl-shift-b = 'exec-and-forget open -a "Brave Browser.app"'
-alt-ctrl-shift-t = 'exec-and-forget open -a "WezTerm.app"'
-alt-ctrl-shift-c = 'exec-and-forget open -a "Slack.app"'
-
+# alt-ctrl-shift-b = 'move-node-to-workspace charlie && exec-and-forget open -a "Brave Browser.app"'
+# alt-ctrl-shift-t = 'move-node-to-workspace bravo && exec-and-forget open -a "WezTerm.app"'
 
 # Switch workspaces
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-cmd-alt-alpha = 'workspace alpha'
-cmd-alt-zulu = 'workspace bravo'
-cmd-alt-echo = 'workspace charlie'
-cmd-alt-romeo = 'workspace delta'
-cmd-alt-1 = 'workspace echo'
-cmd-alt-2 = 'workspace foxtrot'
+cmd-alt-ctrl-lima = 'workspace next'
+cmd-alt-ctrl-juliett = 'workspace prev'
+cmd-alt-ctrl-enter = 'workspace bravo' # Go to terminal
+alt-tab = 'workspace-back-and-forth'
 
+# Switch monitor focus
+#https://nikitabobko.github.io/AeroSpace/commands#focus-monitor
+# focus-monitor
+cmd-alt-shift-lima = 'focus-monitor rightd'
+cmd-alt-shift-juliett = 'focus-monitor left'
+cmd-alt-shift-kilo    = 'focus-monitor down'
+cmd-alt-shift-india    = 'focus-monitor up'
 
-# cmd-alt-5 = 'workspace ext_front'
-# cmd-alt-6 = 'workspace ext_right'
-
-cmd-alt-right = 'workspace next'
-cmd-alt-left = 'workspace prev'
+# Switch window focus
+# See: https://nikitabobko.github.io/AeroSpace/commands#focus
+cmd-alt-india   = 'focus up'
+cmd-alt-juliett = 'focus left'
+cmd-alt-kilo    = 'focus down'
+cmd-alt-lima    = 'focus right'
 
 # Fullscreen
 cmd-alt-enter = 'fullscreen' # Toggle full screenj
 
-
-# Move windows/nodes to other workspaces
-# See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-cmd-alt-shift-alpha = ['move-node-to-workspace alpha', 'workspace alpha']
-cmd-alt-shift-zulu = ['move-node-to-workspace bravo', 'workspace bravo']
-cmd-alt-shift-echo = ['move-node-to-workspace charlie', 'workspace charlie']
-cmd-alt-shift-romeo = ['move-node-to-workspace delta', 'workspace delta']
-cmd-alt-shift-1 = ['move-node-to-workspace echo', 'workspace echo']
-cmd-alt-shift-2 = ['move-node-to-workspace foxtrot', 'workspace foxtrot']
+# Mods
+cmd-alt-ctrl-shift-sierra = 'mode service'  # Todo Make a Double tap S shortcut
+cmd-alt-ctrl-shift-lima = 'mode layout'     # Todo Make a Double tap L shortcut
+cmd-alt-ctrl-shift-oscar = 'mode organize'  # Todo Make a Double tap O shortcut
 
 
-# Switch window focus
-# See: https://nikitabobko.github.io/AeroSpace/commands#focus
-cmd-alt-india = 'focus up'
-cmd-alt-juliett = 'focus left'
-cmd-alt-kilo = 'focus down'
-cmd-alt-lima = 'focus right'
-
+######################
+### Layout Bndings ###
+###################### 
+# - Focus windows
+# - Move nodes arround
+# - Merge nodes
+# - Resize windows (half, quater, full screen
+[mode.layout.binding]
 
 # Move windows in the given direction
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-cmd-alt-shift-india = 'move up'
-cmd-alt-shift-juliett = 'move left'
-cmd-alt-shift-kilo = 'move down'
-cmd-alt-shift-lima = 'move right'
+india   = 'move up'
+juliett = 'move left'
+kilo    = 'move down'
+lima    = 'move right'
 
+# Merge nodes
+# See: https://nikitabobko.github.io/AeroSpace/commands#join-with
+cmd-alt-india   = ['join-with left' ]
+cmd-alt-juliett = ['join-with down' ]
+cmd-alt-kilo    = ['join-with up'   ]
+cmd-alt-lima    = ['join-with right']
+
+# Toggle between floating and tiling layout
+cmd-alt-foxtrot = ['layout floating tiling']
+
+# Toggle between accordion and tiling layout
+cmd-alt-tango = ['layout tiles accordion' ]
+
+# Toggle between horizontal vertival layout
+cmd-alt-hotel = ['layout horizontal vertical']
+
+# reset workspace layout
+cmd-alt-romeo = ['flatten-workspace-tree'] 
 
 # alt-minus = 'resize smart -50'
 # alt-equal = 'resize smart +50'
 
-alt-tab = 'workspace-back-and-forth'
-alt-cmd-shift-sierra = 'mode service' #alt-cmd-shift-m on azerty layout
+esc = ['mode main']
 
+########################
+### Organize Bndings ###
+########################
+# - Send Window / node to workspace
+# - Send Workspace to monitor
+[mode.organize.binding]
+# Move windows/nodes to other workspaces
+# See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
+shift-lima    = ['move-node-to-workspace next', 'workspace next']
+shift-juliett = ['move-node-to-workspace prev', 'workspace prev']
+
+esc = ['mode main']
 
 #######################
 ### Service Bndings ###
 #######################
-
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
-
-romeo = ['flatten-workspace-tree', 'mode main'] # reset layout
-
-# Toggle between floating and tiling layout
-foxtrot = [
-    'layout floating tiling',
-    'mode main',
-] 
-
-# Toggle between accordion and tiling layout
-tango = [
-    'layout tiles accordion',
-    'mode main',
-]
-
-india = 'move up'
-juliett = 'move left'
-kilo = 'move down'
-lima = 'move right'
-
 backspace = ['close-all-windows-but-current', 'mode main']
 
-alt-shift-india = ['join-with left', 'mode main']
-alt-shift-juliett = ['join-with down', 'mode main']
-alt-shift-kilo = ['join-with up', 'mode main']
-alt-shift-lima = ['join-with right', 'mode main']
 
-down = 'volume down'
-up = 'volume up'
-shift-down = ['volume set 0', 'mode main']
-
-
-
-# All possible keys:
-# - Letters.        a, b, c, ..., z
-
-# - Numbers.        0, 1, 2, ..., 9
-
-# - Keypad numbers. keypad0, keypad1, keypad2, ..., keypad9
-# - F-keys.         f1, f2, ..., f20
-
-# - Special keys.   minus, equal, period, comma, slash, backslash, quote, semicolon,
-#                   backtick, leftSquareBracket, rightSquareBracket, space, enter, esc,
-#                   backspace, tab, pageUp, pageDown, home, end, forwardDelete,
-#                   sectionSign (ISO keyboards only, european keyboards only)
-
-# - Keypad special. keypadClear, keypadDecimalMark, keypadDivide, keypadEnter, keypadEqual,
-#                   keypadMinus, keypadMultiply, keypadPlus
-
-# - Arrows.         left, down, up, right
-
-
+###########################
+# Window detection hooks  #
+###########################
 
 [[on-window-detected]]
     if.app-id = 'com.microsoft.VSCode'
@@ -229,15 +234,44 @@ shift-down = ['volume set 0', 'mode main']
     if.app-id = 'com.tinyspeck.slackmacgap'
     run = ['move-node-to-workspace delta']
 
+[[on-window-detected]]
+    if.app-id = 'com.deezer.deezer-desktop'
+    run = ['move-node-to-workspace delta']
 
-#  com.electron.dockerdesktop | Docker Desktop
-#  com.apple.freeform         | Freeform
-#  notion.id                  | Notion
-#  com.apple.finder           | Finder
-#  com.postmanlabs.mac        | Postman
-#  com.apple.ActivityMonitor  | Activity Monitor
-#  com.microsoft.VSCode       | Code
-#  com.jetbrains.datagrip     | DataGrip
-#  com.tinyspeck.slackmacgap  | Slack
-#  com.brave.Browser          | Brave Browser
-#  com.github.wez.wezterm     | WezTerm
+[[on-window-detected]]
+    if.app-id = 'com.dashlane.dashlanephonefinal'
+    run = ['layout floating', 'move-node-to-workspace delta']
+
+[[on-window-detected]]
+    if.app-id = 'net.battle.app'
+    run = ['layout floating']
+
+[[on-window-detected]]
+    if.app-id = 'unity.Blizzard Entertainment.Hearthstone'
+    run = ['layout floating', 'move-node-to-workspace alpha']
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.finder'
+    run = ['layout floating']
+    
+
+
+#  com.electron.dockerdesktop                      | Docker Desktop
+#  com.apple.freeform                              | Freeform
+#  notion.id                                       | Notion
+#  com.apple.finder                                | Finder
+#  com.postmanlabs.mac                             | Postman
+#  com.apple.ActivityMonitor                       | Activity Monitor
+#  com.microsoft.VSCode                            | Code
+#  com.jetbrains.datagrip                          | DataGrip
+#  com.tinyspeck.slackmacgap                       | Slack
+#  com.brave.Browser                               | Brave Browser
+#  com.github.wez.wezterm                          | WezTerm
+#  net.battle.app                                  | Battle.netf
+#  com.apple.Preview                               | Preview
+#  org.pqrs.Karabiner-Elements.Settings            | Karabiner-Elements
+#  com.apple.accessibility.universalAccessAuthWarn | universalAccessAuthWarn
+#  com.deezer.deezer-desktop                       | Deezer
+#  com.apple.systempreferences                     | System Settings
+#  net.battle.app                                  | Battle.net
+#  com.dashlane.dashlanephonefinal

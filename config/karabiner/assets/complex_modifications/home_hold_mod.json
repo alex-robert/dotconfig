@@ -1,0 +1,98 @@
+{
+  "title": "On Hold Home row modifiers",
+  "rules": [
+    {
+      "description": "F key: becomes cmd+alt when held",
+      "manipulators": [
+        {
+          "description": "F key: tap for f, hold for cmd+alt",
+          "from": {
+            "key_code": "f",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to_delayed_action": {
+            "to_if_canceled": [
+              {
+                "key_code": "f"
+              }
+            ]
+          },
+          "to_if_alone": [
+            {
+              "halt": true,
+              "key_code": "f"
+            }
+          ],
+          "to_if_held_down": [
+            {
+              "halt": true,
+              "key_code": "left_command",
+              "modifiers": [
+                "left_option"
+              ]
+            }
+          ],
+          "type": "basic",
+          "parameters": {
+            "basic.to_delayed_action_delay_milliseconds": 110,
+            "basic.to_if_alone_timeout_milliseconds": 70,
+            "basic.to_if_held_down_threshold_milliseconds": 70
+          }
+        }
+      ]
+    },
+    {
+      "description": "Combo's for cmd+alt: g as ctrl, d as shift",
+      "manipulators": [
+        {
+          "description": "G key: becomes ctrl on cmd+alt",
+          "from": {
+            "key_code": "g",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "left_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_control",
+              "modifiers": [
+                "left_command",
+                "left_option"
+              ]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "D key: becomes shift on cmd+alt",
+          "from": {
+            "key_code": "d",
+            "modifiers": {
+              "mandatory": [
+                "left_command",
+                "left_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_shift",
+              "modifiers": [
+                "left_command",
+                "left_option"
+              ]
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    }
+  ]
+}

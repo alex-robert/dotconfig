@@ -10,7 +10,7 @@ options=(
   hidpi=on
   style=round
   width=6.0
-  blacklist="Safari,kitty" # Application blacklist (this is an example)
+  blacklist="Safari,kitty" # Application blacklist (this is an exampled)
 )
 
 borders "${options[@]}"

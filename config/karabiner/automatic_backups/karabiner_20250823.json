@@ -4,18 +4,15 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "F key: becomes cmd+alt when held",
+                        "description": "F as Mod-Tap",
                         "manipulators": [
                             {
-                                "description": "F key: tap for f, hold for cmd+alt",
+                                "description": "F key: tap for 'f', hold for cmd+alt",
                                 "from": {
                                     "key_code": "f",
                                     "modifiers": { "optional": ["any"] }
                                 },
-                                "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 110,
-                                    "basic.to_if_held_down_threshold_milliseconds": 110
-                                },
+                                "to_delayed_action": { "to_if_canceled": [{ "key_code": "f" }] },
                                 "to_if_alone": [
                                     {
                                         "halt": true,
@@ -31,40 +28,12 @@
                                 ],
                                 "type": "basic"
                             }
-                        ]
-                    },
-                    {
-                        "description": "Combo's for cmd+alt: g as ctrl, d as shift",
-                        "manipulators": [
-                            {
-                                "description": "G key: becomes ctrl on cmd+alt",
-                                "from": {
-                                    "key_code": "g",
-                                    "modifiers": { "mandatory": ["left_command", "left_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_control",
-                                        "modifiers": ["left_command", "left_option"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "D key: becomes shift on cmd+alt",
-                                "from": {
-                                    "key_code": "d",
-                                    "modifiers": { "mandatory": ["left_command", "left_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_shift",
-                                        "modifiers": ["left_command", "left_option"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
+                        ],
+                        "parameters": {
+                            "basic.to_delayed_action_delay_milliseconds": 200,
+                            "basic.to_if_alone_timeout_milliseconds": 150,
+                            "basic.to_if_held_down_threshold_milliseconds": 150
+                        }
                     },
                     {
                         "description": "CAPS_LOCK : (HYPER) SHIFT+COMMAND+OPTION+CONTROL or ESCAPE (If Alone)",

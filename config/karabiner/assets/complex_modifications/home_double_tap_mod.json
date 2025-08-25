@@ -1,0 +1,157 @@
+{
+  "title": "Responsive Double-tap to Modifier Combo",
+  "rules": [
+    {
+      "description": "Double-tap f sends Cmd+Alt+Shift+F (responsive)",
+      "manipulators": [
+        {
+          "description": "f alone - immediate output, start timer",
+          "type": "basic",
+          "from": {
+            "key_code": "f"
+          },
+          "to": [
+            {
+              "key_code": "f"
+            },
+            {
+              "set_variable": {
+                "name": "f_pressed_once",
+                "value": 1
+              }
+            }
+          ],
+          "to_delayed_action": {
+            "to_if_invoked": [
+              {
+                "set_variable": {
+                  "name": "f_pressed_once",
+                  "value": 0
+                }
+              }
+            ]
+          },
+          "conditions": [
+            {
+              "type": "variable_unless",
+              "name": "f_pressed_once",
+              "value": 1
+            }
+          ],
+          "parameters": {
+            "basic.to_delayed_action_delay_milliseconds": 300
+          }
+        },
+        {
+          "description": "Second f - delete previous f, send mode trigger",
+          "type": "basic",
+          "from": {
+            "key_code": "f"
+          },
+          "to": [
+            {
+              "key_code": "delete_or_backspace"
+            },
+            {
+              "key_code": "f",
+              "modifiers": [
+                "left_command",
+                "left_option",
+                "left_shift"
+              ]
+            },
+            {
+              "set_variable": {
+                "name": "f_pressed_once",
+                "value": 0
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "f_pressed_once",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Double-tap d sends Cmd+Alt+Shift+D (responsive)",
+      "manipulators": [
+        {
+          "description": "d alone - immediate output, start timer",
+          "type": "basic",
+          "from": {
+            "key_code": "d"
+          },
+          "to": [
+            {
+              "key_code": "d"
+            },
+            {
+              "set_variable": {
+                "name": "d_pressed_once",
+                "value": 1
+              }
+            }
+          ],
+          "to_delayed_action": {
+            "to_if_invoked": [
+              {
+                "set_variable": {
+                  "name": "d_pressed_once",
+                  "value": 0
+                }
+              }
+            ]
+          },
+          "conditions": [
+            {
+              "type": "variable_unless",
+              "name": "d_pressed_once",
+              "value": 1
+            }
+          ],
+          "parameters": {
+            "basic.to_delayed_action_delay_milliseconds": 300
+          }
+        },
+        {
+          "description": "Second d - delete previous d, send mode trigger",
+          "type": "basic",
+          "from": {
+            "key_code": "d"
+          },
+          "to": [
+            {
+              "key_code": "delete_or_backspace"
+            },
+            {
+              "key_code": "d",
+              "modifiers": [
+                "left_command",
+                "left_option",
+                "left_shift"
+              ]
+            },
+            {
+              "set_variable": {
+                "name": "d_pressed_once",
+                "value": 0
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "d_pressed_once",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
