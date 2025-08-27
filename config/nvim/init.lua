@@ -1,1 +1,3 @@
-require("ar.core.options")
+require('options')
+require('keymaps')
+require("plugins")

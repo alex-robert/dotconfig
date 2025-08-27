@@ -27,9 +27,12 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 automatically-unhide-macos-hidden-apps = true
 
+exec-on-workspace-change = ['/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
 
 [gaps]
-outer.top = [{ monitor.'built-in.*' = 4 }, 2]
+outer.top = [{ monitor.'built-in.*' = 10 }, 2]
 outer.right      = 6
 outer.bottom     = 6
 outer.left       = 6
@@ -189,8 +192,10 @@ esc = ['mode main']
 [mode.organize.binding]
 # Move windows/nodes to other workspaces
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-shift-lima    = ['move-node-to-workspace next', 'workspace next']
-shift-juliett = ['move-node-to-workspace prev', 'workspace prev']
+ctrl-shift-lima    = ['move-node-to-workspace next', 'workspace next']
+ctrl-shift-juliett = ['move-node-to-workspace prev', 'workspace prev']
+
+# TODO : have some bindings to quickly switch workspace and focus to move arround multiple node
 
 esc = ['mode main']
 
@@ -206,9 +211,7 @@ backspace = ['close-all-windows-but-current', 'mode main']
 # Hooks & Event           #
 ###########################
 
-exec-on-workspace-change = ['/bin/bash', '-c',
-    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
-]
+
 
 [[on-window-detected]]
     if.app-id = 'com.microsoft.VSCode'

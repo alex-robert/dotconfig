@@ -85,29 +85,35 @@ vim.g.mapleader = " "
 
 -- Custom Movement Keys (your preference: i,j,k,l)
 -- Normal mode
-keymap.set("n", "i", "h", { desc = "Move left" })
-keymap.set("n", "j", "j", { desc = "Move down" }) -- j stays the same
-keymap.set("n", "k", "k", { desc = "Move up" })   -- k stays the same  
-keymap.set("n", "l", "l", { desc = "Move right" }) -- l stays the same
+keymap.set("n", "i", "k", { desc = "Move up" })     -- i = up
+keymap.set("n", "j", "h", { desc = "Move left" })   -- j = left
+keymap.set("n", "k", "j", { desc = "Move down" })   -- k = down
+keymap.set("n", "l", "l", { desc = "Move right" })  -- l = right (stays same)
 
--- But we need to remap what 'i' normally does (insert mode)
-keymap.set("n", "h", "i", { desc = "Enter insert mode" })
-keymap.set("n", "H", "I", { desc = "Insert at beginning of line" })
+-- Use 'e' for insert mode (edit mode)
+keymap.set("n", "e", "i", { desc = "Enter insert mode (edit)" })
+keymap.set("n", "E", "I", { desc = "Insert at beginning of line" })
 
 -- Visual mode movement
-keymap.set("v", "i", "h", { desc = "Move left" })
-keymap.set("v", "j", "j", { desc = "Move down" })
-keymap.set("v", "k", "k", { desc = "Move up" })
+keymap.set("v", "i", "k", { desc = "Move up" })
+keymap.set("v", "j", "h", { desc = "Move left" })
+keymap.set("v", "k", "j", { desc = "Move down" })
 keymap.set("v", "l", "l", { desc = "Move right" })
 
 -- Word movement with your custom keys
-keymap.set("n", "I", "b", { desc = "Move word backward" })  -- Shift+i
-keymap.set("n", "L", "w", { desc = "Move word forward" })   -- Shift+l
+keymap.set("n", "I", "gk", { desc = "Move up faster" })    -- Shift+i for up movement
+keymap.set("n", "J", "b", { desc = "Move word backward" })  -- Shift+j for word left
+keymap.set("n", "K", "gj", { desc = "Move down faster" })   -- Shift+k for down movement  
+keymap.set("n", "L", "w", { desc = "Move word forward" })   -- Shift+l for word right
+
+-- Preserve original 'e' functionality (end of word) - remap to 'w'
+keymap.set("n", "w", "e", { desc = "Move to end of word" })
+keymap.set("n", "W", "E", { desc = "Move to end of WORD" })
 
 -- Window navigation (when you have splits)
-keymap.set("n", "<leader>i", "<C-w>h", { desc = "Go to left window" })
-keymap.set("n", "<leader>j", "<C-w>j", { desc = "Go to bottom window" })
-keymap.set("n", "<leader>k", "<C-w>k", { desc = "Go to top window" })
+keymap.set("n", "<leader>i", "<C-w>k", { desc = "Go to top window" })
+keymap.set("n", "<leader>j", "<C-w>h", { desc = "Go to left window" })
+keymap.set("n", "<leader>k", "<C-w>j", { desc = "Go to bottom window" })
 keymap.set("n", "<leader>l", "<C-w>l", { desc = "Go to right window" })
 
 -- Essential shortcuts
@@ -134,19 +140,8 @@ keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 ### `~/.config/nvim/lua/plugins.lua`
 ```lua
--- Bootstrap lazy.nvim plugin manager
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
+-- Setup lazy.nvim (assumes it's already installed)
+vim.opt.rtp:prepend(vim.fn.stdpath("data") .. "/lazy/lazy.nvim")
 
 -- Plugin specifications
 require("lazy").setup({
@@ -165,8 +160,45 @@ require("lazy").setup({
     "nvim-tree/nvim-tree.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      require("nvim-tree").setup()
-      vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
+      require("nvim-tree").setup({
+        view = {
+          side = "right",           -- Position on the right
+          width = 35,              -- Width of the tree
+        },
+        renderer = {
+          group_empty = true,      -- Group empty directories
+          highlight_git = true,    -- Highlight git status
+        },
+        filters = {
+          dotfiles = false,        -- Show dotfiles by default
+        },
+        git = {
+          enable = true,           -- Show git status
+          ignore = false,          -- Don't ignore git-ignored files
+        },
+        actions = {
+          open_file = {
+            quit_on_open = false,  -- Keep tree open when opening files
+          },
+        },
+      })
+      
+      -- Auto-open nvim-tree when starting nvim
+      vim.api.nvim_create_autocmd("VimEnter", {
+        callback = function()
+          -- Only open if no file arguments were passed
+          if vim.fn.argc() == 0 then
+            require("nvim-tree.api").tree.open()
+          elseif vim.fn.argc() == 1 then
+            local stat = vim.loop.fs_stat(vim.fn.argv(0))
+            if stat and stat.type == "directory" then
+              require("nvim-tree.api").tree.open()
+            end
+          end
+        end
+      })
+      
+      vim.keymap.set("n", "<leader>t", ":NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
     end,
   },
 
@@ -228,20 +260,29 @@ require("lazy").setup({
 
 ## 4. Installation Steps
 
-1. Create the files above in the correct locations
-2. Open Neovim: `nvim`
-3. Plugins will auto-install on first run
-4. Restart Neovim after installation completes
+1. **Install lazy.nvim plugin manager first:**
+   ```bash
+   git clone --filter=blob:none --branch=stable https://github.com/folke/lazy.nvim.git ~/.local/share/nvim/lazy/lazy.nvim
+   ```
+
+2. **Create the config files** with the content above in the correct locations
+
+3. **Open Neovim:** `nvim`
+
+4. **Plugins will auto-install** on first run
+
+5. **Restart Neovim** after installation completes
 
 ## 5. Basic Commands Cheat Sheet
 
 ### Your Custom Movement
-- `i` = move left (instead of h)
-- `j` = move down 
-- `k` = move up
-- `l` = move right
-- `h` = enter insert mode (instead of i)
-- `H` = insert at beginning of line
+- `i` = move up (instead of k)
+- `j` = move left (instead of h)  
+- `k` = move down (instead of j)
+- `l` = move right (stays the same)
+- `e` = enter insert mode (instead of i) - think "edit"
+- `E` = insert at beginning of line
+- `w` = end of word (preserves original 'e' functionality)
 
 ### Essential Commands
 - `h` = enter insert mode (your remap)
