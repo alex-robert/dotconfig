@@ -4,7 +4,7 @@ after-startup-command = [
     'exec-and-forget borders'
 ]
 
-start-at-login = false
+start-at-login = true
 
 ######################
 ### Style & Layout ###
@@ -19,10 +19,11 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # Possible values: tiles|accordion
 default-root-container-layout = 'accordion'
 default-root-container-orientation = 'auto'
-accordion-padding = 10
+accordion-padding = 0
 
 # Mouse follows focus when focused monitor changes
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
+# 
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 automatically-unhide-macos-hidden-apps = true
@@ -31,13 +32,15 @@ exec-on-workspace-change = ['/bin/bash', '-c',
     'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
 ]
 
+
+
 [gaps]
 outer.top = [{ monitor.'built-in.*' = 10 }, 2]
-outer.right      = 6
-outer.bottom     = 6
-outer.left       = 6
-inner.horizontal = 10 # gap beetween windows on Horizontal layout (window in vertival mode)
-inner.vertical   = 10  # same but when windows are on Horizontal mode (vertival layout)
+outer.right      = 4
+outer.bottom     = 4
+outer.left       = 4
+inner.horizontal = 8 # gap beetween windows on Horizontal layout (window in vertival mode)
+inner.vertical   = 8  # same but when windows are on Horizontal mode (vertival layout)
 
 
 ###################
@@ -96,8 +99,7 @@ zulu      = "w"          # Z -> W
 # See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [workspace-to-monitor-force-assignment]
 alpha = ['M27Q', 'main']
-delta = ['AORUS']
-
+echo  = ['AORUS']
 
 
 ####################
@@ -117,16 +119,16 @@ delta = ['AORUS']
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 cmd-alt-ctrl-lima = 'workspace next'
 cmd-alt-ctrl-juliett = 'workspace prev'
-cmd-alt-ctrl-enter = 'workspace bravo' # Go to terminal
-alt-tab = 'workspace-back-and-forth'
+alt-space = 'workspace bravo' # Go to terminal
+alt-tab   = 'workspace-back-and-forth'
 
 # Switch monitor focus
 #https://nikitabobko.github.io/AeroSpace/commands#focus-monitor
 # focus-monitor
-cmd-alt-shift-lima = 'focus-monitor rightd'
+cmd-alt-shift-lima    = 'focus-monitor right'
 cmd-alt-shift-juliett = 'focus-monitor left'
 cmd-alt-shift-kilo    = 'focus-monitor down'
-cmd-alt-shift-india    = 'focus-monitor up'
+cmd-alt-shift-india   = 'focus-monitor up'
 
 # Switch window focus
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
@@ -136,12 +138,11 @@ cmd-alt-kilo    = 'focus down'
 cmd-alt-lima    = 'focus right'
 
 # Fullscreen
-cmd-alt-enter = 'fullscreen' # Toggle full screenj
+cmd-alt-enter = 'fullscreen' # Toggle full screen
 
 # Mods
 cmd-alt-ctrl-shift-sierra = 'mode service'  # Todo Make a Double tap S shortcut
 cmd-alt-ctrl-shift-lima = 'mode layout'     # Todo Make a Double tap L shortcut
-cmd-alt-ctrl-shift-oscar = 'mode organize'  # Todo Make a Double tap O shortcut
 
 
 ######################
@@ -150,15 +151,16 @@ cmd-alt-ctrl-shift-oscar = 'mode organize'  # Todo Make a Double tap O shortcut
 # - Focus windows
 # - Move nodes arround
 # - Merge nodes
+# - Send Window / node to another workspace
+# - Send Workspace to another monitor
 # - Resize windows (half, quater, full screen
 [mode.layout.binding]
-
 # Move windows in the given direction
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
-india   = 'move up'
-juliett = 'move left'
-kilo    = 'move down'
-lima    = 'move right'
+shift-india   = 'move up'
+shift-juliett = 'move left'
+shift-kilo    = 'move down'
+shift-lima    = 'move right'
 
 # Merge nodes
 # See: https://nikitabobko.github.io/AeroSpace/commands#join-with
@@ -167,35 +169,26 @@ cmd-alt-juliett = ['join-with down' ]
 cmd-alt-kilo    = ['join-with up'   ]
 cmd-alt-lima    = ['join-with right']
 
-# Toggle between floating and tiling layout
-cmd-alt-foxtrot = ['layout floating tiling']
-
-# Toggle between accordion and tiling layout
-cmd-alt-tango = ['layout tiles accordion' ]
-
-# Toggle between horizontal vertival layout
-cmd-alt-hotel = ['layout horizontal vertical']
-
-# reset workspace layout
-cmd-alt-romeo = ['flatten-workspace-tree'] 
-
-# alt-minus = 'resize smart -50'
-# alt-equal = 'resize smart +50'
-
-esc = ['mode main']
-
-########################
-### Organize Bndings ###
-########################
-# - Send Window / node to workspace
-# - Send Workspace to monitor
-[mode.organize.binding]
 # Move windows/nodes to other workspaces
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-ctrl-shift-lima    = ['move-node-to-workspace next', 'workspace next']
-ctrl-shift-juliett = ['move-node-to-workspace prev', 'workspace prev']
+alt-ctrl-lima    = ['move-node-to-workspace next', 'workspace next']
+alt-ctrl-juliett = ['move-node-to-workspace prev', 'workspace prev']
 
-# TODO : have some bindings to quickly switch workspace and focus to move arround multiple node
+# Toggle between floating and tiling layout
+cmd-alt-ctrl-shift-foxtrot = ['layout floating tiling']
+
+# Toggle between accordion and tiling layout
+cmd-alt-ctrl-shift-tango = ['layout tiles accordion' ]
+
+# Toggle between horizontal vertival layout
+cmd-alt-ctrl-shift-hotel = ['layout horizontal vertical']
+
+# reset workspace layout
+cmd-alt-ctrl-shift-romeo = ['flatten-workspace-tree'] 
+
+alt-down = 'resize smart -50'
+alt-up = 'resize smart +50'
+
 
 esc = ['mode main']
 
@@ -211,7 +204,9 @@ backspace = ['close-all-windows-but-current', 'mode main']
 # Hooks & Event           #
 ###########################
 
-
+[[on-window-detected]]
+    if.app-id = 'com.apple.finder'
+    run = ['layout floating']
 
 [[on-window-detected]]
     if.app-id = 'com.microsoft.VSCode'
@@ -222,10 +217,6 @@ backspace = ['close-all-windows-but-current', 'mode main']
     run = ['move-node-to-workspace bravo']
 
 [[on-window-detected]]
-    if.app-id = 'com.brave.Browser'
-    run = ['move-node-to-workspace charlie']
-
-[[on-window-detected]]
     if.app-id = 'com.jetbrains.datagrip'
     run = ['move-node-to-workspace charlie']
 
@@ -234,16 +225,24 @@ backspace = ['close-all-windows-but-current', 'mode main']
     run = ['move-node-to-workspace charlie']
 
 [[on-window-detected]]
-    if.app-id = 'notion.id'
+    if.app-id = 'com.brave.Browser'
     run = ['move-node-to-workspace delta']
+
+[[on-window-detected]]
+    if.app-id = 'company.thebrowser.Browser'
+    run = ['move-node-to-workspace delta']
+
+[[on-window-detected]]
+    if.app-id = 'notion.id'
+    run = ['move-node-to-workspace echo']
 
 [[on-window-detected]]
     if.app-id = 'com.tinyspeck.slackmacgap'
-    run = ['move-node-to-workspace delta']
+    run = ['move-node-to-workspace echo']
 
 [[on-window-detected]]
     if.app-id = 'com.deezer.deezer-desktop'
-    run = ['move-node-to-workspace delta']
+    run = ['move-node-to-workspace echo']
 
 [[on-window-detected]]
     if.app-id = 'com.dashlane.dashlanephonefinal'
@@ -255,14 +254,14 @@ backspace = ['close-all-windows-but-current', 'mode main']
     run = ['layout floating']
 
 [[on-window-detected]]
+    if.app-id = 'com.gog.galaxy'
+    check-further-callbacks = true
+    run = ['layout floating']
+
+[[on-window-detected]]
     if.app-id = 'unity.Blizzard Entertainment.Hearthstone'
     check-further-callbacks = true
     run = ['layout floating', 'move-node-to-workspace alpha']
-
-[[on-window-detected]]
-    if.app-id = 'com.apple.finder'
-    run = ['layout floating']
-    
 
 
 #  com.electron.dockerdesktop                      | Docker Desktop
@@ -283,5 +282,6 @@ backspace = ['close-all-windows-but-current', 'mode main']
 #  com.deezer.deezer-desktop                       | Deezer
 #  com.apple.systempreferences                     | System Settings
 #  net.battle.app                                  | Battle.net
-#  com.dashlane.dashlanephonefinal
-#  glcom.cron.electron                               | Notion Calendar
+#  com.dashlane.dashlanephonefinal                 |
+#  glcom.cron.electron                             | Notion Calenda
+#  company.thebrowser.Browser                      | Arc

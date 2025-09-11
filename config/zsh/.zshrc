@@ -18,6 +18,12 @@ setopt MENU_COMPLETE          # Tab-complete through matches
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' # Case-insensitive, hyphen-insensitive, partial match
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
+# Scaleway CLI autocomplete initialization.
+eval "$(scw autocomplete script shell=zsh)"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
 ## Quality of life 
 setopt AUTO_CD                # Type folder name to cd into it
 setopt CORRECT                # Spell correction for commands
@@ -67,7 +73,7 @@ export NVM_DIR="$HOME/.nvm"
 ## Oh My Posh
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   # eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/alex-r-v1.omp.json)"
-  eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/alex-r-v1.omp.json)"
+  eval "$(oh-my-posh init zsh --config $HOME_CONFIG/oh-my-posh/themes/hungry.omp.json)"
 fi
 
 #-----------------------#

@@ -1,3 +1,8 @@
+# Missing bndings
+
+- ⌘ K : Clear Scrollback
+
+
 # MacOs system bindings
 
 ## Basics
