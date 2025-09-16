@@ -1,3 +1,7 @@
+#
+_*/
+
+
 # Contain a private key
 config/zsh/.zshenv
 
@@ -8,7 +12,7 @@ config/zsh/.zshenv
 **/claude/cache/
 **/claude/*.key
 
-## Zsh
+## Zsh containing potential keys
 **/.zsh_*
 **/.zc*
 
@@ -20,3 +24,6 @@ deezer*
 
 ## Raycast
 raycast*
+
+## Fzf
+fzf/*

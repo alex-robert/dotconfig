@@ -4,17 +4,17 @@
 
 ### Before starting to work
 
-- Start in plan mode
-- After the plan is made, update the .claude/tasks/TASK_NAME.md
+- Always start in plan mode
+- When the plan is ready, save it to .claude/tasks/TASK_NAME.md
 - Plan should be detailed implementation : detailed reasoning as well as tasks breakdown
-- DO NOT continue until I have approved the plan
+- Never continue until the plan have been explicitly approved
 
 ## Implementation
 
 - Keep the plan and tasks updated
-- Always start by writing the tests
+- Always start by writing the tests - Unless explicitly requested not to in the plan
 - If test requires mocking, write the mocks
-- DO NOT continue until I have approved the tests implementations
+- Never auto-accept changes
 
 ## Finishing a task
 

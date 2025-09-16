@@ -1,0 +1,6 @@
+[user]
+	name = Alex Robert
+	email = alex.robert@live.fr
+[core]
+	pager = less -F
+	editor = nvim
