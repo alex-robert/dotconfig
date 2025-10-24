@@ -10,54 +10,28 @@
       "segments": [
         {
           "type": "os",
-          "style": "diamond",
-          "leading_diamond": "\u256d\u2500\ue0b2",
-          "background": "#6CA35E",
-          "foreground": "#272727",
+          "style": "plain",
+          "foreground": "#6CA35E",
           "properties": {
             "macos": "\uea85"
           },
-          "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} "
+          "template": "{{.Icon}}"
         },
         {
           "type": "path",
-          "style": "powerline",
-          "powerline_symbol": "\ue0b0",
-          "background": "#272727",
+          "style": "plain",
           "foreground": "#a6a4a6",
           "properties": {
-            "style": "agnoster_short",
-            "home_icon": "\udb81\udf25",
+            "style": "folder",
+            "home_icon": "~",
             "max_depth": 2,
-            "folder_icon": "\u2026",
-            "folder_separator_icon": " <transparent>\ue0b1</> "
+            "folder_separator_icon": "/"
           },
-          "template": " {{ .Path }} "
+          "template": " {{ .Path }}"
         },
-        {
-          "type": "project",
-          "style": "powerline",
-          "powerline_symbol": "\ue0b0",
-          "background": "#83769c",
-          "foreground": "#011627",
-          "template": " {{ if .Error }}{{ .Error }}{{ else }}\ueb29 <transparent>\ue0b1</>{{ if .Name }} {{ .Name }} {{ end }}{{ if .Version }} v{{.Version}} {{ end }}{{ end }} "
-
-        },
-        {
-          "type": "node",
-          "style": "powerline",
-          "powerline_symbol": "\ue0b0",
-          "foreground": "#272727",
-          "background": "#6CA35E",
-          "template": " \ueb0f <transparent>\ue0b1</> {{ .Full }} "
-        },
-
-
         {
           "type": "git",
-          "style": "powerline",
-          "powerline_symbol": "\ue0b0",
-          "background": "#191f48",
+          "style": "plain",
           "foreground": "#43CCEA",
           "foreground_templates": [
             "{{ if or (.Working.Changed) (.Staging.Changed) }}#FF9248{{ end }}",
@@ -66,32 +40,36 @@
             "{{ if gt .Behind 0 }}#B388FF{{ end }}"
           ],
           "properties": {
-            "branch_max_length": 25,
+            "branch_max_length": 20,
             "fetch_stash_count": false,
             "fetch_status": true,
-            "fetch_upstream_icon": true,
-            "branch_icon": "\uf418 ",
-            "branch_identical_icon": "\uf444",
-            "branch_gone_icon": "\ueab8"
+            "fetch_upstream_icon": false,
+            "branch_icon": " "
           },
-          "template": " {{ .UpstreamIcon }} {{ .HEAD }} {{if .BranchStatus }} {{ .BranchStatus }}{{ end }} ",
-          "trailing_diamond": "\ue0b0"
+          "template": " {{ .HEAD }}{{ if .Working.Changed }}*{{ end }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "node",
+          "style": "plain",
+          "foreground": "#6CA35E",
+          "template": "\ue718 {{ .Major }}.{{ .Minor }} "
         },
-
-
         {
           "type": "executiontime",
-          "style": "diamond",
-          "leading_diamond": "<transparent,background>\ue0b0</>",
-          "trailing_diamond": "\ue0b0",
-          "background": "#2f2f2f",
+          "style": "plain",
           "foreground": "#ffff66",
           "properties": {
-            "style": "roundrock",
+            "style": "austin",
             "threshold": 500,
             "always_enabled": false
           },
-          "template": " \uf252 {{ .FormattedMs }} "
+          "template": "\uf252 {{ .FormattedMs }}"
         }
       ]
     },
@@ -103,7 +81,7 @@
           "type": "text",
           "style": "plain",
           "foreground": "#6CA35E",
-          "template": "\u2570\u2500{{ if .Root }}#{{else}}\ue602{{end}}"
+          "template": "{{ if .Root }}# {{else}}\ue602 {{end}}"
         }
       ],
       "type": "prompt"

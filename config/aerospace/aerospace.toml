@@ -24,7 +24,7 @@ accordion-padding = 0
 # Mouse follows focus when focused monitor changes
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 # 
-on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+# on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 automatically-unhide-macos-hidden-apps = true
 
@@ -98,8 +98,9 @@ zulu      = "w"          # Z -> W
 # Assign certain workspaces to
 # See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [workspace-to-monitor-force-assignment]
-alpha = ['M27Q', 'main']
+alpha = ['M27Q']
 echo  = ['AORUS']
+
 
 
 ####################

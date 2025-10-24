@@ -24,6 +24,9 @@ eval "$(scw autocomplete script shell=zsh)"
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
+## Zsh Hooks
+autoload -U add-zsh-hook
+
 ## Quality of life 
 setopt AUTO_CD                # Type folder name to cd into it
 setopt CORRECT                # Spell correction for commands
@@ -47,9 +50,15 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 
 ## History substring search
+HISTORY_SUBSTRING_SEARCH_PREFIXED=1
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=green,fg=black,bold'
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=red,fg=white,bold'
+HISTORY_SUBSTRING_SEARCH_GLOBBING_FLAGS='i'  # case insensitive
+
 zinit load zsh-users/zsh-history-substring-search
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
 
 ## CD TAb completion 
 zinit light Aloxaf/fzf-tab
@@ -66,6 +75,30 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
+
+# load-nvmrc() {
+#   local nvmrc_path
+#   nvmrc_path="$(nvm_find_nvmrc)"
+
+#   if [ -n "$nvmrc_path" ]; then
+#     local nvmrc_node_version
+#     nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+#     if [ "$nvmrc_node_version" = "N/A" ]; then
+#       nvm install
+#     elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+#       nvm use
+#     fi
+#   elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+#     #echo "Reverting to nvm default version"
+#     nvm use default
+#   fi
+# }
+
+# add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
+
+
 #----------------------#
 #### --- Prompt --- ####
 #----------------------#
@@ -73,7 +106,7 @@ export NVM_DIR="$HOME/.nvm"
 ## Oh My Posh
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   # eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/alex-r-v1.omp.json)"
-  eval "$(oh-my-posh init zsh --config $HOME_CONFIG/oh-my-posh/themes/hungry.omp.json)"
+  eval "$(oh-my-posh init zsh --config $HOME_CONFIG/oh-my-posh/themes/hungry-compact.omp.json)"
 fi
 
 #-----------------------#
