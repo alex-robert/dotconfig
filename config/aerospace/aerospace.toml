@@ -98,8 +98,11 @@ zulu      = "w"          # Z -> W
 # Assign certain workspaces to
 # See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [workspace-to-monitor-force-assignment]
-alpha = ['M27Q']
-echo  = ['AORUS']
+
+1 = ['M27Q']   # Front screen 
+2 = ['Built-in'] # Main
+5 = ['AORUS']  # Right screen
+
 
 
 
@@ -115,7 +118,7 @@ echo  = ['AORUS']
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 cmd-alt-right = 'workspace next'
 cmd-alt-left  = 'workspace prev'
-alt-space     = 'workspace bravo' # Go to terminal
+alt-space     = 'workspace 2' # Go to terminal
 alt-tab       = 'workspace-back-and-forth'
 alt-enter     = 'fullscreen' # Toggle full screen
 
@@ -204,43 +207,43 @@ backspace = ['close-all-windows-but-current', 'mode main']
 
 [[on-window-detected]]
     if.app-id = 'com.microsoft.VSCode'
-    run = ['move-node-to-workspace alpha']
+    run = ['move-node-to-workspace 1']
 
 [[on-window-detected]]
     if.app-id = 'com.github.wez.wezterm'
-    run = ['move-node-to-workspace bravo']
+    run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
     if.app-id = 'com.jetbrains.datagrip'
-    run = ['move-node-to-workspace charlie']
+    run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
     if.app-id = 'com.postmanlabs.mac'
-    run = ['move-node-to-workspace charlie']
+    run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
     if.app-id = 'com.brave.Browser'
-    run = ['move-node-to-workspace delta']
+    run = ['move-node-to-workspace 4']
 
 [[on-window-detected]]
     if.app-id = 'company.thebrowser.Browser'
-    run = ['move-node-to-workspace delta']
+    run = ['move-node-to-workspace 4']
 
 [[on-window-detected]]
     if.app-id = 'notion.id'
-    run = ['move-node-to-workspace echo']
+    run = ['move-node-to-workspace 5']
 
 [[on-window-detected]]
     if.app-id = 'com.tinyspeck.slackmacgap'
-    run = ['move-node-to-workspace echo']
+    run = ['move-node-to-workspace 5']
 
 [[on-window-detected]]
     if.app-id = 'com.deezer.deezer-desktop'
-    run = ['move-node-to-workspace echo']
+    run = ['move-node-to-workspace 5']
 
 [[on-window-detected]]
-    if.app-id = 'com.dashlane.dashlanephonefinal'
-    run = ['layout floating', 'move-node-to-workspace delta']
+    if.app-id = 'com.dashlane.dashlaneph1final'
+    run = ['layout floating', 'move-node-to-workspace 4']
 
 [[on-window-detected]]
     if.app-id = 'net.battle.app'
@@ -253,10 +256,24 @@ backspace = ['close-all-windows-but-current', 'mode main']
     run = ['layout floating']
 
 [[on-window-detected]]
+    if.app-id = 'com.heroicgameslauncher.hgl'
+    check-further-callbacks = true
+    run = ['layout floating']
+
+[[on-window-detected]]
+    if.app-id = 'com.codeweavers.CrossOver'
+    check-further-callbacks = true
+    run = ['layout floating']
+
+[[on-window-detected]]
     if.app-id = 'unity.Blizzard Entertainment.Hearthstone'
     check-further-callbacks = true
-    run = ['layout floating', 'move-node-to-workspace alpha']
+    run = ['layout floating', 'move-node-to-workspace 1']
 
+[[on-window-detected]]
+    if.app-id = 'com.google.chrome.for.testing'
+    check-further-callbacks = true
+    run = ['layout floating', 'move-node-to-workspace 1']
 
 #  com.electron.dockerdesktop                      | Docker Desktop
 #  com.apple.freeform                              | Freeform
@@ -276,6 +293,10 @@ backspace = ['close-all-windows-but-current', 'mode main']
 #  com.deezer.deezer-desktop                       | Deezer
 #  com.apple.systempreferences                     | System Settings
 #  net.battle.app                                  | Battle.net
-#  com.dashlane.dashlanephonefinal                 |
-#  glcom.cron.electron                             | Notion Calenda
+#  com.dashlane.dashlanephonefinal                 | Dashlane
+#  glcom.cron.electron                             | Notion Calendar
 #  company.thebrowser.Browser                      | Arc
+#  com.apple.iCal                                  | Calendar
+#  com.heroicgameslauncher.hgl                     | Heroic
+#  com.codeweavers.CrossOver                       | CrossOver
+#  dev.commandline.waveterm                        | Wave

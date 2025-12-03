@@ -27,3 +27,7 @@ raycast*
 
 ## Fzf
 fzf/
+
+## Zee build
+config/zee/build/
+config/zee/grammars/

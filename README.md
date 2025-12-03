@@ -2,7 +2,7 @@
 
 ```bash
 # Move new app config to dotconfig
-mv ~/.config/newapp ~/dotconfig/config/
+mv ~/.config/newapp ~/path/to/dotconfigdir/config/
 make restow 
 ```
 

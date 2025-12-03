@@ -18,15 +18,7 @@ wezterm.on('window-config-reloaded', function(window)
     maximize_window(window)
 end)
 
--- Custom tab title format
-wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
-  local title = tab.tab_title
-  -- If no custom title set, use the active pane's title
-  if title and #title > 0 then
-    return title
-  end
-  return tab.active_pane.title
-end)
+
 
 return {
     color_scheme = "Tokyo Night Storm",
@@ -43,7 +35,6 @@ return {
     macos_window_background_blur = 20,
     hide_tab_bar_if_only_one_tab = true,
     tab_bar_at_bottom = true,
-    tab_title_max_width = 25,
     inactive_pane_hsb = {
         saturation = 0.9,
         brightness = 0.8
