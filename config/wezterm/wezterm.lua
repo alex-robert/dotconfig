@@ -1,128 +1,128 @@
+-- -- Import Wezterm 
 local wezterm = require 'wezterm'
-local config = wezterm.config_builder and wezterm.config_builder() or {}
+
+-------------------------
+--    Import modules   --
+-------------------------
+local default_conf = require 'default_config'
+local default_keymaps = require 'default_keymaps'
+local tabline_conf = require 'tabline_config'
+local theme_selector = require "plugins/theme_selector"
+local tabline_plugin = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
+
+local workspace_resurrect = wezterm.plugin.require("https://github.com/MLFlexer/resurrect.wezterm")
+local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
+
+-------------------------
+-- Utility function
+-------------------------
+local function config_apply(config, module)
+    for k, v in pairs(module) do
+        config[k] = v
+    end
+end
+
+local function add_keymap(config, keymap)
+  table.insert(config.keys, keymap)
+end
+
+local function add_keymaps(config, map)
+  for i, key in pairs(map) do 
+      table.insert(config.keys, key)
+  end
+end
 
 local function maximize_window(window)
-    -- wezterm.log_info('maximize_window called')
     local screen = wezterm.gui.screens().main
     local gui_window = window:gui_window()
     gui_window:set_position(0, 0)
     gui_window:set_inner_size(screen.width, screen.height)
 end
 
+-------------------------
+-- Setup config        --
+-------------------------
+local config = wezterm.config_builder and wezterm.config_builder() or {}
+
+config_apply(config, default_conf)
+config_apply(config, default_keymaps)
+
+-- ## Apply modules configurations ##
+
+-- Tabline Plugin
+tabline_plugin.setup(tabline_conf)
+tabline_plugin.apply_to_config(config)
+
+-- Theme switcher plugin
+
+theme_selector.apply_to_config(config, {
+  next_theme_key = 'n',
+  next_theme_mods = 'SUPER|SHIFT',
+  prev_theme_key = 'p',
+  prev_theme_mods = 'SUPER|SHIFT',
+  default_theme_key = 'd',
+  default_theme_mods = 'SUPER|SHIFT'
+})
+
+-- Resurect (sae sessions / workspaces)
+workspace_resurrect.state_manager.change_state_save_dir(wezterm.config_dir .. "/workspaces/")
+
+workspace_resurrect.state_manager.periodic_save({
+  interval_seconds = 30,
+  save_workspaces = true,
+  save_windows = true,
+  save_tabs = true,
+})
+
+local resurec_keymap = {
+  {
+    key = "w",
+    mods = "ALT",
+    action = wezterm.action_callback(function(win, pane)
+        workspace_resurrect.state_manager.save_state(workspace_resurrect.workspace_state.get_workspace_state())
+      end),
+  }
+}
+
+
+add_keymaps(config, resurec_keymap)
+
+-- Workspace Switcher
+
+local workspace_switcher_keymap ={ {
+    key = "s",
+    mods = "LEADER",
+    action = workspace_switcher.switch_workspace(),
+  },
+  {
+    key = "S",
+    mods = "LEADER",
+    action = workspace_switcher.switch_to_prev_workspace(),
+  }
+}
+
+add_keymaps(config, workspace_switcher_keymap)
+
+
+workspace_switcher.apply_to_config(config)
+
+
+-- Add custom key maping
+-- add_keymap(config, { key = "S", mods = "ALT", action = wezterm.action_callback(function(window, pane) 
+--   window:toast_notification('wezterm', 'alt-S hit', nil, 5000)
+-- end )})
+
+-------------------------
+-- Events              --
+-------------------------
 wezterm.on('gui-startup', function(cmd)
     local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
-    maximize_window(window)
+    -- resurrect.state_manager.resurrect_on_gui_startup()
 end)
 
 wezterm.on('window-config-reloaded', function(window)
-    maximize_window(window)
+  -- window:toast_notification('wezterm', 'configuration reloaded!', nil, 4000)
 end)
 
 
-
-return {
-    color_scheme = "Tokyo Night Storm",
-    font = wezterm.font("DroidSansM Nerd Font Mono", {
-        weight = "Regular",
-        stretch = "Normal",
-        style = "Normal"
-    }),
-    -- wezterm.font("FiraMono Nerd Font Mono", {weight="Regular", stretch="Normal", style="Normal"}),
-
-    font_size = 14.0,
-    window_decorations = "RESIZE",
-    window_background_opacity = 0.95,
-    macos_window_background_blur = 20,
-    hide_tab_bar_if_only_one_tab = true,
-    tab_bar_at_bottom = true,
-    inactive_pane_hsb = {
-        saturation = 0.9,
-        brightness = 0.8
-    },
-
-    -- Key bindings (mac-friendly)
-    keys = {
-        {
-            key = "t",
-            mods = "CMD",
-            action = wezterm.action {
-                SpawnTab = "CurrentPaneDomain"
-            }
-        }, 
-        -- Last closed pane will close the current tab/window
-        {
-            key = "w",
-            mods = "CMD",
-            action = wezterm.action.CloseCurrentPane { confirm = false },
-        }, 
-        -- Split tabs / window
-        -- {
-        --     key = "s",
-        --     mods = "SHIFT",
-        --     action = wezterm.action { SplitHorizontal = {
-        --             domain = "CurrentPaneDomain"
-        --         }
-        --     }
-        -- }, {
-        --     key = "d",
-        --     mods = "SHIFT",
-        --     action = wezterm.action { SplitVertical = {
-        --             domain = "CurrentPaneDomain"
-        --         }
-        --     }
-        -- }, 
-        -- Pane / tab navigation
-        
-
-        -- Word navigation (Option + arrows)
-        {
-            key = 'LeftArrow',
-            mods = 'OPT',
-            action = wezterm.action.SendKey { key = 'b', mods = 'ALT' }
-        }, {
-            key = 'RightArrow',
-            mods = 'OPT',
-            action = wezterm.action.SendKey { key = 'f', mods = 'ALT'}
-        }, 
-
-        -- Line beginning/end (Cmd + left/right)
-        {
-            key = 'LeftArrow',
-            mods = 'CMD',
-            action = wezterm.action.SendKey { key = 'a', mods = 'CTRL'}
-        }, {
-            key = 'RightArrow',
-            mods = 'CMD',
-            action = wezterm.action.SendKey { key = 'e', mods = 'CTRL'}
-        }
-    }
-}
-
--- local wezterm = require 'wezterm'
-
--- -- Import modules
--- local keymaps = require 'keymaps'
--- local tabs = require 'tabs'
--- local appearance = require 'appearance'
-
--- -- Basic WezTerm configuration
--- config.default_prog = { 'zsh', '-l' }
--- config.initial_cols = 120
--- config.initial_rows = 30
--- config.scrollback_lines = 10000
-
--- -- Font configuration
--- config.font = wezterm.font('JetBrains Mono', { weight = 'Medium' })
--- config.font_size = 14.0
-
--- -- Terminal behavior
--- config.automatically_reload_config = true
--- config.exit_behavior = 'CloseOnCleanExit'
--- config.window_close_confirmation = 'NeverPrompt'
-
--- -- Apply modular configurations
--- keymaps.apply_to_config(config)
--- tabs.apply_to_config(config)
--- appearance.apply_to_config(config)
-
--- return config
+return config

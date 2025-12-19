@@ -86,7 +86,7 @@ Your movement keys: i(up), j(left), k(down), l(right)
 
 ### 4. Editing Workflow
 
-**Enter edit mode:**
+**Enter insert mode:**
 ```
 e = Enter insert mode
 E = Insert at beginning of line

@@ -1,0 +1,88 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "options": {
+            "macos": "\uea85"
+          },
+          "template": "{{.Icon}}",
+          "foreground": "#6CA35E",
+          "type": "os",
+          "style": "plain"
+        },
+        {
+          "options": {
+            "folder_separator_icon": "/",
+            "home_icon": "~",
+            "max_depth": 2,
+            "style": "folder"
+          },
+          "template": " {{ .Path }}",
+          "foreground": "#a6a4a6",
+          "type": "path",
+          "style": "plain"
+        },
+        {
+          "options": {
+            "branch_icon": " ",
+            "fetch_status": true,
+            "fetch_upstream_icon": false
+          },
+          "template": " {{ .HEAD }}{{ if .Working.Changed }}*{{ end }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}",
+          "foreground": "#43CCEA",
+          "type": "git",
+          "style": "plain",
+          "foreground_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#FF9248{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ff4500{{ end }}",
+            "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
+            "{{ if gt .Behind 0 }}#B388FF{{ end }}"
+          ]
+        }
+      ],
+      "newline": true
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "template": "\ue718 {{ .Major }}.{{ .Minor }} ",
+          "foreground": "#6CA35E",
+          "type": "node",
+          "style": "plain"
+        },
+        {
+          "options": {
+            "always_enabled": false,
+            "style": "austin",
+            "threshold": 500
+          },
+          "template": "\uf252 {{ .FormattedMs }}",
+          "foreground": "#ffff66",
+          "type": "executiontime",
+          "style": "plain"
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "template": "{{ if .Root }}# {{else}}\ue602 {{end}}",
+          "foreground": "#6CA35E",
+          "type": "text",
+          "style": "plain"
+        }
+      ],
+      "newline": true
+    }
+  ],
+  "version": 4,
+  "final_space": true
+}

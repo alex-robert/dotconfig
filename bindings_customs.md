@@ -1,3 +1,10 @@
+# Another definition
+
+- Move stuff arround : move a window to another workspace / screen
+- Move around : navigate workspace / screens / opened window
+- Move around in app : navigate panes, tabs
+
+
 # Windows Management & Navigation
 ## Screen focus navigation (AeroSpace)
   - Select screen to focus  (select main, front, right)
@@ -45,7 +52,7 @@
 
 
 m1 m2 m3 m4 k
- 
+
 
 | App           | Action                                           | binding                        |  mode  | comment                             |
 |---------------|--------------------------------------------------|--------------------------------|--------|-------------------------------------|

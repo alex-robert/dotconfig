@@ -16,17 +16,13 @@ config/zsh/.zshenv
 **/.zsh_*
 **/.zc*
 
-## Copilot
-gh*
 
-## Deezer
-deezer*
+## 
+config/wezterm/workspaces/
+config/qalculate/qalc.history
+config/pgcli/history
+config/pgcli/log
 
-## Raycast
-raycast*
-
-## Fzf
-fzf/
 
 ## Zee build
 config/zee/build/

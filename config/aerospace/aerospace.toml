@@ -202,6 +202,10 @@ backspace = ['close-all-windows-but-current', 'mode main']
 ###########################
 
 [[on-window-detected]]
+    check-further-callbacks = true
+    run = 'layout floating'
+
+[[on-window-detected]]
     if.app-id = 'com.apple.finder'
     run = ['layout floating']
 
@@ -222,10 +226,6 @@ backspace = ['close-all-windows-but-current', 'mode main']
     run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
-    if.app-id = 'com.brave.Browser'
-    run = ['move-node-to-workspace 4']
-
-[[on-window-detected]]
     if.app-id = 'company.thebrowser.Browser'
     run = ['move-node-to-workspace 4']
 
@@ -239,6 +239,18 @@ backspace = ['close-all-windows-but-current', 'mode main']
 
 [[on-window-detected]]
     if.app-id = 'com.deezer.deezer-desktop'
+    run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.Music'
+    run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
+    if.app-id = 'ai.elementlabs.lmstudio'
+    run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
+    if.app-id = 'teleportlabs.com.Dayflow'
     run = ['move-node-to-workspace 5']
 
 [[on-window-detected]]
@@ -300,3 +312,7 @@ backspace = ['close-all-windows-but-current', 'mode main']
 #  com.heroicgameslauncher.hgl                     | Heroic
 #  com.codeweavers.CrossOver                       | CrossOver
 #  dev.commandline.waveterm                        | Wave
+#  com.apple.Music                                 | Music
+#  ai.elementlabs.lmstudio                         | LM Studio
+#  com.proxyman.NSProxy                            | Proxyman
+#  teleportlabs.com.Dayflow                        | Dayflow
