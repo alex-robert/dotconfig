@@ -70,6 +70,10 @@ zinit load code-stats/code-stats-zsh
 ## FZF
 [ -f $HOME_CONFIG/.fzf.zsh ] && source $HOME_CONFIG/.fzf.zsh
 
+## Zoxide
+eval "$(zoxide init zsh)"
+
+
 ## NVM  
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm

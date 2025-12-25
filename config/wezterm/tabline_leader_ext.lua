@@ -1,10 +1,26 @@
 local wezterm = require('wezterm')
-local config = require('tabline.config')
 
-return {
+wezterm.on('update-status', function(window, pane)
+  if window:leader_is_active() then
+    wezterm.emit('leader-state-is-active', window, pane, is_active)
+  else
+    wezterm.emit('leader-state-is-over', window, pane, is_active)
+  end
+end)
+
+
+return{
   'is_leader_mode',
   events = {
-    show = '',
-    hide = ''
+    show = 'leader-state-is-active',
+    hide = 'leader-state-is-over',
   },
+  sections = {
+    tabline_a = { ' LEADER ' }
+  },
+  theme = {
+    a = {
+      bg = '#48F55B'
+    }
+  }
 }

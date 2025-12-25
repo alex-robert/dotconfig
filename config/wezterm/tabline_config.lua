@@ -1,5 +1,7 @@
 local wezterm = require 'wezterm'
 
+local leader_ext = require 'tabline_leader_ext'
+
 local function active_theme(window, pane)
     local effective_config = window:effective_config()
     local theme = string.format(
@@ -11,14 +13,6 @@ local function active_theme(window, pane)
 end
 
 
-local function is_leader_active(window) 
-  if window:leader_is_active() then
-    return "LEADER"
-  else
-    return ""
-  end
-end
-
 local tabline_config = {
   options = {
     icons_enabled = true,
@@ -28,7 +22,6 @@ local tabline_config = {
     -- theme = 'GruvboxDark',
 
     tabs_enabled = true,
-    theme_overrides = {},
     section_separators = {
       left = wezterm.nerdfonts.pl_left_hard_divider,
       right = wezterm.nerdfonts.pl_right_soft_divider,
@@ -41,7 +34,20 @@ local tabline_config = {
       left = wezterm.nerdfonts.pl_left_hard_divider,
       right = wezterm.nerdfonts.pl_right_hard_divider,
     },
-    
+
+    theme_overrides = {
+      window_mode = {
+        a = { fg = '#181825', bg = '#cba6f7' },
+        b = { fg = '#cba6f7', bg = '#313244' },
+        c = { fg = '#cdd6f4', bg = '#181825' },
+      },
+      workspace_mode = {
+        a = { fg = '#181825', bg = '#cba6f7' },
+        b = { fg = '#cba6f7', bg = '#313244' },
+        c = { fg = '#cdd6f4', bg = '#181825' },
+      }
+    },
+
     -- section_separators = '',
     -- component_separators = '',
     -- tab_separators = '',
@@ -49,10 +55,11 @@ local tabline_config = {
   sections = {
     tabline_a = { 
       'mode',
-      padding = 14,
+      -- icons_enabled = true,
+      -- padding = 30,
     },
     tabline_b = { 'workspace' },
-    tabline_c = { is_leader_active },
+    tabline_c = { '' },
     tab_active = {
       'index',
       '|',
@@ -88,7 +95,9 @@ local tabline_config = {
   },
   extensions = {
     'resurrect',
-    'smart_workspace_switcher'
+    'smart_workspace_switcher',
+    -- 'resurrect.state_manager.periodic_save',
+    leader_ext
   },
 }
 

@@ -103,26 +103,26 @@ end
 -- Configure key bindings based on options
 local function default_key_bindings(options)
     local keys = {{
-        key = options.next_theme_key or 'n',
-        mods = options.next_theme_mods or 'SUPER|SHIFT',
+        key = 'n',
+        mods = 'SUPER|SHIFT',
         action = wezterm.action_callback(function(window, pane)
             next_theme(window)
         end)
     }, {
-        key = options.prev_theme_key or 'p',
-        mods = options.prev_theme_mods or 'SUPER|SHIFT',
+        key = 'p',
+        mods = 'SUPER|SHIFT',
         action = wezterm.action_callback(function(window, pane)
             prev_theme(window)
         end)
     }, {
-        key = options.random_theme_key or 'r',
-        mods = options.random_theme_mods or 'SUPER|SHIFT',
+        key = 'r',
+        mods = 'SUPER|SHIFT',
         action = wezterm.action_callback(function(window, pane)
             random_theme(window)
         end)
     }, {
-        key = options.default_theme_key or 'd',
-        mods = options.default_theme_mods or 'SUPER|SHIFT',
+        key = 'd',
+        mods = 'SUPER|SHIFT',
         action = wezterm.action_callback(function(window, pane)
             default_theme(window)
         end)
