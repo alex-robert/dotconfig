@@ -23,8 +23,7 @@ accordion-padding = 0
 
 # Mouse follows focus when focused monitor changes
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
-# 
-# on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 automatically-unhide-macos-hidden-apps = true
 
@@ -99,9 +98,11 @@ zulu      = "w"          # Z -> W
 # See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [workspace-to-monitor-force-assignment]
 
-1 = ['M27Q']   # Front screen 
+1 = ['M27Q'] # Front screen 
 2 = ['Built-in'] # Main
-5 = ['AORUS']  # Right screen
+3 = ['M27Q'] # Front screen 
+4 = ['AORUS'] # Right screen
+5 = ['AORUS'] # Right screen
 
 
 
@@ -116,8 +117,12 @@ zulu      = "w"          # Z -> W
 [mode.main.binding]
 # Switch workspaces
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-cmd-alt-right = 'workspace next'
-cmd-alt-left  = 'workspace prev'
+cmd-alt-right = ['workspace next']
+cmd-alt-left  = ['workspace prev']
+####
+cmd-alt-lima = ['workspace next']
+cmd-alt-juliett  = ['workspace prev']
+
 alt-space     = 'workspace 2' # Go to terminal
 alt-tab       = 'workspace-back-and-forth'
 alt-enter     = 'fullscreen' # Toggle full screen
@@ -125,18 +130,30 @@ alt-enter     = 'fullscreen' # Toggle full screen
 
 # Switch window focus
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-alt-ctrl-up    = 'focus up'
-alt-ctrl-left  = 'focus left'
-alt-ctrl-down  = 'focus down'
-alt-ctrl-right = 'focus right'
+shift-ctrl-up    = 'focus up'
+shift-ctrl-left  = 'focus left'
+shift-ctrl-down  = 'focus down'
+shift-ctrl-right = 'focus right'
+####
+# shift-ctrl-lima    = 'focus right'
+# shift-ctrl-juliett  = 'focus left'
+# shift-ctrl-kilo  = 'focus down'
+# shift-ctrl-india = 'focus up'
+
 
 # Switch monitor focus
 #https://nikitabobko.github.io/AeroSpace/commands#focus-monitor
 # focus-monitor
-cmd-alt-ctrl-right = 'focus-monitor right'
-cmd-alt-ctrl-left  = 'focus-monitor left'
-cmd-alt-ctrl-down  = 'focus-monitor down'
-cmd-alt-ctrl-up    = 'focus-monitor up'
+alt-ctrl-right = ['focus-monitor right'] # , 'move-mouse monitor-lazy-center'
+alt-ctrl-left  = ['focus-monitor left' ] # , 'move-mouse monitor-lazy-center'
+alt-ctrl-down  = ['focus-monitor down' ] # , 'move-mouse monitor-lazy-center'
+alt-ctrl-up    = ['focus-monitor up'   ] # , 'move-mouse monitor-lazy-center'
+####
+# alt-ctrl-lima     = ['focus-monitor right', 'move-mouse monitor-lazy-center']
+# alt-ctrl-juliett  = ['focus-monitor left',  'move-mouse monitor-lazy-center']
+# alt-ctrl-kilo     = ['focus-monitor down',  'move-mouse monitor-lazy-center']
+# alt-ctrl-india    = ['focus-monitor up',    'move-mouse monitor-lazy-center']
+
 
 
 # Mods
@@ -152,12 +169,19 @@ cmd-alt-ctrl-shift-lima   = 'mode layout'     # Todo Make a Double tap L shortcu
 # - Send Workspace to another monitor
 # - Resize windows (half, quater, full screen
 [mode.layout.binding]
+esc = ['mode main']
+
 # Move windows in the given direction
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 shift-up    = 'move up'
 shift-left  = 'move left'
 shift-down  = 'move down'
 shift-right = 'move right'
+####
+# shift-india    = 'move up'
+# shift-juliett  = 'move left'
+# shift-kilo  = 'move down'
+# shift-lima = 'move right'
 
 # Merge nodes
 # See: https://nikitabobko.github.io/AeroSpace/commands#join-with
@@ -165,17 +189,27 @@ alt-shift-up    = ['join-with left' ]
 alt-shift-left  = ['join-with down' ]
 alt-shift-down  = ['join-with up'   ]
 alt-shift-right = ['join-with right']
+####
+# alt-shift-juliett = ['join-with left' ]
+# alt-shift-kilo    = ['join-with down' ]
+# alt-shift-india   = ['join-with up'   ]
+# alt-shift-lima    = ['join-with right']
+
 
 # Move windows/nodes to other workspaces
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 cmd-alt-right = ['move-node-to-workspace next', 'workspace next']
 cmd-alt-left  = ['move-node-to-workspace prev', 'workspace prev']
+####
+# cmd-alt-lima    = ['move-node-to-workspace next', 'workspace next']
+# cmd-alt-juliett = ['move-node-to-workspace prev', 'workspace prev']
+
 
 # Toggle between floating and tiling layout
 cmd-alt-ctrl-shift-foxtrot = ['layout floating tiling']
 
 # Toggle between accordion and tiling layout
-cmd-alt-ctrl-shift-tango = ['layout tiles accordion' ]
+cmd-alt-ctrl-shift-tango = ['layout tiles accordion']
 
 # Toggle between horizontal vertival layout
 cmd-alt-ctrl-shift-hotel = ['layout horizontal vertical']
@@ -187,13 +221,13 @@ alt-down = 'resize smart -50'
 alt-up = 'resize smart +50'
 
 
-esc = ['mode main']
 
 #######################
 ### Service Bndings ###
 #######################
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
+
 backspace = ['close-all-windows-but-current', 'mode main']
 
 
@@ -202,24 +236,23 @@ backspace = ['close-all-windows-but-current', 'mode main']
 ###########################
 
 [[on-window-detected]]
-    check-further-callbacks = true
-    run = 'layout floating'
-
-[[on-window-detected]]
-    if.app-id = 'com.apple.finder'
-    run = ['layout floating']
-
-[[on-window-detected]]
-    if.app-id = 'com.microsoft.VSCode'
-    run = ['move-node-to-workspace 1']
+    if.app-name-regex-substring = 'wezterm-gui'
+    # if.window-title-regex-substring = 'floating'
+    check-further-callbacks = false
+    run = ['layout floating', 'move-node-to-workspace 2']
 
 [[on-window-detected]]
     if.app-id = 'com.github.wez.wezterm'
-    run = ['move-node-to-workspace 2']
+    check-further-callbacks = false
+    run = ['layout tiling', 'move-node-to-workspace 2']
+
+[[on-window-detected]]
+    if.app-id = 'com.microsoft.VSCode'
+    run = ['layout tiling', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
     if.app-id = 'com.jetbrains.datagrip'
-    run = ['move-node-to-workspace 3']
+    run = ['layout tiling', 'move-node-to-workspace 3']
 
 [[on-window-detected]]
     if.app-id = 'com.postmanlabs.mac'
@@ -227,11 +260,11 @@ backspace = ['close-all-windows-but-current', 'mode main']
 
 [[on-window-detected]]
     if.app-id = 'company.thebrowser.Browser'
-    run = ['move-node-to-workspace 4']
+    run = ['layout tiling', 'move-node-to-workspace 4']
 
 [[on-window-detected]]
     if.app-id = 'notion.id'
-    run = ['move-node-to-workspace 5']
+    run = ['layout tiling', 'move-node-to-workspace 5']
 
 [[on-window-detected]]
     if.app-id = 'com.tinyspeck.slackmacgap'
@@ -286,6 +319,11 @@ backspace = ['close-all-windows-but-current', 'mode main']
     if.app-id = 'com.google.chrome.for.testing'
     check-further-callbacks = true
     run = ['layout floating', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.finder'
+    run = ['layout floating']
+
 
 #  com.electron.dockerdesktop                      | Docker Desktop
 #  com.apple.freeform                              | Freeform

@@ -24,7 +24,7 @@ local tabline_config = {
     tabs_enabled = true,
     section_separators = {
       left = wezterm.nerdfonts.pl_left_hard_divider,
-      right = wezterm.nerdfonts.pl_right_soft_divider,
+      right = wezterm.nerdfonts.pl_right_hard_divider,
     },
     component_separators = {
       left = wezterm.nerdfonts.pl_left_hard_divider,
@@ -54,9 +54,13 @@ local tabline_config = {
   },
   sections = {
     tabline_a = { 
-      'mode',
-      -- icons_enabled = true,
-      -- padding = 30,
+      {
+        'mode',
+        icons_enabled = true,
+        padding = 3,
+      }
+      
+      -- 
     },
     tabline_b = { 'workspace' },
     tabline_c = { '' },
@@ -77,20 +81,22 @@ local tabline_config = {
       { 'cwd', padding = { left = 0, right = 1 } },
       
     },
-    tabline_x = { '' },
+    tabline_x = { ' ' },
     tabline_y = { 'cpu', 'ram', throttle = 10, },
-    tabline_z = { 
-      ''
-      -- 'domain',
-      -- icons_enabled = true,
-      -- icons_only = true,
-      -- domain_to_icon = {
-      --   default = wezterm.nerdfonts.md_monitor,
-      --   ssh = wezterm.nerdfonts.md_ssh,
-      --   wsl = wezterm.nerdfonts.md_microsoft_windows,
-      --   docker = wezterm.nerdfonts.md_docker,
-      --   unix = wezterm.nerdfonts.cod_terminal_linux,
-      -- }, 
+    tabline_z = {
+      {
+        'domain',
+        icons_enabled = true,
+        icons_only = true,
+        domain_to_icon = {
+          default = wezterm.nerdfonts.md_monitor,
+          ssh = wezterm.nerdfonts.md_ssh,
+          wsl = wezterm.nerdfonts.md_microsoft_windows,
+          docker = wezterm.nerdfonts.md_docker,
+          unix = wezterm.nerdfonts.cod_terminal_linux,
+        },
+        padding = 2,
+      },
     },
   },
   extensions = {

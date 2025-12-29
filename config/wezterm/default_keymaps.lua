@@ -1,11 +1,16 @@
 local wezterm = require 'wezterm'
 
-local bindings = { -- Debug
+local bindings = { 
+  
+-- Debug
 {
     key = 'L',
     mods = 'CTRL',
     action = wezterm.action.ShowDebugOverlay
-}, -- Tabs
+}, 
+
+
+-- Tabs
 {
     key = "t",
     mods = "CMD",
@@ -21,7 +26,9 @@ local bindings = { -- Debug
     key = 'j',
     mods = 'CMD|SHIFT',
     action = wezterm.action.ActivateTabRelative(-1)
-}, -- Panes
+}, 
+
+-- Panes
 {
     key = 'w',
     mods = 'CMD',
@@ -30,7 +37,7 @@ local bindings = { -- Debug
     }
 }, 
 
- {
+{
     key = 'i',
     mods = 'CMD',
     action = wezterm.action.ActivatePaneDirection 'Up'
@@ -64,7 +71,9 @@ local bindings = { -- Debug
         key = 'f',
         mods = 'ALT'
     }
-}, -- Line beginning/end (Cmd + left/right)
+}, 
+
+-- Line beginning/end (Cmd + left/right)
 {
     key = 'LeftArrow',
     mods = 'CMD',

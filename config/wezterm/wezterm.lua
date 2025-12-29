@@ -140,7 +140,10 @@ end)
 -------------------------
 -- Events              --
 -------------------------
-wezterm.on('gui-startup', resurrect.state_manager.resurrect_on_gui_startup)
+wezterm.on('gui-startup', function(cmd)
+    local args = cmd or {}
+-- #resurrect.state_manager.resurrect_on_gui_startup
+end) 
 wezterm.on('window-config-reloaded', function(window)
   -- window:toast_notification('wezterm', 'configuration reloaded!', nil, 4000)
 end)

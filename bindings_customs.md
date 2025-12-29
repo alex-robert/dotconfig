@@ -47,10 +47,6 @@
 
 ## Nvim
 
-
-
-
-
 m1 m2 m3 m4 k
 
 
@@ -59,12 +55,10 @@ m1 m2 m3 m4 k
 | AeroSpace     | Send Workspace to monitor                        |                                | main   |                                     |
 | AeroSpace     | Switch to next workspace                         |                                | main   |                                     |
 | AeroSpace     | Switch to prev workspace                         |                                | main   |                                     |
-| AeroSpace     | Focus windows Up                   |                                |        |                                     |
-| AeroSpace     | Focus windows Down                   |                                |        |                                     |
-| AeroSpace     | Focus windows Left                   |                                |        |                                     |
-| AeroSpace     | Focus windows Right                   |                                |        |                                     |
-
-
+| AeroSpace     | Focus windows Up                                 |                                |        |                                     |
+| AeroSpace     | Focus windows Down                               |                                |        |                                     |
+| AeroSpace     | Focus windows Left                               |                                |        |                                     |
+| AeroSpace     | Focus windows Right                              |                                |        |                                     |
 | AeroSpace     | Resize focused windows                           |                                | layout |                                     |
 | AeroSpace     | Full screen                                      |                                | layout |                                     |
 | AeroSpace     | Halves                                           |                                | layout |                                     |

@@ -1,0 +1,96 @@
+---
+syntax: markdown
+tags: [ mac, keymap ]
+---
+# Main Binding Mode
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `⌥` `⏎`                    | fullscreen                                   |
+  | `⌥` `␣`                    | workspace 2                                  |
+  | `⌥` `tab`                  | workspace-back-and-forth                     |
+  |                            |                                              |
+  | `⌘` `⌥` `juliett`          | workspace prev                               |
+  | `⌘` `⌥` `lima`             | workspace next                               |
+  |                            |                                              |
+  | `⇧` `⌃` `india`            | focus up                                     |
+  | `⇧` `⌃` `juliett`          | focus left                                   |
+  | `⇧` `⌃` `kilo`             | focus down                                   |
+  | `⇧` `⌃` `lima`             | focus right                                  |
+  |                            |                                              |
+  | `⌥` `⌃` `india`            | focus-monitor up                             |
+  | `⌥` `⌃` `juliett`          | focus-monitor left                           |
+  | `⌥` `⌃` `kilo`             | focus-monitor down                           |
+  | `⌥` `⌃` `lima`             | focus-monitor right                          |
+
+## Switch binding mode
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `⌘-⌥-⌃-⇧ lima`             | mode layout                                  |
+  | `⌘-⌥-⌃-⇧ sierra`           | mode service                                 |
+
+## [Arrow Keys alternatives]
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  |                            |                                              |
+  | `⌘` `⌥` `←`                | workspace prev                               |
+  | `⌘` `⌥` `→`                | workspace next                               |
+  |                            |                                              |
+  | `⇧` `⌃` `↓`                | focus down                                   |
+  | `⇧` `⌃` `←`                | focus left                                   |
+  | `⇧` `⌃` `→`                | focus right                                  |
+  | `⇧` `⌃` `↑`                | focus up                                     |
+  |                            |                                              |
+  | `⌥` `⌃` `↓`                | focus-monitor down                           |
+  | `⌥` `⌃` `←`                | focus-monitor left                           |
+  | `⌥` `⌃` `→`                | focus-monitor right                          |
+  | `⌥` `⌃` `↑`                | focus-monitor up                             |
+
+
+# Layout Biding mode
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `esc`                      | mode main                                    |
+  |                            |                                              |
+  | `⌥` `↓`                    | resize smart -50                             |
+  | `⌥` `↑`                    | resize smart +50                             |
+  |                            |                                              |
+  | `⌘` `⌥` `^` `⇧` `foxtrot`  | layout floating tiling                       |
+  | `⌘` `⌥` `^` `⇧` `hotel`    | layout horizontal vertical                   |
+  | `⌘` `⌥` `^` `⇧` `tango`    | layout tiles accordion                       |
+  |                            |                                              |
+  | `⇧` `india`                | move up                                      |
+  | `⇧` `juliett`              | move left                                    |
+  | `⇧` `kilo`                 | move down                                    |
+  | `⇧` `lima`                 | move right                                   |
+  |                            |                                              |
+  | `⌥` `⇧` `india`            | join-with up                                 |
+  | `⌥` `⇧` `juliett`          | join-with left                               |
+  | `⌥` `⇧` `kilo`             | join-with down                               |
+  | `⌥` `⇧-lima`               | join-with right                              |
+  | `⌘` `⌥` `^` `⇧` `romeo`    | flatten-workspace-tree                       |
+  |                            |                                              |
+  | `⌘` `⌥` `juliett`          | move-node-to-workspace prev; workspace prev  |
+  | `⌘` `⌥` `lima`             | move-node-to-workspace next; workspace next  |
+  
+  
+## [Arrow Keys alternatives]
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `⌥` `⇧` `↓`                | join-with up                                 |
+  | `⌥` `⇧` `←`                | join-with down                               |
+  | `⌥` `⇧` `→`                | join-with right                              |
+  | `⌥` `⇧` `↑`                | join-with left                               |
+  |                            |                                              |
+  | `⇧` `↓`                    | move down                                    |
+  | `⇧` `←`                    | move left                                    |
+  | `⇧` `→`                    | move right                                   |
+  | `⇧` `↑`                    | move up                                      |
+  |                            |                                              |
+  | `⌘-⌥` `←`                  | move-node-to-workspace prev; workspace prev  |
+  | `⌘` `⌥` `→`                | move-node-to-workspace next; workspace next  |
+  
+# Service Biding mode
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `backspace`                | close-all-windows-but-current; mode main     |
+  | `esc`                      | reload-config; mode main                     |
