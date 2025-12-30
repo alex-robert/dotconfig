@@ -22,29 +22,11 @@ tags: [ mac, keymap ]
   | `⌥` `⌃` `kilo`             | focus-monitor down                           |
   | `⌥` `⌃` `lima`             | focus-monitor right                          |
 
-## Switch binding mode
+# Switch binding mode
   |                            |                                              |
   |----------------------------|----------------------------------------------|
   | `⌘-⌥-⌃-⇧ lima`             | mode layout                                  |
   | `⌘-⌥-⌃-⇧ sierra`           | mode service                                 |
-
-## [Arrow Keys alternatives]
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  |                            |                                              |
-  | `⌘` `⌥` `←`                | workspace prev                               |
-  | `⌘` `⌥` `→`                | workspace next                               |
-  |                            |                                              |
-  | `⇧` `⌃` `↓`                | focus down                                   |
-  | `⇧` `⌃` `←`                | focus left                                   |
-  | `⇧` `⌃` `→`                | focus right                                  |
-  | `⇧` `⌃` `↑`                | focus up                                     |
-  |                            |                                              |
-  | `⌥` `⌃` `↓`                | focus-monitor down                           |
-  | `⌥` `⌃` `←`                | focus-monitor left                           |
-  | `⌥` `⌃` `→`                | focus-monitor right                          |
-  | `⌥` `⌃` `↑`                | focus-monitor up                             |
-
 
 # Layout Biding mode
   |                            |                                              |
@@ -72,8 +54,30 @@ tags: [ mac, keymap ]
   | `⌘` `⌥` `juliett`          | move-node-to-workspace prev; workspace prev  |
   | `⌘` `⌥` `lima`             | move-node-to-workspace next; workspace next  |
   
-  
-## [Arrow Keys alternatives]
+# Service Biding mode
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `backspace`                | close-all-windows-but-current; mode main     |
+  | `esc`                      | reload-config; mode main                     |
+
+# Main Binding Mode [Arrow Keys alternatives]
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  |                            |                                              |
+  | `⌘` `⌥` `←`                | workspace prev                               |
+  | `⌘` `⌥` `→`                | workspace next                               |
+  |                            |                                              |
+  | `⇧` `⌃` `↓`                | focus down                                   |
+  | `⇧` `⌃` `←`                | focus left                                   |
+  | `⇧` `⌃` `→`                | focus right                                  |
+  | `⇧` `⌃` `↑`                | focus up                                     |
+  |                            |                                              |
+  | `⌥` `⌃` `↓`                | focus-monitor down                           |
+  | `⌥` `⌃` `←`                | focus-monitor left                           |
+  | `⌥` `⌃` `→`                | focus-monitor right                          |
+  | `⌥` `⌃` `↑`                | focus-monitor up                             |
+
+# Layout Biding mode [Arrow Keys alternatives]
   |                            |                                              |
   |----------------------------|----------------------------------------------|
   | `⌥` `⇧` `↓`                | join-with up                                 |
@@ -88,9 +92,7 @@ tags: [ mac, keymap ]
   |                            |                                              |
   | `⌘-⌥` `←`                  | move-node-to-workspace prev; workspace prev  |
   | `⌘` `⌥` `→`                | move-node-to-workspace next; workspace next  |
-  
-# Service Biding mode
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `backspace`                | close-all-windows-but-current; mode main     |
-  | `esc`                      | reload-config; mode main                     |
+
+# CLI
+
+- Query keybindings: `aerospace config --get mode.service.binding --json`

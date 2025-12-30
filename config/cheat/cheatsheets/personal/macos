@@ -6,141 +6,149 @@ tags: [ mac, keymap ]
 # MacOs system bindings
 
 ## Basics
-
-  - ⌘ ␣ :  Spotlight search   
-  - ⌘ C :  Copy 
-  - ⌘ V :  Paste 
-  - ⌘ A :  Select all  
-  - ⌘ X :  Cut  
-  - ⌘ S :  Save  
-  - ⌘ T :  Open a new tab  
-  - ⌘ N :  Open a new window  
-  - ⌘ Z :  Undo/Back  
-  - ⌘ ⇧ Z : Redo  
-  - ⌘ W : Close window or tab  
-  - ⌘ Q :  End program  
-  - ⌘ F :  Search  
-  - fn ⏎ :  Remove  
-  - ⌘ P : Print Dialog
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `⌘` `␣`                    | spotlight search                             |
+  | `⌘` `c`                    | copy                                         |
+  | `⌘` `v`                    | paste                                        |
+  | `⌘` `a`                    | select all                                   |
+  | `⌘` `x`                    | cut                                          |
+  | `⌘` `s`                    | save                                         |
+  | `⌘` `t`                    | open a new tab                               |
+  | `⌘` `n`                    | open a new window                            |
+  | `⌘` `z`                    | undo/back                                    |
+  | `⌘` `⇧` `z`                | redo                                         |
+  | `⌘` `w`                    | close window or tab                          |
+  | `⌘` `q`                    | end program                                  |
+  | `⌘` `f`                    | search                                       |
+  | `fn` `⏎`                   | remove                                       |
+  | `⌘` `p`                    | print dialog                                 |
   
 ## Text Navigation & Editing
-
-  - ⌘ → :  Go to the end of the line 
-  - ⌘ ← :  Go to the start of the line 
-  - ⌘ ↑ :  Go to the start of the document 
-  - ⌘ ↓ :  Go to the end of the document 
-  - ⌥ → :  Go forwards one word 
-  - ⌥ ← :  Go back one word 
-  - ⌥ ↑ :  Go back one paragraph 
-  - ⌥ ↓ :  Go down one paragraph 
-  - fn ↑ :  Go to the previous page 
-  - fn ↓ :  Go to the next page 
-  - ⌘ B :  Format selected text in bold 
-  - ⌘ U :  Underline selected text 
-  - ⌘ I :  Format selected text in italics 
-  - ⌃ A : Beginning of line
-  - ⌃ E : End of line
-  - ⌃ K : Delete to end of line
-  - ⌃ D : Delete forward character
-  - ⌃ H : Delete backward character
-  - ⌃ T : Swap characters
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `⌘` `→`                    | go to the end of the line                    |
+  | `⌘` `←`                    | go to the start of the line                  |
+  | `⌘` `↑`                    | go to the start of the document              |
+  | `⌘` `↓`                    | go to the end of the document                |
+  | `⌥` `→`                    | go forwards one word                         |
+  | `⌥` `←`                    | go back one word                             |
+  | `⌥` `↑`                    | go back one paragraph                        |
+  | `⌥` `↓`                    | go down one paragraph                        |
+  | `fn` `↑`                   | go to the previous page                      |
+  | `fn` `↓`                   | go to the next page                          |
+  | `⌘` `b`                    | format selected text in bold                 |
+  | `⌘` `u`                    | underline selected text                      |
+  | `⌘` `i`                    | format selected text in italics              |
+  | `⌃` `a`                    | beginning of line                            |
+  | `⌃` `e`                    | end of line                                  |
+  | `⌃` `k`                    | delete to end of line                        |
+  | `⌃` `d`                    | delete forward character                     |
+  | `⌃` `h`                    | delete backward character                    |
+  | `⌃` `t`                    | swap characters                              |
 
 ## Window & App Management & App Navigation
-
-  - ⌘ ⇥ :  Switch to next app
-  - ⌘ ⇧ Tab : Switch to previous app
-  - ⌘ ` :  Switch between windows in an application 
-  - ⌘ ⇧ ` :  Switch between windows in an application 
-  - F3 :  Display all active windows 
-  - ⌘ F3 :  Display desktop 
-  - ⌘ ⇧ ← :  Go to the previous tab  
-  - ⌘ ⇧ → :  Go to the next tab  
-  - ⌘ H : Hide current app
-  - ⌘ ⌥ H : Hide all other apps
-  - ⌘ M : Minimize window
-  - ⌘ ⌥ M : Minimize all windows
-  - ⌘ ⌃ F : Toggle fullscreen
-  - ⌘ ⌥ D : Show Dock if hidden auto
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `⌘` `⇥`                    | switch to next app                           |
+  | `⌘` `⇧` `⇥`                | switch to previous app                       |
+  | `⌘` `` ` ``                | switch between windows in an application     |
+  | `⌘` `⇧` `` ` ``            | switch between windows (reverse)             |
+  | `F3`                       | display all active windows                   |
+  | `⌘` `F3`                   | display desktop                              |
+  | `⌘` `⇧` `←`                | go to the previous tab                       |
+  | `⌘` `⇧` `→`                | go to the next tab                           |
+  | `⌘` `h`                    | hide current app                             |
+  | `⌘` `⌥` `h`                | hide all other apps                          |
+  | `⌘` `m`                    | minimize window                              |
+  | `⌘` `⌥` `m`                | minimize all windows                         |
+  | `⌘` `⌃` `f`                | toggle fullscreen                            |
+  | `⌘` `⌥` `d`                | show dock if hidden auto                     |
 
 ## Windows tiling & sizing
-
-  - ⌃ Fn F	Fill desktop with active window
-  - ⌃ Fn C	Center window
-  - ⌃ Fn ←	Left half of screen
-  - ⌃ Fn →	Right half of screen
-  - ⌃ Fn ↑	Top half of screen
-  - ⌃ Fn ↓	Bottom half of screen
-  - ⌃ Fn R	Return to previous window size
-  - ⌃ Fn A	Arrange windows side by side
-  - ⌃ Fn S	Arrange windows in a grid
-  - ⌃ Fn D	Distribute windows evenly
-  - ⌃ Fn ⇧ ←	Move to top-left corner
-  - ⌃ Fn ⇧ →	Move to top-right corner
-  - ⌃ Fn ⇧ ↓	Move to bottom-left corner
-  - ⌃ Fn ⇧ ↑	Move to bottom-right corner
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `⌃` `fn` `f`               | fill desktop with active window              |
+  | `⌃` `fn` `c`               | center window                                |
+  | `⌃` `fn` `←`               | left half of screen                          |
+  | `⌃` `fn` `→`               | right half of screen                         |
+  | `⌃` `fn` `↑`               | top half of screen                           |
+  | `⌃` `fn` `↓`               | bottom half of screen                        |
+  | `⌃` `fn` `r`               | return to previous window size               |
+  | `⌃` `fn` `a`               | arrange windows side by side                 |
+  | `⌃` `fn` `s`               | arrange windows in a grid                    |
+  | `⌃` `fn` `d`               | distribute windows evenly                    |
+  | `⌃` `fn` `⇧` `←`           | move to top-left corner                      |
+  | `⌃` `fn` `⇧` `→`           | move to top-right corner                     |
+  | `⌃` `fn` `⇧` `↓`           | move to bottom-left corner                   |
+  | `⌃` `fn` `⇧` `↑`           | move to bottom-right corner                  |
 
   
-## Finder & File Management 
-
-  - ␣ :  Preview selected file(s) in a window 
-  - ⏎ :  Rename selected file 
-  - ⌥ ␣ :  Preview selected file(s) in fullscreen mode 
-  - ⌘ ⌥ ␣ : Open "Search this mac" finder window
-  - ⌘ L :  Rotate document counter-clockwise 
-  - ⌘ R :  Rotate document clockwise 
-  - ⌘ + :  Enlarge document 
-  - ⌘ - :  Reduce document 
-  - ⌘ 0 :  View in original size 
-  - ⌘ ⇧ A :  Toggle the display of comment tools 
-  - ⌘ N :  Open a new window 
-  - ⌘ ⇧ N :  Create a new folder 
-  - ⌘ O :  Open a selected file or folder 
-  - ⌘ I :  Open file information 
-  - ⌘ L :  Create a link (alias) 
-  - ⌘ W :  Close window 
-  - ⌘ M :  Minimize window 
-  - ⌘ [ :  Go to the previous folder 
-  - ⌘ ] :  Go to the next folder 
-  - ⌘ ↑ :  Open the folder containing the current folder 
-  - ⌘ ^ ↑ :  Open the folder containing the current folder in a new window 
-  - ⌘ ↓ :  Open highlighted item 
-  - ⌘ ⇧ A :  Open the Applications folder 
-  - ⌘ ⇧ C :  Open the Computer window 
-  - ⌘ ⇧ F :  Open the Recents folder 
-  - ⌘ ⇧ H :  Open the Home folder 
-  - ⌘ ⇧ D :  Open the Desktop folder 
-  - ⌘ ⇧ L :  Open the Downloads folder 
-  - ⌘ ⇧ G :  Go to Folder 
-  - ⌘ K :  Connect to Servers 
-  - ⌘ ⇧ K :  Open Network window 
-  - ⌘ J :  Show View Options 
-  - ⌘ 1 :  View as Icon 
-  - ⌘ 2 :  View as List 
-  - ⌘ 3 :  View as Columns 
-  - ⌘ 4 :  View as Cover Flow 
-  - ⌘ , :  Open Finder preferences 
+## Finder & File Management
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `␣`                        | preview selected file(s) in a window         |
+  | `⏎`                        | rename selected file                         |
+  | `⌥` `␣`                    | preview selected file(s) in fullscreen       |
+  | `⌘` `⌥` `␣`                | open "search this mac" finder window         |
+  | `⌘` `l`                    | rotate document counter-clockwise            |
+  | `⌘` `r`                    | rotate document clockwise                    |
+  | `⌘` `+`                    | enlarge document                             |
+  | `⌘` `-`                    | reduce document                              |
+  | `⌘` `0`                    | view in original size                        |
+  | `⌘` `⇧` `a`                | toggle the display of comment tools          |
+  | `⌘` `n`                    | open a new window                            |
+  | `⌘` `⇧` `n`                | create a new folder                          |
+  | `⌘` `o`                    | open a selected file or folder               |
+  | `⌘` `i`                    | open file information                        |
+  | `⌘` `l`                    | create a link (alias)                        |
+  | `⌘` `w`                    | close window                                 |
+  | `⌘` `m`                    | minimize window                              |
+  | `⌘` `[`                    | go to the previous folder                    |
+  | `⌘` `]`                    | go to the next folder                        |
+  | `⌘` `↑`                    | open the folder containing current folder    |
+  | `⌘` `⌃` `↑`                | open parent folder in a new window           |
+  | `⌘` `↓`                    | open highlighted item                        |
+  | `⌘` `⇧` `a`                | open the applications folder                 |
+  | `⌘` `⇧` `c`                | open the computer window                     |
+  | `⌘` `⇧` `f`                | open the recents folder                      |
+  | `⌘` `⇧` `h`                | open the home folder                         |
+  | `⌘` `⇧` `d`                | open the desktop folder                      |
+  | `⌘` `⇧` `l`                | open the downloads folder                    |
+  | `⌘` `⇧` `g`                | go to folder                                 |
+  | `⌘` `k`                    | connect to servers                           |
+  | `⌘` `⇧` `k`                | open network window                          |
+  | `⌘` `j`                    | show view options                            |
+  | `⌘` `1`                    | view as icon                                 |
+  | `⌘` `2`                    | view as list                                 |
+  | `⌘` `3`                    | view as columns                              |
+  | `⌘` `4`                    | view as cover flow                           |
+  | `⌘` `,`                    | open finder preferences                      | 
 
 ## Screenshots
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `⌘` `⇧` `3`                | screenshot of the entire screen              |
+  | `⌘` `⇧` `4`                | screenshot of the selected area              |
+  | `⌘` `⇧` `4` then `␣`       | screenshot of a selected window              | 
 
-  - ⌘ ⇧ 3 :  Screenshot of the entire screen 
-  - ⌘ ⇧ 4 :  Screenshot of the selected area 
-  - ⌘ ⇧ 4 then ␣ :  Screenshot of a selected window 
-
-## System & Power  
-
-  - ⌘ ⌃ Q :  Lock screen immediately 
-  - ⌘ ⇧ Q :  Log off 
-  - ⌘ ⌥ ⏏ :  Sleep mode 
-  - ⌘ ⌃ ⏏ :  Restart 
-  - ⌘ ⌥ ⌃ ⏏ :  Shut down 
-  - ⌃ ⇧ ⏏ :  Turn off display 
-  - ⌘ ⌥ esc :  Open the "End program immediately" window 
+## System & Power
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `⌘` `⌃` `q`                | lock screen immediately                      |
+  | `⌘` `⇧` `q`                | log off                                      |
+  | `⌘` `⌥` `⏏`                | sleep mode                                   |
+  | `⌘` `⌃` `⏏`                | restart                                      |
+  | `⌘` `⌥` `⌃` `⏏`            | shut down                                    |
+  | `⌃` `⇧` `⏏`                | turn off display                             |
+  | `⌘` `⌥` `esc`              | force quit window                            | 
 
 ## Accessibility & Misc
-
-  - ⌘ ⌥ F5 : Accessibility options
-  - ⌃ ⌥ ⌘ 8 : Invert colors
-  - ⌘ ⌥ = : Zoom in
-  - ⌘ ⌥ - : Zoom out
-  - ␣ : Quick Look preview
-  - ⌥ ␣ : Quick Look fullscreen
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `⌘` `⌥` `F5`               | accessibility options                        |
+  | `⌃` `⌥` `⌘` `8`            | invert colors                                |
+  | `⌘` `⌥` `=`                | zoom in                                      |
+  | `⌘` `⌥` `-`                | zoom out                                     |
+  | `␣`                        | quick look preview                           |
+  | `⌥` `␣`                    | quick look fullscreen                        |

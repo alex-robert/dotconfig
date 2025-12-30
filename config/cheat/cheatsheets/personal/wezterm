@@ -2,14 +2,125 @@
 syntax: markdown
 tags: [ mac, keymap, terminal, wezterm ]
 ---
-
+# Leader Key
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `⌃` `␣`                    | Leader key (timeout 1500ms)                  |
 
 # NORMAL Mode
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `⌃` `L`                    | show debug overlay                           |
+  |                            |                                              |
+  | `⌘` `t`                    | new tab                                      |
+  | `⌘` `⇧` `l`                | next tab                                     |
+  | `⌘` `⇧` `j`                | previous tab                                 |
+  |                            |                                              |
+  | `⌘` `w`                    | close current pane                           |
+  | `⌘` `i`                    | focus pane up                                |
+  | `⌘` `k`                    | focus pane down                              |
+  | `⌘` `j`                    | focus pane left                              |
+  | `⌘` `l`                    | focus pane right                             |
+  |                            |                                              |
+  | `⌥` `←`                    | word navigation left                         |
+  | `⌥` `→`                    | word navigation right                        |
+  | `⌘` `←`                    | line beginning                               |
+  | `⌘` `→`                    | line end                                     |
+  |                            |                                              |
+  | `⌘` `⇧` `s`                | workspace switcher                           |
+
+# Switch Mode
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `⌃` `␣` `r`                | mode window                                  |
+  | `⌃` `␣` `w`                | mode workspace                               |
 
 # WINDOW Mode
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `esc`                      | mode normal                                  |
+  |                            |                                              |
+  | `i`                        | focus pane up                                |
+  | `k`                        | focus pane down                              |
+  | `j`                        | focus pane left                              |
+  | `l`                        | focus pane right                             |
+  |                            |                                              |
+  | `⇧` `i`                    | resize pane up +5                            |
+  | `⇧` `k`                    | resize pane down +5                          |
+  | `⇧` `j`                    | resize pane left +5                          |
+  | `⇧` `l`                    | resize pane right +5                         |
+  |                            |                                              |
+  | `r`                        | rotate panes clockwise                       |
+  |                            |                                              |
+  | `u`                        | split vertical                               |
+  | `p`                        | split horizontal                             |
+  |                            |                                              |
+  | `x`                        | close current pane                           |
+  | `z`                        | toggle pane zoom; mode normal                |
 
 # WORKSPACE Mode
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `esc`                      | mode normal                                  |
+  |                            |                                              |
+  | `n`                        | new workspace (auto-named from cwd)          |
+  | `⌃` `n`                    | new workspace (prompt for name)              |
+  |                            |                                              |
+  | `s`                        | save workspace state                         |
+  | `r`                        | restore workspace (fuzzy finder)             |
+  |                            |                                              |
+  | `l`                        | workspace switcher; mode normal              |
 
 # COPY Mode
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `⌃` `⇧` `x`                | activate copy mode                           |
+  | `esc` / `q` / `⌃` `c`      | exit copy mode                               |
+  |                            |                                              |
+  | `h` `j` `k` `l`            | move left/down/up/right                      |
+  | `w` / `b`                  | forward/backward word                        |
+  | `0` / `$`                  | start/end of line                            |
+  | `g` / `G`                  | top/bottom of scrollback                     |
+  | `H` / `M` / `L`            | viewport top/middle/bottom                   |
+  |                            |                                              |
+  | `⌃` `u` / `⌃` `d`          | half page up/down                            |
+  | `⌃` `b` / `⌃` `f`          | full page up/down                            |
+  |                            |                                              |
+  | `v`                        | visual mode (cell selection)                 |
+  | `V`                        | visual line mode                             |
+  | `⌃` `v`                    | visual block mode                            |
+  | `␣`                        | start/toggle cell selection                  |
+  | `o` / `O`                  | move to other end of selection               |
+  |                            |                                              |
+  | `y`                        | yank selection and exit                      |
+  |                            |                                              |
+  | `f` `<char>` / `F` `<char>`| jump forward/backward to char                |
+  | `t` `<char>` / `T` `<char>`| jump before/after char                       |
+  | `;` / `,`                  | repeat jump forward/backward                 |
 
-# SELECT Mode
+# Search Mode
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `⌘` `f`                    | activate search mode                         |
+  | `esc`                      | exit search mode                             |
+  |                            |                                              |
+  | `⌃` `n` / `↓`              | next match                                   |
+  | `⌃` `p` / `↑`              | previous match                               |
+  | `⌃` `r`                    | cycle match type (regex/case/etc)            |
+  | `⌃` `u`                    | clear search pattern                         |
+  | `enter`                    | jump to previous match                       |
+
+# Quick Select Mode
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `⌃` `⇧` `␣`                | activate quick select                        |
+
+# CLI
+
+## Query keybindings
+
+- All keybindings
+  `wezterm show-keys`
+
+- Query specific mode keybindings
+  `wezterm show-keys --lua --key-table <mode_name>`
