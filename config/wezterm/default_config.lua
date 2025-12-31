@@ -3,7 +3,7 @@ local wezterm = require 'wezterm'
 local default_config = {
     -- -- Terminal
     -- default_prog = { 'zsh', '-l' },
-    -- initial_cols = 120,
+      -- initial_cols = 120,
     -- initial_rows = 30,
     -- scrollback_lines = 10000,
 
@@ -15,10 +15,22 @@ local default_config = {
     -- -- Appearance
     color_scheme = "Tokyo Night Storm",
     window_decorations = "RESIZE",
+
     window_background_opacity = 0.95,
+
+    window_padding = {
+      left = 2,
+      right = 2,
+      top = 10,
+      bottom = 10,
+    },
+
+
     macos_window_background_blur = 20,
+    
     -- hide_tab_bar_if_only_one_tab = true,
-    tab_bar_at_bottom = true,
+    tab_bar_at_bottom = false,
+    tab_max_width = 32,
     inactive_pane_hsb = {
         saturation = 0.9,
         brightness = 0.8

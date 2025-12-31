@@ -1,4 +1,5 @@
 local wezterm = require 'wezterm'
+local tabline = require 'plugins/tabline'
 
 local leader_ext = require 'tabline_leader_ext'
 
@@ -19,7 +20,7 @@ local tabline_config = {
 
     -- theme = 'Tokyo Night Storm',
     -- theme = 'Catppuccin Mocha',
-    -- theme = 'GruvboxDark',
+    theme = 'GruvboxDark',
 
     tabs_enabled = true,
     section_separators = {
@@ -35,32 +36,49 @@ local tabline_config = {
       right = wezterm.nerdfonts.pl_right_hard_divider,
     },
 
+    -- Tokyo Night Storm inspired colors with blue/teal accents
     theme_overrides = {
+      -- normal = {
+      --   a = { fg = '#1a1b26', bg = '#7aa2f7' },  -- blue accent for normal mode
+      --   b = { fg = '#7aa2f7', bg = '#24283b' },
+      --   c = { fg = '#a9b1d6', bg = '#1f2335' },
+      -- },
       window_mode = {
-        a = { fg = '#181825', bg = '#cba6f7' },
-        b = { fg = '#cba6f7', bg = '#313244' },
-        c = { fg = '#cdd6f4', bg = '#181825' },
+        a = { fg = '#1a1b26', bg = '#bb9af7' },  -- purple for window mode
+        b = { fg = '#bb9af7', bg = '#24283b' },
+        c = { fg = '#a9b1d6', bg = '#1f2335' },
       },
       workspace_mode = {
-        a = { fg = '#181825', bg = '#cba6f7' },
-        b = { fg = '#cba6f7', bg = '#313244' },
-        c = { fg = '#cdd6f4', bg = '#181825' },
+        a = { fg = '#1a1b26', bg = '#7dcfff' },  -- cyan for workspace mode
+        b = { fg = '#7dcfff', bg = '#24283b' },
+        c = { fg = '#a9b1d6', bg = '#1f2335' },
       }
     },
-
+    
     -- section_separators = '',
     -- component_separators = '',
     -- tab_separators = '',
   },
   sections = {
-    tabline_a = { 
+    tabline_a = {
       {
         'mode',
         icons_enabled = true,
-        padding = 3,
+        padding = { left = 2, right = 2 },
+        fmt = function(str)
+          -- Use icons for modes
+          if str == 'NORMAL' then
+            return wezterm.nerdfonts.cod_terminal .. ' TERM'
+          elseif str == 'WINDOW' then
+             return wezterm.nerdfonts.md_window_restore .. ' WINDOW'
+           elseif str == 'WORKSPACE' then
+             return wezterm.nerdfonts.md_view_dashboard .. ' WORKSPACE'
+          end
+          return str
+        end
       }
-      
-      -- 
+
+      --
     },
     tabline_b = { 'workspace' },
     tabline_c = { '' },

@@ -21,6 +21,8 @@ opt.termguicolors = true
 opt.signcolumn = "yes"
 opt.wrap = false
 opt.cursorline = true
+opt.cmdheight = 0
+opt.fillchars = { eob = " " }
 
 -- Behavior
 opt.mouse = "a"

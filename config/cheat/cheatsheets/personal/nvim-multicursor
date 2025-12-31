@@ -1,0 +1,103 @@
+# Neovim Multi-Cursor Workflow
+
+## Adding Cursors
+
+Alt+k                    # Add cursor below (down)
+Alt+i                    # Add cursor above (up)
+Ctrl+d                   # Add cursor on next match of word under cursor
+Ctrl+Shift+l             # Select all occurrences of word
+Leader+c+c               # Add cursor at current position
+Leader+c (visual)        # Add cursor on each selected line
+
+## Movement in Multi-Cursor Mode
+
+### Basic Movement (IJKL)
+i                        # Move up
+k                        # Move down
+j                        # Move left
+l                        # Move right
+
+### Word Movement
+L (Shift+L)              # Next word (like VSCode Alt+Right)
+J (Shift+J)              # Previous word (like VSCode Alt+Left)
+
+### Line Movement
+$                        # End of line (like VSCode Cmd+Right)
+0                        # Start of line - column 0
+^                        # First non-blank character
+
+### Fast Movement
+K (Shift+K)              # Move 5 lines down
+I (Shift+I)              # Move 5 lines up
+
+## Editing at Multiple Cursors
+
+e                        # Enter insert mode at all cursors
+a                        # Append after cursor at all cursors
+x                        # Delete character at all cursors
+c                        # Change/replace (then move to select what to change)
+d                        # Delete (then move to select what to delete)
+
+## Selection & Advanced
+
+v                        # Start visual selection mode (select as you move)
+Ctrl+x                   # Skip current match (when adding with Ctrl+d)
+Ctrl+p                   # Remove last cursor
+u                        # Undo in multi-cursor mode
+Esc                      # Exit multi-cursor mode
+
+## Common Workflows
+
+### Replace word in multiple places
+1. Cursor on word
+2. Ctrl+d (repeat to add more occurrences)
+3. e (enter insert mode)
+4. Type replacement
+5. Esc
+
+### Edit end of multiple lines
+1. Visual select lines
+2. Leader+c (add cursor per line)
+3. $ (go to end of line)
+4. a (append mode)
+5. Type text
+6. Esc
+
+### Change multiple function names
+1. Cursor on function name
+2. Ctrl+Shift+l (select all)
+3. e (insert mode)
+4. Type new name
+5. Esc
+
+### Add text after specific words
+1. Search for word: /pattern
+2. n to find first occurrence
+3. Ctrl+d to add more
+4. L (move word forward if needed)
+5. a (append)
+6. Type text
+7. Esc
+
+## VSCode to Neovim Translation
+
+| VSCode Action           | Neovim Equivalent  |
+|------------------------|-------------------|
+| Cmd+Alt+Down           | Alt+k             |
+| Cmd+Alt+Up             | Alt+i             |
+| Cmd+D                  | Ctrl+d            |
+| Cmd+Shift+L            | Ctrl+Shift+l      |
+| Alt+Left (word back)   | J (Shift+J)       |
+| Alt+Right (word fwd)   | L (Shift+L)       |
+| Cmd+Left (line start)  | 0 or ^            |
+| Cmd+Right (line end)   | $                 |
+| Type to replace        | e then type       |
+
+## Key Difference: Position First, Then Edit
+
+VSCode: Select while moving with Shift
+Neovim: Position cursors, then enter insert/edit mode
+
+Example:
+- VSCode: Shift+Alt+Right+Right (select 2 words)
+- Neovim: L L e (move 2 words, then insert)

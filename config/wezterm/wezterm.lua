@@ -70,9 +70,8 @@ add_keymaps(config, {
   }
 })
 
-local window_mod_keys = require 'keymap_mode_window'
-add_mode(config, 'window_mode', window_mod_keys)
-
+-- local window_mod_keys = require 'keymap_mode_window'
+-- add_mode(config, 'window_mode', window_mod_keys)
 
 -- ## Apply modules configurations ##
 -- Tabline Plugin
@@ -98,7 +97,7 @@ add_mode(config, 'workspace_mode', workspace_mod_keys)
 
 -- Workspace Switcher
 
-local workspace_switcher_keymap ={ 
+local workspace_switcher_keymap ={
   {
     key = "s",
     mods = "CMD|SHIFT",

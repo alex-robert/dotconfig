@@ -1,4 +1,5 @@
 local wezterm = require('wezterm')
+local tabline = require 'plugins/tabline'
 
 wezterm.on('update-status', function(window, pane)
   if window:leader_is_active() then
@@ -16,11 +17,13 @@ return{
     hide = 'leader-state-is-over',
   },
   sections = {
-    tabline_a = { ' LEADER ' }
+    tabline_a = {
+       ' ' .. wezterm.nerdfonts.md_keyboard_space .. ' LEADER ',
+    }
   },
   theme = {
     a = {
-      bg = '#48F55B'
+      bg = '#2daf3cff'
     }
   }
 }

@@ -1,0 +1,238 @@
+---
+syntax: markdown
+tags: [ editor, keymap, nvim, personal ]
+---
+# Leader Key
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `␣`                        | Leader key                                   |
+
+# Custom Movement (IJKL Scheme)
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `i`                        | move up                                      |
+  | `j`                        | move left                                    |
+  | `k`                        | move down                                    |
+  | `l`                        | move right                                   |
+  |                            |                                              |
+  | `I`                        | move up 5 lines                              |
+  | `J`                        | word backward                                |
+  | `K`                        | move down 5 lines                            |
+  | `L`                        | word forward                                 |
+  |                            |                                              |
+  | `w`                        | move to end of word                          |
+  | `W`                        | move to end of WORD                          |
+  |                            |                                              |
+  | `0`                        | start of line                                |
+  | `$`                        | end of line                                  |
+  | `gg`                       | start of file                                |
+  | `G`                        | end of file                                  |
+
+# Insert/Edit Mode
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `e`                        | enter insert mode                            |
+  | `E`                        | insert at beginning of line                  |
+  | `a`                        | append after cursor                          |
+  | `A`                        | append at end of line                        |
+  | `o`                        | open line below                              |
+  | `O`                        | open line above                              |
+  |                            |                                              |
+  | `esc`                      | exit insert mode                             |
+
+# Cursor Mode (Multi-cursor with IJKL)
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | **Entering Cursor Mode**   |                                              |
+  | `⌃` `d`                    | add cursor on next match (quick start)       |
+  | `␣` `cc`                   | add cursor at current position               |
+  | `␣` `ca`                   | select all occurrences                       |
+  | `␣` `c/`                   | regex search and add cursors                 |
+  | `v` then `␣` `c`           | add cursors in visual selection              |
+  |                            |                                              |
+  | **Navigation**             |                                              |
+  | `i` `j` `k` `l`            | move cursors (up/left/down/right)            |
+  | `I`                        | move up 5 lines (fast)                       |
+  | `K`                        | move down 5 lines (fast)                     |
+  | `J`                        | jump to previous word                        |
+  | `L`                        | jump to next word                            |
+  |                            |                                              |
+  | **Adding/Removing Cursors**|                                              |
+  | `⌥` `i`                    | add cursor above                             |
+  | `⌥` `k`                    | add cursor below                             |
+  | `⌃` `d`                    | add next match                               |
+  | `⌃` `x`                    | skip current match                           |
+  | `⌃` `p`                    | remove last cursor                           |
+  | `⌃` `⇧` `l`                | select all matches                           |
+  |                            |                                              |
+  | **Editing**                |                                              |
+  | `e`                        | enter insert at all cursors                  |
+  | `a`                        | append at all cursors                        |
+  | `x`                        | delete char at all cursors                   |
+  |                            |                                              |
+  | **Exit**                   |                                              |
+  | `esc`                      | exit cursor mode                             |
+  | `u`                        | undo                                         |
+  | `⌃` `r`                    | redo                                         |
+
+# Visual Mode (Traditional)
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `v`                        | visual character mode                        |
+  | `V`                        | visual line mode                             |
+  | `⌃` `v`                    | visual block mode                            |
+  |                            |                                              |
+  | `i/j/k/l`                  | move selection (IJKL)                        |
+  | `<`                        | indent left (keeps selection)                |
+  | `>`                        | indent right (keeps selection)               |
+  |                            |                                              |
+  | `⌥` `k`                    | move selection down                          |
+  | `⌥` `i`                    | move selection up                            |
+
+# File Operations
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `␣` `w`                    | save file                                    |
+  | `␣` `q`                    | quit                                         |
+  | `␣` `x`                    | save and quit                                |
+  | `;q`                       | quit (command mode shortcut)                 |
+  | `;w`                       | save (command mode shortcut)                 |
+
+# File Explorer (nvim-tree)
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `␣` `t`                    | toggle file explorer                         |
+  | `⏎`                        | open file/folder                             |
+  | `a`                        | create new file                              |
+  | `d`                        | delete file                                  |
+  | `r`                        | rename file                                  |
+  | `x`                        | cut file                                     |
+  | `c`                        | copy file                                    |
+  | `p`                        | paste file                                   |
+
+# Fuzzy Finder (Telescope)
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `␣` `ff`                   | find files                                   |
+  | `␣` `fg`                   | live grep (search in files)                  |
+  | `␣` `fb`                   | find buffers                                 |
+  | `␣` `fh`                   | find help tags                               |
+  | `␣` `fr`                   | recent files                                 |
+  | `␣` `fc`                   | git commits                                  |
+  |                            |                                              |
+  | `⌃` `i`                    | next result (in telescope)                   |
+  | `⌃` `k`                    | previous result (in telescope)               |
+  | `⏎`                        | select result                                |
+  | `esc`                      | close telescope                              |
+
+# Buffer Management
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `␣` `bn`                   | next buffer                                  |
+  | `␣` `bp`                   | previous buffer                              |
+  | `␣` `bd`                   | delete buffer                                |
+
+# Window/Split Management
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `␣` `sv`                   | split vertically                             |
+  | `␣` `sh`                   | split horizontally                           |
+  | `␣` `se`                   | equal window sizes                           |
+  | `␣` `sx`                   | close current split                          |
+  |                            |                                              |
+  | `␣` `i`                    | go to top window                             |
+  | `␣` `j`                    | go to left window                            |
+  | `␣` `k`                    | go to bottom window                          |
+  | `␣` `l`                    | go to right window                           |
+
+# LSP (Language Server)
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `gd`                       | go to definition                             |
+  | `gr`                       | go to references                             |
+  | `gD`                       | go to declaration                            |
+  | `gt`                       | go to type definition                        |
+  | `gh`                       | hover documentation                          |
+  |                            |                                              |
+  | `␣` `ca`                   | code action                                  |
+  | `␣` `rn`                   | rename symbol                                |
+  | `␣` `d`                    | show diagnostics                             |
+  |                            |                                              |
+  | `[d`                       | previous diagnostic                          |
+  | `]d`                       | next diagnostic                              |
+
+# Autocompletion (nvim-cmp)
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `⌃` `␣`                    | trigger completion                           |
+  | `⏎`                        | confirm selection                            |
+  | `⇥`                        | next completion item                         |
+  | `⇧` `⇥`                    | previous completion item                     |
+  | `⌃` `e`                    | abort completion                             |
+  | `⌃` `f`                    | scroll docs forward                          |
+  | `⌃` `b`                    | scroll docs backward                         |
+
+# Git (gitsigns)
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `]c`                       | next git hunk                                |
+  | `[c`                       | previous git hunk                            |
+  |                            |                                              |
+  | `␣` `gs`                   | stage hunk                                   |
+  | `␣` `gr`                   | reset hunk                                   |
+  | `␣` `gp`                   | preview hunk                                 |
+  | `␣` `gb`                   | blame line                                   |
+
+# Editing
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `u`                        | undo                                         |
+  | `⌃` `r`                    | redo                                         |
+  | `dd`                       | delete line                                  |
+  | `yy`                       | yank (copy) line                             |
+  | `p`                        | paste after cursor                           |
+  | `P`                        | paste before cursor                          |
+  |                            |                                              |
+  | `⌥` `k`                    | move line down                               |
+  | `⌥` `i`                    | move line up                                 |
+  |                            |                                              |
+  | `gcc`                      | toggle comment line                          |
+  | `gc` `(motion)`            | comment motion                               |
+  | `gb` `(motion)`            | block comment motion                         |
+
+# Search & Replace
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `/pattern`                 | search forward                               |
+  | `?pattern`                 | search backward                              |
+  | `n`                        | next match                                   |
+  | `N`                        | previous match                               |
+  | `esc`                      | clear search highlight                       |
+  |                            |                                              |
+  | `;s/old/new/g`             | replace in line                              |
+  | `;%s/old/new/g`            | replace in file                              |
+  | `;%s/old/new/gc`           | replace with confirmation                    |
+
+# Command Mode (AZERTY-friendly)
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `;`                        | enter command mode                           |
+  | `;w`                       | save                                         |
+  | `;q`                       | quit                                         |
+  | `;wq`                      | save and quit                                |
+  | `;q!`                      | quit without saving                          |
+  |                            |                                              |
+  | `␣` `?`                    | show all keybindings (which-key)             |
+
+# Plugins Management
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `;Lazy`                    | open lazy.nvim (plugin manager)              |
+  | `;Mason`                   | open mason (LSP installer)                   |
+  | `;checkhealth`             | cck neovim health                          |
+
+# Tips
+- Movement uses IJKL instead of HJKL (AZERTY-friendly)
+- Use `e` instead of `i` to enter insert mode
+- Use `;` instead of `:` for command mode (easier on AZERTY)
+- Press `␣?` to see all available keybindings with which-key

@@ -19,11 +19,11 @@ local bindings = {
     }
 },
 {
-    key = 'l',
+    key = 'L',
     mods = 'CMD|SHIFT',
     action = wezterm.action.ActivateTabRelative(1)
 }, {
-    key = 'j',
+    key = 'J',
     mods = 'CMD|SHIFT',
     action = wezterm.action.ActivateTabRelative(-1)
 }, 

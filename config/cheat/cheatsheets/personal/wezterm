@@ -32,10 +32,9 @@ tags: [ mac, keymap, terminal, wezterm ]
 # Switch Mode
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `⌃` `␣` `r`                | mode window                                  |
   | `⌃` `␣` `w`                | mode workspace                               |
 
-# WINDOW Mode
+# WORKSPACE Mode
   |                            |                                              |
   |----------------------------|----------------------------------------------|
   | `esc`                      | mode normal                                  |
@@ -57,12 +56,6 @@ tags: [ mac, keymap, terminal, wezterm ]
   |                            |                                              |
   | `x`                        | close current pane                           |
   | `z`                        | toggle pane zoom; mode normal                |
-
-# WORKSPACE Mode
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `esc`                      | mode normal                                  |
-  |                            |                                              |
   | `n`                        | new workspace (auto-named from cwd)          |
   | `⌃` `n`                    | new workspace (prompt for name)              |
   |                            |                                              |
