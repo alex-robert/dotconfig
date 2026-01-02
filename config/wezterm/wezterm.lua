@@ -53,14 +53,6 @@ config_apply(config, default_keymaps)
 
 add_keymaps(config, {
   {
-    key = 'r',
-    mods = 'LEADER',
-    action = wezterm.action.ActivateKeyTable {
-        name = 'window_mode',
-        one_shot = false
-    }
-  }, -- Enter workspace mode
-  {
       key = 'w',
       mods = 'LEADER',
       action = wezterm.action.ActivateKeyTable {

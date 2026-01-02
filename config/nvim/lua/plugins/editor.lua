@@ -17,12 +17,15 @@ return {
             view = {
                 side = "right",
                 width = 35,
-                preserve_window_proportions = true -- Maintain proportions when resizing
+                preserve_window_proportions = true,
             },
             renderer = {
                 group_empty = true,
                 highlight_git = true,
-                root_folder_label = ":~:s?$?/..?", -- Show root folder nicely
+                root_folder_label = function(path)
+                    local basename = vim.fn.fnamemodify(path, ":t")
+                    return string.upper(basename)
+                end,
                 indent_markers = {
                     enable = true -- Show indent lines
                 },
@@ -31,7 +34,7 @@ return {
                         file = true,
                         folder = true,
                         folder_arrow = true,
-                        git = true
+                        git = false
                     }
                 }
             },
@@ -61,6 +64,68 @@ return {
         vim.keymap.set("n", "<leader>t", ":NvimTreeToggle<CR>", {
             desc = "Toggle file explorer"
         })
+
+        -- Open nvim-tree on startup
+        vim.api.nvim_create_autocmd("VimEnter", {
+            callback = function()
+                -- Only open if no file was specified
+                if vim.fn.argc() == 0 then
+                    require("nvim-tree.api").tree.open()
+                end
+            end
+        })
+
+        -- Custom color scheme for nvim-tree
+        vim.api.nvim_create_autocmd("ColorScheme", {
+            callback = function()
+              
+                vim.api.nvim_set_hl(0, "NvimTreeNormal",       { bg = "#181818", fg = "#cccccc" })
+                vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer",  { bg = "#181818", fg = "#181818" })
+                vim.api.nvim_set_hl(0, "NvimTreeVertSplit",    { bg = "#181818", fg = "#2b2b2b" })
+                vim.api.nvim_set_hl(0, "NvimTreeWinSeparator", { bg = "#181818", fg = "#2b2b2b" })
+
+                vim.api.nvim_set_hl(0, "NvimTreeFolderName",       { fg = "#cccccc", bold = true })
+                vim.api.nvim_set_hl(0, "NvimTreeOpenedFolderName", { fg = "#cccccc", bold = true, italic = true })
+                vim.api.nvim_set_hl(0, "NvimTreeEmptyFolderName",  { fg = "#8c8c8c" })
+                -- vim.api.nvim_set_hl(0, "NvimTreeFolderIcon",       { fg = "#4EC9B0" })
+
+                -- vim.api.nvim_set_hl(0, "NvimTreeFileNew", { fg = "#73c991" })
+                -- vim.api.nvim_set_hl(0, "NvimTreeFileRenamed", { fg = "#4EC9B0" })
+                -- vim.api.nvim_set_hl(0, "NvimTreeFileDirty", { fg = "#e2c08d" })
+
+                vim.api.nvim_set_hl(0, "NvimTreeGitFileNewHL", { fg = "#73c991" })
+                vim.api.nvim_set_hl(0, "NvimTreeGitFileDirtyHL", { fg = "#e2c08d" })
+                vim.api.nvim_set_hl(0, "NvimTreeGitFileDeletedHL", { fg = "#c74e39" })
+                -- vim.api.nvim_set_hl(0, "NvimTreeGitStaged", { fg = "#81b88b" })
+                -- vim.api.nvim_set_hl(0, "NvimTreeGitMerge", { fg = "#C586C0" })
+                vim.api.nvim_set_hl(0, "NvimTreeGitFileRenamedHL", { fg = "#73c991" })
+                vim.api.nvim_set_hl(0, "NvimTreeGitFileIgnoredHL", { fg = "#6a6a6a" })
+
+                vim.api.nvim_set_hl(0, "NvimTreeRootFolder", { fg = "#569CD6", bold = true })
+                -- vim.api.nvim_set_hl(0, "NvimTreeSpecialFile", { fg = "#DCDCAA", underline = true })
+                -- vim.api.nvim_set_hl(0, "NvimTreeSymlink", { fg = "#9CDCFE", italic = true })
+                -- vim.api.nvim_set_hl(0, "NvimTreeIndentMarker", { fg = "#404040" })
+                vim.api.nvim_set_hl(0, "NvimTreeSpecialFile", { fg = "#cccccc" })
+                vim.api.nvim_set_hl(0, "NvimTreeExecFile", { fg = "#cccccc" })
+                vim.api.nvim_set_hl(0, "NvimTreeSymlink", { fg = "#cccccc" })
+
+                -- vim.api.nvim_set_hl(0, "NvimTreeCursorLine", { bg = "#2a2d2e" })
+                -- vim.api.nvim_set_hl(0, "NvimTreeCursorLineNr", { fg = "#cccccc" })
+                
+                -- vim.api.nvim_set_hl(0, "NvimTreeWindowPicker", { bg = "#0078d4", fg = "#ffffff", bold = true })
+
+                -- vim.api.nvim_set_hl(0, "NvimTreeStatusLine", { bg = "#181818", fg = "#cccccc" })
+                -- vim.api.nvim_set_hl(0, "NvimTreeStatusLineNC", { bg = "#181818", fg = "#9d9d9d" })
+
+              vim.api.nvim_set_hl(0, "NvimTreeOpenedHL", { italic = true })
+
+
+              
+            end
+        })
+
+        -- Apply colors immediately
+        vim.cmd("doautocmd ColorScheme")
     end
 }, -- Fuzzy finder
 {

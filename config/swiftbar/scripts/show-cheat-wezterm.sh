@@ -13,7 +13,7 @@ wezterm --config-file $HOME/.config/wezterm/window-floating.lua\
       cheat $SHEET | glow -p
 " &
 
-sleep 0.2
+sleep 0.1
 
 # brings to front
 osascript -e 'tell application "WezTerm" to activate'

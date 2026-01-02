@@ -28,7 +28,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 automatically-unhide-macos-hidden-apps = true
 
 exec-on-workspace-change = ['/bin/bash', '-c',
-    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+#   'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
 ]
 
 
@@ -99,8 +99,8 @@ zulu      = "w"          # Z -> W
 [workspace-to-monitor-force-assignment]
 
 1 = ['M27Q'] # Front screen 
-2 = ['Built-in'] # Main
-3 = ['M27Q'] # Front screen 
+2 = ['M27Q'] # Main
+3 = ['Built-in'] # Front screen 
 4 = ['AORUS'] # Right screen
 5 = ['AORUS'] # Right screen
 

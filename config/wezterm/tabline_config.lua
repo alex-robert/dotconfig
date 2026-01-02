@@ -2,16 +2,8 @@ local wezterm = require 'wezterm'
 local tabline = require 'plugins/tabline'
 
 local leader_ext = require 'tabline_leader_ext'
+local theme_ext = require 'tabline_theme_ext'
 
-local function active_theme(window, pane)
-    local effective_config = window:effective_config()
-    local theme = string.format(
-        "%s",
-        effective_config.color_scheme
-    )
-
-    return theme
-end
 
 
 local tabline_config = {
@@ -20,10 +12,12 @@ local tabline_config = {
 
     -- theme = 'Tokyo Night Storm',
     -- theme = 'Catppuccin Mocha',
-    theme = 'GruvboxDark',
+    -- theme = 'GruvboxDark',
+    theme = 'Monokai Soda',
 
     tabs_enabled = true,
     section_separators = {
+      -- left = wezterm.nerdfonts.pl_left_hard_divider,
       left = wezterm.nerdfonts.pl_left_hard_divider,
       right = wezterm.nerdfonts.pl_right_hard_divider,
     },
@@ -36,28 +30,22 @@ local tabline_config = {
       right = wezterm.nerdfonts.pl_right_hard_divider,
     },
 
-    -- Tokyo Night Storm inspired colors with blue/teal accents
     theme_overrides = {
-      -- normal = {
-      --   a = { fg = '#1a1b26', bg = '#7aa2f7' },  -- blue accent for normal mode
-      --   b = { fg = '#7aa2f7', bg = '#24283b' },
-      --   c = { fg = '#a9b1d6', bg = '#1f2335' },
-      -- },
-      window_mode = {
-        a = { fg = '#1a1b26', bg = '#bb9af7' },  -- purple for window mode
+      workspace_mode = {
+        a = { fg = '#1a1b26', bg = '#bb9af7' },  -- cyan for workspace mode
         b = { fg = '#bb9af7', bg = '#24283b' },
         c = { fg = '#a9b1d6', bg = '#1f2335' },
       },
-      workspace_mode = {
-        a = { fg = '#1a1b26', bg = '#7dcfff' },  -- cyan for workspace mode
-        b = { fg = '#7dcfff', bg = '#24283b' },
-        c = { fg = '#a9b1d6', bg = '#1f2335' },
+      tab = {
+        inactive = {
+          fg = '#a9b1d6',
+        },
+        active = {
+          fg = '#1a1b26', 
+          bg = '#a9b1d6',
+        }
       }
     },
-    
-    -- section_separators = '',
-    -- component_separators = '',
-    -- tab_separators = '',
   },
   sections = {
     tabline_a = {
@@ -68,11 +56,11 @@ local tabline_config = {
         fmt = function(str)
           -- Use icons for modes
           if str == 'NORMAL' then
-            return wezterm.nerdfonts.cod_terminal .. ' TERM'
-          elseif str == 'WINDOW' then
-             return wezterm.nerdfonts.md_window_restore .. ' WINDOW'
+            return wezterm.nerdfonts.cod_terminal .. ' '
            elseif str == 'WORKSPACE' then
              return wezterm.nerdfonts.md_view_dashboard .. ' WORKSPACE'
+          elseif str == 'SEARCH' then
+            return str
           end
           return str
         end
@@ -86,7 +74,6 @@ local tabline_config = {
       'index',
       '|',
       'process',
-      -- { 'parent', padding = 0 },
       '',
       { 'cwd', padding = { left = 0, right = 1 } },
       { 'zoomed', padding = 0 },
@@ -120,8 +107,8 @@ local tabline_config = {
   extensions = {
     'resurrect',
     'smart_workspace_switcher',
-    -- 'resurrect.state_manager.periodic_save',
-    leader_ext
+    leader_ext,
+    theme_ext,
   },
 }
 

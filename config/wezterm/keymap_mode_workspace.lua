@@ -69,6 +69,8 @@ return {
       key = 'Escape',
       action = 'PopKeyTable'
   },
+
+  -- Actuall Workspace stuff
   {
     key = 'n',
     mods = 'CTRL',
@@ -98,8 +100,7 @@ return {
           end)
       }
   },
-
-{
+  {
     key = "s",
      mods = 'CTRL',
     action = wezterm.action_callback(function(win, pane)

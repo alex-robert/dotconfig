@@ -46,9 +46,8 @@ local function apply_theme(window, new_index, operation_name)
         color_scheme = theme_name
     })
 
-    
-   
-    -- window:toast_notification('WezTerm Theme', operation_name .. ': ' .. theme_name, nil, 4000)
+    -- Emit event for tabline extension
+    wezterm.emit('theme-changed', window, theme_name)
 end
 
 -----------------------------------------------------------
@@ -70,23 +69,6 @@ local function prev_theme(window)
     apply_theme(window, new_index, 'Previous theme')
 end
 
--- Switch to a random theme
-local function random_theme(window)
-    -- Set random seed with integer value
-    math.randomseed(os.time())
-
-    -- Ensure we select a different theme than the current one
-    local current_theme_index = state.current_index
-    local new_index = current_theme_index
-
-    -- Keep trying until we get a different theme
-    while new_index == current_theme_index do
-        new_index = math.random(1, #state.themes)
-    end
-
-    apply_theme(window, new_index, 'Random theme')
-end
-
 -- Switch back to the default theme
 local function default_theme(window)
     -- Use the original theme from configuration
@@ -97,6 +79,7 @@ local function default_theme(window)
         -- Fallback to first theme if default not set
         apply_theme(window, 1, 'First theme')
     end
+    wezterm.emit('theme-reset-default', window, 'Default theme')
 end
 
 -----------------------------------------------------------
@@ -117,14 +100,8 @@ local function default_key_bindings(options)
         action = wezterm.action_callback(function(window, pane)
             prev_theme(window)
         end)
-    }, {
+    },{
         key = 'r',
-        mods = 'SUPER|SHIFT',
-        action = wezterm.action_callback(function(window, pane)
-            random_theme(window)
-        end)
-    }, {
-        key = 'd',
         mods = 'SUPER|SHIFT',
         action = wezterm.action_callback(function(window, pane)
             default_theme(window)
