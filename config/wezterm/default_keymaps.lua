@@ -94,8 +94,8 @@ local bindings = {
 
 return {
     leader = {
-        key = 'Space',
-        mods = 'CTRL',
+        key = 'a',
+        mods = 'CMD',
         timeout_milliseconds = 1500
     },
     key_tables = {},

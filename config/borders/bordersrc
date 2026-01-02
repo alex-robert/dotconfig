@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
 # Colors taken from tokyonight theme
-red="0xfff7768e"
+activec="0xffe87d3e"
 blue="0xff7aa2f7"
 
 options=(
-  active_color="$red"
+  active_color="$activec"
   inactive_color="$blue"
   hidpi=on
   style=round
-  width=6.0
-  blacklist="Safari,kitty" # Application blacklist (this is an exampled)
+  width=3.0
+  # blacklist="Safari,kitty" # Application blacklist (this is an exampled)
 )
 
 borders "${options[@]}"

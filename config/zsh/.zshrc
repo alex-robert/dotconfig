@@ -73,6 +73,16 @@ zinit load code-stats/code-stats-zsh
 ## Zoxide
 eval "$(zoxide init zsh)"
 
+## Less
+export LESS='-FSRXI'
+
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+export LESS_TERMCAP_ue=$'\E[0m'
 
 ## NVM  
 export NVM_DIR="$HOME/.nvm"
@@ -119,8 +129,8 @@ fi
 alias ll="ls -lh"
 alias la="ls -lha"
 alias gs="git status"
-# alias gc="git commit -m"
 alias v="nvim"
+alias lz="lazygit"
 
 #------------------------------#
 #### ---- Startup Flex ---- ####

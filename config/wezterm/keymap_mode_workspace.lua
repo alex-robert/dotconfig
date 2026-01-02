@@ -3,6 +3,7 @@ local resurrect = require 'plugins/resurrect'
 local workspace_switcher = require 'plugins/sws'
 
 return {
+  -- Manage window/tabs/panes layout
   {
       key = 'i',
       action = wezterm.action.ActivatePaneDirection 'Up'
@@ -53,7 +54,6 @@ return {
           domain = 'CurrentPaneDomain'
       }
   }, 
-
   {
       key = 'x',
       action = wezterm.action.CloseCurrentPane { confirm = true },
@@ -64,11 +64,6 @@ return {
       key = 'z',
       action = wezterm.action.Multiple {wezterm.action.TogglePaneZoomState, 'PopKeyTable'}
   }, 
-    -- Quit
-  {
-      key = 'Escape',
-      action = 'PopKeyTable'
-  },
 
   -- Actuall Workspace stuff
   {
@@ -86,6 +81,7 @@ return {
         }, pane)
       end)
   }, 
+
   {
       key = 'n',
       mods= 'CTRL|SHIFT',
@@ -100,6 +96,7 @@ return {
           end)
       }
   },
+
   {
     key = "s",
      mods = 'CTRL',
@@ -107,6 +104,7 @@ return {
         resurrect.state_manager.save_state(resurrect.workspace_state.get_workspace_state())
       end),
   },
+
   {
     key = "r",
      mods = 'CTRL',
@@ -120,10 +118,13 @@ return {
         local opts = {
           spawn_in_workspace = true, -- if set to false, will restore in the current opened workspace (default)
           relative = true,
-          restore_text = false,
+          restore_text = true,
           close_open_tabs =  true,
           close_open_panes = true,
           on_pane_restore = resurrect.tab_state.default_on_pane_restore,
+          -- Resurrect only restore "alt_screen" process (vim/less...), not "scrollable back" process (node, npm run...)
+          -- if process is not alt_screen, 'process' is not even saved in the json, so no need to try rewrite on_pane_restore
+          -- a rewrite of resurrect would be needed to re-launch commands like npm run... and it would probably be a bad idea anyway.
         }
 
         if type == "workspace" then
@@ -140,7 +141,7 @@ return {
         title = "Load workspace: ",
         description = "Select a workspace to resurect and press Enter",
         fuzzy_description = "Select a workspace to resurect",
-        is_fuzzy = false,
+        is_fuzzy = true,
         ignore_windows = true,
         ignore_tabs = true,
         show_state_with_date = true,
@@ -157,8 +158,10 @@ return {
   --     'PopKeyTable',
   --   }
   -- },
+  -- Quit
   {
     key = 'Escape',
     action = 'PopKeyTable'
   }
+
 }

@@ -12,6 +12,7 @@ local theme_selector = require "plugins/theme_selector"
 local tabline = require 'plugins/tabline'
 local resurrect = require 'plugins/resurrect'
 local workspace_switcher = require 'plugins/sws'
+local spt = require 'plugins/smart_process_theme'
 
 -------------------------
 -- Utility function
@@ -62,8 +63,8 @@ add_keymaps(config, {
   }
 })
 
--- local window_mod_keys = require 'keymap_mode_window'
--- add_mode(config, 'window_mode', window_mod_keys)
+local workspace_mod_keys = require 'keymap_mode_workspace'
+add_mode(config, 'workspace_mode', workspace_mod_keys)
 
 -- ## Apply modules configurations ##
 -- Tabline Plugin
@@ -71,8 +72,19 @@ tabline.setup(tabline_conf)
 tabline.apply_to_config(config)
 
 -- Theme switcher plugin
-
 theme_selector.apply_to_config(config)
+
+-- Smart Process theme plugin
+spt.apply_to_config(config, {
+  process_themes = {
+    claude = "SynthwaveAlpha",
+  }
+})
+
+-- CMD to vim keymap
+-- local cmd_vim_keymap = require 'keymap_cmd2nvim'
+-- add_keymaps(config, cmd_vim_keymap)
+-- Action is sent to terminal, but bindings just replace cmd+t/w/s anyway... 
 
 -- Resurect (sae sessions / workspaces)
 resurrect.state_manager.change_state_save_dir(wezterm.config_dir .. "/workspaces/")
@@ -84,11 +96,8 @@ resurrect.state_manager.periodic_save({
   save_tabs = true,
 })
 
-local workspace_mod_keys = require 'keymap_mode_workspace'
-add_mode(config, 'workspace_mode', workspace_mod_keys)
 
 -- Workspace Switcher
-
 local workspace_switcher_keymap ={
   {
     key = "s",
@@ -119,9 +128,6 @@ wezterm.on("smart_workspace_switcher.workspace_switcher.selected", function(wind
   resurrect.state_manager.save_state(workspace_state.get_workspace_state())
   resurrect.state_manager.write_current_state(label, "workspace")
 end)
-
-
-
 
 -- Add custom key maping
 -- add_keymap(config, { key = "S", mods = "ALT", action = wezterm.action_callback(function(window, pane) 

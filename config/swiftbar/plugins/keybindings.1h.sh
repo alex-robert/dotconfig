@@ -21,14 +21,14 @@ for line in ${(f)CHEAT_LIST}; do
 done
 
 for sheet in ${PERSONAL_SHEETS[@]}; do
-    echo "$sheet | bash='$HOME/.config/swiftbar/scripts/show-cheat-wezterm.sh' param1=$sheet terminal=false"
+    echo "$sheet | bash='$HOME/.config/swiftbar/scripts/show-cheat-html.sh' param1=$sheet terminal=false"
 done
 
 echo "---"
 echo "Community Cheatsheets"
 
 for sheet in ${COMMUNITY_SHEETS[@]}; do
-    echo "--$sheet | bash='$HOME/.config/swiftbar/scripts/show-cheat-wezterm.sh' param1=$sheet terminal=false"
+    echo "--$sheet | bash='$HOME/.config/swiftbar/scripts/show-cheat-html.sh' param1=$sheet terminal=false"
 done
 
 echo "---"
