@@ -19,8 +19,24 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Load all plugin modules
 require("lazy").setup({
-  { import = "plugins.ui" },
-  { import = "plugins.editor" },
+  { import = "plugins.alpha-nvim" },
+  { import = "plugins.arctic" },
+  { import = "plugins.auto-session" },
+  -- { import = "plugins.barbar" },
+  { import = "plugins.codestats" },
+  { import = "plugins.comment" },
+  { import = "plugins.gitsigns" },
   { import = "plugins.lsp" },
-  { import = "plugins.tools" },
+  { import = "plugins.lualine" },
+  { import = "plugins.markdown" },
+  { import = "plugins.nvim-autopairs" },
+  { import = "plugins.nvim-tree" },
+  { import = "plugins.telescope" },
+  { import = "plugins.treesitter" },
+  { import = "plugins.vim-visual-multi" },
+  { import = "plugins.which-key" },
+  { import = "plugins.fine-cmd-line"},
+  { import = "plugins.fine-searchbox"},
+  { import = "plugins.dadbod"},
+
 })
