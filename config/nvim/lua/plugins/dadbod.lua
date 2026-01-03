@@ -14,7 +14,7 @@ return {
       "DBUIFindBuffer",
     },
     init = function()
-      local function find_git_root()
+      local function find_git_repo_name()
         local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
          if vim.v.shell_error == 0 then
            return git_root
@@ -22,7 +22,7 @@ return {
          return nil
        end
 
-       local git_root = find_git_root()
+      local git_root = find_git_repo_name()
        if git_root then
          vim.g.db_ui_save_location = git_root .. "/.dbui"
        else

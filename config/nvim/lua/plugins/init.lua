@@ -36,7 +36,7 @@ require("lazy").setup({
   { import = "plugins.vim-visual-multi" },
   { import = "plugins.which-key" },
   { import = "plugins.fine-cmd-line"},
-  { import = "plugins.fine-searchbox"},
+  -- { import = "plugins.fine-searchbox"},
   { import = "plugins.dadbod"},
 
 })

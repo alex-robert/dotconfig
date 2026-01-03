@@ -79,3 +79,28 @@ keymap.set("n", ";", ":", { noremap = true, desc = "Command mode" })
 keymap.set("v", ";", ":", { noremap = true, desc = "Command mode" })
 -- Keep original : for repeat last f/t/F/T motion
 -- (swapped - so typing : will repeat the motion)
+
+-- AZERTY-friendly text objects (brackets are hard to reach on AZERTY)
+-- Operator-pending mode shortcuts for common text objects
+keymap.set("o", "iq", 'i"', { desc = "Inner double quotes" })
+keymap.set("o", "aq", 'a"', { desc = "Around double quotes" })
+keymap.set("o", "iz", "i'", { desc = "Inner single quotes" })
+keymap.set("o", "az", "a'", { desc = "Around single quotes" })
+keymap.set("o", "ip", "i(", { desc = "Inner parentheses" })
+keymap.set("o", "ap", "a(", { desc = "Around parentheses" })
+keymap.set("o", "ib", "i{", { desc = "Inner braces" })
+keymap.set("o", "ab", "a{", { desc = "Around braces" })
+keymap.set("o", "ir", "i[", { desc = "Inner brackets" })
+keymap.set("o", "ar", "a[", { desc = "Around brackets" })
+
+-- Visual mode text objects
+keymap.set("v", "iq", 'i"', { desc = "Inner double quotes" })
+keymap.set("v", "aq", 'a"', { desc = "Around double quotes" })
+keymap.set("v", "iz", "i'", { desc = "Inner single quotes" })
+keymap.set("v", "az", "a'", { desc = "Around single quotes" })
+keymap.set("v", "ip", "i(", { desc = "Inner parentheses" })
+keymap.set("v", "ap", "a(", { desc = "Around parentheses" })
+keymap.set("v", "ib", "i{", { desc = "Inner braces" })
+keymap.set("v", "ab", "a{", { desc = "Around braces" })
+keymap.set("v", "ir", "i[", { desc = "Inner brackets" })
+keymap.set("v", "ar", "a[", { desc = "Around brackets" })

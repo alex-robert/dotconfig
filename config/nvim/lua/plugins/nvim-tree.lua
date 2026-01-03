@@ -39,6 +39,10 @@ return {
                 ignore = false,
                 timeout = 400
             },
+            filesystem_watchers = {
+              enable = true,
+              debounce_delay = 50,
+            },
             actions = {
                 open_file = {
                     quit_on_open = false,

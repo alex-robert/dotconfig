@@ -190,6 +190,7 @@ tags: [ editor, keymap, nvim, personal ]
   | `⌃` `r`                    | redo                                         |
   | `dd`                       | delete line                                  |
   | `yy`                       | yank (copy) line                             |
+  | `cc`                       | change line                                  |
   | `p`                        | paste after cursor                           |
   | `P`                        | paste before cursor                          |
   |                            |                                              |
@@ -199,6 +200,38 @@ tags: [ editor, keymap, nvim, personal ]
   | `gcc`                      | toggle comment line                          |
   | `gc` `(motion)`            | comment motion                               |
   | `gb` `(motion)`            | block comment motion                         |
+
+# Text Objects (AZERTY-friendly)
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | **Format**                 | `operator` + `text-object`                   |
+  |                            |                                              |
+  | **Operators**              |                                              |
+  | `d`                        | delete                                       |
+  | `c`                        | change (delete + insert mode)                |
+  | `y`                        | yank (copy)                                  |
+  | `v`                        | visual select                                |
+  |                            |                                              |
+  | **AZERTY Shortcuts**       | (easier than brackets on AZERTY)             |
+  | `iq` / `aq`                | inner/around double quotes `"`               |
+  | `iz` / `az`                | inner/around single quotes `'`               |
+  | `ip` / `ap`                | inner/around parentheses `()`                |
+  | `ib` / `ab`                | inner/around braces `{}`                     |
+  | `ir` / `ar`                | inner/around brackets `[]`                   |
+  |                            |                                              |
+  | **Standard Objects**       | (still work with standard syntax)            |
+  | `iw` / `aw`                | inner/around word                            |
+  | `is` / `as`                | inner/around sentence                        |
+  | `ip` / `ap`                | inner/around paragraph                       |
+  | `it` / `at`                | inner/around tag (HTML/XML)                  |
+  |                            |                                              |
+  | **Examples**               |                                              |
+  | `diq`                      | delete inside double quotes                  |
+  | `cip`                      | change inside parentheses                    |
+  | `yab`                      | yank around braces (with braces)             |
+  | `vir`                      | visual select inside brackets                |
+  | `diw`                      | delete inner word                            |
+  | `3dL`                      | delete 3 words forward                       |
 
 # Search & Replace
   |                            |                                              |
@@ -231,8 +264,38 @@ tags: [ editor, keymap, nvim, personal ]
   | `;Mason`                   | open mason (LSP installer)                   |
   | `;checkhealth`             | cck neovim health                          |
 
+# Database (vim-dadbod-ui)
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `␣` `db`                   | toggle database UI                           |
+  | `␣` `dbf`                  | find database buffer                         |
+  | `␣` `dba`                  | add database connection                      |
+  | `␣` `S`                    | execute SQL query (in .sql files)            |
+  |                            |                                              |
+  | **In DBUI**                |                                              |
+  | `A`                        | add connection                               |
+  | `S`                        | select all from table                        |
+  | `⏎`                        | expand/open item                             |
+  | `d`                        | delete connection                            |
+  | `R`                        | refresh tree                                 |
+
+# Debugging (DAP)
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `␣` `dc`                   | continue/start debugging                     |
+  | `␣` `di`                   | step into                                    |
+  | `␣` `do`                   | step over                                    |
+  | `␣` `dO`                   | step out                                     |
+  | `␣` `dr`                   | open debug REPL                              |
+  | `␣` `dl`                   | run last debug session                       |
+  | `␣` `dt`                   | terminate debugging                          |
+  | `␣` `du`                   | toggle DAP UI                                |
+
 # Tips
 - Movement uses IJKL instead of HJKL (AZERTY-friendly)
 - Use `e` instead of `i` to enter insert mode
 - Use `;` instead of `:` for command mode (easier on AZERTY)
 - Press `␣?` to see all available keybindings with which-key
+- Text objects: Use AZERTY shortcuts (iq, ip, ib, etc.) instead of i", i(, i{
+- Numbers work as multipliers: `3L` = 3 words forward, `5dd` = delete 5 lines
+- Combine operators with motions: `d3L` = delete 3 words, `c$` = change to end of line
