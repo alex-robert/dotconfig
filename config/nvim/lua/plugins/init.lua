@@ -14,15 +14,16 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     os.exit(1)
   end
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 
 -- Load all plugin modules
 require("lazy").setup({
-  { import = "plugins.alpha-nvim" },
+  { import = "plugins.neotree" },
+  -- { import = "plugins.alpha-nvim" },
   { import = "plugins.arctic" },
   { import = "plugins.auto-session" },
-  -- { import = "plugins.barbar" },
   { import = "plugins.codestats" },
   { import = "plugins.comment" },
   { import = "plugins.gitsigns" },
@@ -30,13 +31,10 @@ require("lazy").setup({
   { import = "plugins.lualine" },
   { import = "plugins.markdown" },
   { import = "plugins.nvim-autopairs" },
-  { import = "plugins.nvim-tree" },
   { import = "plugins.telescope" },
   { import = "plugins.treesitter" },
-  { import = "plugins.vim-visual-multi" },
   { import = "plugins.which-key" },
-  { import = "plugins.fine-cmd-line"},
-  -- { import = "plugins.fine-searchbox"},
-  { import = "plugins.dadbod"},
-
+  { import = "plugins.dadbod" },
+  { import = "plugins.lazygit" },
+  { import = "plugins.snacks" },
 })

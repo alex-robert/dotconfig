@@ -2,7 +2,7 @@ local opt = vim.opt
 
 -- Line numbers
 opt.number = true
-opt.relativenumber = false
+opt.relativenumber = true
 
 -- Indentation
 opt.tabstop = 2
@@ -24,6 +24,7 @@ opt.linebreak = true
 opt.cursorline = true
 opt.cmdheight = 0
 opt.fillchars = { eob = " " }
+-- opt.statuscolumn = "%s%=%{v:relnum?v:relnum:v:lnum} │ "
 
 -- Whitespace visualization
 opt.list = true
@@ -40,6 +41,17 @@ opt.showbreak = "↪ "
 vim.api.nvim_set_hl(0, "Whitespace", { fg = "#3a3a3a" })
 vim.api.nvim_set_hl(0, "NonText", { fg = "#3a3a3a" })
 
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#00cc66", bg = "NONE" })
+    vim.api.nvim_set_hl(0, "LineNr", { fg = "#888888" })
+    vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#aaaaaa", bold = true })
+    vim.api.nvim_set_hl(0, "SignColumn", { bg = "#e4e4e4" })
+    vim.api.nvim_set_hl(0, "FoldColumn", { fg = "#888888" })
+  end
+})
+
 -- Behavior
 opt.mouse = "a"
 opt.clipboard = "unnamedplus" -- Use system clipboard
@@ -47,6 +59,8 @@ opt.splitbelow = true
 opt.splitright = true
 opt.undofile = true
 opt.swapfile = false
+opt.scrolloff = 20
+
 
 -- Performance
 opt.updatetime = 300

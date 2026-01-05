@@ -40,41 +40,6 @@ tags: [ editor, keymap, nvim, personal ]
   |                            |                                              |
   | `esc`                      | exit insert mode                             |
 
-# Cursor Mode (Multi-cursor with IJKL)
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | **Entering Cursor Mode**   |                                              |
-  | `⌃` `d`                    | add cursor on next match (quick start)       |
-  | `␣` `cc`                   | add cursor at current position               |
-  | `␣` `ca`                   | select all occurrences                       |
-  | `␣` `c/`                   | regex search and add cursors                 |
-  | `v` then `␣` `c`           | add cursors in visual selection              |
-  |                            |                                              |
-  | **Navigation**             |                                              |
-  | `i` `j` `k` `l`            | move cursors (up/left/down/right)            |
-  | `I`                        | move up 5 lines (fast)                       |
-  | `K`                        | move down 5 lines (fast)                     |
-  | `J`                        | jump to previous word                        |
-  | `L`                        | jump to next word                            |
-  |                            |                                              |
-  | **Adding/Removing Cursors**|                                              |
-  | `⌥` `i`                    | add cursor above                             |
-  | `⌥` `k`                    | add cursor below                             |
-  | `⌃` `d`                    | add next match                               |
-  | `⌃` `x`                    | skip current match                           |
-  | `⌃` `p`                    | remove last cursor                           |
-  | `⌃` `⇧` `l`                | select all matches                           |
-  |                            |                                              |
-  | **Editing**                |                                              |
-  | `e`                        | enter insert at all cursors                  |
-  | `a`                        | append at all cursors                        |
-  | `x`                        | delete char at all cursors                   |
-  |                            |                                              |
-  | **Exit**                   |                                              |
-  | `esc`                      | exit cursor mode                             |
-  | `u`                        | undo                                         |
-  | `⌃` `r`                    | redo                                         |
-
 # Visual Mode (Traditional)
   |                            |                                              |
   |----------------------------|----------------------------------------------|
@@ -98,17 +63,6 @@ tags: [ editor, keymap, nvim, personal ]
   | `;q`                       | quit (command mode shortcut)                 |
   | `;w`                       | save (command mode shortcut)                 |
 
-# File Explorer (nvim-tree)
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `␣` `t`                    | toggle file explorer                         |
-  | `⏎`                        | open file/folder                             |
-  | `a`                        | create new file                              |
-  | `d`                        | delete file                                  |
-  | `r`                        | rename file                                  |
-  | `x`                        | cut file                                     |
-  | `c`                        | copy file                                    |
-  | `p`                        | paste file                                   |
 
 # Fuzzy Finder (Telescope)
   |                            |                                              |
@@ -211,6 +165,9 @@ tags: [ editor, keymap, nvim, personal ]
   | `c`                        | change (delete + insert mode)                |
   | `y`                        | yank (copy)                                  |
   | `v`                        | visual select                                |
+  | `>`                        | indent right                                 |
+  | `<`                        | indent left                                  |
+  | `=`                        | auto-indent/format                           |
   |                            |                                              |
   | **AZERTY Shortcuts**       | (easier than brackets on AZERTY)             |
   | `iq` / `aq`                | inner/around double quotes `"`               |
@@ -225,13 +182,38 @@ tags: [ editor, keymap, nvim, personal ]
   | `ip` / `ap`                | inner/around paragraph                       |
   | `it` / `at`                | inner/around tag (HTML/XML)                  |
   |                            |                                              |
+  | **Treesitter Objects**     | (code structure aware)                       |
+  | `af` / `if`                | around/inner function                        |
+  | `ac` / `ic`                | around/inner class                           |
+  | `aa` / `ia`                | around/inner parameter/argument              |
+  |                            |                                              |
   | **Examples**               |                                              |
   | `diq`                      | delete inside double quotes                  |
   | `cip`                      | change inside parentheses                    |
   | `yab`                      | yank around braces (with braces)             |
   | `vir`                      | visual select inside brackets                |
   | `diw`                      | delete inner word                            |
-  | `3dL`                      | delete 3 words forward                       |
+  | `daf`                      | delete around function                       |
+  | `cic`                      | change inner class                           |
+  | `yaa`                      | yank around parameter                        |
+  | `vif`                      | visual select inner function                 |
+  | `>ac`                      | indent class                                 |
+  | `=af`                      | auto-format function                         |
+
+# Treesitter Navigation
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `␣` `nf`                   | next function start                          |
+  | `␣` `nF`                   | next function end                            |
+  | `␣` `nc`                   | next class start                             |
+  | `␣` `nC`                   | next class end                               |
+  | `␣` `na`                   | next parameter                               |
+  |                            |                                              |
+  | `␣` `pf`                   | previous function start                      |
+  | `␣` `pF`                   | previous function end                        |
+  | `␣` `pc`                   | previous class start                         |
+  | `␣` `pC`                   | previous class end                           |
+  | `␣` `pa`                   | previous parameter                           |
 
 # Search & Replace
   |                            |                                              |
@@ -291,11 +273,69 @@ tags: [ editor, keymap, nvim, personal ]
   | `␣` `dt`                   | terminate debugging                          |
   | `␣` `du`                   | toggle DAP UI                                |
 
+# Motion & Operator Examples
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | **Basic Combinations**     |                                              |
+  | `dL`                       | delete word forward                          |
+  | `cJ`                       | change word backward                         |
+  | `y$`                       | yank to end of line                          |
+  | `d0`                       | delete to start of line                      |
+  | `ci"`                      | change inside quotes                         |
+  | `da(`                      | delete around parentheses                    |
+  |                            |                                              |
+  | **With Counts**            |                                              |
+  | `3dL`                      | delete 3 words forward                       |
+  | `5dd`                      | delete 5 lines                               |
+  | `2yy`                      | yank 2 lines                                 |
+  | `4cL`                      | change 4 words forward                       |
+  | `10==`                     | auto-format 10 lines                         |
+  | `=10i`                     | format 10 lines up                           |
+  | `=10k`                     | format 10 lines down                         |
+  |                            |                                              |
+  | **Formatting**             |                                              |
+  | `==`                       | format current line                          |
+  | `gg=G`                     | format entire file                           |
+  | `=af`                      | format around function                       |
+  | `=ac`                      | format around class                          |
+  | `5==`                      | format 5 lines                               |
+  |                            |                                              |
+  | **Treesitter Combos**      |                                              |
+  | `daf`                      | delete entire function                       |
+  | `yif`                      | yank function body                           |
+  | `cic`                      | change class body                            |
+  | `daa`                      | delete parameter (with comma)                |
+  | `cia`                      | change parameter value                       |
+  | `vaf`                      | select entire function                       |
+  |                            |                                              |
+  | **Navigation Patterns**    |                                              |
+  | `␣nf` then `dif`           | jump to next function, delete its body       |
+  | `␣pc` then `yac`           | jump to previous class, yank it              |
+  | `/search` then `ciq`       | search text, change in quotes                |
+  | `gd` then `yaf`            | go to definition, yank function              |
+  |                            |                                              |
+  | **Complex Examples**       |                                              |
+  | `di(` then `p`             | delete args, paste new ones                  |
+  | `ciq` then `esc` then `p`  | change quoted text with register             |
+  | `␣nf` `␣nf` then `daf`     | skip 2 functions, delete 3rd                 |
+  | `vif` then `=`             | select function body, format it              |
+  | `␣na` then `daa`           | next parameter, delete it                    |
+
 # Tips
 - Movement uses IJKL instead of HJKL (AZERTY-friendly)
 - Use `e` instead of `i` to enter insert mode
 - Use `;` instead of `:` for command mode (easier on AZERTY)
 - Press `␣?` to see all available keybindings with which-key
+
+
+# Motions
 - Text objects: Use AZERTY shortcuts (iq, ip, ib, etc.) instead of i", i(, i{
 - Numbers work as multipliers: `3L` = 3 words forward, `5dd` = delete 5 lines
 - Combine operators with motions: `d3L` = delete 3 words, `c$` = change to end of line
+- Treesitter textobjects only work in operator-pending or visual mode (after d/c/y/v)
+- Format operations: `=` works with any motion or textobject
+- Chain navigation + operations: jump to location, then operate on textobject
+
+
+
+# vim: ft=markdown

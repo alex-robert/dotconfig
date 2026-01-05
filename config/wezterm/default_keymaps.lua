@@ -4,8 +4,8 @@ local bindings = {
   
 -- Debug
 {
-    key = 'L',
-    mods = 'CTRL',
+    key = 'D',
+    mods = 'CMD|SHIFT|ALT',
     action = wezterm.action.ShowDebugOverlay
 }, 
 

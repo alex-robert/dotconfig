@@ -43,17 +43,17 @@ keymap.set("n", "<leader>se", "<C-w>=", { desc = "Equal window sizes" })
 keymap.set("n", "<leader>sx", ":close<CR>", { desc = "Close current split" })
 
 -- Essential shortcuts
-keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save file" })
-keymap.set("n", "<leader>q", ":qa<CR>", { desc = "Quit all" })
-keymap.set("n", "<leader>x", ":xa<CR>", { desc = "Save and quit all" })
+-- keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save file" })
+-- keymap.set("n", "<leader>q", ":qa<CR>", { desc = "Quit all" })
+-- keymap.set("n", "<leader>x", ":xa<CR>", { desc = "Save and quit all" })
 
 -- Reload config
-keymap.set("n", "<leader>r", ":source $MYVIMRC<CR>", { desc = "Reload config" })
+-- keymap.set("n", "<leader>r", ":source $MYVIMRC<CR>", { desc = "Reload config" })
 
 -- AZERTY-friendly force quit (f = force, easier than !)
-vim.api.nvim_create_user_command("Qf", "qa!", {})
-vim.api.nvim_create_user_command("Wf", "w!", {})
-vim.api.nvim_create_user_command("Xf", "xa!", {})
+-- vim.api.nvim_create_user_command("Qf", "qa!", {}) -- force quit all
+-- vim.api.nvim_create_user_command("Wf", "w!", {})
+-- vim.api.nvim_create_user_command("Xf", "xa!", {})
 
 -- Clear search highlighting
 keymap.set("n", "<Esc>", ":nohl<CR>", { desc = "Clear search highlights" })

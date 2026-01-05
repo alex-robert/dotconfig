@@ -36,6 +36,11 @@ local tabline_config = {
         b = { fg = '#bb9af7', bg = '#24283b' },
         c = { fg = '#a9b1d6', bg = '#1f2335' },
       },
+      layout_mode = {
+        a = { fg = '#1a1b26', bg = '#bb9af7' },  -- cyan for workspace mode
+        b = { fg = '#bb9af7', bg = '#24283b' },
+        c = { fg = '#a9b1d6', bg = '#1f2335' },
+      },
       tab = {
         inactive = {
           fg = '#a9b1d6',
@@ -59,6 +64,8 @@ local tabline_config = {
             return wezterm.nerdfonts.cod_terminal .. ' '
            elseif str == 'WORKSPACE' then
              return wezterm.nerdfonts.md_view_dashboard .. ' WORKSPACE'
+           elseif str == 'LAYOUT' then
+             return wezterm.nerdfonts.md_window_closed_variant .. ' LAYOUT'
           elseif str == 'SEARCH' then
             return str
           end
@@ -84,7 +91,7 @@ local tabline_config = {
       'process',
       '',
       { 'cwd', padding = { left = 0, right = 1 } },
-      
+
     },
     tabline_x = { ' ' },
     tabline_y = { 'cpu', 'ram', throttle = 10, },

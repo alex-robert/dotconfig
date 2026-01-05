@@ -135,10 +135,10 @@ shift-ctrl-left  = 'focus left'
 shift-ctrl-down  = 'focus down'
 shift-ctrl-right = 'focus right'
 ####
-# shift-ctrl-lima    = 'focus right'
-# shift-ctrl-juliett  = 'focus left'
-# shift-ctrl-kilo  = 'focus down'
-# shift-ctrl-india = 'focus up'
+shift-ctrl-lima    = 'focus right'
+shift-ctrl-juliett  = 'focus left'
+shift-ctrl-kilo  = 'focus down'
+shift-ctrl-india = 'focus up'
 
 
 # Switch monitor focus

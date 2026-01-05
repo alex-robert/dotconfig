@@ -3,72 +3,9 @@ local resurrect = require 'plugins/resurrect'
 local workspace_switcher = require 'plugins/sws'
 
 return {
-  -- Manage window/tabs/panes layout
-  {
-      key = 'i',
-      action = wezterm.action.ActivatePaneDirection 'Up'
-  }, {
-      key = 'k',
-      action = wezterm.action.ActivatePaneDirection 'Down'
-  }, {
-      key = 'j',
-      action = wezterm.action.ActivatePaneDirection 'Left'
-  }, {
-      key = 'l',
-      action = wezterm.action.ActivatePaneDirection 'Right'
-  }, 
-  -- Resize and stay
-  {
-      key = 'I',
-      mods = 'SHIFT',
-      action = wezterm.action.AdjustPaneSize {'Up', 5}
-  }, {
-      key = 'K',
-      mods = 'SHIFT',
-      action = wezterm.action.AdjustPaneSize {'Down', 5}
-  }, 
-  {
-      key = 'J',
-      mods = 'SHIFT',
-      action = wezterm.action.AdjustPaneSize {'Left', 5}
-  }, {
-      key = 'L',
-      mods = 'SHIFT',
-      action = wezterm.action.AdjustPaneSize {'Right', 5}
-  }, 
-
-  {
-      key = 'r',
-      action = wezterm.action.RotatePanes 'Clockwise'
-  }, 
-
-  -- Create new panes
-  {
-      key = 'u',
-      action = wezterm.action.SplitVertical {
-          domain = 'CurrentPaneDomain'
-      }
-  }, {
-      key = 'p',
-      action = wezterm.action.SplitHorizontal {
-          domain = 'CurrentPaneDomain'
-      }
-  }, 
-  {
-      key = 'x',
-      action = wezterm.action.CloseCurrentPane { confirm = true },
-    },
-
-    -- Zoom and quit
-  {
-      key = 'z',
-      action = wezterm.action.Multiple {wezterm.action.TogglePaneZoomState, 'PopKeyTable'}
-  }, 
-
-  -- Actuall Workspace stuff
   {
     key = 'n',
-    mods = 'CTRL',
+
     action = wezterm.action_callback(function(window, pane)
         local cwd_uri = pane:get_current_working_dir()
         local cwd = cwd_uri and cwd_uri.file_path
@@ -84,7 +21,7 @@ return {
 
   {
       key = 'n',
-      mods= 'CTRL|SHIFT',
+      mods= 'CTRL',
       action = wezterm.action.PromptInputLine {
           description = 'Enter workspace name:',
           action = wezterm.action_callback(function(window, pane, line)
@@ -99,7 +36,7 @@ return {
 
   {
     key = "s",
-     mods = 'CTRL',
+     -- mods = 'CTRL',
     action = wezterm.action_callback(function(win, pane)
         resurrect.state_manager.save_state(resurrect.workspace_state.get_workspace_state())
       end),
@@ -149,15 +86,7 @@ return {
       end),
       'PopKeyTable',
     },
-    
   },
-  -- {
-  --   key = "l",
-  --   action = wezterm.action.Multiple {
-  --     workspace_switcher.switch_workspace(),
-  --     'PopKeyTable',
-  --   }
-  -- },
   -- Quit
   {
     key = 'Escape',

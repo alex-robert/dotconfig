@@ -60,11 +60,24 @@ add_keymaps(config, {
           name = 'workspace_mode',
           one_shot = false
       }
+  },
+  {
+    key = 'l',
+    mods = 'LEADER',
+    action = wezterm.action.ActivateKeyTable {
+      name = 'layout_mode',
+      one_shot = false
+    }
   }
 })
 
 local workspace_mod_keys = require 'keymap_mode_workspace'
 add_mode(config, 'workspace_mode', workspace_mod_keys)
+
+local layout_mod_keys = require 'keymap_mode_layout'
+add_mode(config, 'layout_mode', layout_mod_keys)
+
+
 
 -- ## Apply modules configurations ##
 -- Tabline Plugin
@@ -78,6 +91,8 @@ theme_selector.apply_to_config(config)
 spt.apply_to_config(config, {
   process_themes = {
     claude = "SynthwaveAlpha",
+    copilot = "SynthwaveAlpha",
+    -- nvim = "PaleNightHC",
   }
 })
 

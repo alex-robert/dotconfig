@@ -131,6 +131,7 @@ alias la="ls -lha"
 alias gs="git status"
 alias v="nvim"
 alias lz="lazygit"
+alias nvnuke="rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim"
 
 #------------------------------#
 #### ---- Startup Flex ---- ####
