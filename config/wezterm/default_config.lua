@@ -4,7 +4,7 @@ local default_config = {
     -- -- Terminal
     -- default_prog = { 'zsh', '-l' },
     -- initial_cols = 120,
-    -- initial_rows = 30,
+    initial_rows = 60,
     -- scrollback_lines = 10000,
     enable_scroll_bar = false,
 
@@ -23,13 +23,12 @@ local default_config = {
       left = 2,
       right = 2,
       top = 4,
-      bottom = -10,
+      bottom = 0,
     },
 
 
     window_background_opacity = 0.95,
     macos_window_background_blur = 20,
-    
     tab_bar_at_bottom = false,
     tab_max_width = 32,
     inactive_pane_hsb = {

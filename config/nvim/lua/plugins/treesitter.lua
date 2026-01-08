@@ -57,14 +57,14 @@ return {
         select = {
           enable = true,
           lookahead = true,
-          keymaps = {
-            ['af'] = '@function.outer',
-            ['if'] = '@function.inner',
-            ['ac'] = '@class.outer',
-            ['ic'] = '@class.inner',
-            ['aa'] = '@parameter.outer',
-            ['ia'] = '@parameter.inner',
-          },
+          -- keymaps = {
+          --   ['af'] = '@function.outer',
+          --   ['if'] = '@function.inner',
+          --   ['ac'] = '@class.outer',
+          --   ['ic'] = '@class.inner',
+          --   ['aa'] = '@parameter.outer',
+          --   ['ia'] = '@parameter.inner',
+          -- },
         },
         move = {
           enable = true,

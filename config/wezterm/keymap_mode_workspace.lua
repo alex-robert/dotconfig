@@ -17,7 +17,7 @@ return {
             }
         }, pane)
       end)
-  }, 
+  },
 
   {
       key = 'n',
@@ -41,7 +41,6 @@ return {
         resurrect.state_manager.save_state(resurrect.workspace_state.get_workspace_state())
       end),
   },
-
   {
     key = "r",
      mods = 'CTRL',

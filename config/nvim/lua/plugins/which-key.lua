@@ -19,12 +19,16 @@ return {
 
       wk.add({
         { "<leader>f", group = "Find" },
+        { "<leader>e", group = "Explore" },
         { "<leader>b", group = "Buffer" },
-        { "<leader>s", group = "Split" },
-        { "<leader>t", group = "Tree/Tab" },
-        { "<leader>g", group = "Git" },
-        { "<leader>c", group = "Code" },
-        { "<leader>m", group = "Multi-cursor" },
+        -- { "<leader>s", group = "Split" },
+        { "<leader>t", group = "Tabs" },
+        { "<leader>g", group = "Git & General & Global" },
+        { "<leader>c", group = "Lsp" },
+        { "<leader>o", group = "Code Utilities" },
+        { "<leader>d", group = "Debug" },
+        { "<leader>D", group = "Database" },
+        -- { "<leader>m", group = "Multi-cursor" },
       })
     end,
   },

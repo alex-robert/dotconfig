@@ -1,7 +1,5 @@
 ### Startup & config ###
 after-startup-command = [
-    #   'exec-and-forget sketchybar',
-    'exec-and-forget borders'
 ]
 
 start-at-login = true
@@ -34,12 +32,12 @@ exec-on-workspace-change = ['/bin/bash', '-c',
 
 
 [gaps]
-outer.top = [{ monitor.'built-in.*' = 6 }, 4]
-outer.right      = 4
-outer.bottom     = 4
-outer.left       = 4
-inner.horizontal = 4 # gap beetween windows on Horizontal layout (window in vertival mode)
-inner.vertical   = 4  # same but when windows are on Horizontal mode (vertival layout)
+outer.top = [{ monitor.'built-in.*' = 2 }, 4]
+outer.right      = 1
+outer.bottom     = 1
+outer.left       = 1
+inner.horizontal = 2 # gap beetween windows on Horizontal layout (window in vertival mode)
+inner.vertical   = 2  # same but when windows are on Horizontal mode (vertival layout)
 
 
 ###################
@@ -98,9 +96,9 @@ zulu      = "w"          # Z -> W
 # See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [workspace-to-monitor-force-assignment]
 
-1 = ['M27Q'] # Front screen 
+1 = ['M27Q'] # Front screen
 2 = ['M27Q'] # Main
-3 = ['Built-in'] # Front screen 
+3 = ['Built-in'] # Front screen
 4 = ['AORUS'] # Right screen
 5 = ['AORUS'] # Right screen
 
@@ -109,7 +107,7 @@ zulu      = "w"          # Z -> W
 
 ####################
 ### Main Bndings ###
-#################### 
+####################
 # - Focus Workspaces / Monitors
 # - Focus windows
 # - Send window/node to another workspace
@@ -163,7 +161,7 @@ cmd-alt-ctrl-shift-lima   = 'mode layout'     # Todo Make a Double tap L shortcu
 
 ######################
 ### Layout Bndings ###
-###################### 
+######################
 # - Reorganize windows
 # - Send Window / node to another workspace
 # - Send Workspace to another monitor
@@ -178,10 +176,10 @@ shift-left  = 'move left'
 shift-down  = 'move down'
 shift-right = 'move right'
 ####
-# shift-india    = 'move up'
-# shift-juliett  = 'move left'
-# shift-kilo  = 'move down'
-# shift-lima = 'move right'
+shift-india    = 'move up'
+shift-juliett  = 'move left'
+shift-kilo  = 'move down'
+shift-lima = 'move right'
 
 # Merge nodes
 # See: https://nikitabobko.github.io/AeroSpace/commands#join-with
@@ -190,10 +188,10 @@ alt-shift-left  = ['join-with down' ]
 alt-shift-down  = ['join-with up'   ]
 alt-shift-right = ['join-with right']
 ####
-# alt-shift-juliett = ['join-with left' ]
-# alt-shift-kilo    = ['join-with down' ]
-# alt-shift-india   = ['join-with up'   ]
-# alt-shift-lima    = ['join-with right']
+alt-shift-juliett = ['join-with left' ]
+alt-shift-kilo    = ['join-with down' ]
+alt-shift-india   = ['join-with up'   ]
+alt-shift-lima    = ['join-with right']
 
 
 # Move windows/nodes to other workspaces
@@ -201,8 +199,15 @@ alt-shift-right = ['join-with right']
 cmd-alt-right = ['move-node-to-workspace next', 'workspace next']
 cmd-alt-left  = ['move-node-to-workspace prev', 'workspace prev']
 ####
-# cmd-alt-lima    = ['move-node-to-workspace next', 'workspace next']
-# cmd-alt-juliett = ['move-node-to-workspace prev', 'workspace prev']
+cmd-alt-lima    = ['move-node-to-workspace next', 'workspace next']
+cmd-alt-juliett = ['move-node-to-workspace prev', 'workspace prev']
+
+# Move nodes to other monitor by direction
+#See https://nikitabobko.github.io/AeroSpace/commands#move-node-to-monitor
+cmd-alt-shift-juliett = ['move-node-to-monitor left' ]
+cmd-alt-shift-kilo    = ['move-node-to-monitor down' ]
+cmd-alt-shift-india   = ['move-node-to-monitor up'   ]
+cmd-alt-shift-lima    = ['move-node-to-monitor right']
 
 
 # Toggle between floating and tiling layout
@@ -215,10 +220,12 @@ cmd-alt-ctrl-shift-tango = ['layout tiles accordion']
 cmd-alt-ctrl-shift-hotel = ['layout horizontal vertical']
 
 # reset workspace layout
-cmd-alt-ctrl-shift-romeo = ['flatten-workspace-tree'] 
+cmd-alt-ctrl-shift-romeo = ['flatten-workspace-tree']
 
-alt-down = 'resize smart -50'
-alt-up = 'resize smart +50'
+ctrl-down = 'resize smart -50'
+ctrl-up = 'resize smart +50'
+shift-ctrl-down = 'resize smart -10'
+shift-ctrl-up = 'resize smart +10'
 
 
 

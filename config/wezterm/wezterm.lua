@@ -1,4 +1,4 @@
--- -- Import Wezterm 
+-- -- Import Wezterm
 local wezterm = require 'wezterm'
 
 -------------------------
@@ -28,7 +28,7 @@ local function add_keymap(config, keymap)
 end
 
 local function add_keymaps(config, map)
-  for i, key in pairs(map) do 
+  for i, key in pairs(map) do
       table.insert(config.keys, key)
   end
 end
@@ -99,7 +99,7 @@ spt.apply_to_config(config, {
 -- CMD to vim keymap
 -- local cmd_vim_keymap = require 'keymap_cmd2nvim'
 -- add_keymaps(config, cmd_vim_keymap)
--- Action is sent to terminal, but bindings just replace cmd+t/w/s anyway... 
+-- Action is sent to terminal, but bindings just replace cmd+t/w/s anyway...
 
 -- Resurect (sae sessions / workspaces)
 resurrect.state_manager.change_state_save_dir(wezterm.config_dir .. "/workspaces/")
@@ -145,20 +145,44 @@ wezterm.on("smart_workspace_switcher.workspace_switcher.selected", function(wind
 end)
 
 -- Add custom key maping
--- add_keymap(config, { key = "S", mods = "ALT", action = wezterm.action_callback(function(window, pane) 
+-- add_keymap(config, { key = "S", mods = "ALT", action = wezterm.action_callback(function(window, pane)
 --   window:toast_notification('wezterm', 'alt-S hit', nil, 5000)
 -- end )})
 
 -------------------------
 -- Events              --
 -------------------------
+
 wezterm.on('gui-startup', function(cmd)
     local args = cmd or {}
 -- #resurrect.state_manager.resurrect_on_gui_startup
-end) 
-wezterm.on('window-config-reloaded', function(window)
-  -- window:toast_notification('wezterm', 'configuration reloaded!', nil, 4000)
 end)
 
+wezterm.on('window-config-reloaded', function(window)
+
+end)
+
+
+wezterm.on("update-status", function(window, _)
+--     local tab = window:active_tab()
+--     local panes = tab:panes()
+--     local alt_screen_active = false
+--     for i = 1, #panes, 1 do
+--         local pane = panes[i]
+--         if pane:is_alt_screen_active() then
+-- 	    alt_screen_active = true
+-- 	    break
+--         end
+--     end
+--     if alt_screen_active then
+    -- window:set_config_overrides({
+    --     window_padding = { left = 0, right = 0, top = 0, bottom = 0 },
+    -- })
+--     else
+--     window:set_config_overrides({
+--         -- window_padding = { top = 4, bottom = 2, left = 2, right = 2 },
+--     })
+--     end
+end)
 
 return config

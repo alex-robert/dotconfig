@@ -272,7 +272,7 @@ gui:
 
   # Status panel view.
   # One of 'dashboard' (default) | 'allBranchesLog'
-  statusPanelView: dashboard
+  statusPanelView: allBranchesLog
 
   # If true, jump to the Files panel after popping a stash
   switchToFilesAfterStashPop: true
@@ -547,25 +547,26 @@ keybinding:
     return: <esc>
     quitWithoutChangingDirectory: Q
     togglePanel: <tab>
+    # IJKL navigation scheme
     prevItem: <up>
     nextItem: <down>
-    prevItem-alt: k
-    nextItem-alt: j
+    prevItem-alt: i  # i = up (was k)
+    nextItem-alt: k  # k = down (was j)
     prevPage: ','
     nextPage: .
-    scrollLeft: H
-    scrollRight: L
+    scrollLeft: <disabled>  # H disabled (conflicts with j=left)
+    scrollRight: <disabled>  # L disabled
     gotoTop: <
     gotoBottom: '>'
     gotoTop-alt: <home>
     gotoBottom-alt: <end>
     toggleRangeSelect: v
-    rangeSelectDown: <s-down>
-    rangeSelectUp: <s-up>
+    rangeSelectDown: <s-down>  # Shift+Down for range down
+    rangeSelectUp: <s-up>      # Shift+Up for range up
     prevBlock: <left>
     nextBlock: <right>
-    prevBlock-alt: h
-    nextBlock-alt: l
+    prevBlock-alt: j  # j = left (was h)
+    nextBlock-alt: l  # l = right (unchanged)
     nextBlock-alt2: <tab>
     prevBlock-alt2: <backtab>
     jumpToBlock:
@@ -593,8 +594,8 @@ keybinding:
     openFile: o
     scrollUpMain: <pgup>
     scrollDownMain: <pgdown>
-    scrollUpMain-alt1: K
-    scrollDownMain-alt1: J
+    scrollUpMain-alt1: I  # I = scroll up (was K)
+    scrollDownMain-alt1: K  # K = scroll down (was J)
     scrollUpMain-alt2: <c-u>
     scrollDownMain-alt2: <c-d>
     executeShellCommand: ':'
@@ -638,7 +639,7 @@ keybinding:
     commitChangesWithEditor: C
     findBaseCommitForFixup: <c-f>
     confirmDiscard: x
-    ignoreFile: i
+    ignoreFile: G  # G for Gitignore (was i, conflicts with up)
     refreshFiles: r
     stashAllChanges: s
     viewStashOptions: S
@@ -656,19 +657,19 @@ keybinding:
     viewPullRequestOptions: O
     copyPullRequestURL: <c-y>
     checkoutBranchByName: c
-    forceCheckoutBranch: F
+    forceCheckoutBranch: <c-f>  # Ctrl+F (was F, moved for gitFlow)
     checkoutPreviousBranch: '-'
     rebaseBranch: r
     renameBranch: R
     mergeIntoCurrentBranch: M
     moveCommitsToNewBranch: "N"
-    viewGitFlowOptions: i
+    viewGitFlowOptions: F  # F for Flow (was i, conflicts with up)
     fastForward: f
     createTag: T
     pushTag: P
     setUpstream: u
     fetchRemote: f
-    addForkRemote: F
+    addForkRemote: <c-a>  # Ctrl+A for Add fork (was F, moved for gitFlow)
     sortOrder: s
   worktrees:
     viewWorktreeOptions: w
@@ -680,8 +681,8 @@ keybinding:
     markCommitAsFixup: f
     createFixupCommit: F
     squashAboveCommits: S
-    moveDownCommit: <c-j>
-    moveUpCommit: <c-k>
+    moveDownCommit: <down>  # Down arrow = move commit down (was <c-j>)
+    moveUpCommit: <up>      # Up arrow = move commit up (was <c-k>)
     amendToCommit: A
     resetCommitAuthor: a
     pickCommit: p
@@ -696,7 +697,7 @@ keybinding:
     openLogMenu: <c-l>
     openInBrowser: o
     viewBisectOptions: b
-    startInteractiveRebase: i
+    startInteractiveRebase: <c-r>  # Ctrl+r for interactive Rebase (was i, conflicts)
     selectCommitsOfCurrentBranch: '*'
   amendAttribute:
     resetAuthor: a
@@ -712,7 +713,7 @@ keybinding:
     pickBothHunks: b
     editSelectHunk: E
   submodules:
-    init: i
+    init: N  # N for iNit (was i, conflicts with up)
     update: u
     bulkMenu: b
   commitMessage:
