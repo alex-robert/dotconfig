@@ -40,19 +40,48 @@ tags: [ editor, keymap, nvim, personal ]
   |                            |                                              |
   | `esc`                      | exit insert mode                             |
 
-# Visual Mode (Traditional)
+# Visual Mode
   |                            |                                              |
   |----------------------------|----------------------------------------------|
+  | **Entering Visual Mode**   |                                              |
   | `v`                        | visual character mode                        |
   | `V`                        | visual line mode                             |
-  | `⌃` `v`                    | visual block mode                            |
+  | `⌃` `v`                    | visual block mode (column editing!)          |
+  | `gv`                       | re-select last visual selection              |
   |                            |                                              |
-  | `i/j/k/l`                  | move selection (IJKL)                        |
+  | **Movement (IJKL)**        |                                              |
+  | `i/k/j/l`                  | extend selection up/down/left/right          |
+  | `I/K/J/L`                  | extend 5 lines up/down / word back/fwd       |
+  | `w`                        | extend to end of word                        |
+  | `0/$`                      | extend to start/end of line                  |
+  | `gg/G`                     | extend to start/end of file                  |
+  |                            |                                              |
+  | **Operations**             |                                              |
+  | `c`                        | change (delete and enter insert)             |
+  | `d`                        | delete selection                             |
+  | `y`                        | yank (copy) selection                        |
+  | `p`                        | paste over selection                         |
+  | `u`                        | make lowercase                               |
+  | `U`                        | make UPPERCASE                               |
+  | `~`                        | toggle case                                  |
   | `<`                        | indent left (keeps selection)                |
   | `>`                        | indent right (keeps selection)               |
+  | `o`                        | move to other end of selection               |
+  | `:`                        | command mode on selection                    |
   |                            |                                              |
-  | `⌥` `k`                    | move selection down                          |
-  | `⌥` `i`                    | move selection up                            |
+  | **Block Mode (⌃v)**        | rectangular selections                       |
+  | `⌃` `v` then `k k k`       | select column down                           |
+  | `I` (in block)             | insert at start of block                     |
+  | `A` (in block)             | append at end of block                       |
+  | `e` (in visual)            | visual block insert at start                 |
+  | `E` (in visual)            | visual block insert at end                   |
+  | `c` (in block)             | change block                                 |
+  | `d` (in block)             | delete block                                 |
+  |                            |                                              |
+  | **Advanced**               |                                              |
+  | `V` then `:norm A;`        | add `;` to end of each line                  |
+  | `V` then `:norm I//`       | comment each line with `//`                  |
+  | `V` then `:s/old/new/g`    | replace in selection only                    |
 
 # File Operations
   |                            |                                              |
@@ -85,19 +114,35 @@ tags: [ editor, keymap, nvim, personal ]
   | `␣` `bn`                   | next buffer                                  |
   | `␣` `bp`                   | previous buffer                              |
   | `␣` `bd`                   | delete buffer                                |
+  |                            |                                              |
+  | `⌃` `x` `l`                | next buffer                                  |
+  | `⌃` `x` `j`                | previous buffer                              |
+  | `⌃` `x` `x`                | delete buffer                                |
 
 # Window/Split Management
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `␣` `sv`                   | split vertically                             |
-  | `␣` `sh`                   | split horizontally                           |
-  | `␣` `se`                   | equal window sizes                           |
-  | `␣` `sx`                   | close current split                          |
+  | `⌃` `w` `v`                | split vertically                             |
+  | `⌃` `w` `h`                | split horizontally                           |
+  | `⌃` `w` `e`                | equal window sizes                           |
+  | `⌃` `w` `t`                | send current window to new tab               |
+  | `⌃` `w` `x`                | close current window                         |
   |                            |                                              |
-  | `␣` `i`                    | go to top window                             |
-  | `␣` `j`                    | go to left window                            |
-  | `␣` `k`                    | go to bottom window                          |
-  | `␣` `l`                    | go to right window                           |
+  | `⌃` `w` `i`                | go to upper split                            |
+  | `⌃` `w` `j`                | go to left split                             |
+  | `⌃` `w` `k`                | go to bottom split                           |
+  | `⌃` `w` `l`                | go to right split                            |
+
+# Tab Management
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `⌃` `c` `l`                | go to next tab                               |
+  | `⌃` `c` `j`                | go to previous tab                           |
+  | `⌃` `c` `x`                | close tab                                    |
+  | `␣` `tf`                   | new tab with file picker                     |
+  |                            |                                              |
+  | `␣` `tp`                   | go to previous tab                           |
+  | `␣` `tn`                   | go to next tab                               |
 
 # LSP (Language Server)
   |                            |                                              |
@@ -126,12 +171,18 @@ tags: [ editor, keymap, nvim, personal ]
   | `⌃` `f`                    | scroll docs forward                          |
   | `⌃` `b`                    | scroll docs backward                         |
 
-# Git (gitsigns)
+# Git
   |                            |                                              |
   |----------------------------|----------------------------------------------|
+  | **Lazygit (snacks)**       |                                              |
+  | `␣` `gg`                   | open lazygit (root dir)                      |
+  | `␣` `gG`                   | open lazygit (cwd)                           |
+  | `␣` `gl`                   | lazygit log                                  |
+  | `␣` `gf`                   | lazygit file history                         |
+  |                            |                                              |
+  | **Git Hunks (gitsigns)**   |                                              |
   | `]c`                       | next git hunk                                |
   | `[c`                       | previous git hunk                            |
-  |                            |                                              |
   | `␣` `gs`                   | stage hunk                                   |
   | `␣` `gr`                   | reset hunk                                   |
   | `␣` `gp`                   | preview hunk                                 |
@@ -239,12 +290,31 @@ tags: [ editor, keymap, nvim, personal ]
   |                            |                                              |
   | `␣` `?`                    | show all keybindings (which-key)             |
 
+# File Explorer (MiniFiles)
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `␣` `ed`                   | open root directory                          |
+  | `␣` `eed`                  | open root directory (clean)                  |
+  | `␣` `ef`                   | open current file directory                  |
+  | `␣` `eef`                  | open last used directory                     |
+
+# Session Management (MiniSessions)
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `␣` `Sr`                   | restore latest session                       |
+  | `␣` `Ss`                   | save session                                 |
+
+# Utility (MiniTrailspace)
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `␣` `ot`                   | trim all trailing whitespace                 |
+
 # Plugins Management
   |                            |                                              |
   |----------------------------|----------------------------------------------|
   | `;Lazy`                    | open lazy.nvim (plugin manager)              |
   | `;Mason`                   | open mason (LSP installer)                   |
-  | `;checkhealth`             | cck neovim health                          |
+  | `;checkhealth`             | check neovim health                          |
 
 # Database (vim-dadbod-ui)
   |                            |                                              |
@@ -321,15 +391,106 @@ tags: [ editor, keymap, nvim, personal ]
   | `vif` then `=`             | select function body, format it              |
   | `␣na` then `daa`           | next parameter, delete it                    |
 
+# Keymap Translation (Custom IJKL vs Classic Vim)
+
+This table helps translate between your IJKL layout and classic vim for tutorials and discussions.
+
+## Movement & Navigation
+  | Classic Vim | Your Layout | Function                    | Notes                    |
+  |-------------|-------------|-----------------------------|--------------------------|
+  | `h`         | `j`         | move left                   |                          |
+  | `j`         | `k`         | move down                   |                          |
+  | `k`         | `i`         | move up                     |                          |
+  | `l`         | `l`         | move right                  | same                     |
+  | `w`         | `L`         | word forward                |                          |
+  | `b`         | `J`         | word backward               |                          |
+  | `e`         | `w`         | end of word                 |                          |
+  | `5j`        | `K`         | 5 lines down                |                          |
+  | `5k`        | `I`         | 5 lines up                  |                          |
+
+## Insert Mode
+  | Classic Vim | Your Layout | Function                    | Notes                    |
+  |-------------|-------------|-----------------------------|--------------------------|
+  | `i`         | `e`         | insert mode                 | main difference!         |
+  | `I`         | `E`         | insert at line start        |                          |
+  | `a`         | `a`         | append after cursor         | same                     |
+  | `A`         | `A`         | append at line end          | same                     |
+  | `o`         | `o`         | open line below             | same                     |
+  | `O`         | `O`         | open line above             | same                     |
+
+## Text Objects
+  | Classic Vim | Your Layout | Function                    | Notes                    |
+  |-------------|-------------|-----------------------------|--------------------------|
+  | `iw`        | `sw`        | inner word                  | `i` used for movement    |
+  | `iW`        | `sW`        | inner WORD                  |                          |
+  | `i(`        | `sp`        | inner parentheses           | AZERTY shortcut          |
+  | `i{`        | `sb`        | inner braces                | AZERTY shortcut          |
+  | `i[`        | `sr`        | inner brackets              | AZERTY shortcut          |
+  | `i"` `i'`   | `i"` `i'`   | inner quotes                | same (via mini.ai)       |
+  | `aw`        | `aw`        | around word                 | same                     |
+  | `a(` `a{`   | `ap` `ab`   | around parens/braces        | AZERTY shortcuts exist   |
+
+## Window Navigation
+  | Classic Vim | Your Layout | Function                    | Notes                    |
+  |-------------|-------------|-----------------------------|--------------------------|
+  | `<C-w>h`    | `<C-w>j`    | go to left split            |                          |
+  | `<C-w>j`    | `<C-w>k`    | go to bottom split          |                          |
+  | `<C-w>k`    | `<C-w>i`    | go to upper split           |                          |
+  | `<C-w>l`    | `<C-w>l`    | go to right split           | same                     |
+  | `<C-w>s`    | `<C-w>h`    | split horizontally          | `h` for horizontal       |
+  | `<C-w>v`    | `<C-w>v`    | split vertically            | same                     |
+
+## Visual Mode (Block)
+  | Classic Vim | Your Layout | Function                    | Notes                    |
+  |-------------|-------------|-----------------------------|--------------------------|
+  | `<C-v>I`    | `<C-v>I`    | block insert at start       | same                     |
+  | `<C-v>A`    | `<C-v>A`    | block append at end         | same                     |
+  | `v` then `I`| `v` then `e`| visual block insert start   | custom binding           |
+  | `v` then `A`| `v` then `E`| visual block insert end     | custom binding           |
+
+## Not Remapped (Work the Same)
+  | Key         | Function                    | Notes                    |
+  |-------------|-----------------------------|--------------------------|
+  | `d` `c` `y` | delete/change/yank          | all operators same       |
+  | `p` `P`     | paste after/before          | same                     |
+  | `u` `<C-r>` | undo/redo                   | same                     |
+  | `/` `?`     | search forward/backward     | same                     |
+  | `n` `N`     | next/prev search            | same                     |
+  | `gg` `G`    | start/end of file           | same                     |
+  | `0` `$`     | start/end of line           | same                     |
+  | `%`         | matching bracket            | same                     |
+  | `*` `#`     | search word under cursor    | same                     |
+  | `.`         | repeat last change          | same                     |
+  | `dd` `yy`   | delete/yank line            | same                     |
+  | `x`         | delete character            | same                     |
+  | `r`         | replace character           | same                     |
+  | `s`         | substitute character        | same                     |
+
+## Translation Examples
+
+When you see in tutorials:
+- `diw` (delete inner word) → use `dsw`
+- `ci(` (change in parens) → use `csp` or `ci(`
+- `5j` (down 5) → use `K`
+- `5k` (up 5) → use `I`
+- `w` (word forward) → use `L`
+- `b` (word back) → use `J`
+- `3w` (3 words forward) → use `3L`
+- `i` followed by text → use `e` followed by text
+- `<C-w>h` (left split) → use `<C-w>j`
+- `<C-w>j` (down split) → use `<C-w>k`
+- `<C-w>k` (up split) → use `<C-w>i`
+
 # Tips
 - Movement uses IJKL instead of HJKL (AZERTY-friendly)
 - Use `e` instead of `i` to enter insert mode
 - Use `;` instead of `:` for command mode (easier on AZERTY)
 - Press `␣?` to see all available keybindings with which-key
+- See translation table above when following classic vim tutorials
 
 
 # Motions
-- Text objects: Use AZERTY shortcuts (iq, ip, ib, etc.) instead of i", i(, i{
+- Text objects: Use `sw` instead of `iw` (since `i` is movement)
 - Numbers work as multipliers: `3L` = 3 words forward, `5dd` = delete 5 lines
 - Combine operators with motions: `d3L` = delete 3 words, `c$` = change to end of line
 - Treesitter textobjects only work in operator-pending or visual mode (after d/c/y/v)

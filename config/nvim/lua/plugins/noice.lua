@@ -15,18 +15,18 @@ return {
           lsp_doc_border = false,
         },
         routes = {
-        {
-          filter = {
-            event = "lsp",
-            kind = "progress",
-            cond = function(message)
-              local client = vim.tbl_get(message.opts, "progress", "client")
-              return client == "lua_ls"
-            end,
+          {
+            filter = {
+              event = "lsp",
+              kind = "progress",
+              cond = function(message)
+                local client = vim.tbl_get(message.opts, "progress", "client")
+                return client == "lua_ls"
+              end,
+            },
+            opts = { skip = true },
           },
-          opts = { skip = true },
         },
-      },
       })
     end,
   },

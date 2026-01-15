@@ -15,10 +15,21 @@ keymap.set("n", "e", "i", { desc = "Enter insert mode" })
 keymap.set("n", "E", "I", { desc = "Insert at beginning of line" })
 
 -- -- Visual mode movement
-keymap.set("v", "i", "k", { desc = "Move up" })
-keymap.set("v", "j", "h", { desc = "Move left" })
-keymap.set("v", "k", "j", { desc = "Move down" })
-keymap.set("v", "l", "l", { desc = "Move right" })
+keymap.set("x", "i", "k", { desc = "Move up" })
+keymap.set("x", "j", "h", { desc = "Move left" })
+keymap.set("x", "k", "j", { desc = "Move down" })
+keymap.set("x", "l", "l", { desc = "Move right" })
+
+-- Remap visual block insert to 'e' and 'E' (since 'i' is used for movement)
+keymap.set("x", "e", "I", { desc = "Visual block insert at start" })
+keymap.set("x", "E", "A", { desc = "Visual block insert at end" })
+
+-- Text objects: remap 'i' (inner) to 's' since 'i' is used for movement
+-- Map common word text objects with 's' prefix (mini.ai handles brackets/quotes/etc)
+keymap.set({ "o", "x" }, "sw", "iw", { desc = "Inside word" })
+keymap.set({ "o", "x" }, "sW", "iW", { desc = "Inside WORD" })
+keymap.set({ "o", "x" }, "aw", "aw", { desc = "Around word" })
+keymap.set({ "o", "x" }, "aW", "aW", { desc = "Around WORD" })
 
 -- -- Word movement with custom keys
 keymap.set("n", "I", "5k", { desc = "Move up 5 lines" })
@@ -31,22 +42,22 @@ keymap.set("n", "w", "e", { desc = "Move to end of word" })
 keymap.set("n", "W", "E", { desc = "Move to end of WORD" })
 
 -- -- Window navigation (splits)
-keymap.set("n", "<C-w>i", "<C-w>k", { desc = "Go to top window" })
-keymap.set("n", "<C-w>j", "<C-w>h", { desc = "Go to left window" })
-keymap.set("n", "<C-w>k", "<C-w>j", { desc = "Go to bottom window" })
-keymap.set("n", "<C-w>l", "<C-w>l", { desc = "Go to right window" })
+keymap.set("n", "<C-w>i", "<C-w>k", { desc = "Go to upper split" })
+keymap.set("n", "<C-w>j", "<C-w>h", { desc = "Go to left split" })
+keymap.set("n", "<C-w>k", "<C-w>j", { desc = "Go to bottom split" })
+keymap.set("n", "<C-w>l", "<C-w>l", { desc = "Go to right split" })
 
 -- Window management
 keymap.set("n", "<C-w>v", "<C-w>v", { desc = "Split vertically" })
 keymap.set("n", "<C-w>h", "<C-w>s", { desc = "Split horizontally" })
 keymap.set("n", "<C-w>e", "<C-w>=", { desc = "Equal window sizes" })
 keymap.set("n", "<C-w>t", "<C-w>T", { desc = "Send current window to new tab" })
-keymap.set("n", "<C-w>x", ":close<CR>", { desc = "Close current split" })
+keymap.set("n", "<C-w>x", ":close<CR>", { desc = "Close current window" })
 --
 -- Tab managements
 keymap.set("n", "<C-c>l", "<Cmd>tabnext<CR>", { desc = "Got to next tab"})
 keymap.set("n", "<C-c>j", "<Cmd>tabprevious<CR>", { desc = "Got to previous tab"})
-keymap.set("n", "<C-c>w", "<Cmd>tabclose<CR>", { desc = "Close tab"})
+keymap.set("n", "<C-c>x", "<Cmd>tabclose<CR>", { desc = "Close tab"})
 
 vim.keymap.set("n", "<leader>tf", function()
   vim.cmd("tabnew")
@@ -82,27 +93,27 @@ keymap.set("n", "<C-x>x", ":bdelete<CR>", { desc = "Delete buffer" })
 
 -- AZERTY-friendly text objects (brackets are hard to reach on AZERTY)
 -- Operator-pending mode shortcuts for common text objects
--- keymap.set("o", "iq", 'i"', { desc = "Inner double quotes" })
--- keymap.set("o", "aq", 'a"', { desc = "Around double quotes" })
--- keymap.set("o", "iz", "i'", { desc = "Inner single quotes" })
+-- keymap.set("o", "sq", 'i"', { desc = "Inner double quotes" })
+-- keymap.set("o", "sz", "i'", { desc = "Inner single quotes" })
+keymap.set("o", "sp", "i(", { desc = "Inner parentheses" })
+keymap.set("o", "sb", "i{", { desc = "Inner braces" })
+keymap.set("o", "sr", "i[", { desc = "Inner brackets" })
 -- keymap.set("o", "az", "a'", { desc = "Around single quotes" })
--- keymap.set("o", "ip", "i(", { desc = "Inner parentheses" })
--- keymap.set("o", "ap", "a(", { desc = "Around parentheses" })
--- keymap.set("o", "ib", "i{", { desc = "Inner braces" })
--- keymap.set("o", "ab", "a{", { desc = "Around braces" })
--- keymap.set("o", "ir", "i[", { desc = "Inner brackets" })
--- keymap.set("o", "ar", "a[", { desc = "Around brackets" })
+-- keymap.set("o", "aq", 'a"', { desc = "Around double quotes" })
+keymap.set("o", "ap", "a(", { desc = "Around parentheses" })
+keymap.set("o", "ab", "a{", { desc = "Around braces" })
+keymap.set("o", "ar", "a[", { desc = "Around brackets" })
 
 -- -- Visual mode text objects
 -- keymap.set("v", "iq", 'i"', { desc = "Inner double quotes" })
--- keymap.set("v", "aq", 'a"', { desc = "Around double quotes" })
 -- keymap.set("v", "iz", "i'", { desc = "Inner single quotes" })
--- keymap.set("v", "az", "a'", { desc = "Around single quotes" })
 -- keymap.set("v", "ip", "i(", { desc = "Inner parentheses" })
--- keymap.set("v", "ap", "a(", { desc = "Around parentheses" })
 -- keymap.set("v", "ib", "i{", { desc = "Inner braces" })
--- keymap.set("v", "ab", "a{", { desc = "Around braces" })
 -- keymap.set("v", "ir", "i[", { desc = "Inner brackets" })
+-- keymap.set("v", "az", "a'", { desc = "Around single quotes" })
+-- keymap.set("v", "aq", 'a"', { desc = "Around double quotes" })
+-- keymap.set("v", "ap", "a(", { desc = "Around parentheses" })
+-- keymap.set("v", "ab", "a{", { desc = "Around braces" })
 -- keymap.set("v", "ar", "a[", { desc = "Around brackets" })
 
 
@@ -113,7 +124,9 @@ _G.Config.utils.nmap_leader('eef', '<Cmd>lua MiniFiles.open(vim.api.nvim_buf_get
 _G.Config.utils.nmap_leader('eef', '<Cmd>lua MiniFiles.open(MiniFiles.get_latest_path()), false)<CR>', 'Last used Directory')
 
 _G.Config.utils.nmap_leader('ot', '<Cmd>lua MiniTrailspace.trim()<CR>', 'Trim all trailing whitespace')
-_G.Config.utils.nmap_leader('ot', '<Cmd>lua MiniTrailspace.trim()<CR>', 'Trim all trailing whitespace')
+
+_G.Config.utils.nmap_leader('Sr', '<Cmd>lua MiniSessions.read(MiniSessions.get_latest())<CR>', 'Restore latest session')
+_G.Config.utils.nmap_leader('Ss', '<Cmd>lua MiniSessions.write(".mini.session.vim", {force = true})<CR>', 'Save session')
 
 
 _G.Config.utils.nmap_leader('tp', '<Cmd>tabprevious<CR>', 'Go to previous tab')

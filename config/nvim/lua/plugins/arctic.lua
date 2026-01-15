@@ -5,7 +5,7 @@ return {
     branch = "v2",
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme("arctic")
+      -- vim.cmd.colorscheme("arctic")
     end,
   },
 }

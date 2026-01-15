@@ -1,3 +1,42 @@
+vim.cmd('colorscheme bluloco-dark')
+--
+--
+-- Setup LSP file renaming
+vim.api.nvim_create_autocmd("User", {
+  pattern = "MiniFilesActionRename",
+  callback = function(event)
+    Snacks.rename.on_rename_file(event.data.from, event.data.to)
+  end,
+})
+
+-- Status column diagnostic signs
+local signs = {
+    Error = " ",
+    Warn = " ",
+    Hint = " 󰌵",
+    Info = " "
+}
+
+local signConf = {
+  text = {},
+  texthl = {},
+  numhl = {},
+}
+
+for type, icon in pairs(signs) do
+  local severityName = string.upper(type)
+  local severity = vim.diagnostic.severity[severityName]
+  local hl = "DiagnosticSign" .. type
+  signConf.text[severity] = icon
+  signConf.texthl[severity] = hl
+  signConf.numhl[severity] = hl
+end
+
+vim.diagnostic.config({
+  signs = signConf,
+})
+
+
 -- Create command to view all keymaps in a buffer
 vim.api.nvim_create_user_command('ShowKeymaps', function(opts)
   local sort_mode = opts.args or 'grouped'  -- 'grouped' or 'bymode'

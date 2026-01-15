@@ -15,9 +15,9 @@ return {
       purge_after_minutes = 180,
       close_unsupported_windows = true,
       auto_delete_empty_sessions = true,
-      auto_restore = true,
-      auto_save = true,
-      auto_create = true,
+      auto_restore = false,
+      auto_save = false,
+      auto_create = false,
       legacy_cmds = false,
       session_lens = {
         picker = "telescope",

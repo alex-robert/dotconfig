@@ -3,14 +3,7 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      local function vm_mode()
-        local vm_info = vim.b['visual_multi']
-        if vm_info then
-          local count = vim.fn['VMInfos']().status
-          return 'V-M [' .. (count or '?') .. ']'
-        end
-        return ''
-      end
+
 
 
       local function diff_source()
@@ -45,56 +38,75 @@ return {
         return string.format('%s • %s', author, date)
       end
 
+      local trouble = require("trouble")
+      local symbols = trouble.statusline({
+        mode = "lsp_document_symbols",
+        groups = {},
+        title = false,
+        filter = { range = true },
+        format = "{kind_icon}{symbol.name:Normal}",
+        -- The following line is needed to fix the background color
+        -- Set it to the lualine section you want to use
+        hl_group = "lualine_c_normal",
+      })
 
       require("lualine").setup({
         options = {
-          theme = 'powerline_dark',
-          -- component_separators = { left = "", right = "" },
-          -- section_separators = { left = '', right = '' },
+          -- theme = 'powerline_dark',   
+          theme = 'bubbles_theme',
+          component_separators = '',
+          section_separators = { left = '', right = '' },
           globalstatus = true,
         },
         sections = {
           lualine_a = {
             {
               'mode',
-              -- fmt = function(str)
-                --   if vim.b.visual_multi then
-                --     local vm_status = vim.fn['VMInfos']()
-                --     if vm_status and vm_status.status then
-                --       return 'CURSOR [' .. vm_status.status .. ']'
-                --     end
-                --     return 'CURSOR'
-                --   end
-                --   return str
-                -- end,
-              },
+              separator = { left = '' }, right_padding = 2, 
             },
-            lualine_b = { 'branch', { 'diff', source = diff_source } , 'diagnostics' },
-            lualine_c = { { 'filename', path = 1 } },
-            lualine_x = {
-        --       {
-        --         function()
-        --           local ok, gitsigns = pcall(require, 'gitsigns')
-        --           if not ok then 
-        --             return "canot call gitsigns"
-        --           end
-        --           return "can call gitsigns"
-        --           -- local blame_info = gitsigns.get_blame_line()
-        --           -- if not blame_info then
-        --           --   return 'no blame info'
-        --           -- end
-        --           -- return blame_info.author or "unknown author"
-        --   end,
-        --   icon = "",
-        -- },
-        'encoding',
-        'fileformat',
-        'filetype',
+          },
+          lualine_b = { 'branch', { 'diff', source = diff_source } , 'diagnostics' },
+          lualine_c = {
+            {
+              'searchcount',
+            },
+            {
+              symbols.get,
+              cond = symbols.has,
+            }
+          },
+          lualine_x = {
+            --       {
+              --         function()
+                --           local ok, gitsigns = pcall(require, 'gitsigns')
+                --           if not ok then
+                --             return "canot call gitsigns"
+                --           end
+                --           return "can call gitsigns"
+                --           -- local blame_info = gitsigns.get_blame_line()
+                --           -- if not blame_info then
+                --           --   return 'no blame info'
+                --           -- end
+                --           -- return blame_info.author or "unknown author"
+                --   end,
+                --   icon = "",
+                -- },
+                'encoding',
+                'fileformat',
+                'filetype',
+              },
+              lualine_y = { 'progress' },
+              lualine_z = { 'location', separator = { right = '' }, left_padding = 2 },
+            },
+            tabline = {
+              lualine_a = {},
+              lualine_b = {'buffers'},
+              lualine_c = {},
+              lualine_x = {},
+              lualine_y = {},
+              lualine_z = {{'tabs', mode = 2, tab_max_length = 30, max_length = vim.o.columns / 2,}},
+            }
+          })
+        end,
       },
-      lualine_y = { 'progress' },
-      lualine_z = { 'location' },
-    },
-  })
-end,
-  },
-}
+    }

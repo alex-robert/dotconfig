@@ -27,3 +27,6 @@ config/pgcli/log
 ## Zee build
 config/zee/build/
 config/zee/grammars/
+.mini*
+mini*
+OUTLINE*

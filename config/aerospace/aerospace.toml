@@ -32,12 +32,12 @@ exec-on-workspace-change = ['/bin/bash', '-c',
 
 
 [gaps]
-outer.top = [{ monitor.'built-in.*' = 2 }, 4]
-outer.right      = 1
-outer.bottom     = 1
-outer.left       = 1
-inner.horizontal = 2 # gap beetween windows on Horizontal layout (window in vertival mode)
-inner.vertical   = 2  # same but when windows are on Horizontal mode (vertival layout)
+outer.top = [{ monitor.'built-in.*' = 0 }, 0]
+outer.right      = 0
+outer.bottom     = 0
+outer.left       = 0
+inner.horizontal = 1 # gap beetween windows on Horizontal layout (window in vertival mode)
+inner.vertical   = 1  # same but when windows are on Horizontal mode (vertival layout)
 
 
 ###################

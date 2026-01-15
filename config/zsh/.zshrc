@@ -1,9 +1,9 @@
 [ -f "$ZDOTDIR/.zshenv" ] && source "$ZDOTDIR/.zshenv"
 
-### HomeBrew 
+### HomeBrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-## History behavior 
+## History behavior
 setopt HIST_IGNORE_DUPS       # Don't record duplicates
 setopt HIST_IGNORE_ALL_DUPS   # Remove old entry if duplicated
 setopt HIST_REDUCE_BLANKS     # Trim extra spaces
@@ -11,7 +11,7 @@ setopt SHARE_HISTORY          # Share history across tabs
 setopt INC_APPEND_HISTORY     # Write to history immediately
 setopt HIST_FIND_NO_DUPS      # Don't show dupes in history search
 
-## Completion settings 
+## Completion settings
 autoload -Uz compinit && compinit -d "$ZDOTDIR/.zcompdump"
 
 setopt MENU_COMPLETE          # Tab-complete through matches
@@ -27,7 +27,7 @@ complete -o nospace -C /opt/homebrew/bin/terraform terraform
 ## Zsh Hooks
 autoload -U add-zsh-hook
 
-## Quality of life 
+## Quality of life
 setopt AUTO_CD                # Type folder name to cd into it
 setopt CORRECT                # Spell correction for commands
 setopt EXTENDED_GLOB          # Advanced globbing (ls **/*.md)
@@ -60,7 +60,7 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 
-## CD TAb completion 
+## CD TAb completion
 zinit light Aloxaf/fzf-tab
 
 #zplug "code-stats/code-stats-zsh", from:gitlab, use:"codestats.plugin.zsh"
@@ -71,7 +71,7 @@ zinit load code-stats/code-stats-zsh
 [ -f $HOME_CONFIG/.fzf.zsh ] && source $HOME_CONFIG/.fzf.zsh
 
 ## Zoxide
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd cd)"
 
 ## Less
 export LESS='-FSRXI'
@@ -84,10 +84,10 @@ export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 export LESS_TERMCAP_ue=$'\E[0m'
 
-## NVM  
+## NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "/opt/hom/ebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 
 load-nvmrc() {
@@ -123,6 +123,19 @@ if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh --config $HOME_CONFIG/oh-my-posh/themes/hungry-compact-v2.omp.json)"
 fi
 
+
+#---------------------------#
+#### --- Yazi Finder --- ####
+#---------------------------#
+
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  command yazi "$@" --cwd-file="$tmp"
+  IFS= read -r -d '' cwd < "$tmp"
+  [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+  rm -f -- "$tmp"
+}
+
 #-----------------------#
 #### --- Aliases --- ####
 #-----------------------#
@@ -132,6 +145,7 @@ alias gs="git status"
 alias v="nvim"
 alias lz="lazygit"
 alias nvnuke="rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim"
+# alias code = "nvim"
 
 #------------------------------#
 #### ---- Startup Flex ---- ####
