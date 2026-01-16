@@ -65,7 +65,6 @@ require("lazy").setup({
   {import = "plugins.snacks"},
   {import = "plugins.snacks-dashboard"},
   {import = "plugins.gitsigns"},
-  {import = "plugins.dadbod"},
   {import = "plugins.trouble"},
   {import = "plugins.noice"},
   {import = "plugins.ibl"},

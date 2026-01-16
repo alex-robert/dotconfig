@@ -2,43 +2,292 @@
 syntax: markdown
 tags: [ editor, keymap, nvim, personal ]
 ---
+# Thinking in Vim
+
+Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count + motion**)
+
+## The Grammar
+  ```
+  [count] operator [count] motion/text-object
+  ```
+
+  | Component      | Examples                    | Description                    |
+  |----------------|-----------------------------|--------------------------------|
+  | **Operators**  | `d` `c` `y` `v` `>` `<` `=` | what to do (verb)              |
+  | **Motions**    | `w` `e` `b` `j` `k` `$` `0` | where to go                    |
+  | **Text Obj**   | `iw` `i"` `ap` `iF`         | what to act on (noun)          |
+  | **Count**      | `2` `3` `10`                | how many times                 |
+
+## Common Operators (Verbs)
+  | Key | Action                     | Mnemonic        |
+  |-----|----------------------------|-----------------|
+  | `d` | delete (and yank)          | **d**elete      |
+  | `c` | change (delete + insert)   | **c**hange      |
+  | `y` | yank (copy)                | **y**ank        |
+  | `v` | visual select              | **v**isual      |
+  | `>` | indent right               |                 |
+  | `<` | indent left                |                 |
+  | `=` | auto-format                |                 |
+  | `g~`| toggle case                |                 |
+  | `gu`| lowercase                  |                 |
+  | `gU`| uppercase                  |                 |
+
+## Common Motions (Movement)
+  | Key     | Motion                     | Mnemonic        |
+  |---------|----------------------------|-----------------|
+  | `w`     | start of next word         | **w**ord        |
+  | `e`     | end of word                | **e**nd         |
+  | `b`     | back to start of word      | **b**ack        |
+  | `0`     | start of line              | column **0**    |
+  | `$`     | end of line                | regex end       |
+  | `^`     | first non-blank            |                 |
+  | `gg`    | start of file              | **g**o          |
+  | `G`     | end of file                |                 |
+  | `f{c}`  | forward to char {c}        | **f**ind        |
+  | `t{c}`  | forward until char {c}     | un**t**il       |
+  | `F{c}`  | backward to char {c}       |                 |
+  | `T{c}`  | backward until char {c}    |                 |
+  | `;`     | repeat f/t forward         |                 |
+  | `,`     | repeat f/t backward        |                 |
+  | `%`     | matching bracket           |                 |
+  | `{`     | previous blank line        |                 |
+  | `}`     | next blank line            |                 |
+
+## Text Objects (Nouns)
+  | Key     | Object                     | Mnemonic        |
+  |---------|----------------------------|-----------------|
+  | `iw`    | inner word                 | **i**nner       |
+  | `aw`    | a word (with spaces)       | **a**round      |
+  | `i"`    | inner quotes               |                 |
+  | `a"`    | around quotes              |                 |
+  | `ip`    | inner paragraph/parens     |                 |
+  | `ap`    | around paragraph/parens    |                 |
+  | `ib`    | inner block `{}`           | **b**lock       |
+  | `ab`    | around block `{}`          |                 |
+  | `it`    | inner tag `<>`             | **t**ag         |
+  | `at`    | around tag `<>`            |                 |
+  | `is`    | inner sentence             | **s**entence    |
+  | `iF`    | inner function (mini.ai)   | **F**unction    |
+
+## Delete Patterns
+  | Command   | Action                          | Read as                    |
+  |-----------|---------------------------------|----------------------------|
+  | `x`       | delete char under cursor        | (shortcut for `dl`)        |
+  | `dd`      | delete line                     | **d**elete line            |
+  | `D`       | delete to end of line           | (shortcut for `d$`)        |
+  | `dw`      | delete to next word             | **d**elete **w**ord        |
+  | `de`      | delete to end of word           | **d**elete to **e**nd      |
+  | `db`      | delete back to word start       | **d**elete **b**ack        |
+  | `diw`     | delete inner word               | **d**elete **i**nner **w**ord |
+  | `daw`     | delete word + spaces            | **d**elete **a** **w**ord  |
+  | `di"`     | delete inside quotes            | **d**elete **i**nside `"`  |
+  | `da"`     | delete quotes + content         | **d**elete **a**round `"`  |
+  | `dip`     | delete inside parentheses       | **d**elete **i**nner **p**arens |
+  | `dib`     | delete inside braces            | **d**elete **i**nner **b**lock |
+  | `dit`     | delete inside tag               | **d**elete **i**nner **t**ag |
+  | `d$`      | delete to end of line           | **d**elete to `$`          |
+  | `d0`      | delete to start of line         | **d**elete to `0`          |
+  | `dgg`     | delete to start of file         | **d**elete to **gg**       |
+  | `dG`      | delete to end of file           | **d**elete to **G**        |
+  | `dt{c}`   | delete until char {c}           | **d**elete un**t**il       |
+  | `df{c}`   | delete through char {c}         | **d**elete **f**ind        |
+  | `d%`      | delete to matching bracket      | **d**elete to `%`          |
+  | `3dd`     | delete 3 lines                  | **3** **d**elete lines     |
+  | `d3w`     | delete 3 words                  | **d**elete **3** **w**ords |
+  | `diF`     | delete inner function           | **d**elete **i**nner **F**unc |
+
+## Yank (Copy) Patterns
+  | Command   | Action                          | Read as                    |
+  |-----------|---------------------------------|----------------------------|
+  | `yy`      | yank line                       | **y**ank line              |
+  | `Y`       | yank to end of line             | (custom, default = `yy`)   |
+  | `yw`      | yank to next word               | **y**ank **w**ord          |
+  | `yiw`     | yank inner word                 | **y**ank **i**nner **w**ord |
+  | `yi"`     | yank inside quotes              | **y**ank **i**nside `"`    |
+  | `yip`     | yank inside parentheses         | **y**ank **i**nner **p**arens |
+  | `yib`     | yank inside braces              | **y**ank **i**nner **b**lock |
+  | `y$`      | yank to end of line             | **y**ank to `$`            |
+  | `y0`      | yank to start of line           | **y**ank to `0`            |
+  | `yG`      | yank to end of file             | **y**ank to **G**          |
+  | `3yy`     | yank 3 lines                    | **3** **y**ank lines       |
+  | `yiF`     | yank inner function             | **y**ank **i**nner **F**unc |
+
+## Change Patterns
+  | Command   | Action                          | Read as                    |
+  |-----------|---------------------------------|----------------------------|
+  | `cc`      | change entire line              | **c**hange line            |
+  | `C`       | change to end of line           | (shortcut for `c$`)        |
+  | `cw`      | change to next word             | **c**hange **w**ord        |
+  | `ciw`     | change inner word               | **c**hange **i**nner **w**ord |
+  | `ci"`     | change inside quotes            | **c**hange **i**nside `"`  |
+  | `ci'`     | change inside single quotes     | **c**hange **i**nside `'`  |
+  | `cip`     | change inside parentheses       | **c**hange **i**nner **p**arens |
+  | `cib`     | change inside braces            | **c**hange **i**nner **b**lock |
+  | `cit`     | change inside tag               | **c**hange **i**nner **t**ag |
+  | `ct{c}`   | change until char {c}           | **c**hange un**t**il       |
+  | `c$`      | change to end of line           | **c**hange to `$`          |
+  | `c0`      | change to start of line         | **c**hange to `0`          |
+
+## Replace Patterns
+  | Command   | Action                          | Read as                    |
+  |-----------|---------------------------------|----------------------------|
+  | `r{c}`    | replace char with {c}           | **r**eplace                |
+  | `R`       | enter replace mode              | **R**eplace mode           |
+  | `~`       | toggle case of char             |                            |
+  | `s`       | substitute char (delete + insert)| **s**ubstitute            |
+  | `S`       | substitute line                 | (shortcut for `cc`)        |
+
+## Search Patterns
+  | Command         | Action                          |
+  |-----------------|---------------------------------|
+  | `/pattern`      | search forward                  |
+  | `?pattern`      | search backward                 |
+  | `n`             | next match                      |
+  | `N`             | previous match                  |
+  | `*`             | search word under cursor (fwd)  |
+  | `#`             | search word under cursor (back) |
+  | `gd`            | go to local definition          |
+  | `gD`            | go to global definition         |
+
+## Search & Replace Patterns
+  | Command                 | Action                                    |
+  |-------------------------|-------------------------------------------|
+  | `:s/old/new/`           | replace first on line                     |
+  | `:s/old/new/g`          | replace all on line                       |
+  | `:%s/old/new/g`         | replace all in file                       |
+  | `:%s/old/new/gc`        | replace all with confirm                  |
+  | `:'<,'>s/old/new/g`     | replace in visual selection               |
+  | `:5,10s/old/new/g`      | replace on lines 5-10                     |
+  | `:%s/\<word\>/new/g`    | replace exact word only                   |
+  | `:%s/old/new/gi`        | replace case insensitive                  |
+
+## Visual Select Patterns
+  | Command   | Action                          | Read as                    |
+  |-----------|---------------------------------|----------------------------|
+  | `viw`     | select inner word               | **v**isual **i**nner **w**ord |
+  | `vi"`     | select inside quotes            | **v**isual **i**nside `"`  |
+  | `vip`     | select inside parentheses       | **v**isual **i**nner **p**arens |
+  | `vib`     | select inside braces            | **v**isual **i**nner **b**lock |
+  | `viF`     | select inner function           | **v**isual **i**nner **F**unc |
+  | `vap`     | select around parentheses       | **v**isual **a**round **p**arens |
+  | `V`       | select line                     | **V**isual line            |
+  | `ggVG`    | select entire file              | go top, **V**isual, go end |
+
+## Indent / Format Patterns
+  | Command   | Action                          |
+  |-----------|---------------------------------|
+  | `>>`      | indent line right               |
+  | `<<`      | indent line left                |
+  | `==`      | auto-format line                |
+  | `>ip`     | indent inside paragraph         |
+  | `=ip`     | format inside paragraph         |
+  | `>iF`     | indent inside function          |
+  | `gg=G`    | format entire file              |
+  | `3>>`     | indent 3 lines                  |
+
+## Combining with Counts
+  | Command   | Action                          |
+  |-----------|---------------------------------|
+  | `3dw`     | delete 3 words                  |
+  | `5dd`     | delete 5 lines                  |
+  | `2yy`     | yank 2 lines                    |
+  | `3J`      | move down 15 lines (5*3)        |
+  | `10j`     | move down 10 lines              |
+  | `d3j`     | delete 3 lines down             |
+  | `y5k`     | yank 5 lines up                 |
+  | `c3w`     | change 3 words                  |
+  | `5>>`     | indent 5 lines                  |
+
+## Dot Command (Repeat)
+  | Command            | Then `.` repeats              |
+  |--------------------|-------------------------------|
+  | `ciw` new `<Esc>`  | change word to "new"          |
+  | `dd`               | delete line                   |
+  | `>>`               | indent line                   |
+  | `A;` `<Esc>`       | append semicolon to line      |
+  | `daw`              | delete a word                 |
+
+  **Workflow**: Do an edit once, then press `.` to repeat on other locations.
+  Use `n` to find next match, `.` to apply same change.
+
+## Common Workflows
+
+  **Change all occurrences of a word:**
+  ```
+  /word        search for word
+  cgn          change next match (auto-selects match)
+  new<Esc>     type replacement
+  .            repeat on next match
+  ```
+
+  **Delete everything inside brackets:**
+  ```
+  di(          or dip (AZERTY shortcut)
+  ```
+
+  **Wrap word in quotes:**
+  ```
+  saiw"        surround add inner word with "
+  ```
+
+  **Change function parameters:**
+  ```
+  ci(          change inside parentheses
+  ```
+
+  **Delete until specific character:**
+  ```
+  dt,          delete until comma
+  df,          delete through comma (includes it)
+  ```
+
+  **Copy a function and paste it:**
+  ```
+  yiF          yank inner function
+  p            paste below
+  ```
+
+---
+
 # Leader Key
   |                            |                                              |
   |----------------------------|----------------------------------------------|
   | `␣`                        | Leader key                                   |
 
-# Custom Movement (IJKL Scheme)
+# Movement (Standard HJKL)
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `i`                        | move up                                      |
-  | `j`                        | move left                                    |
-  | `k`                        | move down                                    |
+  | `h`                        | move left                                    |
+  | `j`                        | move down                                    |
+  | `k`                        | move up                                      |
   | `l`                        | move right                                   |
   |                            |                                              |
-  | `I`                        | move up 5 lines                              |
-  | `J`                        | word backward                                |
-  | `K`                        | move down 5 lines                            |
+  | `H`                        | word backward                                |
+  | `J`                        | move down 5 lines                            |
+  | `K`                        | move up 5 lines                              |
   | `L`                        | word forward                                 |
   |                            |                                              |
-  | `w`                        | move to end of word                          |
-  | `W`                        | move to end of WORD                          |
+  | `w`                        | move to start of next word                   |
+  | `e`                        | move to end of word                          |
+  | `b`                        | move to start of previous word               |
   |                            |                                              |
   | `0`                        | start of line                                |
   | `$`                        | end of line                                  |
   | `gg`                       | start of file                                |
   | `G`                        | end of file                                  |
 
-# Insert/Edit Mode
+# Insert Mode
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `e`                        | enter insert mode                            |
-  | `E`                        | insert at beginning of line                  |
+  | `i`                        | enter insert mode                            |
+  | `I`                        | insert at beginning of line                  |
   | `a`                        | append after cursor                          |
   | `A`                        | append at end of line                        |
   | `o`                        | open line below                              |
   | `O`                        | open line above                              |
   |                            |                                              |
   | `esc`                      | exit insert mode                             |
+  | `jj` / `kk`                | exit insert mode (mini.keymap combo)         |
 
 # Visual Mode
   |                            |                                              |
@@ -49,10 +298,11 @@ tags: [ editor, keymap, nvim, personal ]
   | `⌃` `v`                    | visual block mode (column editing!)          |
   | `gv`                       | re-select last visual selection              |
   |                            |                                              |
-  | **Movement (IJKL)**        |                                              |
-  | `i/k/j/l`                  | extend selection up/down/left/right          |
-  | `I/K/J/L`                  | extend 5 lines up/down / word back/fwd       |
-  | `w`                        | extend to end of word                        |
+  | **Movement (HJKL)**        |                                              |
+  | `h/j/k/l`                  | extend selection left/down/up/right          |
+  | `H/L`                      | extend word back/forward                     |
+  | `J/K`                      | extend 5 lines down/up                       |
+  | `w/e/b`                    | extend by word                               |
   | `0/$`                      | extend to start/end of line                  |
   | `gg/G`                     | extend to start/end of file                  |
   |                            |                                              |
@@ -70,11 +320,9 @@ tags: [ editor, keymap, nvim, personal ]
   | `:`                        | command mode on selection                    |
   |                            |                                              |
   | **Block Mode (⌃v)**        | rectangular selections                       |
-  | `⌃` `v` then `k k k`       | select column down                           |
+  | `⌃` `v` then `j j j`       | select column down                           |
   | `I` (in block)             | insert at start of block                     |
   | `A` (in block)             | append at end of block                       |
-  | `e` (in visual)            | visual block insert at start                 |
-  | `E` (in visual)            | visual block insert at end                   |
   | `c` (in block)             | change block                                 |
   | `d` (in block)             | delete block                                 |
   |                            |                                              |
@@ -89,9 +337,8 @@ tags: [ editor, keymap, nvim, personal ]
   | `␣` `w`                    | save file                                    |
   | `␣` `q`                    | quit                                         |
   | `␣` `x`                    | save and quit                                |
-  | `;q`                       | quit (command mode shortcut)                 |
-  | `;w`                       | save (command mode shortcut)                 |
-
+  | `:q`                       | quit (command mode)                          |
+  | `:w`                       | save (command mode)                          |
 
 # Fuzzy Finder (Telescope)
   |                            |                                              |
@@ -102,9 +349,12 @@ tags: [ editor, keymap, nvim, personal ]
   | `␣` `fh`                   | find help tags                               |
   | `␣` `fr`                   | recent files                                 |
   | `␣` `fc`                   | git commits                                  |
+  | `␣` `fk`                   | find keymaps                                 |
+  | `␣` `ft`                   | find theme/colorscheme                       |
+  | `␣` `fab`                  | find all buffers (scope)                     |
   |                            |                                              |
-  | `⌃` `i`                    | next result (in telescope)                   |
-  | `⌃` `k`                    | previous result (in telescope)               |
+  | `⇧` `j`                    | next result (in telescope)                   |
+  | `⇧` `k`                    | previous result (in telescope)               |
   | `⏎`                        | select result                                |
   | `esc`                      | close telescope                              |
 
@@ -116,28 +366,28 @@ tags: [ editor, keymap, nvim, personal ]
   | `␣` `bd`                   | delete buffer                                |
   |                            |                                              |
   | `⌃` `x` `l`                | next buffer                                  |
-  | `⌃` `x` `j`                | previous buffer                              |
+  | `⌃` `x` `h`                | previous buffer                              |
   | `⌃` `x` `x`                | delete buffer                                |
 
 # Window/Split Management
   |                            |                                              |
   |----------------------------|----------------------------------------------|
   | `⌃` `w` `v`                | split vertically                             |
-  | `⌃` `w` `h`                | split horizontally                           |
+  | `⌃` `w` `s`                | split horizontally                           |
   | `⌃` `w` `e`                | equal window sizes                           |
   | `⌃` `w` `t`                | send current window to new tab               |
   | `⌃` `w` `x`                | close current window                         |
   |                            |                                              |
-  | `⌃` `w` `i`                | go to upper split                            |
-  | `⌃` `w` `j`                | go to left split                             |
-  | `⌃` `w` `k`                | go to bottom split                           |
+  | `⌃` `w` `h`                | go to left split                             |
+  | `⌃` `w` `j`                | go to bottom split                           |
+  | `⌃` `w` `k`                | go to upper split                            |
   | `⌃` `w` `l`                | go to right split                            |
 
 # Tab Management
   |                            |                                              |
   |----------------------------|----------------------------------------------|
   | `⌃` `c` `l`                | go to next tab                               |
-  | `⌃` `c` `j`                | go to previous tab                           |
+  | `⌃` `c` `h`                | go to previous tab                           |
   | `⌃` `c` `x`                | close tab                                    |
   | `␣` `tf`                   | new tab with file picker                     |
   |                            |                                              |
@@ -199,14 +449,34 @@ tags: [ editor, keymap, nvim, personal ]
   | `p`                        | paste after cursor                           |
   | `P`                        | paste before cursor                          |
   |                            |                                              |
-  | `⌥` `k`                    | move line down                               |
-  | `⌥` `i`                    | move line up                                 |
+  | **Move Lines (mini.move)** |                                              |
+  | `⌥` `h`                    | move selection left                          |
+  | `⌥` `j`                    | move line/selection down                     |
+  | `⌥` `k`                    | move line/selection up                       |
+  | `⌥` `l`                    | move selection right                         |
   |                            |                                              |
+  | **Comments**               |                                              |
   | `gcc`                      | toggle comment line                          |
   | `gc` `(motion)`            | comment motion                               |
   | `gb` `(motion)`            | block comment motion                         |
 
-# Text Objects (AZERTY-friendly)
+# Surround (mini.surround)
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `sa` `(motion)` `(char)`   | add surrounding                              |
+  | `sd` `(char)`              | delete surrounding                           |
+  | `sr` `(old)` `(new)`       | replace surrounding                          |
+  | `sf` `(char)`              | find surrounding (right)                     |
+  | `sF` `(char)`              | find surrounding (left)                      |
+  | `sh` `(char)`              | highlight surrounding                        |
+  |                            |                                              |
+  | **Examples**               |                                              |
+  | `saiw"`                    | add quotes around word                       |
+  | `sa2w)`                    | add parens around 2 words                    |
+  | `sd"`                      | delete surrounding quotes                    |
+  | `sr"'`                     | replace double with single quotes            |
+
+# Text Objects
   |                            |                                              |
   |----------------------------|----------------------------------------------|
   | **Format**                 | `operator` + `text-object`                   |
@@ -221,50 +491,34 @@ tags: [ editor, keymap, nvim, personal ]
   | `=`                        | auto-indent/format                           |
   |                            |                                              |
   | **AZERTY Shortcuts**       | (easier than brackets on AZERTY)             |
-  | `iq` / `aq`                | inner/around double quotes `"`               |
-  | `iz` / `az`                | inner/around single quotes `'`               |
   | `ip` / `ap`                | inner/around parentheses `()`                |
   | `ib` / `ab`                | inner/around braces `{}`                     |
   | `ir` / `ar`                | inner/around brackets `[]`                   |
   |                            |                                              |
-  | **Standard Objects**       | (still work with standard syntax)            |
+  | **Standard Objects**       |                                              |
   | `iw` / `aw`                | inner/around word                            |
+  | `iW` / `aW`                | inner/around WORD                            |
   | `is` / `as`                | inner/around sentence                        |
-  | `ip` / `ap`                | inner/around paragraph                       |
+  | `i"` / `a"`                | inner/around double quotes                   |
+  | `i'` / `a'`                | inner/around single quotes                   |
+  | `i(` / `a(`                | inner/around parentheses                     |
+  | `i{` / `a{`                | inner/around braces                          |
+  | `i[` / `a[`                | inner/around brackets                        |
   | `it` / `at`                | inner/around tag (HTML/XML)                  |
   |                            |                                              |
-  | **Treesitter Objects**     | (code structure aware)                       |
-  | `af` / `if`                | around/inner function                        |
-  | `ac` / `ic`                | around/inner class                           |
-  | `aa` / `ia`                | around/inner parameter/argument              |
+  | **Mini.ai Extended**       |                                              |
+  | `iB` / `aB`                | inner/around buffer                          |
+  | `iF` / `aF`                | inner/around function (treesitter)           |
+  | `in` / `an`                | inner/around next text object                |
+  | `il` / `al`                | inner/around last text object                |
   |                            |                                              |
   | **Examples**               |                                              |
-  | `diq`                      | delete inside double quotes                  |
-  | `cip`                      | change inside parentheses                    |
-  | `yab`                      | yank around braces (with braces)             |
-  | `vir`                      | visual select inside brackets                |
   | `diw`                      | delete inner word                            |
-  | `daf`                      | delete around function                       |
-  | `cic`                      | change inner class                           |
-  | `yaa`                      | yank around parameter                        |
-  | `vif`                      | visual select inner function                 |
-  | `>ac`                      | indent class                                 |
-  | `=af`                      | auto-format function                         |
-
-# Treesitter Navigation
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `␣` `nf`                   | next function start                          |
-  | `␣` `nF`                   | next function end                            |
-  | `␣` `nc`                   | next class start                             |
-  | `␣` `nC`                   | next class end                               |
-  | `␣` `na`                   | next parameter                               |
-  |                            |                                              |
-  | `␣` `pf`                   | previous function start                      |
-  | `␣` `pF`                   | previous function end                        |
-  | `␣` `pc`                   | previous class start                         |
-  | `␣` `pC`                   | previous class end                           |
-  | `␣` `pa`                   | previous parameter                           |
+  | `ci"`                      | change inside double quotes                  |
+  | `yap`                      | yank around parentheses                      |
+  | `dib`                      | delete inside braces                         |
+  | `viF`                      | visual select inner function                 |
+  | `daF`                      | delete around function                       |
 
 # Search & Replace
   |                            |                                              |
@@ -273,22 +527,12 @@ tags: [ editor, keymap, nvim, personal ]
   | `?pattern`                 | search backward                              |
   | `n`                        | next match                                   |
   | `N`                        | previous match                               |
-  | `esc`                      | clear search highlight                       |
+  | `*`                        | search word under cursor forward             |
+  | `#`                        | search word under cursor backward            |
   |                            |                                              |
-  | `;s/old/new/g`             | replace in line                              |
-  | `;%s/old/new/g`            | replace in file                              |
-  | `;%s/old/new/gc`           | replace with confirmation                    |
-
-# Command Mode (AZERTY-friendly)
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `;`                        | enter command mode                           |
-  | `;w`                       | save                                         |
-  | `;q`                       | quit                                         |
-  | `;wq`                      | save and quit                                |
-  | `;q!`                      | quit without saving                          |
-  |                            |                                              |
-  | `␣` `?`                    | show all keybindings (which-key)             |
+  | `:s/old/new/g`             | replace in line                              |
+  | `:%s/old/new/g`            | replace in file                              |
+  | `:%s/old/new/gc`           | replace with confirmation                    |
 
 # File Explorer (MiniFiles)
   |                            |                                              |
@@ -297,6 +541,16 @@ tags: [ editor, keymap, nvim, personal ]
   | `␣` `eed`                  | open root directory (clean)                  |
   | `␣` `ef`                   | open current file directory                  |
   | `␣` `eef`                  | open last used directory                     |
+  |                            |                                              |
+  | **In MiniFiles**           |                                              |
+  | `h`                        | go out (parent directory)                    |
+  | `l`                        | go in (open file/directory)                  |
+  | `H`                        | go out and close                             |
+  | `L`                        | go in and close                              |
+  | `j` / `k`                  | move down/up                                 |
+  | `q`                        | close                                        |
+  | `=`                        | synchronize changes                          |
+  | `@`                        | reveal cwd                                   |
 
 # Session Management (MiniSessions)
   |                            |                                              |
@@ -304,36 +558,39 @@ tags: [ editor, keymap, nvim, personal ]
   | `␣` `Sr`                   | restore latest session                       |
   | `␣` `Ss`                   | save session                                 |
 
-# Utility (MiniTrailspace)
+# Utility
   |                            |                                              |
   |----------------------------|----------------------------------------------|
   | `␣` `ot`                   | trim all trailing whitespace                 |
+  | `␣` `om`                   | toggle minimap                               |
 
 # Plugins Management
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `;Lazy`                    | open lazy.nvim (plugin manager)              |
-  | `;Mason`                   | open mason (LSP installer)                   |
-  | `;checkhealth`             | check neovim health                          |
+  | `:Lazy`                    | open lazy.nvim (plugin manager)              |
+  | `:Mason`                   | open mason (LSP installer)                   |
+  | `:checkhealth`             | check neovim health                          |
 
 # Database (vim-dadbod-ui)
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `␣` `db`                   | toggle database UI                           |
-  | `␣` `dbf`                  | find database buffer                         |
-  | `␣` `dba`                  | add database connection                      |
-  | `␣` `S`                    | execute SQL query (in .sql files)            |
+  | `␣` `Do`                   | open database UI in new tab                  |
+  | `␣` `Dc`                   | close database tab                           |
+  | `␣` `Dt`                   | toggle database drawer                       |
+  | `␣` `Df`                   | find database buffer                         |
+  | `␣` `Da`                   | add database connection                      |
+  |                            |                                              |
+  | **In SQL files**           |                                              |
+  | `␣` `De`                   | execute query                                |
   |                            |                                              |
   | **In DBUI**                |                                              |
-  | `A`                        | add connection                               |
-  | `S`                        | select all from table                        |
   | `⏎`                        | expand/open item                             |
-  | `d`                        | delete connection                            |
   | `R`                        | refresh tree                                 |
 
 # Debugging (DAP)
   |                            |                                              |
   |----------------------------|----------------------------------------------|
+  | `␣` `db`                   | toggle breakpoint                            |
   | `␣` `dc`                   | continue/start debugging                     |
   | `␣` `di`                   | step into                                    |
   | `␣` `do`                   | step over                                    |
@@ -343,160 +600,31 @@ tags: [ editor, keymap, nvim, personal ]
   | `␣` `dt`                   | terminate debugging                          |
   | `␣` `du`                   | toggle DAP UI                                |
 
-# Motion & Operator Examples
+# Scratch Buffers (snacks)
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | **Basic Combinations**     |                                              |
-  | `dL`                       | delete word forward                          |
-  | `cJ`                       | change word backward                         |
-  | `y$`                       | yank to end of line                          |
-  | `d0`                       | delete to start of line                      |
-  | `ci"`                      | change inside quotes                         |
-  | `da(`                      | delete around parentheses                    |
+  | `␣` `ss`                   | toggle scratch buffer                        |
+  | `␣` `sl`                   | select scratch buffer                        |
+
+# Split/Join (mini.splitjoin)
   |                            |                                              |
-  | **With Counts**            |                                              |
-  | `3dL`                      | delete 3 words forward                       |
-  | `5dd`                      | delete 5 lines                               |
-  | `2yy`                      | yank 2 lines                                 |
-  | `4cL`                      | change 4 words forward                       |
-  | `10==`                     | auto-format 10 lines                         |
-  | `=10i`                     | format 10 lines up                           |
-  | `=10k`                     | format 10 lines down                         |
+  |----------------------------|----------------------------------------------|
+  | `gS`                       | toggle split/join                            |
+
+# Trouble (Diagnostics)
   |                            |                                              |
-  | **Formatting**             |                                              |
-  | `==`                       | format current line                          |
-  | `gg=G`                     | format entire file                           |
-  | `=af`                      | format around function                       |
-  | `=ac`                      | format around class                          |
-  | `5==`                      | format 5 lines                               |
-  |                            |                                              |
-  | **Treesitter Combos**      |                                              |
-  | `daf`                      | delete entire function                       |
-  | `yif`                      | yank function body                           |
-  | `cic`                      | change class body                            |
-  | `daa`                      | delete parameter (with comma)                |
-  | `cia`                      | change parameter value                       |
-  | `vaf`                      | select entire function                       |
-  |                            |                                              |
-  | **Navigation Patterns**    |                                              |
-  | `␣nf` then `dif`           | jump to next function, delete its body       |
-  | `␣pc` then `yac`           | jump to previous class, yank it              |
-  | `/search` then `ciq`       | search text, change in quotes                |
-  | `gd` then `yaf`            | go to definition, yank function              |
-  |                            |                                              |
-  | **Complex Examples**       |                                              |
-  | `di(` then `p`             | delete args, paste new ones                  |
-  | `ciq` then `esc` then `p`  | change quoted text with register             |
-  | `␣nf` `␣nf` then `daf`     | skip 2 functions, delete 3rd                 |
-  | `vif` then `=`             | select function body, format it              |
-  | `␣na` then `daa`           | next parameter, delete it                    |
-
-# Keymap Translation (Custom IJKL vs Classic Vim)
-
-This table helps translate between your IJKL layout and classic vim for tutorials and discussions.
-
-## Movement & Navigation
-  | Classic Vim | Your Layout | Function                    | Notes                    |
-  |-------------|-------------|-----------------------------|--------------------------|
-  | `h`         | `j`         | move left                   |                          |
-  | `j`         | `k`         | move down                   |                          |
-  | `k`         | `i`         | move up                     |                          |
-  | `l`         | `l`         | move right                  | same                     |
-  | `w`         | `L`         | word forward                |                          |
-  | `b`         | `J`         | word backward               |                          |
-  | `e`         | `w`         | end of word                 |                          |
-  | `5j`        | `K`         | 5 lines down                |                          |
-  | `5k`        | `I`         | 5 lines up                  |                          |
-
-## Insert Mode
-  | Classic Vim | Your Layout | Function                    | Notes                    |
-  |-------------|-------------|-----------------------------|--------------------------|
-  | `i`         | `e`         | insert mode                 | main difference!         |
-  | `I`         | `E`         | insert at line start        |                          |
-  | `a`         | `a`         | append after cursor         | same                     |
-  | `A`         | `A`         | append at line end          | same                     |
-  | `o`         | `o`         | open line below             | same                     |
-  | `O`         | `O`         | open line above             | same                     |
-
-## Text Objects
-  | Classic Vim | Your Layout | Function                    | Notes                    |
-  |-------------|-------------|-----------------------------|--------------------------|
-  | `iw`        | `sw`        | inner word                  | `i` used for movement    |
-  | `iW`        | `sW`        | inner WORD                  |                          |
-  | `i(`        | `sp`        | inner parentheses           | AZERTY shortcut          |
-  | `i{`        | `sb`        | inner braces                | AZERTY shortcut          |
-  | `i[`        | `sr`        | inner brackets              | AZERTY shortcut          |
-  | `i"` `i'`   | `i"` `i'`   | inner quotes                | same (via mini.ai)       |
-  | `aw`        | `aw`        | around word                 | same                     |
-  | `a(` `a{`   | `ap` `ab`   | around parens/braces        | AZERTY shortcuts exist   |
-
-## Window Navigation
-  | Classic Vim | Your Layout | Function                    | Notes                    |
-  |-------------|-------------|-----------------------------|--------------------------|
-  | `<C-w>h`    | `<C-w>j`    | go to left split            |                          |
-  | `<C-w>j`    | `<C-w>k`    | go to bottom split          |                          |
-  | `<C-w>k`    | `<C-w>i`    | go to upper split           |                          |
-  | `<C-w>l`    | `<C-w>l`    | go to right split           | same                     |
-  | `<C-w>s`    | `<C-w>h`    | split horizontally          | `h` for horizontal       |
-  | `<C-w>v`    | `<C-w>v`    | split vertically            | same                     |
-
-## Visual Mode (Block)
-  | Classic Vim | Your Layout | Function                    | Notes                    |
-  |-------------|-------------|-----------------------------|--------------------------|
-  | `<C-v>I`    | `<C-v>I`    | block insert at start       | same                     |
-  | `<C-v>A`    | `<C-v>A`    | block append at end         | same                     |
-  | `v` then `I`| `v` then `e`| visual block insert start   | custom binding           |
-  | `v` then `A`| `v` then `E`| visual block insert end     | custom binding           |
-
-## Not Remapped (Work the Same)
-  | Key         | Function                    | Notes                    |
-  |-------------|-----------------------------|--------------------------|
-  | `d` `c` `y` | delete/change/yank          | all operators same       |
-  | `p` `P`     | paste after/before          | same                     |
-  | `u` `<C-r>` | undo/redo                   | same                     |
-  | `/` `?`     | search forward/backward     | same                     |
-  | `n` `N`     | next/prev search            | same                     |
-  | `gg` `G`    | start/end of file           | same                     |
-  | `0` `$`     | start/end of line           | same                     |
-  | `%`         | matching bracket            | same                     |
-  | `*` `#`     | search word under cursor    | same                     |
-  | `.`         | repeat last change          | same                     |
-  | `dd` `yy`   | delete/yank line            | same                     |
-  | `x`         | delete character            | same                     |
-  | `r`         | replace character           | same                     |
-  | `s`         | substitute character        | same                     |
-
-## Translation Examples
-
-When you see in tutorials:
-- `diw` (delete inner word) → use `dsw`
-- `ci(` (change in parens) → use `csp` or `ci(`
-- `5j` (down 5) → use `K`
-- `5k` (up 5) → use `I`
-- `w` (word forward) → use `L`
-- `b` (word back) → use `J`
-- `3w` (3 words forward) → use `3L`
-- `i` followed by text → use `e` followed by text
-- `<C-w>h` (left split) → use `<C-w>j`
-- `<C-w>j` (down split) → use `<C-w>k`
-- `<C-w>k` (up split) → use `<C-w>i`
+  |----------------------------|----------------------------------------------|
+  | `␣` `xx`                   | toggle trouble                               |
+  | `␣` `xw`                   | workspace diagnostics                        |
+  | `␣` `xd`                   | document diagnostics                         |
+  | `␣` `xl`                   | location list                                |
+  | `␣` `xq`                   | quickfix list                                |
 
 # Tips
-- Movement uses IJKL instead of HJKL (AZERTY-friendly)
-- Use `e` instead of `i` to enter insert mode
-- Use `;` instead of `:` for command mode (easier on AZERTY)
+- Standard HJKL movement with Shift for fast navigation (H/J/K/L)
+- Use `ip`/`ib`/`ir` for easier bracket text objects on AZERTY
 - Press `␣?` to see all available keybindings with which-key
-- See translation table above when following classic vim tutorials
-
-
-# Motions
-- Text objects: Use `sw` instead of `iw` (since `i` is movement)
-- Numbers work as multipliers: `3L` = 3 words forward, `5dd` = delete 5 lines
-- Combine operators with motions: `d3L` = delete 3 words, `c$` = change to end of line
-- Treesitter textobjects only work in operator-pending or visual mode (after d/c/y/v)
-- Format operations: `=` works with any motion or textobject
-- Chain navigation + operations: jump to location, then operate on textobject
-
-
+- Use `sa`/`sd`/`sr` for surround operations
+- Mini.ai extends text objects with `iF`/`aF` for functions, `iB`/`aB` for buffer
 
 # vim: ft=markdown

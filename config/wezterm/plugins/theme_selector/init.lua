@@ -87,7 +87,7 @@ end
 -----------------------------------------------------------
 
 -- Configure key bindings based on options
-local function default_key_bindings(options)
+local function default_key_bindings()
     local keys = {{
         key = 'n',
         mods = 'SUPER|SHIFT',
@@ -133,14 +133,28 @@ end
 -----------------------------------------------------------
 -- Public API
 -----------------------------------------------------------
+function ThemeSelector.get_default_bindings()
+  return default_key_bindings()
+end
 
+function ThemeSelector.apply_next_theme(window)
+  next_theme(window)
+end
+
+function ThemeSelector.apply_previous_theme(window)
+  prev_theme(window)
+end
+
+function ThemeSelector.reset_theme(window)
+  default_theme(window)
+end
 -- Apply configuration to WezTerm
 function ThemeSelector.apply_to_config(config, options)
     options = options or {}
 
     initialize_theme_state(config)
     -- Setup key bindings
-    local default_keys = default_key_bindings(options)
+    local default_keys = options.keys or  default_key_bindings()
 
     config.keys = config.keys or {}
     for _, key_entry in ipairs(default_keys) do

@@ -28,7 +28,6 @@ return {
         { "<leader>c", group = "Lsp" },
         { "<leader>o", group = "Code Utilities" },
         { "<leader>d", group = "Debug" },
-        { "<leader>D", group = "Database" },
       })
     end,
   },

@@ -14,13 +14,13 @@ tags: [ mac, keymap, terminal, wezterm ]
   |                            |                                              |
   | `⌘` `t`                    | new tab                                      |
   | `⌘` `⇧` `l`                | next tab                                     |
-  | `⌘` `⇧` `j`                | previous tab                                 |
+  | `⌘` `⇧` `h`                | previous tab                                 |
   |                            |                                              |
   | `⌘` `w`                    | close current pane                           |
-  | `⌘` `i`                    | focus pane up                                |
-  | `⌘` `k`                    | focus pane down                              |
-  | `⌘` `j`                    | focus pane left                              |
-  | `⌘` `l`                    | focus pane right                             |
+  | `⌘` `k` / `⌘` `↑`          | focus pane up                                |
+  | `⌘` `j` / `⌘` `↓`          | focus pane down                              |
+  | `⌘` `h` / `⌘` `←`          | focus pane left                              |
+  | `⌘` `l` / `⌘` `→`          | focus pane right                             |
   |                            |                                              |
   | `⌥` `←`                    | word navigation left                         |
   | `⌥` `→`                    | word navigation right                        |
@@ -29,24 +29,30 @@ tags: [ mac, keymap, terminal, wezterm ]
   |                            |                                              |
   | `⌘` `⇧` `s`                | workspace switcher                           |
 
-# Switch Mode
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `⌃` `␣` `w`                | mode workspace                               |
-
-# WORKSPACE Mode
+#  WORKSPACE Mode
   |                            |                                              |
   |----------------------------|----------------------------------------------|
   | `esc`                      | mode normal                                  |
+  | `n`                        | new workspace (auto-named from cwd)          |
+  | `⌃` `n`                    | new workspace (prompt for name)              |
   |                            |                                              |
-  | `i`                        | focus pane up                                |
-  | `k`                        | focus pane down                              |
-  | `j`                        | focus pane left                              |
+  | `s`                        | save workspace state                         |
+  | `r`                        | restore workspace (fuzzy finder)             |
+  |                            |                                              |
+  | `l`                        | workspace switcher; mode normal              |
+
+# LAYOUT Mode
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `esc`                      | mode normal                                  |
+  | `k`                        | focus pane up                                |
+  | `j`                        | focus pane down                              |
+  | `h`                        | focus pane left                              |
   | `l`                        | focus pane right                             |
   |                            |                                              |
-  | `⇧` `i`                    | resize pane up +5                            |
-  | `⇧` `k`                    | resize pane down +5                          |
-  | `⇧` `j`                    | resize pane left +5                          |
+  | `⇧` `k`                    | resize pane up +5                            |
+  | `⇧` `j`                    | resize pane down +5                          |
+  | `⇧` `h`                    | resize pane left +5                          |
   | `⇧` `l`                    | resize pane right +5                         |
   |                            |                                              |
   | `r`                        | rotate panes clockwise                       |
@@ -56,14 +62,7 @@ tags: [ mac, keymap, terminal, wezterm ]
   |                            |                                              |
   | `x`                        | close current pane                           |
   | `z`                        | toggle pane zoom; mode normal                |
-  | `n`                        | new workspace (auto-named from cwd)          |
-  | `⌃` `n`                    | new workspace (prompt for name)              |
-  |                            |                                              |
-  | `s`                        | save workspace state                         |
-  | `r`                        | restore workspace (fuzzy finder)             |
-  |                            |                                              |
-  | `l`                        | workspace switcher; mode normal              |
-
+  
 # COPY Mode
   |                            |                                              |
   |----------------------------|----------------------------------------------|

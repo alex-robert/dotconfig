@@ -45,8 +45,9 @@ return {
           },
           mappings = {
             i = {
-              ["<S-k>"] = require("telescope.actions").move_selection_next,
-              ["<S-i>"] = require("telescope.actions").move_selection_previous,
+              ["<Esc>"] = require("telescope.actions").close,
+              ["<S-j>"] = require("telescope.actions").move_selection_next,
+              ["<S-k>"] = require("telescope.actions").move_selection_previous,
             },
           },
         },

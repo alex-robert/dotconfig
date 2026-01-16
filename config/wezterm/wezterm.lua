@@ -68,6 +68,13 @@ add_keymaps(config, {
       name = 'layout_mode',
       one_shot = false
     }
+  },{
+    key = 't',
+    mods = 'LEADER',
+    action = wezterm.action.ActivateKeyTable {
+      name = 'theme_mode',
+      one_shot = false
+    }
   }
 })
 
@@ -85,8 +92,32 @@ tabline.setup(tabline_conf)
 tabline.apply_to_config(config)
 
 -- Theme switcher plugin
-theme_selector.apply_to_config(config)
+theme_selector.apply_to_config(config, {keys = {}})
+local function theme_action(fn)
+    return wezterm.action_callback(function(window, pane)
+        wezterm.GLOBAL.reactivate_theme_mode = true
+        fn(window)
+    end)
+end
 
+add_mode(config, 'theme_mode', {
+    {
+        key = 'n',
+        mods = 'SHIFT',
+        action = theme_action(theme_selector.apply_next_theme),
+    }, {
+        key = 'p',
+        mods = 'SHIFT',
+        action = theme_action(theme_selector.apply_previous_theme),
+    },{
+        key = 'r',
+        mods = 'SHIFT',
+        action = theme_action(theme_selector.reset_theme),
+    },{
+        key = 'Escape',
+        action = 'PopKeyTable',
+    }
+})
 -- Smart Process theme plugin
 spt.apply_to_config(config, {
   process_themes = {
@@ -158,8 +189,19 @@ wezterm.on('gui-startup', function(cmd)
 -- #resurrect.state_manager.resurrect_on_gui_startup
 end)
 
-wezterm.on('window-config-reloaded', function(window)
-
+wezterm.on('window-config-reloaded', function(window, pane)
+    if wezterm.GLOBAL.reactivate_theme_mode then
+        wezterm.GLOBAL.reactivate_theme_mode = false
+        wezterm.time.call_after(0.02, function()
+            window:perform_action(
+                wezterm.action.ActivateKeyTable {
+                    name = 'theme_mode',
+                    one_shot = false,
+                },
+                pane
+            )
+        end)
+    end
 end)
 
 

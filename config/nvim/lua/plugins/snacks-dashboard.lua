@@ -5,18 +5,20 @@ return {
       enabled = true,
       preset = {
         header = [[
- ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
- ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
- ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
- ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
- ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
- ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+███╗   ██╗██╗   ██╗     ██████╗ ██████╗ ██████╗ ███████╗
+████╗  ██║██║   ██║    ██╔════╝██╔═══██╗██╔══██╗██╔════╝
+██╔██╗ ██║██║   ██║    ██║     ██║   ██║██║  ██║█████╗  
+██║╚██╗██║╚██╗ ██╔╝    ██║     ██║   ██║██║  ██║██╔══╝  
+██║ ╚████║ ╚████╔╝     ╚██████╗╚██████╔╝██████╔╝███████╗
+╚═╝  ╚═══╝  ╚═══╝       ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝
+]],
         keys = {
-          { icon = " ", key = "s", desc = "Restore Session", section = "session" },
-          { icon = " ", key = "f", desc = "Find File", action = ":Telescope find_files" },
-          { icon = " ", key = "h", desc = "Recent Files", action = ":Telescope oldfiles" },
+          { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+          { icon = " ", key = "n", desc = "New Buffer", action = ":enew | startinsert" },
+          { icon = " ", key = "f", desc = "Find File", action = ":Telescope find_files" },
+          { icon = " ", key = "h", desc = "Recent Files", action = ":Telescope oldfiles" },
           { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
-          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
         },
       },
       sections = {

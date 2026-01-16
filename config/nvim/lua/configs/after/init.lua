@@ -9,6 +9,13 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
+-- Highlight yanked text briefly
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    vim.highlight.on_yank({ timeout = 200 })
+  end,
+})
+
 -- Status column diagnostic signs
 local signs = {
     Error = " ",

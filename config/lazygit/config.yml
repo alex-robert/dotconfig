@@ -547,26 +547,26 @@ keybinding:
     return: <esc>
     quitWithoutChangingDirectory: Q
     togglePanel: <tab>
-    # IJKL navigation scheme
+    # HJKL navigation scheme (standard vim)
     prevItem: <up>
     nextItem: <down>
-    prevItem-alt: i  # i = up (was k)
-    nextItem-alt: k  # k = down (was j)
+    prevItem-alt: k  # k = up
+    nextItem-alt: j  # j = down
     prevPage: ','
     nextPage: .
-    scrollLeft: <disabled>  # H disabled (conflicts with j=left)
-    scrollRight: <disabled>  # L disabled
+    scrollLeft: <disabled>
+    scrollRight: <disabled>
     gotoTop: <
     gotoBottom: '>'
     gotoTop-alt: <home>
     gotoBottom-alt: <end>
     toggleRangeSelect: v
-    rangeSelectDown: <s-down>  # Shift+Down for range down
-    rangeSelectUp: <s-up>      # Shift+Up for range up
+    rangeSelectDown: <s-down>
+    rangeSelectUp: <s-up>
     prevBlock: <left>
     nextBlock: <right>
-    prevBlock-alt: j  # j = left (was h)
-    nextBlock-alt: l  # l = right (unchanged)
+    prevBlock-alt: h  # h = left
+    nextBlock-alt: l  # l = right
     nextBlock-alt2: <tab>
     prevBlock-alt2: <backtab>
     jumpToBlock:
@@ -594,8 +594,8 @@ keybinding:
     openFile: o
     scrollUpMain: <pgup>
     scrollDownMain: <pgdown>
-    scrollUpMain-alt1: I  # I = scroll up (was K)
-    scrollDownMain-alt1: K  # K = scroll down (was J)
+    scrollUpMain-alt1: K  # K = scroll up
+    scrollDownMain-alt1: J  # J = scroll down
     scrollUpMain-alt2: <c-u>
     scrollDownMain-alt2: <c-d>
     executeShellCommand: ':'

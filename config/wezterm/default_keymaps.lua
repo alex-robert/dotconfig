@@ -1,13 +1,21 @@
 local wezterm = require 'wezterm'
 
-local bindings = { 
-  
+local bindings = {
+
 -- Debug
 {
     key = 'D',
     mods = 'CMD|SHIFT|ALT',
     action = wezterm.action.ShowDebugOverlay
-}, 
+},
+
+--Command palette
+{
+
+    key = 'P',
+    mods = 'CMD',
+    action = wezterm.action.ActivateCommandPalette,
+},
 
 
 -- Tabs
@@ -22,11 +30,12 @@ local bindings = {
     key = 'L',
     mods = 'CMD|SHIFT',
     action = wezterm.action.ActivateTabRelative(1)
-}, {
-    key = 'J',
+},
+{
+    key = 'H',
     mods = 'CMD|SHIFT',
     action = wezterm.action.ActivateTabRelative(-1)
-}, 
+},
 
 -- Panes
 {
@@ -35,25 +44,51 @@ local bindings = {
     action = wezterm.action.CloseCurrentPane {
         confirm = true
     }
-}, 
+},
 
+-- Pane navigation (HJKL)
 {
-    key = 'i',
-    mods = 'CMD',
-    action = wezterm.action.ActivatePaneDirection 'Up'
-}, {
     key = 'k',
     mods = 'CMD',
-    action = wezterm.action.ActivatePaneDirection 'Down'
-}, {
+    action = wezterm.action.ActivatePaneDirection 'Up'
+},
+{
     key = 'j',
     mods = 'CMD',
+    action = wezterm.action.ActivatePaneDirection 'Down'
+},
+{
+    key = 'h',
+    mods = 'CMD',
     action = wezterm.action.ActivatePaneDirection 'Left'
-}, {
+},
+{
     key = 'l',
     mods = 'CMD',
     action = wezterm.action.ActivatePaneDirection 'Right'
-}, 
+},
+
+-- Pane navigation (Arrow keys fallback)
+{
+    key = 'UpArrow',
+    mods = 'CMD',
+    action = wezterm.action.ActivatePaneDirection 'Up'
+},
+{
+    key = 'DownArrow',
+    mods = 'CMD',
+    action = wezterm.action.ActivatePaneDirection 'Down'
+},
+{
+    key = 'LeftArrow',
+    mods = 'CMD',
+    action = wezterm.action.ActivatePaneDirection 'Left'
+},
+{
+    key = 'RightArrow',
+    mods = 'CMD',
+    action = wezterm.action.ActivatePaneDirection 'Right'
+},
 
 
 -- Word navigation (Option + arrows)
@@ -64,14 +99,15 @@ local bindings = {
         key = 'b',
         mods = 'ALT'
     }
-}, {
+},
+{
     key = 'RightArrow',
     mods = 'OPT',
     action = wezterm.action.SendKey {
         key = 'f',
         mods = 'ALT'
     }
-}, 
+},
 
 -- Line beginning/end (Cmd + left/right)
 {
@@ -81,14 +117,15 @@ local bindings = {
         key = 'a',
         mods = 'CTRL'
     }
-}, {
+},
+{
     key = 'RightArrow',
     mods = 'CMD',
     action = wezterm.action.SendKey {
         key = 'e',
         mods = 'CTRL'
     }
-}, 
+},
 }
 
 

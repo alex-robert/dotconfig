@@ -5,6 +5,30 @@ local leader_ext = require 'tabline_leader_ext'
 local theme_ext = require 'tabline_theme_ext'
 
 
+local highlighted_processes = {
+  nvim = true,
+  claude = true,
+}
+
+local function active_process(window)
+  local active_pane = window:active_pane()
+  if not active_pane then
+    return 'zsh'
+  end
+
+  local process_info = active_pane:get_foreground_process_info()
+  if not process_info then
+    return 'zsh'
+  end
+
+  local process_name = process_info.executable:match("([^/\\]+)$")
+  if process_name and highlighted_processes[process_name] then
+    return process_name
+  end
+
+  return 'zsh'
+end
+
 
 local tabline_config = {
   options = {
@@ -22,7 +46,7 @@ local tabline_config = {
       right = wezterm.nerdfonts.pl_right_hard_divider,
     },
     component_separators = {
-      left = wezterm.nerdfonts.pl_left_hard_divider,
+      left = wezterm.nerdfonts.ple_left_half_circle_thick,
       right = wezterm.nerdfonts.pl_right_soft_divider,
     },
     tab_separators = {
@@ -37,8 +61,13 @@ local tabline_config = {
         c = { fg = '#a9b1d6', bg = '#1f2335' },
       },
       layout_mode = {
-        a = { fg = '#1a1b26', bg = '#bb9af7' },  -- cyan for workspace mode
-        b = { fg = '#bb9af7', bg = '#24283b' },
+        a = { fg = '#1a1b26', bg = '#4a9af7' },  -- cyan for workspace mode
+        b = { fg = '#4a9af7', bg = '#24283b' },
+        c = { fg = '#a9b1d6', bg = '#1f2335' },
+      },
+      theme_mode = {
+        a = { fg = '#1a1b26', bg = '#d19ec7' },  -- cyan for workspace mode
+        b = { fg = '#d19ec7', bg = '#24283b' },
         c = { fg = '#a9b1d6', bg = '#1f2335' },
       },
       tab = {
@@ -46,7 +75,7 @@ local tabline_config = {
           fg = '#a9b1d6',
         },
         active = {
-          fg = '#1a1b26', 
+          fg = '#1a1b26',
           bg = '#a9b1d6',
         }
       }
@@ -58,24 +87,34 @@ local tabline_config = {
         'mode',
         icons_enabled = true,
         padding = { left = 2, right = 2 },
-        fmt = function(str)
+        fmt = function(str, window)
           -- Use icons for modes
           if str == 'NORMAL' then
-            return wezterm.nerdfonts.cod_terminal .. ' '
+            return wezterm.nerdfonts.cod_terminal .. ' ' .. active_process(window)
            elseif str == 'WORKSPACE' then
              return wezterm.nerdfonts.md_view_dashboard .. ' WORKSPACE'
            elseif str == 'LAYOUT' then
              return wezterm.nerdfonts.md_window_closed_variant .. ' LAYOUT'
+           elseif str == 'THEME' then
+             return wezterm.nerdfonts.md_palette_swatch_variant.. ' THEME'
           elseif str == 'SEARCH' then
-            return str
+            return wezterm.nerdfonts.md_feature_search.. ' SEARCH'
+          elseif str == 'COPY' then
+            return wezterm.nerdfonts.md_content_copy.. ' COPY'
           end
           return str
         end
-      }
-
-      --
+      },
     },
-    tabline_b = { 'workspace' },
+    tabline_b = { 
+      {'workspace', 
+      fmt = function(str, window)
+        if str == 'default' then
+          return ''
+        end
+        return str
+      end 
+    } },
     tabline_c = { '' },
     tab_active = {
       'index',
@@ -85,8 +124,8 @@ local tabline_config = {
       { 'cwd', padding = { left = 0, right = 1 } },
       { 'zoomed', padding = 0 },
     },
-    tab_inactive = { 
-      'index', 
+    tab_inactive = {
+      'index',
       '',
       'process',
       '',

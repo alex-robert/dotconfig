@@ -1,11 +1,14 @@
 return {
   {
     "rockyzhang24/arctic.nvim",
-    dependencies = { "rktjmp/lush.nvim" },
     branch = "v2",
+    dependencies = { "rktjmp/lush.nvim" },
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme("arctic")
+      vim.cmd("colorscheme arctic")
     end,
+  },
+  {
+    "nvim-tree/nvim-web-devicons",
   },
 }

@@ -10,7 +10,7 @@ return {
       key = 'k',
       action = wezterm.action.ActivatePaneDirection 'Down'
   }, {
-      key = 'j',
+      key = 'h',
       action = wezterm.action.ActivatePaneDirection 'Left'
   }, {
       key = 'l',
@@ -27,7 +27,7 @@ return {
       action = wezterm.action.AdjustPaneSize {'Down', 5}
   }, 
   {
-      key = 'J',
+      key = 'H',
       mods = 'SHIFT',
       action = wezterm.action.AdjustPaneSize {'Left', 5}
   }, {
