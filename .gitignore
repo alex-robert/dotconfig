@@ -13,8 +13,10 @@ config/zsh/.zshenv
 **/claude/*.key
 
 ## Zsh containing potential keys
-**/.zsh_*
-**/.zc*
+**/.zsh_history
+**/.zcompdump
+**/.zsecret
+**/.zsh_sessions/
 
 
 ## 
@@ -24,9 +26,5 @@ config/pgcli/history
 config/pgcli/log
 
 
-## Zee build
-config/zee/build/
-config/zee/grammars/
-.mini*
-mini*
+.mini.session.vim
 OUTLINE*

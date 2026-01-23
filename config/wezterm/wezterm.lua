@@ -150,6 +150,11 @@ local workspace_switcher_keymap ={
     mods = "CMD|SHIFT",
     action = workspace_switcher.switch_workspace(),
   },
+  {
+    key = "z",
+    mods = "CMD|SHIFT",
+    action = workspace_switcher.switch_to_prev_workspace(),
+  },
 }
 
 add_keymaps(config, workspace_switcher_keymap)

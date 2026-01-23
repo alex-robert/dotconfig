@@ -9,18 +9,18 @@ tags: [ mac, keymap ]
   | `⌥` `␣`                    | workspace 2                                  |
   | `⌥` `tab`                  | workspace-back-and-forth                     |
   |                            |                                              |
-  | `⌘` `⌥` `h`                | workspace prev                               |
-  | `⌘` `⌥` `l`                | workspace next                               |
+  | `⌘` `⌥` `→`                | workspace next                               |
+  | `⌘` `⌥` `←`                | workspace prev                               |
   |                            |                                              |
-  | `⇧` `⌃` `k`                | focus up                                     |
-  | `⇧` `⌃` `h`                | focus left                                   |
-  | `⇧` `⌃` `j`                | focus down                                   |
-  | `⇧` `⌃` `l`                | focus right                                  |
+  | `⇧` `⌃` `↑`                | focus up                                     |
+  | `⇧` `⌃` `←`                | focus left                                   |
+  | `⇧` `⌃` `↓`                | focus down                                   |
+  | `⇧` `⌃` `→`                | focus right                                  |
   |                            |                                              |
-  | `⌥` `⌃` `k`                | focus-monitor up                             |
-  | `⌥` `⌃` `h`                | focus-monitor left                           |
-  | `⌥` `⌃` `j`                | focus-monitor down                           |
-  | `⌥` `⌃` `l`                | focus-monitor right                          |
+  | `⌥` `⌃` `↑`                | focus-monitor up                             |
+  | `⌥` `⌃` `←`                | focus-monitor left                           |
+  | `⌥` `⌃` `↓`                | focus-monitor down                           |
+  | `⌥` `⌃` `→`                | focus-monitor right                          |
 
 # Switch binding mode
   |                            |                                              |
@@ -40,23 +40,23 @@ tags: [ mac, keymap ]
   | `t`                        | layout horizontal vertical                   |
   | `a`                        | layout tiles accordion                       |
   |                            |                                              |
-  | `⇧` `k`                    | move up                                      |
-  | `⇧` `h`                    | move left                                    |
-  | `⇧` `j`                    | move down                                    |
-  | `⇧` `l`                    | move right                                   |
+  | `⇧` `↑`                    | move up                                      |
+  | `⇧` `←`                    | move left                                    |
+  | `⇧` `↓`                    | move down                                    |
+  | `⇧` `→`                    | move right                                   |
   |                            |                                              |
-  | `⌥` `⇧` `k`                | join-with up                                 |
-  | `⌥` `⇧` `h`                | join-with left                               |
-  | `⌥` `⇧` `j`                | join-with down                               |
-  | `⌥` `⇧` `l`                | join-with right                              |
+  | `⌥` `⇧` `↑`                | join-with up                                 |
+  | `⌥` `⇧` `←`                | join-with left                               |
+  | `⌥` `⇧` `↓`                | join-with down                               |
+  | `⌥` `⇧` `→`                | join-with right                              |
   | `r`                        | flatten-workspace-tree                       |
   |                            |                                              |
-  | `⌘` `⌥` `h`                | move-node-to-workspace prev                  |
-  | `⌘` `⌥` `l`                | move-node-to-workspace next                  |
-  | `⇧` `⌘` `⌥` `h`            | move-node-to-monitor left                    |
-  | `⇧` `⌘` `⌥` `l`            | move-node-to-monitor right                   |
-  | `⇧` `⌘` `⌥` `j`            | move-node-to-monitor down                    |
-  | `⇧` `⌘` `⌥` `k`            | move-node-to-monitor up                      |
+  | `⌘` `⌥` `→`                | move-node-to-workspace next                  |
+  | `⌘` `⌥` `←`                | move-node-to-workspace prev                  |
+  | `⇧` `⌘` `⌥` `←`            | move-node-to-monitor left                    |
+  | `⇧` `⌘` `⌥` `→`            | move-node-to-monitor right                   |
+  | `⇧` `⌘` `⌥` `↓`            | move-node-to-monitor down                    |
+  | `⇧` `⌘` `⌥` `↑`            | move-node-to-monitor up                      |
   
 # Service Biding mode
   |                            |                                              |
@@ -64,38 +64,6 @@ tags: [ mac, keymap ]
   | `backspace`                | close-all-windows-but-current; mode main     |
   | `esc`                      | reload-config; mode main                     |
 
-# Main Binding Mode [Arrow Keys alternatives]
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  |                            |                                              |
-  | `⌘` `⌥` `←`                | workspace prev                               |
-  | `⌘` `⌥` `→`                | workspace next                               |
-  |                            |                                              |
-  | `⇧` `⌃` `↓`                | focus down                                   |
-  | `⇧` `⌃` `←`                | focus left                                   |
-  | `⇧` `⌃` `→`                | focus right                                  |
-  | `⇧` `⌃` `↑`                | focus up                                     |
-  |                            |                                              |
-  | `⌥` `⌃` `↓`                | focus-monitor down                           |
-  | `⌥` `⌃` `←`                | focus-monitor left                           |
-  | `⌥` `⌃` `→`                | focus-monitor right                          |
-  | `⌥` `⌃` `↑`                | focus-monitor up                             |
-
-# Layout Biding mode [Arrow Keys alternatives]
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `⌥` `⇧` `↑`                | join-with up                                 |
-  | `⌥` `⇧` `↓`                | join-with down                               |
-  | `⌥` `⇧` `←`                | join-with left                               |
-  | `⌥` `⇧` `→`                | join-with right                              |
-  |                            |                                              |
-  | `⇧` `↓`                    | move down                                    |
-  | `⇧` `←`                    | move left                                    |
-  | `⇧` `→`                    | move right                                   |
-  | `⇧` `↑`                    | move up                                      |
-  |                            |                                              |
-  | `⌘` `⌥` `←`                | move-node-to-workspace prev; workspace prev  |
-  | `⌘` `⌥` `→`                | move-node-to-workspace next; workspace next  |
 
 # CLI
 

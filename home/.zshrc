@@ -1,7 +1,5 @@
-[ -f "$ZDOTDIR/.zshenv" ] && source "$ZDOTDIR/.zshenv"
+# [ -f "$ZDOTDIR/.zshenv" ] && source "$ZDOTDIR/.zshenv"
 
-### HomeBrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 ## History behavior
 setopt HIST_IGNORE_DUPS       # Don't record duplicates
@@ -11,31 +9,44 @@ setopt SHARE_HISTORY          # Share history across tabs
 setopt INC_APPEND_HISTORY     # Write to history immediately
 setopt HIST_FIND_NO_DUPS      # Don't show dupes in history search
 
-## Completion settings
-autoload -Uz compinit && compinit -d "$ZDOTDIR/.zcompdump"
-
-setopt MENU_COMPLETE          # Tab-complete through matches
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' # Case-insensitive, hyphen-insensitive, partial match
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-
-# Scaleway CLI autocomplete initialization.
-eval "$(scw autocomplete script shell=zsh)"
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
-
-## Zsh Hooks
-autoload -U add-zsh-hook
-
-## Quality of life
+## QoL
 setopt AUTO_CD                # Type folder name to cd into it
 setopt CORRECT                # Spell correction for commands
 setopt EXTENDED_GLOB          # Advanced globbing (ls **/*.md)
 setopt NO_BEEP                # Disable bell
 
+## Completion settings
+# Scaleway CLI autocomplete initialization.
+
+mkdir -p "$HOME/.cache/zsh/completions"
+
+# Generate completion(s) file(s) which doesn't exists yet
+if [[ ! -f "$HOME/.cache/zsh/completions/_scw" ]] && command -v scw &> /dev/null; then
+  # scw autocomplete script shell=zsh > "$HOME/.cache/zsh/completions/_scw"
+fi
+
+fpath=("$HOME/.cache/zsh/completions" $fpath)
+
+# Init ZSH Completions
+autoload -Uz compinit && compinit -d "$HOME/.cache/zsh/.zcompdump"
+
+# Bash completions (after compinit)
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
+setopt MENU_COMPLETE          # Tab-complete through matches
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' # Case-insensitive, hyphen-insensitive, partial match
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+
+
+## Zsh Hooks
+autoload -U add-zsh-hook
+
+
 #-----------------------#
 #### --- Plugins --- ####
-#-----------------------#
+#-----------------------# 
 
 ## Zinit plugin manager
 source /opt/homebrew/opt/zinit/zinit.zsh
@@ -48,6 +59,66 @@ zinit light zsh-users/zsh-autosuggestions
 
 ## Fast tab completions
 zinit light zsh-users/zsh-completions
+
+## VIM Mode
+# ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+# ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BEAM
+# ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+# ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
+
+# zinit light jeffreytse/zsh-vi-mode
+
+#  zvm_config() {
+#   # Retrieve default cursor styles
+#   local ncur=$(zvm_cursor_style $ZVM_NORMAL_MODE_CURSOR)
+#   local icur=$(zvm_cursor_style $ZVM_INSERT_MODE_CURSOR)
+#
+#   # Append your custom color for your cursor
+#   ZVM_INSERT_MODE_CURSOR=$icur'\e\e]12;red\a'
+#   ZVM_NORMAL_MODE_CURSOR=$ncur'\e\e]12;#008800\a'
+# }
+
+# precmd() {
+#   if [[ "$ZVM_MODE" == "$ZVM_MODE_NORMAL" ]]; then
+#     echo -ne $ZVM_CURSOR_BLOCK    # Block for normal mode
+#   else
+#     echo -ne $ZVM_INSERT_MODE_CURSOR  # Beam for insert mode
+#   fi
+# }
+
+# _omp_redraw-prompt() {
+#
+#   local precmd
+#   for precmd in "${precmd_functions[@]}"; do
+#     "$precmd"
+#   done
+#
+#   zle .reset-prompt
+# }
+
+# export POSH_VI_MODE="I"
+# zvm_after_select_vi_mode(){
+#   case $ZVM_MODE in
+#   $ZVM_MODE_NORMAL)
+#     POSH_VI_MODE="N"
+#     ;;
+#   $ZVM_MODE_INSERT)
+#     POSH_VI_MODE="I"
+#     ;;
+#   $ZVM_MODE_VISUAL)
+#     POSH_VI_MODE="V"
+#     ;;
+#   $ZVM_MODE_VISUAL_LINE)
+#     POSH_VI_MODE="V-L"
+#     ;;
+#   $ZVM_MODE_REPLACE)
+#     POSH_VI_MODE="R"
+#     ;;
+#   esac
+#   _omp_redraw-prompt
+# }
+
+
 
 ## History substring search
 HISTORY_SUBSTRING_SEARCH_PREFIXED=1
@@ -63,9 +134,10 @@ bindkey '^[[B' history-substring-search-down
 ## CD TAb completion
 zinit light Aloxaf/fzf-tab
 
-#zplug "code-stats/code-stats-zsh", from:gitlab, use:"codestats.plugin.zsh"
+## CodeStats
 zinit ice from"gitlab" pick"codestats.plugin.zsh"
 zinit load code-stats/code-stats-zsh
+
 
 ## FZF
 [ -f $HOME_CONFIG/.fzf.zsh ] && source $HOME_CONFIG/.fzf.zsh
@@ -135,6 +207,7 @@ function y() {
   [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
   rm -f -- "$tmp"
 }
+
 
 #-----------------------#
 #### --- Aliases --- ####

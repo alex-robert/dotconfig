@@ -15,6 +15,10 @@ return {
       local wk = require("which-key")
       wk.setup({
         preset = "modern",
+        triggers = {
+          { "<auto>", mode = "nxso" },
+          { "s", mode = { "n", "v" } },
+        },
       })
 
       wk.add({
@@ -28,6 +32,14 @@ return {
         { "<leader>c", group = "Lsp" },
         { "<leader>o", group = "Code Utilities" },
         { "<leader>d", group = "Debug" },
+        { "s", group = "Surround", mode = { "n", "v" } },
+        { "sa", desc = "Add surround", mode = { "n", "v" } },
+        { "sd", desc = "Delete surround" },
+        { "sr", desc = "Replace surround" },
+        { "sf", desc = "Find surround right" },
+        { "sF", desc = "Find surround left" },
+        { "sh", desc = "Highlight surround" },
+        { "sn", desc = "Update n_lines" },
       })
     end,
   },

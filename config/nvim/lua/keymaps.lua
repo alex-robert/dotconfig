@@ -3,6 +3,12 @@ local keymap = vim.keymap
 -- Set leader key
 vim.g.mapleader = " "
 
+-- Disable arrow keys to force hjkl navigation
+keymap.set({ "n", "i", "v" }, "<Up>", "<nop>")
+keymap.set({ "n", "i", "v" }, "<Down>", "<nop>")
+keymap.set({ "n", "i", "v" }, "<Left>", "<nop>")
+keymap.set({ "n", "i", "v" }, "<Right>", "<nop>")
+
 -- Word movement with Shift
 keymap.set("n", "H", "b", { desc = "Move word backward" })
 keymap.set("n", "J", "5j", { desc = "Move down 5 lines" })
@@ -32,11 +38,18 @@ vim.keymap.set("n", "<leader>tf", function()
   require("telescope.builtin").find_files()
 end, { desc = "New tab with file picker" })
 
--- Better indenting
-keymap.set("v", "<", "<gv", { desc = "Indent left" })
-keymap.set("v", ">", ">gv", { desc = "Indent right" })
+keymap.set("n", "<leader>tp", "<Cmd>tabprevious<CR>", { desc = "Go to previous tab" })
+keymap.set("n", "<leader>tn", "<Cmd>tabnext<CR>", { desc = "Go to next tab" })
 
--- Scratch / Buffer management
+-- Buffer navigation
+keymap.set("n", "<C-x>l", ":bnext<CR>", { desc = "Next buffer" })
+keymap.set("n", "<C-x>h", ":bprevious<CR>", { desc = "Previous buffer" })
+keymap.set("n", "<C-x>x", ":bdelete<CR>", { desc = "Delete buffer" })
+-- Buffer navigation with Ctrl+Alt
+keymap.set("n", "<C-M-l>", ":bnext<CR>", { desc = "Next buffer" })
+keymap.set("n", "<C-M-h>", ":bprevious<CR>", { desc = "Previous buffer" })
+
+-- Scratch buffer management
 keymap.set("n", "<leader>sn", "<Cmd>enew<CR>", { desc = "New scratch buffer" })
 keymap.set("n", "<leader>sw", function()
   vim.ui.input({ prompt = "Save as: " }, function(filename)
@@ -46,9 +59,10 @@ keymap.set("n", "<leader>sw", function()
   end)
 end, { desc = "Save buffer as..." })
 
-keymap.set("n", "<C-x>l", ":bnext<CR>", { desc = "Next buffer" })
-keymap.set("n", "<C-x>h", ":bprevious<CR>", { desc = "Previous buffer" })
-keymap.set("n", "<C-x>x", ":bdelete<CR>", { desc = "Delete buffer" })
+
+-- Better indenting
+keymap.set("v", "<", "<gv", { desc = "Indent left" })
+keymap.set("v", ">", ">gv", { desc = "Indent right" })
 
 -- AZERTY-friendly text objects (brackets are hard to reach on AZERTY)
 keymap.set("o", "ip", "i(", { desc = "Inner parentheses" })
@@ -65,6 +79,3 @@ keymap.set("x", "ap", "a(", { desc = "Around parentheses" })
 keymap.set("x", "ab", "a{", { desc = "Around braces" })
 keymap.set("x", "ar", "a[", { desc = "Around brackets" })
 
--- Tabs
-keymap.set("n", "<leader>tp", "<Cmd>tabprevious<CR>", { desc = "Go to previous tab" })
-keymap.set("n", "<leader>tn", "<Cmd>tabnext<CR>", { desc = "Go to next tab" })

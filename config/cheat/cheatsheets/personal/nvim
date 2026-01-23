@@ -361,12 +361,8 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
 # Buffer Management
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `␣` `bn`                   | next buffer                                  |
-  | `␣` `bp`                   | previous buffer                              |
-  | `␣` `bd`                   | delete buffer                                |
-  |                            |                                              |
-  | `⌃` `x` `l`                | next buffer                                  |
-  | `⌃` `x` `h`                | previous buffer                              |
+  | `⌃` `⌥` `l`                | next buffer (hold Caps Lock + l)             |
+  | `⌃` `⌥` `h`                | previous buffer (hold Caps Lock + h)         |
   | `⌃` `x` `x`                | delete buffer                                |
 
 # Window/Split Management

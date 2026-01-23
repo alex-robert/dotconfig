@@ -7,10 +7,12 @@ start-at-login = true
 ######################
 ### Style & Layout ###
 ######################
+
 # Normalizations.
 # See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
+
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'accordion'
@@ -19,9 +21,15 @@ accordion-padding = 0
 
 # Mouse follows focus when focused monitor changes
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
-# on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 automatically-unhide-macos-hidden-apps = true
+
+exec-on-workspace-change = ['/bin/bash', '-c',
+#   'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
+
+
 
 [gaps]
 outer.top = [{ monitor.'built-in.*' = 0 }, 0]
@@ -31,9 +39,11 @@ outer.left       = 0
 inner.horizontal = 1 # gap beetween windows on Horizontal layout (window in vertival mode)
 inner.vertical   = 1  # same but when windows are on Horizontal mode (vertival layout)
 
+
 ###################
 ### Key Mapping ###
 ###################
+
 [key-mapping.key-notation-to-key-code]
 alpha     = "q"          # A -> Q
 bravo     = "b"          # B -> B
@@ -82,14 +92,10 @@ zulu      = "w"          # Z -> W
 ## - Arrows.         left, down, up, right
 #######################################################################################################
 
-
-#########################
-### Workspaces config ###
-#########################
-# persistent-workspaces = ['1','2','3','4','5']
 # Assign certain workspaces to
 # See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [workspace-to-monitor-force-assignment]
+
 1 = ['M27Q'] # Front screen
 2 = ['M27Q'] # Main
 3 = ['Built-in'] # Front screen
@@ -107,7 +113,14 @@ zulu      = "w"          # Z -> W
 # - Send window/node to another workspace
 # - Launch Apps
 [mode.main.binding]
-# Quick shortcuts
+# Switch workspaces
+# See: https://nikitabobko.github.io/AeroSpace/commands#workspace
+cmd-alt-right = ['workspace next']
+cmd-alt-left  = ['workspace prev']
+####
+cmd-alt-lima = ['workspace next']
+cmd-alt-hotel  = ['workspace prev']
+
 alt-space     = 'workspace 2' # Go to terminal
 alt-tab       = 'workspace-back-and-forth'
 alt-enter     = 'fullscreen' # Toggle full screen
@@ -115,24 +128,35 @@ alt-enter     = 'fullscreen' # Toggle full screen
 
 # Switch window focus
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-alt-ctrl-left  = [ 'focus dfs-prev' ]
-alt-ctrl-right = [ 'focus dfs-next' ]
+shift-ctrl-up    = 'focus up'
+shift-ctrl-left  = 'focus left'
+shift-ctrl-down  = 'focus down'
+shift-ctrl-right = 'focus right'
+####
+shift-ctrl-lima  = 'focus right'
+shift-ctrl-hotel = 'focus left'
+shift-ctrl-juliett = 'focus down'
+shift-ctrl-kilo  = 'focus up'
 
-# Switch workspaces
-# See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-cmd-alt-right = ['workspace next --wrap-around']
-cmd-alt-left  = ['workspace prev --wrap-around']
 
 # Switch monitor focus
 #https://nikitabobko.github.io/AeroSpace/commands#focus-monitor
 # focus-monitor
-cmd-alt-ctrl-right = ['focus-monitor next', 'move-mouse monitor-lazy-center']
-cmd-alt-ctrl-left  = ['focus-monitor prev',  'move-mouse monitor-lazy-center']
+alt-ctrl-right = ['focus-monitor right'] # , 'move-mouse monitor-lazy-center'
+alt-ctrl-left  = ['focus-monitor left' ] # , 'move-mouse monitor-lazy-center'
+alt-ctrl-down  = ['focus-monitor down' ] # , 'move-mouse monitor-lazy-center'
+alt-ctrl-up    = ['focus-monitor up'   ] # , 'move-mouse monitor-lazy-center'
+####
+alt-ctrl-lima     = ['focus-monitor right', 'move-mouse monitor-lazy-center']
+alt-ctrl-juliett  = ['focus-monitor left',  'move-mouse monitor-lazy-center']
+alt-ctrl-kilo     = ['focus-monitor down',  'move-mouse monitor-lazy-center']
+alt-ctrl-india    = ['focus-monitor up',    'move-mouse monitor-lazy-center']
+
 
 
 # Mods
-# alt-sierra = 'mode service'  # Todo Make a Double tap S shortcut
-# alt-lima   = 'mode layout'     # Todo Make a Double tap L shortcut
+cmd-alt-ctrl-shift-sierra = 'mode service'  # Todo Make a Double tap S shortcut
+cmd-alt-ctrl-shift-lima   = 'mode layout'     # Todo Make a Double tap L shortcut
 
 
 ######################
@@ -151,6 +175,11 @@ shift-up    = 'move up'
 shift-left  = 'move left'
 shift-down  = 'move down'
 shift-right = 'move right'
+####
+shift-kilo     = 'move up'
+shift-hotel    = 'move left'
+shift-juliett  = 'move down'
+shift-lima     = 'move right'
 
 # Merge nodes
 # See: https://nikitabobko.github.io/AeroSpace/commands#join-with
@@ -158,32 +187,44 @@ alt-shift-up    = ['join-with left' ]
 alt-shift-left  = ['join-with down' ]
 alt-shift-down  = ['join-with up'   ]
 alt-shift-right = ['join-with right']
+####
+alt-shift-hotel    = ['join-with left' ]
+alt-shift-juliett  = ['join-with down' ]
+alt-shift-kilo     = ['join-with up'   ]
+alt-shift-lima     = ['join-with right']
 
 
 # Move windows/nodes to other workspaces
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-cmd-alt-ctrl-right = ['move-node-to-workspace next', 'workspace next']
-cmd-alt-ctrl-left  = ['move-node-to-workspace prev', 'workspace prev']
+cmd-alt-right = ['move-node-to-workspace next', 'workspace next']
+cmd-alt-left  = ['move-node-to-workspace prev', 'workspace prev']
+####
+cmd-alt-lima  = ['move-node-to-workspace next', 'workspace next']
+cmd-alt-hotel = ['move-node-to-workspace prev', 'workspace prev']
 
 # Move nodes to other monitor by direction
 #See https://nikitabobko.github.io/AeroSpace/commands#move-node-to-monitor
+cmd-alt-shift-hotel    = ['move-node-to-monitor left' ]
+cmd-alt-shift-juliett  = ['move-node-to-monitor down' ]
+cmd-alt-shift-kilo     = ['move-node-to-monitor up'   ]
+cmd-alt-shift-lima     = ['move-node-to-monitor right']
 
-cmd-alt-shift-left   = ['move-node-to-monitor left' ]
-cmd-alt-shift-right  = ['move-node-to-monitor right']
+cmd-alt-shift-left    = ['move-node-to-monitor left' ]
+cmd-alt-shift-down    = ['move-node-to-monitor down' ]
 cmd-alt-shift-up     = ['move-node-to-monitor up'   ]
-cmd-alt-shift-down   = ['move-node-to-monitor down' ]
+cmd-alt-shift-right     = ['move-node-to-monitor right']
 
 # Toggle between floating and tiling layout
-cmd-alt-ctrl-foxtrot = ['layout floating tiling']
+cmd-alt-ctrl-shift-foxtrot = ['layout floating tiling']
 
 # Toggle between accordion and tiling layout
-cmd-alt-ctrl-tango = ['layout tiles accordion']
+cmd-alt-ctrl-shift-tango = ['layout tiles accordion']
 
 # Toggle between horizontal vertival layout
-cmd-alt-ctrl-hotel = ['layout horizontal vertical']
+cmd-alt-ctrl-shift-hotel = ['layout horizontal vertical']
 
 # reset workspace layout
-cmd-alt-ctrl-romeo = ['flatten-workspace-tree']
+cmd-alt-ctrl-shift-romeo = ['flatten-workspace-tree']
 
 ctrl-down = 'resize smart -50'
 ctrl-up = 'resize smart +50'

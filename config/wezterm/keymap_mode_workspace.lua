@@ -4,37 +4,6 @@ local workspace_switcher = require 'plugins/sws'
 
 return {
   {
-    key = 'n',
-
-    action = wezterm.action_callback(function(window, pane)
-        local cwd_uri = pane:get_current_working_dir()
-        local cwd = cwd_uri and cwd_uri.file_path
-        local name = cwd and cwd:match('/([^/]+)/?$') or 'default'
-        window:perform_action(wezterm.action.SwitchToWorkspace {
-            name = name,
-            spawn = {
-                cwd = cwd
-            }
-        }, pane)
-      end)
-  },
-
-  {
-      key = 'n',
-      mods= 'CTRL',
-      action = wezterm.action.PromptInputLine {
-          description = 'Enter workspace name:',
-          action = wezterm.action_callback(function(window, pane, line)
-              if line then
-                  window:perform_action(wezterm.action.SwitchToWorkspace {
-                      name = line
-                  }, pane)
-              end
-          end)
-      }
-  },
-
-  {
     key = "s",
      -- mods = 'CTRL',
     action = wezterm.action_callback(function(win, pane)

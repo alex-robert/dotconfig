@@ -90,7 +90,8 @@ local tabline_config = {
         fmt = function(str, window)
           -- Use icons for modes
           if str == 'NORMAL' then
-            return wezterm.nerdfonts.cod_terminal .. ' ' .. active_process(window)
+            return wezterm.nerdfonts.cod_terminal .. ' '
+            -- .. active_process(window)
            elseif str == 'WORKSPACE' then
              return wezterm.nerdfonts.md_view_dashboard .. ' WORKSPACE'
            elseif str == 'LAYOUT' then
@@ -107,14 +108,17 @@ local tabline_config = {
       },
     },
     tabline_b = { 
-      {'workspace', 
-      fmt = function(str, window)
-        if str == 'default' then
-          return ''
-        end
-        return str
-      end 
-    } },
+      {
+        'workspace', 
+        padding = { left = 2, right = 1 },
+        fmt = function(str, window)
+          if str == 'default' then
+            return ''
+          end
+          return str
+        end 
+      } 
+    },
     tabline_c = { '' },
     tab_active = {
       'index',

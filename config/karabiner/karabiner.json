@@ -4,7 +4,150 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "CAPS_LOCK : (HYPER) SHIFT+COMMAND+OPTION+CONTROL or ESCAPE (If Alone)",
+                        "description": "CAPS_LOCK : App-specific modifiers or ESCAPE (If Alone)",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.github\\.wez\\.wezterm$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    }
+                                ],
+                                "description": "Caps Lock → Ctrl+Alt in WezTerm",
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "to_if_alone": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.github\\.wez\\.wezterm$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
+                                "description": "Caps Lock → Cmd+Ctrl+Alt everywhere else",
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_command",
+                                        "modifiers": ["left_control", "left_option"]
+                                    }
+                                ],
+                                "to_if_alone": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Disable Hyper+Q (Log Out) for safety",
+                                "from": {
+                                    "key_code": "q",
+                                    "modifiers": { "mandatory": ["command", "control", "option"] }
+                                },
+                                "to": [],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Avoid starting sysdiagnose with the built-in macOS shortcut cmd+shift+option+ctrl+,",
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": { "mandatory": ["command", "shift", "option", "control"] }
+                                },
+                                "to": [],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Avoid starting sysdiagnose with the built-in macOS shortcut cmd+shift+option+ctrl+.",
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": { "mandatory": ["command", "shift", "option", "control"] }
+                                },
+                                "to": [],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Avoid starting sysdiagnose with the built-in macOS shortcut cmd+shift+option+ctrl+/",
+                                "from": {
+                                    "key_code": "slash",
+                                    "modifiers": { "mandatory": ["command", "shift", "option", "control"] }
+                                },
+                                "to": [],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "CAPS_LOCK : OPTION+CONTROL NO ESCAPE",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "modifiers": ["left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Disable Hyper+Q (Log Out) for safety",
+                                "from": {
+                                    "key_code": "q",
+                                    "modifiers": { "mandatory": ["command", "control", "option"] }
+                                },
+                                "to": [],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Avoid starting sysdiagnose with the built-in macOS shortcut cmd+shift+option+ctrl+,",
+                                "from": {
+                                    "key_code": "comma",
+                                    "modifiers": { "mandatory": ["command", "shift", "option", "control"] }
+                                },
+                                "to": [],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Avoid starting sysdiagnose with the built-in macOS shortcut cmd+shift+option+ctrl+.",
+                                "from": {
+                                    "key_code": "period",
+                                    "modifiers": { "mandatory": ["command", "shift", "option", "control"] }
+                                },
+                                "to": [],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "description": "Avoid starting sysdiagnose with the built-in macOS shortcut cmd+shift+option+ctrl+/",
+                                    "key_code": "slash",
+                                    "modifiers": { "mandatory": ["command", "shift", "option", "control"] }
+                                },
+                                "to": [],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "CAPS_LOCK : (SEMI-HYPER) COMMAND+OPTION+CONTROL or ESCAPE (If Alone)",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "from": {
@@ -14,10 +157,19 @@
                                 "to": [
                                     {
                                         "key_code": "left_command",
-                                        "modifiers": ["left_control", "left_option", "left_shift"]
+                                        "modifiers": ["left_control", "left_option"]
                                     }
                                 ],
                                 "to_if_alone": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            },
+                            {
+                                "description": "Disable Hyper+Q (Log Out) for safety",
+                                "from": {
+                                    "key_code": "q",
+                                    "modifiers": { "mandatory": ["command", "control", "option"] }
+                                },
+                                "to": [],
                                 "type": "basic"
                             },
                             {

@@ -30,7 +30,6 @@ require("lazy").setup({
   {import = "plugins.mini-sessions"},
   {import = "plugins.mini-splitjoin"},
   {import = "plugins.mini-surround"},
-  -- {import = "plugins.mini-tabline"},
   {import = "plugins.mini-trailspace"},
   -- {
   --   "rockyzhang24/arctic.nvim",

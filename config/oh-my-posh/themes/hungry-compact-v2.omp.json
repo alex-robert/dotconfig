@@ -7,8 +7,13 @@
           "wight": "#a6a4a6",
           "text": "#272727",
           "green": "#6CA35E"
-    },
-
+  },
+  "transient_prompt": {
+    "background": "transparent",
+    "foreground": "p:wight",
+    "template": "\u2500\u2500{{ .Segments.CmdTime.Text }}\u2500> ",
+    "newline": true
+  },
   "blocks": [
     {
       "type": "prompt",
@@ -27,6 +32,7 @@
         },
         {
           "type": "path",
+          "alias": "TwoDepthPath",
           "options": {
             "folder_icon": "\uf115",
             "folder_separator_icon": " \ue0b1 ",
@@ -38,7 +44,7 @@
           "template": " {{ .Path }} ",
           "background": "p:blue",
           "foreground": "p:text",
-          
+
           "leading_diamond": "\u256d\u2500\ue0b2",
           "powerline_symbol": "\ue0b0",
 
@@ -76,6 +82,7 @@
         },
         {
           "type": "executiontime",
+          "alias": "ExecutionTime",
           "options": {
             "always_enabled": false,
             "style": "roundrock",
@@ -94,15 +101,19 @@
       "type": "prompt",
       "alignment": "left",
       "segments": [
-
+{
+          "type": "text",
+          "template": "\u2570\u2500",
+          "foreground": "p:wight",
+          "style": "plain"
+        },
         {
           "type": "time",
+          "alias": "CmdTime",
           "style": "plain",
           "foreground": "p:wight",
-          "template": "\u2570\u2500({{ .CurrentDate | date .Format }})"
+          "template": "({{ .CurrentDate | date .Format }})"
         },
-
-
         {
           "type": "text",
           "template": "\u2500>",

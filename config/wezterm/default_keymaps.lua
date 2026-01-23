@@ -4,8 +4,8 @@ local bindings = {
 
 -- Debug
 {
-    key = 'D',
-    mods = 'CMD|SHIFT|ALT',
+    key = 'd',
+    mods = 'CMD|CTRL|ALT',
     action = wezterm.action.ShowDebugOverlay
 },
 
@@ -27,13 +27,13 @@ local bindings = {
     }
 },
 {
-    key = 'L',
-    mods = 'CMD|SHIFT',
+    key = 'l',
+    mods = 'CMD|CTRL|ALT',
     action = wezterm.action.ActivateTabRelative(1)
 },
 {
-    key = 'H',
-    mods = 'CMD|SHIFT',
+    key = 'h',
+    mods = 'CMD|CTRL|ALT',
     action = wezterm.action.ActivateTabRelative(-1)
 },
 
@@ -67,29 +67,6 @@ local bindings = {
     mods = 'CMD',
     action = wezterm.action.ActivatePaneDirection 'Right'
 },
-
--- Pane navigation (Arrow keys fallback)
-{
-    key = 'UpArrow',
-    mods = 'CMD',
-    action = wezterm.action.ActivatePaneDirection 'Up'
-},
-{
-    key = 'DownArrow',
-    mods = 'CMD',
-    action = wezterm.action.ActivatePaneDirection 'Down'
-},
-{
-    key = 'LeftArrow',
-    mods = 'CMD',
-    action = wezterm.action.ActivatePaneDirection 'Left'
-},
-{
-    key = 'RightArrow',
-    mods = 'CMD',
-    action = wezterm.action.ActivatePaneDirection 'Right'
-},
-
 
 -- Word navigation (Option + arrows)
 {

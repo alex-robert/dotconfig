@@ -5,7 +5,7 @@ tags: [ mac, keymap, terminal, wezterm ]
 # Leader Key
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `⌃` `␣`                    | Leader key (timeout 1500ms)                  |
+  | `⌘` `a`                    | Leader key (timeout 1500ms)                  |
 
 # NORMAL Mode
   |                            |                                              |
@@ -17,10 +17,10 @@ tags: [ mac, keymap, terminal, wezterm ]
   | `⌘` `⇧` `h`                | previous tab                                 |
   |                            |                                              |
   | `⌘` `w`                    | close current pane                           |
-  | `⌘` `k` / `⌘` `↑`          | focus pane up                                |
-  | `⌘` `j` / `⌘` `↓`          | focus pane down                              |
-  | `⌘` `h` / `⌘` `←`          | focus pane left                              |
-  | `⌘` `l` / `⌘` `→`          | focus pane right                             |
+  | `⌘` `k`                    | focus pane up                                |
+  | `⌘` `j`                    | focus pane down                              |
+  | `⌘` `h`                    | focus pane left                              |
+  | `⌘` `l`                    | focus pane right                             |
   |                            |                                              |
   | `⌥` `←`                    | word navigation left                         |
   | `⌥` `→`                    | word navigation right                        |
