@@ -16,8 +16,6 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-
--- Load all plugin modules
 require("lazy").setup({
   {import = "plugins.mini-ai"},
   {import = "plugins.mini-files"},
@@ -31,21 +29,6 @@ require("lazy").setup({
   {import = "plugins.mini-splitjoin"},
   {import = "plugins.mini-surround"},
   {import = "plugins.mini-trailspace"},
-  -- {
-  --   "rockyzhang24/arctic.nvim",
-  --   dependencies = { "rktjmp/lush.nvim" },
-  --   priority = 1000,
-  -- },
-  -- {
-  --   "xero/miasma.nvim",
-  --   priority = 1000,
-  -- },
-  -- {
-  --   'kunzaatko/nord.nvim',
-  --   lazy = false,
-  --   priority = 1000,
-  --   dependencies = {'rktjmp/lush.nvim'},
-  -- },
   {
     'uloco/bluloco.nvim',
     lazy = false,
@@ -58,6 +41,7 @@ require("lazy").setup({
   {import = "plugins.dap"},
   {import = "plugins.ccc"},
   {import = "plugins.telescope"},
+  {import = "plugins.neo-tree"},
   {import = "plugins.markdown"},
   {import = "plugins.codestats"},
   {import = "plugins.lualine"},
@@ -68,6 +52,4 @@ require("lazy").setup({
   {import = "plugins.noice"},
   {import = "plugins.ibl"},
   {import = "plugins.scope"},
-  -- {import = "plugins.auto-session"},
-  -- {import = "plugins.nvim-training"},
 })

@@ -27,9 +27,9 @@ return {
           layout_strategy = "horizontal",
           layout_config = {
             horizontal = {
-              preview_width = 0.55,
-              width = 0.88,
-              height = 0.8,
+              preview_width = 0.65,
+              width = 0.92,
+              height = 0.92,
               preview_cutoff = 120,
             },
           },
@@ -54,6 +54,8 @@ return {
               ["<Esc>"] = require("telescope.actions").close,
               ["<S-j>"] = require("telescope.actions").move_selection_next,
               ["<S-k>"] = require("telescope.actions").move_selection_previous,
+              ["<C-h>"] = require("telescope.actions").select_horizontal,
+              ["<C-v>"] = require("telescope.actions").select_vertical,
             },
           },
         },

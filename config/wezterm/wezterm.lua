@@ -23,10 +23,6 @@ local function config_apply(config, module)
     end
 end
 
-local function add_keymap(config, keymap)
-  table.insert(config.keys, keymap)
-end
-
 local function add_keymaps(config, map)
   for i, key in pairs(map) do
       table.insert(config.keys, key)
@@ -35,13 +31,6 @@ end
 
 local function add_mode(config, mod_name, keymap)
   config.key_tables[mod_name] = keymap
-end
-
-local function maximize_window(window)
-    local screen = wezterm.gui.screens().main
-    local gui_window = window:gui_window()
-    gui_window:set_position(0, 0)
-    gui_window:set_inner_size(screen.width, screen.height)
 end
 
 -------------------------
@@ -118,25 +107,21 @@ add_mode(config, 'theme_mode', {
         action = 'PopKeyTable',
     }
 })
--- Smart Process theme plugin
-spt.apply_to_config(config, {
-  process_themes = {
-    claude = "SynthwaveAlpha",
-    copilot = "SynthwaveAlpha",
-    -- nvim = "PaleNightHC",
-  }
-})
 
--- CMD to vim keymap
--- local cmd_vim_keymap = require 'keymap_cmd2nvim'
--- add_keymaps(config, cmd_vim_keymap)
--- Action is sent to terminal, but bindings just replace cmd+t/w/s anyway...
+-- Smart Process theme plugin
+-- spt.apply_to_config(config, {
+--   process_themes = {
+--     claude = "SynthwaveAlpha",
+--     copilot = "SynthwaveAlpha",
+--     nvim = "PaleNightHC",
+--   }
+-- })
 
 -- Resurect (sae sessions / workspaces)
 resurrect.state_manager.change_state_save_dir(wezterm.config_dir .. "/workspaces/")
 
 resurrect.state_manager.periodic_save({
-  interval_seconds = 120,
+  interval_seconds = 60,
   save_workspaces = true,
   save_windows = true,
   save_tabs = true,
@@ -148,7 +133,9 @@ local workspace_switcher_keymap ={
   {
     key = "s",
     mods = "CMD|SHIFT",
-    action = workspace_switcher.switch_workspace(),
+    action = workspace_switcher.switch_workspace({
+      extra_args = "| grep Workspace/"
+    }),
   },
   {
     key = "z",
@@ -180,10 +167,6 @@ wezterm.on("smart_workspace_switcher.workspace_switcher.selected", function(wind
   resurrect.state_manager.write_current_state(label, "workspace")
 end)
 
--- Add custom key maping
--- add_keymap(config, { key = "S", mods = "ALT", action = wezterm.action_callback(function(window, pane)
---   window:toast_notification('wezterm', 'alt-S hit', nil, 5000)
--- end )})
 
 -------------------------
 -- Events              --
@@ -211,25 +194,7 @@ end)
 
 
 wezterm.on("update-status", function(window, _)
---     local tab = window:active_tab()
---     local panes = tab:panes()
---     local alt_screen_active = false
---     for i = 1, #panes, 1 do
---         local pane = panes[i]
---         if pane:is_alt_screen_active() then
--- 	    alt_screen_active = true
--- 	    break
---         end
---     end
---     if alt_screen_active then
-    -- window:set_config_overrides({
-    --     window_padding = { left = 0, right = 0, top = 0, bottom = 0 },
-    -- })
---     else
---     window:set_config_overrides({
---         -- window_padding = { top = 4, bottom = 2, left = 2, right = 2 },
---     })
---     end
+
 end)
 
 return config

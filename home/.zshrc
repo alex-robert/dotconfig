@@ -46,7 +46,7 @@ autoload -U add-zsh-hook
 
 #-----------------------#
 #### --- Plugins --- ####
-#-----------------------# 
+#-----------------------#
 
 ## Zinit plugin manager
 source /opt/homebrew/opt/zinit/zinit.zsh
@@ -61,63 +61,8 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 
 ## VIM Mode
-# ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
-# ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BEAM
-# ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
-# ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
-
-# zinit light jeffreytse/zsh-vi-mode
-
-#  zvm_config() {
-#   # Retrieve default cursor styles
-#   local ncur=$(zvm_cursor_style $ZVM_NORMAL_MODE_CURSOR)
-#   local icur=$(zvm_cursor_style $ZVM_INSERT_MODE_CURSOR)
-#
-#   # Append your custom color for your cursor
-#   ZVM_INSERT_MODE_CURSOR=$icur'\e\e]12;red\a'
-#   ZVM_NORMAL_MODE_CURSOR=$ncur'\e\e]12;#008800\a'
-# }
-
-# precmd() {
-#   if [[ "$ZVM_MODE" == "$ZVM_MODE_NORMAL" ]]; then
-#     echo -ne $ZVM_CURSOR_BLOCK    # Block for normal mode
-#   else
-#     echo -ne $ZVM_INSERT_MODE_CURSOR  # Beam for insert mode
-#   fi
-# }
-
-# _omp_redraw-prompt() {
-#
-#   local precmd
-#   for precmd in "${precmd_functions[@]}"; do
-#     "$precmd"
-#   done
-#
-#   zle .reset-prompt
-# }
-
-# export POSH_VI_MODE="I"
-# zvm_after_select_vi_mode(){
-#   case $ZVM_MODE in
-#   $ZVM_MODE_NORMAL)
-#     POSH_VI_MODE="N"
-#     ;;
-#   $ZVM_MODE_INSERT)
-#     POSH_VI_MODE="I"
-#     ;;
-#   $ZVM_MODE_VISUAL)
-#     POSH_VI_MODE="V"
-#     ;;
-#   $ZVM_MODE_VISUAL_LINE)
-#     POSH_VI_MODE="V-L"
-#     ;;
-#   $ZVM_MODE_REPLACE)
-#     POSH_VI_MODE="R"
-#     ;;
-#   esac
-#   _omp_redraw-prompt
-# }
-
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+zinit light jeffreytse/zsh-vi-mode
 
 
 ## History substring search

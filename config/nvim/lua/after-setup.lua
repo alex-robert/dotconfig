@@ -1,7 +1,5 @@
 vim.cmd('colorscheme bluloco-dark')
---
---
--- Setup LSP file renaming
+
 vim.api.nvim_create_autocmd("User", {
   pattern = "MiniFilesActionRename",
   callback = function(event)
@@ -9,19 +7,17 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
--- Highlight yanked text briefly
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank({ timeout = 200 })
   end,
 })
 
--- Status column diagnostic signs
 local signs = {
-    Error = " ",
-    Warn = " ",
+    Error = " ",
+    Warn = " ",
     Hint = " 󰌵",
-    Info = " "
+    Info = " ",
 }
 
 local signConf = {
@@ -43,10 +39,8 @@ vim.diagnostic.config({
   signs = signConf,
 })
 
-
--- Create command to view all keymaps in a buffer
 vim.api.nvim_create_user_command('ShowKeymaps', function(opts)
-  local sort_mode = opts.args or 'grouped'  -- 'grouped' or 'bymode'
+  local sort_mode = opts.args or 'grouped'
 
   local buf = vim.api.nvim_create_buf(false, true)
   local lines = {}
@@ -61,7 +55,6 @@ vim.api.nvim_create_user_command('ShowKeymaps', function(opts)
   }
 
   if sort_mode == 'grouped' then
-    -- Group keymaps by lhs (key)
     local grouped = {}
 
     for _, m in ipairs(modes) do
@@ -79,7 +72,6 @@ vim.api.nvim_create_user_command('ShowKeymaps', function(opts)
       end
     end
 
-    -- Sort keys alphabetically
     local sorted_keys = {}
     for key in pairs(grouped) do
       table.insert(sorted_keys, key)
@@ -91,25 +83,20 @@ vim.api.nvim_create_user_command('ShowKeymaps', function(opts)
 
     for _, key in ipairs(sorted_keys) do
       local mappings = grouped[key]
-
-      -- Replace space with <leader> for display
       local display_key = key:gsub('^ ', '<leader>')
 
-      -- Build mode list
       local mode_list = {}
       for _, mapping in ipairs(mappings) do
         table.insert(mode_list, mapping.mode)
       end
       local modes_str = '[' .. table.concat(mode_list, ',') .. ']'
 
-      -- Use first mapping for rhs/desc (usually they're the same across modes)
       local rhs = mappings[1].rhs
       local desc = mappings[1].desc
 
       local line = string.format('%-20s %-10s -> %-30s %s', display_key, modes_str, rhs, desc)
       table.insert(lines, line)
 
-      -- If mappings differ across modes, show details
       local differs = false
       for i = 2, #mappings do
         if mappings[i].rhs ~= mappings[1].rhs or mappings[i].desc ~= mappings[1].desc then
@@ -126,7 +113,6 @@ vim.api.nvim_create_user_command('ShowKeymaps', function(opts)
       end
     end
   else
-    -- Original: group by mode
     for _, m in ipairs(modes) do
       table.insert(lines, '')
       table.insert(lines, '=== ' .. m.name .. ' MODE ===')
@@ -147,7 +133,6 @@ vim.api.nvim_create_user_command('ShowKeymaps', function(opts)
     end
   end
 
-  -- Add helpful header to the beginning
   local header = {
     'View: ' .. (sort_mode == 'grouped' and 'Grouped by key' or 'Grouped by mode'),
     'Usage: :ShowKeymaps [grouped|bymode]',
@@ -170,8 +155,7 @@ end, {
   nargs = '?',
   complete = function()
     return { 'grouped', 'bymode' }
-  end
+  end,
 })
 
--- Add keymap to trigger it
 vim.keymap.set('n', '<leader>?k', ':ShowKeymaps<CR>', { desc = 'Show all keymaps' })

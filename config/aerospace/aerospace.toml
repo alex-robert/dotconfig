@@ -1,4 +1,4 @@
-### Startup & config ###
+## Startup & config ###
 after-startup-command = [
 ]
 
@@ -20,7 +20,6 @@ accordion-padding = 0
 # Mouse follows focus when focused monitor changes
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 # on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
-
 automatically-unhide-macos-hidden-apps = true
 
 [gaps]
@@ -96,9 +95,6 @@ zulu      = "w"          # Z -> W
 4 = ['AORUS'] # Right screen
 5 = ['AORUS'] # Right screen
 
-
-
-
 ####################
 ### Main Bndings ###
 ####################
@@ -112,11 +108,10 @@ alt-space     = 'workspace 2' # Go to terminal
 alt-tab       = 'workspace-back-and-forth'
 alt-enter     = 'fullscreen' # Toggle full screen
 
-
 # Switch window focus
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-alt-ctrl-left  = [ 'focus dfs-prev' ]
-alt-ctrl-right = [ 'focus dfs-next' ]
+alt-ctrl-left  = [ 'focus dfs-prev --boundaries-action wrap-around-the-workspace' ]
+alt-ctrl-right = [ 'focus dfs-next --boundaries-action wrap-around-the-workspace' ]
 
 # Switch workspaces
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
@@ -126,14 +121,36 @@ cmd-alt-left  = ['workspace prev --wrap-around']
 # Switch monitor focus
 #https://nikitabobko.github.io/AeroSpace/commands#focus-monitor
 # focus-monitor
-cmd-alt-ctrl-right = ['focus-monitor next', 'move-mouse monitor-lazy-center']
-cmd-alt-ctrl-left  = ['focus-monitor prev',  'move-mouse monitor-lazy-center']
+cmd-alt-ctrl-right = ['focus-monitor --wrap-around next', 'move-mouse monitor-lazy-center']
+cmd-alt-ctrl-left  = ['focus-monitor --wrap-around prev',  'move-mouse monitor-lazy-center']
 
+# Layouts management
+shift-alt-ctrl-slash = ['balance-sizes']
+cmd-alt-ctrl-foxtrot = ['layout floating tiling']
+cmd-alt-ctrl-tango = ['layout tiles accordion']
+cmd-alt-ctrl-victor = ['layout horizontal vertical']
+
+# Move windows in the given direction
+# See: https://nikitabobko.github.io/AeroSpace/commands#move
+cmd-shift-up    = 'move up'
+cmd-shift-left  = 'move left'
+cmd-shift-down  = 'move down'
+cmd-shift-right = 'move right'
+
+# Merge nodes
+# See: https://nikitabobko.github.io/AeroSpace/commands#join-with
+cmd-alt-shift-up    = ['join-with left' ]
+cmd-alt-shift-left  = ['join-with down' ]
+cmd-alt-shift-down  = ['join-with up' ]
+cmd-alt-shift-right = ['join-with right']
+
+# Resizing
+ctrl-shift-down = 'resize smart -20'
+ctrl-shift-up = 'resize smart +20'
 
 # Mods
-# alt-sierra = 'mode service'  # Todo Make a Double tap S shortcut
-# alt-lima   = 'mode layout'     # Todo Make a Double tap L shortcut
-
+cmd-alt-ctrl-sierra = 'mode service'  # Todo Make a Double tap S shortcut
+cmd-alt-ctrl-slash   = 'mode layout'     # Todo Make a Double tap L shortcut
 
 ######################
 ### Layout Bndings ###
@@ -144,6 +161,9 @@ cmd-alt-ctrl-left  = ['focus-monitor prev',  'move-mouse monitor-lazy-center']
 # - Resize windows (half, quater, full screen
 [mode.layout.binding]
 esc = ['mode main']
+# Switch window focus
+alt-ctrl-left  = [ 'focus dfs-prev --boundaries-action wrap-around-the-workspace' ]
+alt-ctrl-right = [ 'focus dfs-next --boundaries-action wrap-around-the-workspace' ]
 
 # Move windows in the given direction
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
@@ -156,22 +176,21 @@ shift-right = 'move right'
 # See: https://nikitabobko.github.io/AeroSpace/commands#join-with
 alt-shift-up    = ['join-with left' ]
 alt-shift-left  = ['join-with down' ]
-alt-shift-down  = ['join-with up'   ]
+alt-shift-down  = ['join-with up' ]
 alt-shift-right = ['join-with right']
 
 
 # Move windows/nodes to other workspaces
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-cmd-alt-ctrl-right = ['move-node-to-workspace next', 'workspace next']
-cmd-alt-ctrl-left  = ['move-node-to-workspace prev', 'workspace prev']
+cmd-alt-right = ['move-node-to-workspace next', 'workspace next']
+cmd-alt-left  = ['move-node-to-workspace prev', 'workspace prev']
 
 # Move nodes to other monitor by direction
 #See https://nikitabobko.github.io/AeroSpace/commands#move-node-to-monitor
-
-cmd-alt-shift-left   = ['move-node-to-monitor left' ]
-cmd-alt-shift-right  = ['move-node-to-monitor right']
-cmd-alt-shift-up     = ['move-node-to-monitor up'   ]
-cmd-alt-shift-down   = ['move-node-to-monitor down' ]
+cmd-alt-ctrl-left   = ['move-node-to-monitor left', 'focus-monitor left' ]
+cmd-alt-ctrl-right  = ['move-node-to-monitor right', 'focus-monitor right']
+cmd-alt-ctrl-up     = ['move-node-to-monitor up', 'focus-monitor up']
+cmd-alt-ctrl-down   = ['move-node-to-monitor down', 'focus-monitor down']
 
 # Toggle between floating and tiling layout
 cmd-alt-ctrl-foxtrot = ['layout floating tiling']
@@ -191,7 +210,6 @@ shift-ctrl-down = 'resize smart -10'
 shift-ctrl-up = 'resize smart +10'
 
 
-
 #######################
 ### Service Bndings ###
 #######################
@@ -209,20 +227,20 @@ backspace = ['close-all-windows-but-current', 'mode main']
     if.app-name-regex-substring = 'wezterm-gui'
     # if.window-title-regex-substring = 'floating'
     check-further-callbacks = false
-    run = ['layout floating', 'move-node-to-workspace 2']
+    run = ['layout floating', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
     if.app-id = 'com.github.wez.wezterm'
-    check-further-callbacks = false
-    run = ['layout tiling', 'move-node-to-workspace 2']
-
-[[on-window-detected]]
-    if.app-id = 'com.microsoft.VSCode'
+    check-further-callbacks = true
     run = ['layout tiling', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
+    if.app-id = 'com.microsoft.VSCode'
+    run = ['layout tiling', 'move-node-to-workspace 2']
+
+[[on-window-detected]]
     if.app-id = 'com.jetbrains.datagrip'
-    run = ['layout tiling', 'move-node-to-workspace 3']
+    run = ['layout tiling', 'move-node-to-workspace 2']
 
 [[on-window-detected]]
     if.app-id = 'com.postmanlabs.mac'
@@ -249,16 +267,20 @@ backspace = ['close-all-windows-but-current', 'mode main']
     run = ['move-node-to-workspace 5']
 
 [[on-window-detected]]
-    if.app-id = 'ai.elementlabs.lmstudio'
+    if.app-id = 'com.spotify.client'
     run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
+    if.app-id = 'ai.elementlabs.lmstudio'
+    run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
     if.app-id = 'teleportlabs.com.Dayflow'
-    run = ['move-node-to-workspace 5']
+    run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
     if.app-id = 'com.dashlane.dashlaneph1final'
-    run = ['layout floating', 'move-node-to-workspace 4']
+    run = ['layout floating', 'move-node-to-workspace 3']
 
 [[on-window-detected]]
     if.app-id = 'net.battle.app'
@@ -288,39 +310,10 @@ backspace = ['close-all-windows-but-current', 'mode main']
 [[on-window-detected]]
     if.app-id = 'com.google.chrome.for.testing'
     check-further-callbacks = true
-    run = ['layout floating', 'move-node-to-workspace 1']
+    run = ['layout floating', 'move-node-to-workspace 3']
 
 [[on-window-detected]]
     if.app-id = 'com.apple.finder'
-    run = ['layout floating']
+    run = ['layout floating', 'move-node-to-workspace 3']
 
 
-#  com.electron.dockerdesktop                      | Docker Desktop
-#  com.apple.freeform                              | Freeform
-#  notion.id                                       | Notion
-#  com.apple.finder                                | Finder
-#  com.postmanlabs.mac                             | Postman
-#  com.apple.ActivityMonitor                       | Activity Monitor
-#  com.microsoft.VSCode                            | Code
-#  com.jetbrains.datagrip                          | DataGrip
-#  com.tinyspeck.slackmacgap                       | Slack
-#  com.brave.Browser                               | Brave Browser
-#  com.github.wez.wezterm                          | WezTerm
-#  net.battle.app                                  | Battle.netf
-#  com.apple.Preview                               | Preview
-#  org.pqrs.Karabiner-Elements.Settings            | Karabiner-Elements
-#  com.apple.accessibility.universalAccessAuthWarn | universalAccessAuthWarn
-#  com.deezer.deezer-desktop                       | Deezer
-#  com.apple.systempreferences                     | System Settings
-#  net.battle.app                                  | Battle.net
-#  com.dashlane.dashlanephonefinal                 | Dashlane
-#  glcom.cron.electron                             | Notion Calendar
-#  company.thebrowser.Browser                      | Arc
-#  com.apple.iCal                                  | Calendar
-#  com.heroicgameslauncher.hgl                     | Heroic
-#  com.codeweavers.CrossOver                       | CrossOver
-#  dev.commandline.waveterm                        | Wave
-#  com.apple.Music                                 | Music
-#  ai.elementlabs.lmstudio                         | LM Studio
-#  com.proxyman.NSProxy                            | Proxyman
-#  teleportlabs.com.Dayflow                        | Dayflow

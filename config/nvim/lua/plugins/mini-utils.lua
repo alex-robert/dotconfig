@@ -5,9 +5,13 @@ return {
     config = function()
       require('mini.basics').setup({
         options = {
-        basic = true,
-        extra_ui = false,
-        win_borders = 'auto', }
+          basic = true,
+          extra_ui = false,
+          win_borders = 'auto',
+        },
+        mappings = {
+          window = true,
+        }
       })
     end
   },

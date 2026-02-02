@@ -4,11 +4,16 @@ require('shared.options')
 require('shared.keymaps')
 
 vim.opt.signcolumn = "no"
-vim.opt.showmode = false
+vim.opt.cursorline = true
 
-vim.keymap.set("n", "<C-c>n", "<Cmd>tabnew<CR><Cmd>DBUI<CR>", { desc = "New db tab" })
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    if vim.fn.argc() == 0 and vim.fn.line2byte("$") == -1 then
+      vim.cmd("enew")
+    end
+  end,
+})
 
--- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -38,4 +43,3 @@ require("lazy").setup("plugins", {
     },
   },
 })
-

@@ -7,39 +7,27 @@
           "wight": "#a6a4a6",
           "text": "#272727",
           "green": "#6CA35E"
-    },
-
+  },
   "blocks": [
     {
       "type": "prompt",
       "alignment": "left",
       "segments": [
         {
-          "options": {
-            "macos": "\uea85"
-          },
-          "leading_diamond": "\u256d\u2500\ue0b2",
-          "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
-          "foreground": "#272727",
-          "background": "p:wight",
-          "type": "os",
-          "style": "diamond"
-        },
-        {
           "type": "path",
+          "alias": "TwoDepthPath",
           "options": {
             "folder_icon": "\uf115",
-            "folder_separator_icon": " \ue0b1 ",
-            "home_icon": "\uedc5", 
-            "max_depth": 2,
+            "folder_separator_icon": "/",
+            "home_icon": "\uedc5",
+            "max_depth": 3,
             "hide_root_location":true,
-            "style": "agnoster_short"
+            "style": "agnoster"
           },
           "template": " {{ .Path }} ",
           "background": "p:blue",
           "foreground": "p:text",
-          
-          "leading_diamond": "\u256d\u2500\ue0b2",
+
           "powerline_symbol": "\ue0b0",
 
           "style": "powerline"
@@ -75,43 +63,20 @@
           ]
         },
         {
-          "type": "executiontime",
-          "options": {
-            "always_enabled": false,
-            "style": "amarillo",
-            "threshold": 300
+          "options":{
+            "cache_duration": "none"
           },
-          "powerline_symbol": "\ue0b0",
-          "template": " \udb81\udd1b {{ .FormattedMs }} ", 
-          "foreground": "#272727",
-          "background": "#a6a4a6",
-          "style": "powerline"
-        }
-      ],
-      "newline": true
-    },
-    {
-      "type": "prompt",
-      "alignment": "left",
-      "segments": [
-
-        {
-          "type": "time",
-          "style": "plain",
-          "foreground": "p:wight",
-          "template": "\u2570\u2500({{ .CurrentDate | date .Format }})"
-        },
-
-
-        {
           "type": "text",
-          "template": "\u2500>",
-          "foreground": "p:wight",
-          "style": "plain"
+          "style": "powerline",
+          "leading_diamond": "\u256d\u2500\ue0b2",
+          "powerline_symbol": "\ue0b0",
+          "template": "{{ if .Env.POSH_VI_MODE }} {{ .Env.POSH_VI_MODE }} {{ end }}"
         }
+
       ],
       "newline": true
     }
+
   ],
   "version": 4,
   "final_space": true

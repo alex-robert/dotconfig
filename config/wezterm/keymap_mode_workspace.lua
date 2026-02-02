@@ -12,7 +12,7 @@ return {
   },
   {
     key = "r",
-     mods = 'CTRL',
+     -- mods = 'CTRL',
     action = wezterm.action.Multiple {
       wezterm.action_callback(function(win, pane)
       resurrect.fuzzy_loader.fuzzy_load(win, pane, function(id, label)

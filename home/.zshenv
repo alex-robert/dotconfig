@@ -19,7 +19,7 @@ export HISTFILE="$ZDOTDIR/.zsh_history"
 export HISTSIZE=50000
 export SAVEHIST=50000
 
-export EDITOR="nvim --clean"
+export EDITOR="env NVIM_APPNAME=nvim-minimal nvim"
 
 export CLAUDE_CONFIG_DIR="$HOME/.config/claude"
 

@@ -89,8 +89,10 @@ local tabline_config = {
         padding = { left = 2, right = 2 },
         fmt = function(str, window)
           -- Use icons for modes
+          -- local vi_mode = os.getenv('POSH_VI_MODE') or ''
+          local vi_mode = ''
           if str == 'NORMAL' then
-            return wezterm.nerdfonts.cod_terminal .. ' '
+            return wezterm.nerdfonts.cod_terminal .. ' ' .. vi_mode
             -- .. active_process(window)
            elseif str == 'WORKSPACE' then
              return wezterm.nerdfonts.md_view_dashboard .. ' WORKSPACE'
@@ -107,17 +109,17 @@ local tabline_config = {
         end
       },
     },
-    tabline_b = { 
+    tabline_b = {
       {
-        'workspace', 
+        'workspace',
         padding = { left = 2, right = 1 },
         fmt = function(str, window)
           if str == 'default' then
             return ''
           end
           return str
-        end 
-      } 
+        end
+      }
     },
     tabline_c = { '' },
     tab_active = {
@@ -125,7 +127,7 @@ local tabline_config = {
       '|',
       'process',
       '',
-      { 'cwd', padding = { left = 0, right = 1 } },
+      -- { 'cwd', padding = { left = 0, right = 1 } },
       { 'zoomed', padding = 0 },
     },
     tab_inactive = {
@@ -133,7 +135,7 @@ local tabline_config = {
       '',
       'process',
       '',
-      { 'cwd', padding = { left = 0, right = 1 } },
+      -- { 'cwd', padding = { left = 0, right = 1 } },
 
     },
     tabline_x = { ' ' },

@@ -1,23 +1,14 @@
--- Define config table to be able to pass data between scripts
-_G.Config = {
-    utils = {
-        nmap_leader = function(suffix, rhs, desc)
-            vim.keymap.set('n', '<Leader>' .. suffix, rhs, {
-                desc = desc
-            })
-        end,
+vim.opt.runtimepath:prepend(vim.fn.stdpath('config') .. '/../nvim-shared')
 
-        xmap_leader = function(suffix, rhs, desc)
-            vim.keymap.set('x', '<Leader>' .. suffix, rhs, {
-                desc = desc
-            })
-        end
-    }
+_G.Config = {
+    utils = require('shared.utils')
 }
+
+require('shared.options')
+require('shared.keymaps')
 
 require('options')
 require('keymaps')
 
-require('configs.lazy')
--- require('configs.mini')
-require('configs.after')
+require('lazy-setup')
+require('after-setup')
