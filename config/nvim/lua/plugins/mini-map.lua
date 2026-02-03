@@ -44,5 +44,43 @@ return {
       end,
     })
     vim.keymap.set('n', '<leader>om', '<Cmd>lua MiniMap.toggle()<CR>', { desc = 'Toggle minimap' })
+
+    -- Auto-hide mini.map when neo-tree is opened
+    local minimap_was_open = false
+
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = 'neo-tree',
+      callback = function()
+        minimap_was_open = MiniMap.current.win_data ~= nil
+        if minimap_was_open then
+          MiniMap.close()
+        end
+      end,
+    })
+
+    vim.api.nvim_create_autocmd('BufEnter', {
+      callback = function()
+        local neo_tree_visible = false
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          local buf = vim.api.nvim_win_get_buf(win)
+          local ft = vim.api.nvim_buf_get_option(buf, 'filetype')
+          if ft == 'neo-tree' then
+            neo_tree_visible = true
+            break
+          end
+        end
+
+        if not neo_tree_visible and minimap_was_open then
+          local buftype = vim.bo.buftype
+          local filetype = vim.bo.filetype
+          if buftype == '' and filetype ~= '' and filetype ~= 'neo-tree' then
+            vim.defer_fn(function()
+              MiniMap.open()
+            end, 100)
+          end
+        end
+      end,
+    })
   end
 }
+

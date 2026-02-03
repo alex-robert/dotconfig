@@ -1,4 +1,5 @@
-vim.opt.runtimepath:prepend(vim.fn.stdpath('config') .. '/../nvim-shared')
+local nvim_shared = vim.fn.fnamemodify(vim.fn.stdpath('config') .. '/../nvim-shared', ':p'):gsub('/$', '')
+vim.opt.runtimepath:prepend(nvim_shared)
 
 _G.Config = {
     utils = require('shared.utils')

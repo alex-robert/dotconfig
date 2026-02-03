@@ -1,0 +1,201 @@
+{
+  "Const Variable": {
+    "prefix": "co",
+    "body": "const ${1:name} = $0",
+    "description": "Const variable declaration"
+  },
+  "Arrow Function": {
+    "prefix": "af",
+    "body": [
+      "const ${1:name} = (${2:params}) => {",
+      "  $0",
+      "}"
+    ],
+    "description": "Arrow function"
+  },
+  "Arrow Function Expression": {
+    "prefix": "afe",
+    "body": "const ${1:name} = (${2:params}) => $0",
+    "description": "Arrow function expression (one-liner)"
+  },
+  "Async Arrow Function": {
+    "prefix": "aaf",
+    "body": [
+      "const ${1:name} = async (${2:params}) => {",
+      "  $0",
+      "}"
+    ],
+    "description": "Async arrow function"
+  },
+  "Interface": {
+    "prefix": "int",
+    "body": [
+      "interface I${1:Name} {",
+      "  $0",
+      "}"
+    ],
+    "description": "Interface definition"
+  },
+  "Class": {
+    "prefix": "cls",
+    "body": [
+      "class ${1:Name} {",
+      "  constructor(${2:params}) {",
+      "    $0",
+      "  }",
+      "}"
+    ],
+    "description": "Class definition"
+  },
+  "Method": {
+    "prefix": "met",
+    "body": [
+      "${1:name}(${2:params}) {",
+      "  $0",
+      "}"
+    ],
+    "description": "Class method"
+  },
+  "Private Method": {
+    "prefix": "pmet",
+    "body": [
+      "private _${1:name}(${2:params}) {",
+      "  $0",
+      "}"
+    ],
+    "description": "Private class method"
+  },
+  "If Statement": {
+    "prefix": "if",
+    "body": [
+      "if (${1:condition}) {",
+      "  $0",
+      "}"
+    ],
+    "description": "If statement"
+  },
+  "Ternary": {
+    "prefix": "ter",
+    "body": "${1:condition} ? ${2:true} : ${3:false}",
+    "description": "Ternary expression"
+  },
+  "Import": {
+    "prefix": "imp",
+    "body": "import { ${2:exports} } from '${1:module}'",
+    "description": "Named import"
+  },
+  "Import Default": {
+    "prefix": "impd",
+    "body": "import ${2:name} from '${1:module}'",
+    "description": "Default import"
+  },
+  "Export": {
+    "prefix": "exp",
+    "body": "export { ${1:exports} }",
+    "description": "Named export"
+  },
+  "Export Default": {
+    "prefix": "expd",
+    "body": "export default ${1:name}",
+    "description": "Default export"
+  },
+  "Injectable Decorator": {
+    "prefix": "@inj",
+    "body": "@Injectable()",
+    "description": "NestJS Injectable decorator"
+  },
+  "Module Decorator": {
+    "prefix": "@mod",
+    "body": [
+      "@Module({",
+      "  imports: [${1:}],",
+      "  providers: [${2:}],",
+      "})"
+    ],
+    "description": "NestJS Module decorator"
+  },
+  "NestJS Service": {
+    "prefix": "serv",
+    "body": [
+      "@Injectable()",
+      "export class ${1:Name}Service {",
+      "  constructor(${2:}) {",
+      "    $0",
+      "  }",
+      "}"
+    ],
+    "description": "NestJS Service class"
+  },
+  "NestJS Module": {
+    "prefix": "module",
+    "body": [
+      "@Module({",
+      "  imports: [${1:}],",
+      "  providers: [${2:}],",
+      "})",
+      "export class ${4:Name}Module {}"
+    ],
+    "description": "NestJS Module class"
+  },
+  "Command Decorator": {
+    "prefix": "@cmd",
+    "body": [
+      "@Command({",
+      "  name: '${1:command-name}',",
+      "  description: '${2:description}',",
+      "})"
+    ],
+    "description": "nest-commander Command decorator"
+  },
+  "Option Decorator": {
+    "prefix": "@opt",
+    "body": [
+      "@Option({",
+      "  flags: '${1:-f, --flag}',",
+      "  description: '${2:description}',",
+      "})"
+    ],
+    "description": "nest-commander Option decorator"
+  },
+  "Command Runner": {
+    "prefix": "command",
+    "body": [
+      "@Command({",
+      "  name: '${1:command-name}',",
+      "  description: '${2:description}',",
+      "})",
+      "export class ${3:Name}Command extends CommandRunner {",
+      "  async run(passedParams: string[], options?: ${4:OptionsType}): Promise<void> {",
+      "    $0",
+      "  }",
+      "}"
+    ],
+    "description": "nest-commander CommandRunner class"
+  },
+  "Question Set": {
+    "prefix": "qset",
+    "body": [
+      "@QuestionSet({ name: '${1:name}' })",
+      "export class ${2:Name}Questions {",
+      "  @Question({",
+      "    message: '${3:question}',",
+      "    name: '${4:answer}',",
+      "  })",
+      "  parse${5:Answer}(val: string) {",
+      "    return val",
+      "  }",
+      "}"
+    ],
+    "description": "nest-commander QuestionSet"
+  },
+  "Question Decorator": {
+    "prefix": "@ques",
+    "body": [
+      "@Question({",
+      "  message: '${1:question}',",
+      "  name: '${2:answer}',",
+      "})"
+    ],
+    "description": "nest-commander Question decorator"
+  }
+}

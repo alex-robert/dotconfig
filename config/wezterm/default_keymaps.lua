@@ -4,8 +4,8 @@ local bindings = {
 
 -- Debug
 {
-    key = 'd',
-    mods = 'CMD|CTRL|ALT',
+    key = 'D',
+    mods = 'CTRL|ALT',
     action = wezterm.action.ShowDebugOverlay
 },
 
@@ -27,12 +27,12 @@ local bindings = {
     }
 },
 {
-    key = 'l',
+    key = 'd',
     mods = 'CMD|CTRL|ALT',
     action = wezterm.action.ActivateTabRelative(1)
 },
 {
-    key = 'h',
+    key = 'q',
     mods = 'CMD|CTRL|ALT',
     action = wezterm.action.ActivateTabRelative(-1)
 },

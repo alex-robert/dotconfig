@@ -1,0 +1,189 @@
+{
+  // VSCodeVim Configuration
+  "vim.leader": "<space>",
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.incsearch": true,
+  "vim.ignorecase": true,
+  "vim.smartcase": true,
+
+  // Disable arrow keys in normal and visual mode
+  "vim.normalModeKeyBindingsNonRecursive": [
+    // Arrow keys disabled
+    { "before": ["<up>"], "after": ["<nop>"] },
+    { "before": ["<down>"], "after": ["<nop>"] },
+    { "before": ["<left>"], "after": ["<nop>"] },
+    { "before": ["<right>"], "after": ["<nop>"] },
+
+    // HJKL remaps for faster movement
+    { "before": ["H"], "after": ["b"] },
+    { "before": ["J"], "after": ["5", "j"] },
+    { "before": ["K"], "after": ["5", "k"] },
+    { "before": ["L"], "after": ["w"] },
+
+    // Split management (Ctrl+w prefix)
+    {
+      "before": ["<C-w>", "v"],
+      "commands": ["workbench.action.splitEditorRight"]
+    },
+    {
+      "before": ["<C-w>", "h"],
+      "commands": ["workbench.action.splitEditorDown"]
+    },
+    {
+      "before": ["<C-w>", "x"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    {
+      "before": ["<C-w>", "e"],
+      "commands": ["workbench.action.evenEditorWidths"]
+    },
+
+    // Leader key mappings - Find group
+    {
+      "before": ["<leader>", "f", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "f", "r"],
+      "commands": ["workbench.action.openRecent"]
+    },
+    {
+      "before": ["<leader>", "f", "g"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["<leader>", "f", "w"],
+      // "commands": ["workbench.action.findInFiles"],
+      "commands": [{ "command": "workbench.action.findInFiles", "args": { "query": "<cword>" } }]
+    },
+
+    // Leader key mappings - Explore group
+    {
+      "before": ["<leader>", "e", "d"],
+      "commands": ["workbench.view.explorer"]
+    },
+    {
+      "before": ["<leader>", "e", "f"],
+      "commands": ["revealFileInOS"]
+    },
+    {
+      "before": ["<leader>", "e", "t"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+
+    // Leader key mappings - Buffer group
+    {
+      "before": ["<leader>", "b", "d"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    {
+      "before": ["<leader>", "b", "o"],
+      "commands": ["workbench.action.closeOtherEditors"]
+    },
+    {
+      "before": ["<leader>", "b", "n"],
+      "commands": ["workbench.action.files.newUntitledFile"]
+    },
+
+    // Leader key mappings - Tab/Editor group management
+    {
+      "before": ["<leader>", "t", "n"],
+      "commands": ["workbench.action.nextEditor"]
+    },
+    {
+      "before": ["<leader>", "t", "p"],
+      "commands": ["workbench.action.previousEditor"]
+    },
+    {
+      "before": ["<leader>", "t", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+
+    // Leader key mappings - Scratchpad
+    {
+      "before": ["<leader>", "s", "n"],
+      "commands": ["workbench.action.files.newUntitledFile"]
+    },
+
+    // Leader key mappings - Git group
+    {
+      "before": ["<leader>", "g", "g"],
+      "commands": ["workbench.view.scm"]
+    },
+    {
+      "before": ["<leader>", "g", "s"],
+      "commands": ["git.stage"]
+    },
+    {
+      "before": ["<leader>", "g", "c"],
+      "commands": ["git.commit"]
+    },
+    {
+      "before": ["<leader>", "g", "p"],
+      "commands": ["git.push"]
+    },
+    {
+      "before": ["<leader>", "g", "d"],
+      "commands": ["git.openChange"]
+    },
+
+    // Leader key mappings - LSP/Code group
+    {
+      "before": ["<leader>", "c", "a"],
+      "commands": ["editor.action.quickFix"]
+    },
+    {
+      "before": ["<leader>", "c", "r"],
+      "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["<leader>", "c", "d"],
+      "commands": ["editor.action.revealDefinition"]
+    },
+    {
+      "before": ["<leader>", "c", "f"],
+      "commands": ["editor.action.formatDocument"]
+    },
+
+    // Leader key mappings - Code utilities
+    {
+      "before": ["<leader>", "o", "c"],
+      "commands": ["editor.action.commentLine"]
+    }
+  ],
+
+  "vim.visualModeKeyBindingsNonRecursive": [
+    // Arrow keys disabled
+    { "before": ["<up>"], "after": ["<nop>"] },
+    { "before": ["<down>"], "after": ["<nop>"] },
+    { "before": ["<left>"], "after": ["<nop>"] },
+    { "before": ["<right>"], "after": ["<nop>"] },
+
+    // HJKL remaps
+    { "before": ["H"], "after": ["b"] },
+    { "before": ["J"], "after": ["5", "j"] },
+    { "before": ["K"], "after": ["5", "k"] },
+    { "before": ["L"], "after": ["w"] },
+
+    // Keep selection after indent
+    { "before": ["<"], "after": ["<", "g", "v"] },
+    { "before": [">"], "after": [">", "g", "v"] }
+  ],
+
+  "vim.operatorPendingModeKeyBindings": [
+    // Text objects
+    { "before": ["i", "p"], "after": ["i", "("] },
+    { "before": ["i", "b"], "after": ["i", "{"] },
+    { "before": ["i", "r"], "after": ["i", "["] },
+    { "before": ["a", "p"], "after": ["a", "("] },
+    { "before": ["a", "b"], "after": ["a", "{"] },
+    { "before": ["a", "r"], "after": ["a", "["] }
+  ],
+
+  // Additional VSCode settings for better Vim experience
+  "editor.lineNumbers": "relative",
+  "editor.cursorBlinking": "solid",
+  "editor.cursorSurroundingLines": 8
+}

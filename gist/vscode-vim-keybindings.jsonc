@@ -1,0 +1,106 @@
+[
+  // Additional VSCode keybindings to complement VSCodeVim
+  // These work outside of Vim modes
+
+  // Quick Open (like Telescope find_files)
+  {
+    "key": "cmd+p",
+    "command": "workbench.action.quickOpen"
+  },
+
+  // Command Palette (like Telescope commands)
+  {
+    "key": "cmd+shift+p",
+    "command": "workbench.action.showCommands"
+  },
+
+  // Search in files (like Telescope live_grep)
+  {
+    "key": "cmd+shift+f",
+    "command": "workbench.action.findInFiles"
+  },
+
+  // Toggle terminal (useful for quick access)
+  {
+    "key": "ctrl+`",
+    "command": "workbench.action.terminal.toggleTerminal"
+  },
+
+  // Split navigation (Ctrl+Alt+hjkl)
+  {
+    "key": "ctrl+alt+h",
+    "command": "workbench.action.focusLeftGroup"
+  },
+  {
+    "key": "ctrl+alt+j",
+    "command": "workbench.action.focusBelowGroup"
+  },
+  {
+    "key": "ctrl+alt+k",
+    "command": "workbench.action.focusAboveGroup"
+  },
+  {
+    "key": "ctrl+alt+l",
+    "command": "workbench.action.focusRightGroup"
+  },
+
+  // Buffer/Editor navigation (Ctrl+Alt+qd)
+  {
+    "key": "ctrl+alt+q",
+    "command": "workbench.action.previousEditor"
+  },
+  {
+    "key": "ctrl+alt+d",
+    "command": "workbench.action.nextEditor"
+  },
+  {
+    "key": "ctrl+alt+x",
+    "command": "workbench.action.closeActiveEditor"
+  },
+
+  // Split editor shortcuts
+  {
+    "key": "cmd+\\",
+    "command": "workbench.action.splitEditorRight"
+  },
+  {
+    "key": "cmd+shift+\\",
+    "command": "workbench.action.splitEditorDown"
+  },
+
+  // Close active editor
+  {
+    "key": "cmd+w",
+    "command": "workbench.action.closeActiveEditor"
+  },
+
+  // Go to symbol in file (like Telescope LSP document symbols)
+  {
+    "key": "cmd+r",
+    "command": "workbench.action.gotoSymbol"
+  },
+
+  // Go to symbol in workspace (like Telescope LSP workspace symbols)
+  {
+    "key": "cmd+t",
+    "command": "workbench.action.showAllSymbols"
+  },
+
+  // Show problems/diagnostics (like Trouble)
+  {
+    "key": "cmd+shift+m",
+    "command": "workbench.actions.view.problems"
+  },
+
+  // File explorer toggle
+  {
+    "key": "cmd+b",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+
+  // Zen mode (distraction-free)
+  {
+    "key": "cmd+k z",
+    "command": "workbench.action.toggleZenMode"
+  }
+]

@@ -1,5 +1,8 @@
 local opt = vim.opt
 
+opt.relativenumber = false
+opt.number = true
+
 opt.signcolumn = "yes"
 opt.cursorline = true
 opt.cmdheight = 0
@@ -22,4 +25,3 @@ opt.foldminlines = 20
 opt.foldcolumn = "auto"
 
 opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-

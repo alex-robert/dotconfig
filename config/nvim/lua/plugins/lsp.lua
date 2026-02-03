@@ -91,6 +91,17 @@ return {
       local cmp = require("cmp")
       local luasnip = require("luasnip")
 
+      -- Configure LuaSnip
+      luasnip.setup({
+        history = true,
+        updateevents = "TextChanged,TextChangedI",
+      })
+
+      -- Load custom VSCode-style snippets
+      require("luasnip.loaders.from_vscode").lazy_load({
+        paths = { vim.fn.stdpath("config") .. "/snippets" },
+      })
+
       cmp.setup({
         snippet = {
           expand = function(args)

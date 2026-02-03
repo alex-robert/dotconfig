@@ -7,3 +7,4 @@
 
 ## Ask first, search after
 - You always need a doc or a source base, I can usually provide it
+- Never create Readme or documentation unless explicitly asked for

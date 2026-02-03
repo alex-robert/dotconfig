@@ -1,4 +1,8 @@
-vim.cmd('colorscheme bluloco-dark')
+vim.cmd('colorscheme arctic')
+
+-- Ensure hybrid line numbers (override any plugin settings)
+-- vim.opt.number = true
+-- vim.opt.relativenumber = true
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "MiniFilesActionRename",

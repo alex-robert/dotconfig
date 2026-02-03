@@ -3,7 +3,7 @@ return {
     lazy = false,
     config = function()
       require("themery").setup({
-       themes = {"arctic", "miasma", "bluloco-dark", "bluloco-light", "vaporlush"},
+       themes = {"arctic", },
        livePreview = true,
      })
     end

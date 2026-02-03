@@ -36,6 +36,13 @@ return {
       end
     end
 
+    local function smart_mouse_open(state)
+      local node = state.tree:get_node()
+      if node.type ~= "directory" then
+        require("neo-tree.sources.common.commands").preview(state)
+      end
+    end
+
     require('neo-tree').setup({
       close_if_last_window = false,
       enable_git_status = true,
@@ -43,14 +50,21 @@ return {
 
       window = {
         position = "right",
-        width = 40,
+        width = 30,
+        mapping_options = {
+          noremap = true,
+          nowait = true,
+        }, 
         mappings = {
-          -- ["<LeftMouse>"] = "preview",
-          -- ["<2-LeftMouse>"] = "open",
+          -- ["<space>"] = {
+          --   "toggle_node",
+          --   nowait = true,
+          -- },
+          -- ["<LeftMouse>"] = smart_mouse_open,
+          ["<2-LeftMouse>"] = "open",
           ["l"] = smart_open,
           ["L"] = "open",
           ["h"] = "close_node",
-          ["<space>"] = "toggle_node",
           ["<cr>"] = "open",
           ["s"] = "open_split",
           ["v"] = "open_vsplit",
@@ -60,6 +74,8 @@ return {
           ["R"] = "refresh",
           ["P"] = "toggle_preview",
           ["?"] = "show_help",
+          ["q"] = "close_window",
+          ["<leader>et"] = "close_window",
         },
       },
 
@@ -89,20 +105,20 @@ return {
     })
 
     -- vim.api.nvim_create_autocmd("BufEnter", {
-    --   group = vim.api.nvim_create_augroup("neotree_auto_close", { clear = true }),
-    --   callback = function()
-    --     local buftype = vim.bo.buftype
-    --     local filetype = vim.bo.filetype
-    --
-    --     if buftype == "" and filetype ~= "neo-tree" then
-    --       local manager = require("neo-tree.sources.manager")
-    --       local state = manager.get_state("filesystem")
-    --
-    --       if state and state.winid and vim.api.nvim_win_is_valid(state.winid) then
-    --         require("neo-tree.command").execute({ action = "close" })
-    --       end
-    --     end
-    --   end,
-    -- })
-  end,
-}
+      --   group = vim.api.nvim_create_augroup("neotree_auto_close", { clear = true }),
+      --   callback = function()
+        --     local buftype = vim.bo.buftype
+        --     local filetype = vim.bo.filetype
+        --
+        --     if buftype == "" and filetype ~= "neo-tree" then
+        --       local manager = require("neo-tree.sources.manager")
+        --       local state = manager.get_state("filesystem")
+        --
+        --       if state and state.winid and vim.api.nvim_win_is_valid(state.winid) then
+        --         require("neo-tree.command").execute({ action = "close" })
+        --       end
+        --     end
+        --   end,
+        -- })
+      end,
+    }

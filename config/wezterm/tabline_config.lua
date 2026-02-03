@@ -10,26 +10,6 @@ local highlighted_processes = {
   claude = true,
 }
 
-local function active_process(window)
-  local active_pane = window:active_pane()
-  if not active_pane then
-    return 'zsh'
-  end
-
-  local process_info = active_pane:get_foreground_process_info()
-  if not process_info then
-    return 'zsh'
-  end
-
-  local process_name = process_info.executable:match("([^/\\]+)$")
-  if process_name and highlighted_processes[process_name] then
-    return process_name
-  end
-
-  return 'zsh'
-end
-
-
 local tabline_config = {
   options = {
     icons_enabled = true,
@@ -112,10 +92,10 @@ local tabline_config = {
     tabline_b = {
       {
         'workspace',
-        padding = { left = 2, right = 1 },
+        padding = { left = 2, right = 2 },
         fmt = function(str, window)
           if str == 'default' then
-            return ''
+            return 'main'
           end
           return str
         end
@@ -124,18 +104,18 @@ local tabline_config = {
     tabline_c = { '' },
     tab_active = {
       'index',
-      '|',
+      '',
       'process',
       '',
-      -- { 'cwd', padding = { left = 0, right = 1 } },
+      { 'cwd', padding = { left = 0, right = 1 } },
       { 'zoomed', padding = 0 },
     },
     tab_inactive = {
       'index',
       '',
       'process',
+      { 'cwd', padding = { left = 0, right = 1 } },
       '',
-      -- { 'cwd', padding = { left = 0, right = 1 } },
 
     },
     tabline_x = { ' ' },

@@ -37,7 +37,7 @@ return {
     require('trouble').setup({
       modes = {
         symbols = {
-          win = { position = "left", size = 0.4 },
+          win = { position = "left", size = 0.22 },
           format = "{kind_icon} {symbol.name}",
         }}
       })
