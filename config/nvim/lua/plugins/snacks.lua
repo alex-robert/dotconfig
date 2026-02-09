@@ -21,14 +21,21 @@ return {
         },
         refresh = 50,
       },
-      scratch = {},
+      scratch = {
+        win = {
+          style = {
+            width = 0.94,
+            height = 0.9,
+          }
+        }
+      },
       rename = { enabled = true },
     },
     keys = {
       { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit (Root Dir)" },
-      { "<leader>gG", function() Snacks.lazygit({ cwd = vim.fn.getcwd() }) end, desc = "Lazygit (cwd)" },
+      -- { "<leader>gG", function() Snacks.lazygit({ cwd = vim.fn.getcwd() }) end, desc = "Lazygit (cwd)" },
       { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit Log" },
-      { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit File History" },
+      -- { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit File History" },
       { "<leader>ss",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
       { "<leader>sl",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
       { "<leader>sr",  function() Snacks.rename.rename_file() end, desc = "Rename File" },

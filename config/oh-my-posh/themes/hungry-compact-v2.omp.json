@@ -17,7 +17,7 @@
           "options": {
             "macos": "\uea85"
           },
-          "leading_diamond": "\u256d\u2500\ue0b2",
+          "leading_diamond": "\ue0b2",
           "template": " {{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
           "foreground": "#272727",
           "background": "p:wight",
@@ -30,8 +30,8 @@
           "options": {
             "folder_icon": "\uf115",
             "folder_separator_icon": " \ue0b1 ",
-            "home_icon": "\uedc5", 
-            "max_depth": 2,
+            "home_icon": "\uedc5",
+            "max_depth": 1,
             "hide_root_location":true,
             "style": "agnoster_short"
           },
@@ -82,7 +82,7 @@
             "threshold": 300
           },
           "powerline_symbol": "\ue0b0",
-          "template": " \udb81\udd1b {{ .FormattedMs }} ", 
+          "template": " \udb81\udd1b {{ .FormattedMs }} ",
           "foreground": "#272727",
           "background": "#a6a4a6",
           "style": "powerline"
@@ -96,20 +96,7 @@
       "segments": [
         {
           "type": "text",
-          "template": "\u2570\u2500",
-          "foreground": "p:wight",
-          "style": "plain"
-        },
-        {
-          "type": "time",
-          "alias": "CmdTime",
-          "style": "plain",
-          "foreground": "p:wight",
-          "template": "({{ .CurrentDate | date .Format }})"
-        },
-        {
-          "type": "text",
-          "template": "\u2500>",
+          "template": ">",
           "foreground": "p:wight",
           "style": "plain"
         }

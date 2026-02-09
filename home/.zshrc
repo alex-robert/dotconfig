@@ -137,7 +137,7 @@ load-nvmrc
 ## Oh My Posh
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   # eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/alex-r-v1.omp.json)"
-  eval "$(oh-my-posh init zsh --config $HOME_CONFIG/oh-my-posh/themes/hungry-compact-v2.omp.json)"
+  eval "$(oh-my-posh init zsh --config $HOME_CONFIG/oh-my-posh/themes/hungry-compact-v3.omp.json)"
 fi
 
 

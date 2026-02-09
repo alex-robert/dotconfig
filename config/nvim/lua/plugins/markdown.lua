@@ -6,6 +6,9 @@ return {
       "nvim-tree/nvim-web-devicons" },
       opts = {},
       ft = "markdown",
+      keys = {
+        { "<leader>mr", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle markdown rendering" },
+      },
     },
     {
       "iamcco/markdown-preview.nvim",

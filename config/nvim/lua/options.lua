@@ -25,3 +25,4 @@ opt.foldminlines = 20
 opt.foldcolumn = "auto"
 
 opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+

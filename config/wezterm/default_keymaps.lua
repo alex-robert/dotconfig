@@ -2,116 +2,153 @@ local wezterm = require 'wezterm'
 
 local bindings = {
 
--- Debug
-{
-    key = 'D',
-    mods = 'CTRL|ALT',
+  -- Debug
+  {
+    key = 'd',
+    mods = 'LEADER',
     action = wezterm.action.ShowDebugOverlay
-},
+  },
+  {
+    key = 'r',
+    mods = 'LEADER',
+    action = wezterm.action.ReloadConfiguration,
+  },
 
---Command palette
-{
+  --Command palette
+  {
 
-    key = 'P',
-    mods = 'CMD',
+    key = 'p',
+    mods = 'LEADER',
     action = wezterm.action.ActivateCommandPalette,
-},
+  },
 
 
--- Tabs
-{
+  -- Tabs
+  {
     key = "t",
     mods = "CMD",
     action = wezterm.action {
-        SpawnTab = "CurrentPaneDomain"
+      SpawnTab = "CurrentPaneDomain"
     }
-},
-{
-    key = 'd',
+  },
+  {
+    key = 'l',
     mods = 'CMD|CTRL|ALT',
     action = wezterm.action.ActivateTabRelative(1)
-},
-{
-    key = 'q',
+  },
+  {
+    key = 'h',
     mods = 'CMD|CTRL|ALT',
     action = wezterm.action.ActivateTabRelative(-1)
-},
+  },
+  {
+    key = 'l',
+    mods = 'CMD|CTRL|ALT|SHIFT',
+    action = wezterm.action.MoveTabRelative(1)
+  },
+  {
+    key = 'h',
+    mods = 'CMD|CTRL|ALT|SHIFT',
+    action = wezterm.action.MoveTabRelative(-1)
+  },
 
--- Panes
-{
+  -- Panes
+  {
     key = 'w',
     mods = 'CMD',
     action = wezterm.action.CloseCurrentPane {
-        confirm = true
+      confirm = true
     }
-},
-
--- Pane navigation (HJKL)
-{
+  },
+  {
+    key = 'Enter',
+    mods = 'CMD|CTRL|ALT',
+    action = wezterm.action.TogglePaneZoomState
+  },
+  {
     key = 'k',
     mods = 'CMD',
     action = wezterm.action.ActivatePaneDirection 'Up'
-},
-{
+  },
+  {
     key = 'j',
     mods = 'CMD',
     action = wezterm.action.ActivatePaneDirection 'Down'
-},
-{
+  },
+  {
     key = 'h',
     mods = 'CMD',
     action = wezterm.action.ActivatePaneDirection 'Left'
-},
-{
+  },
+  {
     key = 'l',
     mods = 'CMD',
     action = wezterm.action.ActivatePaneDirection 'Right'
-},
+  },
 
--- Word navigation (Option + arrows)
-{
+  {
+    key = 'I',
+    mods = 'CMD|SHIFT',
+    action = wezterm.action.AdjustPaneSize {'Up', 5}
+  }, {
+    key = 'K',
+    mods = 'CMD|SHIFT',
+    action = wezterm.action.AdjustPaneSize {'Down', 5}
+  },
+  {
+    key = 'H',
+    mods = 'CMD|SHIFT',
+    action = wezterm.action.AdjustPaneSize {'Left', 5}
+  }, {
+    key = 'L',
+    mods = 'CMD|SHIFT',
+    action = wezterm.action.AdjustPaneSize {'Right', 5}
+  },
+
+  -- Word navigation (Option + arrows)
+  {
     key = 'LeftArrow',
     mods = 'OPT',
     action = wezterm.action.SendKey {
-        key = 'b',
-        mods = 'ALT'
+      key = 'b',
+      mods = 'ALT'
     }
-},
-{
+  },
+  {
     key = 'RightArrow',
     mods = 'OPT',
     action = wezterm.action.SendKey {
-        key = 'f',
-        mods = 'ALT'
+      key = 'f',
+      mods = 'ALT'
     }
-},
+  },
 
--- Line beginning/end (Cmd + left/right)
-{
+  -- Line beginning/end (Cmd + left/right)
+  {
     key = 'LeftArrow',
     mods = 'CMD',
     action = wezterm.action.SendKey {
-        key = 'a',
-        mods = 'CTRL'
+      key = 'a',
+      mods = 'CTRL'
     }
-},
-{
+  },
+  {
     key = 'RightArrow',
     mods = 'CMD',
     action = wezterm.action.SendKey {
-        key = 'e',
-        mods = 'CTRL'
+      key = 'e',
+      mods = 'CTRL'
     }
-},
+  },
 }
 
 
 return {
-    leader = {
-        key = 'a',
-        mods = 'CMD',
-        timeout_milliseconds = 1500
-    },
-    key_tables = {},
-    keys = bindings
+  leader = {
+    key = 'a',
+    mods = 'CMD',
+    timeout_milliseconds = 1500
+  },
+  key_tables = {},
+  keys = bindings
 }

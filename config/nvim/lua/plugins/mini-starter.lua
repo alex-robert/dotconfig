@@ -11,12 +11,13 @@ return {
     end
 
     starter.setup({
+      autoopen = false,
       evaluate_single = false,
       items = {
         new_section('Find file', 'Telescope find_files', 'Telescope'),
         new_section('Recent files', 'Telescope oldfiles', 'Telescope'),
         -- new_section('Grep text', 'Telescope live_grep', 'Telescope'),
-        new_section('Restore session', 'lua MiniSessions.read(MiniSessions.get_latest())', 'Session'),
+        new_section('Restore session', 'lua MiniSessions.read(".mini.session.vim")', 'Session'),
         new_section('New file', 'enew', 'Built-in'),
         new_section('Quit', 'qall', 'Built-in'),
       },
@@ -46,6 +47,16 @@ return {
         local ms = math.floor(stats.startuptime * 100) / 100
         starter.config.footer = 'Loaded ' .. stats.loaded .. '/' .. stats.count .. ' plugins in ' .. ms .. 'ms'
         pcall(starter.refresh)
+      end,
+    })
+
+    -- Only show starter if no session file exists
+    vim.api.nvim_create_autocmd('VimEnter', {
+      nested = true,
+      callback = function()
+        if vim.fn.argc() == 0 and vim.fn.filereadable('.mini.session.vim') == 0 then
+          require('mini.starter').open()
+        end
       end,
     })
   end,

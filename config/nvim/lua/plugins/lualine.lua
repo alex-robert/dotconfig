@@ -17,52 +17,26 @@ return {
         end
       end
 
-      local function git_blame()
-        local ok, gitsigns = pcall(require, 'gitsigns')
-        if not ok then
-          return ''
-        end
 
-        local blame_info = gitsigns.get_blame_line()
-        if not blame_info then
-          return ''
-        end
-
-        local author = blame_info.author or 'Unknown'
-        local date = blame_info.author_time and os.date('%Y-%m-%d', blame_info.author_time) or ''
-
-        if author == 'Not Committed Yet' then
-          return ''
-        end
-
-        return string.format('%s • %s', author, date)
+      local function tab_header()
+        return ''
       end
 
-      local trouble = require("trouble")
-      local symbols = trouble.statusline({
-        mode = "lsp_document_symbols",
-        groups = {},
-        title = false,
-        filter = { range = true },
-        format = "{kind_icon}{symbol.name:Normal}",
-        -- The following line is needed to fix the background color
-        -- Set it to the lualine section you want to use
-        hl_group = "lualine_c_normal",
-      })
 
       require("lualine").setup({
         options = {
-          -- theme = 'powerline_dark',   
-          theme = 'bubbles_theme',
+          theme = 'auto',
+          -- theme = 'bubbles_theme',
           component_separators = '',
-          section_separators = { left = '', right = '' },
+          section_separators = { left = '', right = '' },
           globalstatus = true,
         },
         sections = {
           lualine_a = {
             {
               'mode',
-              separator = { left = '' }, right_padding = 2, 
+              -- separator = { left = '' },
+              right_padding = 2,
             },
           },
           lualine_b = { 'branch', { 'diff', source = diff_source } , 'diagnostics' },
@@ -70,41 +44,53 @@ return {
             {
               'searchcount',
             },
-            {
-              symbols.get,
-              cond = symbols.has,
-            }
+            -- {
+            --   symbols.get,
+            --   cond = symbols.has,
+            -- }
           },
           lualine_x = {
-            --       {
-              --         function()
-                --           local ok, gitsigns = pcall(require, 'gitsigns')
-                --           if not ok then
-                --             return "canot call gitsigns"
-                --           end
-                --           return "can call gitsigns"
-                --           -- local blame_info = gitsigns.get_blame_line()
-                --           -- if not blame_info then
-                --           --   return 'no blame info'
-                --           -- end
-                --           -- return blame_info.author or "unknown author"
-                --   end,
-                --   icon = "",
-                -- },
                 'encoding',
                 'fileformat',
                 'filetype',
               },
               lualine_y = { 'progress' },
-              lualine_z = { 'location', separator = { right = '' }, left_padding = 2 },
+              lualine_z = {
+                {
+                  'location',
+                  -- separator = { right = '' },
+                }
+              },
             },
             tabline = {
-              lualine_a = {},
-              lualine_b = {'buffers'},
+              lualine_a = { tab_header },
+              lualine_b = {
+                {
+                  'buffers',
+                --   -- component_separators = ' | ',
+                buffers_color = {
+                  -- Same values as the general color option can be used here.
+                  active = 'lualine_a_normal',     -- Color for active buffer.
+                  inactive = 'lualine_c_inactive', -- Color for inactive buffer.
+                },
+                symbols = {
+                  modified = '●',      -- Text to show when the buffer is modified
+                  alternate_file = '', -- Text to show to identify the alternate file
+                  directory =  '',     -- Text to show when the buffer is a directory
+                },
+                }
+              },
               lualine_c = {},
               lualine_x = {},
               lualine_y = {},
-              lualine_z = {{'tabs', mode = 2, tab_max_length = 30, max_length = vim.o.columns / 2,}},
+              lualine_z = {
+                {
+                  'tabs',
+                  mode = 0,
+                  tab_max_length = 30,
+                  max_length = vim.o.columns / 2,
+                }
+              },
             }
           })
         end,

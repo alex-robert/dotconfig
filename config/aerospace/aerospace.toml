@@ -121,8 +121,10 @@ cmd-alt-left  = ['workspace prev --wrap-around']
 # Switch monitor focus
 #https://nikitabobko.github.io/AeroSpace/commands#focus-monitor
 # focus-monitor
-cmd-alt-ctrl-right = ['focus-monitor --wrap-around next', 'move-mouse monitor-lazy-center']
-cmd-alt-ctrl-left  = ['focus-monitor --wrap-around prev',  'move-mouse monitor-lazy-center']
+cmd-alt-ctrl-right = ['focus-monitor --wrap-around next'
+#'move-mouse monitor-lazy-center'
+]
+cmd-alt-ctrl-left  = ['focus-monitor --wrap-around prev']
 
 # Layouts management
 shift-alt-ctrl-slash = ['balance-sizes']

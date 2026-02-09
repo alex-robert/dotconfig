@@ -9,7 +9,7 @@ local default_config = {
     enable_scroll_bar = false,
 
     -- -- Terminal behavior
-    automatically_reload_config = true,
+    automatically_reload_config = false,
     -- exit_behavior = 'CloseOnCleanExit',
     -- window_close_confirmation = 'NeverPrompt',
 
@@ -27,7 +27,7 @@ local default_config = {
     },
 
 
-    window_background_opacity = 0.95,
+    window_background_opacity = 0.99,
     macos_window_background_blur = 20,
     tab_bar_at_bottom = false,
     tab_max_width = 32,
@@ -43,14 +43,14 @@ local default_config = {
     --   font_size = 13.0, 
     -- },
 
-    font = wezterm.font("DroidSansM Nerd Font Mono", {
-        weight = "Regular",
+    font = wezterm.font("FiraCode Nerd Font Propo", {
+        weight = "Medium",
         stretch = "Normal",
         style = "Normal"
     }),
     -- font = wezterm.font("DepartureMono Nerd Font", {weight="Regular", stretch="Normal", style="Normal"}),
     -- font = wezterm.font('JetBrains Mono', { weight = 'Medium' }),
-    font_size = 14,
+    font_size = 14.5,
 
 }
 

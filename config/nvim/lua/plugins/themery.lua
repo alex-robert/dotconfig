@@ -1,6 +1,7 @@
 return {
     "zaldih/themery.nvim",
-    lazy = false,
+    cmd = 'Themery',
+    lazy = true,
     config = function()
       require("themery").setup({
        themes = {"arctic", },

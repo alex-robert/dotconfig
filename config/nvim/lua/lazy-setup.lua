@@ -40,6 +40,7 @@ require("lazy").setup({
   {import = "plugins.treesitter"},
   {import = "plugins.lsp"},
   {import = "plugins.dap"},
+  -- {import = "plugins.auto-save"},
   {import = "plugins.ccc"},
   {import = "plugins.telescope"},
   {import = "plugins.neo-tree"},

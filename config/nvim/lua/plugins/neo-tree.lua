@@ -36,12 +36,6 @@ return {
       end
     end
 
-    local function smart_mouse_open(state)
-      local node = state.tree:get_node()
-      if node.type ~= "directory" then
-        require("neo-tree.sources.common.commands").preview(state)
-      end
-    end
 
     require('neo-tree').setup({
       close_if_last_window = false,
