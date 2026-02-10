@@ -4,7 +4,7 @@ return {
     lazy = true,
     config = function()
       require("themery").setup({
-       themes = {"arctic", },
+       themes = {"arctic","vscode" },
        livePreview = true,
      })
     end

@@ -17,16 +17,17 @@ keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left split" })
 keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to bottom split" })
 keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper split" })
 keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right split" })
-keymap.set("n", "<C-x>", ":close<CR>", { desc = "Close current split" })
 
 -- Split management
 keymap.set("n", "<C-M-v>", ":vsplit<CR>", { desc = "Split vertically" })
 keymap.set("n", "<C-M-h>", ":split<CR>", { desc = "Split horizontally" })
 keymap.set("n", "<C-M-e>", "<C-w>=", { desc = "Equalize split sizes" })
+keymap.set("n", "<C-M-w>", ":close<CR>", { desc = "Close current split" })
+
 keymap.set("n", "<C-w>v", ":vsplit<CR>", { desc = "Split vertically" })
 keymap.set("n", "<C-w>h", ":split<CR>", { desc = "Split horizontally" })
 keymap.set("n", "<C-w>e", "<C-w>=", { desc = "Equalize split sizes" })
-keymap.set("n", "<C-w>x", ":close<CR>", { desc = "Close current window" })
+keymap.set("n", "<C-w>w", ":close<CR>", { desc = "Close current window" })
 
 -- Split + find file (C-w + f)
 keymap.set("n", "<C-w>f", function()

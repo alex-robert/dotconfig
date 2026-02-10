@@ -226,12 +226,6 @@ backspace = ['close-all-windows-but-current', 'mode main']
 ###########################
 
 [[on-window-detected]]
-    if.app-name-regex-substring = 'wezterm-gui'
-    # if.window-title-regex-substring = 'floating'
-    check-further-callbacks = false
-    run = ['layout floating', 'move-node-to-workspace 1']
-
-[[on-window-detected]]
     if.app-id = 'com.github.wez.wezterm'
     check-further-callbacks = true
     run = ['layout tiling', 'move-node-to-workspace 1']

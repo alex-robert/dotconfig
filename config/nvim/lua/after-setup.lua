@@ -1,4 +1,4 @@
-vim.cmd('colorscheme arctic')
+vim.cmd('colorscheme vscode')
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "MiniFilesActionRename",

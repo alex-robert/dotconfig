@@ -27,6 +27,5 @@ vim.keymap.set('x', 'P', '"0P', { desc = 'Paste before without yanking' })
 -- Toggle line numbers
 keymap.set("n", "<leader>ln", function()
   vim.wo.number = not vim.wo.number
-
   vim.wo.relativenumber = not vim.wo.relativenumber
 end, { desc = "Toggle line numbers" })

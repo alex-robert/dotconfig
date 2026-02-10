@@ -1,6 +1,16 @@
 local M = {}
 
 M.setup = function()
+
+  vim.cmd('highlight clear')
+  if vim.fn.exists('syntax_on') == 1 then
+    vim.cmd('syntax reset')
+  end
+
+  vim.g.colors_name = 'vscode'
+  vim.o.background = 'dark'
+
+  -- Color palette
   local c = {
     vscNone = 'NONE',
     vscFront = '#D4D4D4',
@@ -24,8 +34,10 @@ M.setup = function()
     vscSplitThumb = '#424242',
 
     vscCursorDarkDark = '#222222',
-    vscCursorDark = '#51504F',
-    vscCursorLight = '#AEAFAD',
+    -- vscCursorDark = '#51504F',
+    vscCursorDark = '#AEAFAD',
+    -- vscCursorLight = '#AEAFAD',
+    vscCursorLight = '#222222',
     vscSelection = '#264F78',
     vscLineNumber = '#5A5A5A',
 
@@ -91,7 +103,7 @@ M.setup = function()
 
   hl(0, 'Normal', { fg = c.vscFront, bg = c.vscBack })
   hl(0, 'ColorColumn', { fg = 'NONE', bg = c.vscCursorDarkDark })
-  hl(0, 'Cursor', { fg = c.vscCursorDark, bg = c.vscCursorLight })
+  hl(0, 'Cursor', { fg = c.vscCursorDark, bg = '#C586C0' })
   hl(0, 'CursorLine', { bg = c.vscCursorDarkDark })
   hl(0, 'CursorColumn', { fg = 'NONE', bg = c.vscCursorDarkDark })
   hl(0, 'Directory', { fg = c.vscBlue, bg = c.vscBack })
@@ -125,7 +137,7 @@ M.setup = function()
   hl(0, 'Search', { fg = c.vscNone, bg = c.vscSearch })
   hl(0, 'SpecialKey', { fg = c.vscBlue, bg = c.vscNone })
   hl(0, 'StatusLine', { fg = c.vscFront, bg = c.vscLeftMid })
-  hl(0, 'StatusLineNC', { fg = c.vscFront, bg = opts.transparent and c.vscBack or c.vscLeftDark })
+  hl(0, 'StatusLineNC', { fg = c.vscFront, bg = c.vscLeftDark })
   hl(0, 'TabLine', { fg = c.vscFront, bg = c.vscTabOther })
   hl(0, 'TabLineFill', { fg = c.vscFront, bg = c.vscTabOutside })
   hl(0, 'TabLineSel', { fg = c.vscFront, bg = c.vscTabCurrent })
@@ -134,7 +146,7 @@ M.setup = function()
   hl(0, 'VisualNOS', { fg = c.vscNone, bg = c.vscSelection })
   hl(0, 'WarningMsg', { fg = c.vscYellow, bg = c.vscBack })
   hl(0, 'WildMenu', { fg = c.vscNone, bg = c.vscSelection })
-  hl(0, 'Comment', { fg = c.vscGreen, bg = 'NONE', italic = opts.italic_comments })
+  hl(0, 'Comment', { fg = c.vscGreen, bg = 'NONE', italic =  true})
   hl(0, 'Constant', { fg = c.vscBlue, bg = 'NONE' })
   hl(0, 'String', { fg = c.vscOrange, bg = 'NONE' })
   hl(0, 'Character', { fg = c.vscOrange, bg = 'NONE' })
@@ -184,7 +196,7 @@ M.setup = function()
   hl(0, '@punctuation.bracket', { fg = c.vscFront, bg = 'NONE' })
   hl(0, '@punctuation.special', { fg = c.vscFront, bg = 'NONE' })
   hl(0, '@punctuation.delimiter', { fg = c.vscFront, bg = 'NONE' })
-  hl(0, '@comment', { fg = c.vscGreen, bg = 'NONE', italic = opts.italic_comments })
+  hl(0, '@comment', { fg = c.vscGreen, bg = 'NONE', italic = true })
   hl(0, '@comment.note', { fg = c.vscBlueGreen, bg = 'NONE', bold = true })
   hl(0, '@comment.warning', { fg = c.vscYellowOrange, bg = 'NONE', bold = true })
   hl(0, '@comment.error', { fg = c.vscRed, bg = 'NONE', bold = true })
@@ -244,8 +256,8 @@ M.setup = function()
   hl(0, '@markup.raw', { fg = c.vscFront, bg = 'NONE' })
   hl(0, '@markup.raw.markdown', { fg = c.vscOrange, bg = 'NONE' })
   hl(0, '@markup.raw.markdown_inline', { fg = c.vscOrange, bg = 'NONE' })
-  hl(0, '@markup.link.label', { fg = c.vscLightBlue, bg = 'NONE', underline = opts.underline_links })
-  hl(0, '@markup.link.url', { fg = c.vscFront, bg = 'NONE', underline = opts.underline_links })
+  hl(0, '@markup.link.label', { fg = c.vscLightBlue, bg = 'NONE', underline = false })
+  hl(0, '@markup.link.url', { fg = c.vscFront, bg = 'NONE', underline = false })
   hl(0, '@markup.list.checked', { link = 'Todo' })
   hl(0, '@markup.list.unchecked', { link = 'Todo' })
   hl(0, '@textReference', { fg = isDark and c.vscOrange or c.vscYellowOrange })
@@ -804,3 +816,5 @@ M.setup = function()
   hl(0, 'MiniStatuslineModeReplace', { fg = c.vscBack, bg = c.vscYellowOrange, bold = true })
   hl(0, 'MiniStatuslineModeVisual', { fg = c.vscBack, bg = c.vscPink, bold = true })
 end
+
+return M

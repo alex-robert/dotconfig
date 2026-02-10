@@ -16,6 +16,7 @@ local default_config = {
     -- -- Appearance
     -- color_scheme = "Tokyo Night Storm",
     color_scheme = 'Monokai Soda',
+    force_reverse_video_cursor = true,
 
     window_decorations = "RESIZE",
 
@@ -43,14 +44,14 @@ local default_config = {
     --   font_size = 13.0, 
     -- },
 
-    font = wezterm.font("FiraCode Nerd Font Propo", {
+    font = wezterm.font("FiraCode Nerd Font Mono", {
         weight = "Medium",
         stretch = "Normal",
         style = "Normal"
     }),
     -- font = wezterm.font("DepartureMono Nerd Font", {weight="Regular", stretch="Normal", style="Normal"}),
     -- font = wezterm.font('JetBrains Mono', { weight = 'Medium' }),
-    font_size = 14.5,
+    font_size = 13,
 
 }
 
