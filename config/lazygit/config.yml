@@ -309,10 +309,12 @@ git:
   #
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Pagers.md
   # for more information.
-  pagers: 
+  pagers:
     - colorArg: never
-      pager: ydiff -p cat -s --wrap --width={{columnWidth}}
+      pager: ydiff -p cat -s --no-wrap --width={{columnWidth}} --tab-width=2
+    - pager: ydiff -p cat --no-wrap --tab-width=2
     - pager: delta --dark -s --paging=never
+    - pager: delta --dark --paging=never
   # Config relating to committing
   commit:
     # If true, pass '--signoff' flag when committing
@@ -376,6 +378,7 @@ git:
   # Commands used to display git log of all branches in the main window, they will
   # be cycled in order of appearance (array of strings)
   allBranchesLogCmds:
+    - git-graph --model simple -S --no-pager --format "%h%d [%an] %s"
     - git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium
 
   # If true, git diffs are rendered with the `--ignore-all-space` flag, which
@@ -547,13 +550,12 @@ keybinding:
     return: <esc>
     quitWithoutChangingDirectory: Q
     togglePanel: <tab>
-    # HJKL navigation scheme (standard vim)
     prevItem: <up>
     nextItem: <down>
     prevItem-alt: k  # k = up
     nextItem-alt: j  # j = down
-    prevPage: ','
-    nextPage: .
+    prevPage: <disabled>
+    nextPage: <disabled>
     scrollLeft: <disabled>
     scrollRight: <disabled>
     gotoTop: <
@@ -563,8 +565,8 @@ keybinding:
     toggleRangeSelect: v
     rangeSelectDown: <s-down>
     rangeSelectUp: <s-up>
-    prevBlock: <left>
-    nextBlock: <right>
+    prevBlock: <disabled>
+    nextBlock: <disabled>
     prevBlock-alt: h  # h = left
     nextBlock-alt: l  # l = right
     nextBlock-alt2: <tab>
@@ -608,8 +610,8 @@ keybinding:
     pullFiles: p
     refresh: R
     createPatchOptionsMenu: <c-p>
-    nextTab: ']'
-    prevTab: '['
+    nextTab: L
+    prevTab: H
     nextScreenMode: +
     prevScreenMode: _
     cyclePagers: '|'
@@ -639,7 +641,7 @@ keybinding:
     commitChangesWithEditor: C
     findBaseCommitForFixup: <c-f>
     confirmDiscard: x
-    ignoreFile: G  # G for Gitignore (was i, conflicts with up)
+    ignoreFile: i
     refreshFiles: r
     stashAllChanges: s
     viewStashOptions: S

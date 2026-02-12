@@ -40,15 +40,15 @@ return {
     require('neo-tree').setup({
       close_if_last_window = false,
       enable_git_status = true,
-      enable_diagnostics = true,
+      enable_diagnostics = false,
 
       window = {
         position = "right",
-        width = 30,
+        width = 40,
         mapping_options = {
           noremap = true,
           nowait = true,
-        }, 
+        },
         mappings = {
           -- ["<space>"] = {
           --   "toggle_node",
@@ -91,9 +91,22 @@ return {
           },
         },
         follow_current_file = {
-          enabled = false,
+          enabled = true,
         },
         use_libuv_file_watcher = true,
+      },
+      git_status = {
+        symbols = {
+          added = "",
+          modified = "",
+          deleted = "✖",
+          renamed = "󰁕",
+          untracked = "",
+          ignored = "",
+          unstaged = "",
+          staged = "",
+          conflict = "",
+        },
       },
 
     })

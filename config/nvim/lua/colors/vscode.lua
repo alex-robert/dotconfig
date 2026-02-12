@@ -95,7 +95,7 @@ M.setup = function()
 
   -- Other ui specific colors
   c.vscUiBlue = '#084671'
-  c.vscUiOrange = '#f28b25'
+  c.vscUiOrang  = '#f28b25'
   c.vscPopupHighlightLightBlue = '#d7eafe'
 
   local hl = vim.api.nvim_set_hl
@@ -104,6 +104,7 @@ M.setup = function()
   hl(0, 'Normal', { fg = c.vscFront, bg = c.vscBack })
   hl(0, 'ColorColumn', { fg = 'NONE', bg = c.vscCursorDarkDark })
   hl(0, 'Cursor', { fg = c.vscCursorDark, bg = '#C586C0' })
+  -- Cursor is overriden by wezterm config
   hl(0, 'CursorLine', { bg = c.vscCursorDarkDark })
   hl(0, 'CursorColumn', { fg = 'NONE', bg = c.vscCursorDarkDark })
   hl(0, 'Directory', { fg = c.vscBlue, bg = c.vscBack })
@@ -773,6 +774,8 @@ M.setup = function()
   hl(0, 'NeoTreeBufferNumber', { fg = c.vscLineNumber, bg = 'NONE' })
   hl(0, 'NeoTreeCursorLine', { fg = 'NONE', bg = c.vscCursorDarkDark })
   hl(0, 'NeoTreeDimText', { fg = 'NONE', bg = c.vscCursorDarkDark })
+  hl(0, 'NeoTreeIndentMarker', { bg = 'NONE', fg = c.vscGray })
+  hl(0, 'NeoTreeExpander', { bg = 'NONE', fg = c.vscGray })
   hl(0, 'NeoTreeDirectoryIcon', { fg = c.vscBlue, bg = 'NONE' })
   hl(0, 'NeoTreeDirectoryName', { fg = c.vscFront, bg = 'NONE' })
   hl(0, 'NeoTreeDotfile', { fg = c.vscDisabledBlue, bg = 'NONE' })

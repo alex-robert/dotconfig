@@ -1,5 +1,6 @@
 ## Startup & config ###
 after-startup-command = [
+    # 'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=1.0'
 ]
 
 start-at-login = true
@@ -7,7 +8,7 @@ start-at-login = true
 ######################
 ### Style & Layout ###
 ######################
-# Normalizations.
+# Normalizations
 # See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
@@ -23,10 +24,10 @@ accordion-padding = 0
 automatically-unhide-macos-hidden-apps = true
 
 [gaps]
-outer.top = [{ monitor.'built-in.*' = 0 }, 0]
-outer.right      = 0
-outer.bottom     = 0
-outer.left       = 0
+outer.top        = 4
+outer.right      = 4
+outer.bottom     = 4
+outer.left       = 4
 inner.horizontal = 1 # gap beetween windows on Horizontal layout (window in vertival mode)
 inner.vertical   = 1  # same but when windows are on Horizontal mode (vertival layout)
 
@@ -301,7 +302,7 @@ backspace = ['close-all-windows-but-current', 'mode main']
 [[on-window-detected]]
     if.app-id = 'unity.Blizzard Entertainment.Hearthstone'
     check-further-callbacks = true
-    run = ['layout floating', 'move-node-to-workspace 1']
+    run = ['layout floating', 'move-node-to-workspace 2']
 
 [[on-window-detected]]
     if.app-id = 'com.google.chrome.for.testing'

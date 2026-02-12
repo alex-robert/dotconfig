@@ -1,0 +1,10 @@
+"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+
+[mgr]
+ratio          = [ 3, 3, 4 ]
+show_hidden    = false
+show_symlink   = false
+
+[preview]
+tab_size       = 2
+wrap           = "no"
