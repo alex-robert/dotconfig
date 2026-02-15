@@ -1,23 +1,31 @@
 # Main CLAUDE.md
 
+## Avoid Circular Planning
+- **STOP and test basic workflows FIRST** before planning advanced features or exploring edge cases
+- If you find yourself planning multiple "what ifs" or "future possibilities", pause and ask: "Can we test a simple end-to-end flow first?"
+- Avoid bikeshedding on architecture, tooling, or patterns - implement the simple version, test it, THEN refine
+- Remember: A working 80% solution tested beats a theoretically perfect 0% solution
+- When uncertain about approach, default to: simple → test → refine (not: plan → design → implement → test)
+
 ## Plan and review
 ### Before starting to work
 - Always start any request in plan mode
 - When the plan is ready, save it to .claude/tasks/TASK_NAME.md
 - Task plan should contain detailed reasoning as well as tasks breakdown
-- Don't start implementation until the plan has been approved
+- Do not include code snippets or full implementation in the plan, just the theorie
+- Don't start implementation until the plan or a subset todo from it has been approved
 
 ### Task Implementation
+- Ask: Do we start by implementing tests (TDD) or do we don't care for this session ?
 - Always disable auto-accept edits if previously enabled and ask again
-- Always verify actual return types and do not invent methods/types
-- Always verify existing patterns first to keep codebase consistent
-  doesn't
-- Always start by writing the tests (UNLESS explicitly requested not to in the plan)
-- Keep the plan and tasks files updated
+- Always check existing return types and exisiting methods first => do not invent methods/types
+- Always check existing patterns first to keep codebase consistent
 
-### Finishing a task
-- Do not Run the tests automatically, let the user
-- Move the task to .claude/done/TASK_NAME.md with task implementation details
+### Finishing a tasks
+- Ask if can try to build the project to spot common errors.
+- Do not Run the tests (no npm run test) - user does.
+- If task is not done: Keep the task file updated (check the todos, update the plan if it has changed durring the session)
+- If task is done: Move the task to .claude/done/TASK_NAME.md with final task implementation details
 - Add a "Task Completion Summary" section at the end with:
   - Major features delivered
   - Architecture improvements
@@ -37,6 +45,7 @@
 - Group imports on single lines when possible
 
 ### Comments
+- Do not add comments to just repeat the function name
 - Only add code comments when it adds context 
 - Never just add comment to describe the next lines of code in human langage
 - Do not use emojis

@@ -2,13 +2,16 @@
 local wezterm = require 'wezterm'
 
 return {
-  -- Manage window/tabs/panes layout
+
+
+  --- PANES ---
+  -- Navigate Panes
   {
-    key = 'i',
+    key = 'k',
     mods = 'CMD',
     action = wezterm.action.ActivatePaneDirection 'Up'
   }, {
-    key = 'k',
+    key = 'j',
     mods = 'CMD',
     action = wezterm.action.ActivatePaneDirection 'Down'
   }, {
@@ -20,13 +23,39 @@ return {
     mods = 'CMD',
     action = wezterm.action.ActivatePaneDirection 'Right'
   },
-  -- Resize and stay
+
+  -- Move panes
   {
-    key = 'I',
+    key = 'r',
+    mods = 'SHIFT',
+    action = wezterm.action.RotatePanes 'Clockwise'
+  },
+
+  -- Create new panes
+  {
+    key = 'h',
+    mods = 'SHIFT',
+    action = wezterm.action.SplitVertical {
+      domain = 'CurrentPaneDomain'
+    },
+
+  },
+  {
+
+    key = 'v',
+    mods = 'SHIFT',
+    action = wezterm.action.SplitHorizontal {
+      domain = 'CurrentPaneDomain'
+    },
+  }, 
+
+  -- Resize panes
+  {
+    key = 'K',
     mods = 'SHIFT',
     action = wezterm.action.AdjustPaneSize {'Up', 5}
   }, {
-    key = 'K',
+    key = 'J',
     mods = 'SHIFT',
     action = wezterm.action.AdjustPaneSize {'Down', 5}
   },
@@ -40,33 +69,53 @@ return {
     action = wezterm.action.AdjustPaneSize {'Right', 5}
   },
 
-  {
-    key = 'r',
-    action = wezterm.action.RotatePanes 'Clockwise'
-  },
 
-  -- Create new panes
+  -- Close pane
   {
-    key = 'u',
-    action = wezterm.action.SplitVertical {
-      domain = 'CurrentPaneDomain'
-    }
-  }, {
-    key = 'p',
-    action = wezterm.action.SplitHorizontal {
-      domain = 'CurrentPaneDomain'
-    }
-  },
-  {
-    key = 'x',
+    key = 'w',
+    mods = 'CMD',
     action = wezterm.action.CloseCurrentPane { confirm = true },
   },
 
   -- Zoom and quit
   {
     key = 'z',
+    mods = 'CMD',
     action = wezterm.action.Multiple {wezterm.action.TogglePaneZoomState, 'PopKeyTable'}
   },
+
+  --- TABS ---
+  {
+    key = "t",
+    mods = "CMD",
+    action = wezterm.action {
+      SpawnTab = "CurrentPaneDomain"
+    }
+  },
+  {
+    key = 'l',
+    mods = 'CTRL|ALT',
+    action = wezterm.action.ActivateTabRelative(1)
+  },
+  {
+    key = 'h',
+    mods = 'CTRL|ALT',
+    action = wezterm.action.ActivateTabRelative(-1)
+  },
+  -- Move tabs
+  {
+    key = 'l',
+    mods = 'CMD|CTRL|ALT',
+    action = wezterm.action.MoveTabRelative(1)
+  },
+  {
+    key = 'h',
+    mods = 'CMD|CTRL|ALT',
+    action = wezterm.action.MoveTabRelative(-1)
+  },
+
+
+
   -- Quit
   {
     key = 'Escape',

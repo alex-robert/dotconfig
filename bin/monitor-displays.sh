@@ -11,6 +11,27 @@ BORDERS_CMD="/opt/homebrew/bin/borders"
 SINGLE_SCREEN_GAP=-2
 MULTI_SCREEN_GAP=4
 
+# Test mode override
+FORCE_MODE=""
+
+show_help() {
+  cat << 'EOF'
+Display monitor script - auto-toggle borders and aerospace gaps
+
+Usage: monitor-displays.sh [OPTIONS]
+
+Options:
+  --single      Simulate single-screen setup (for testing)
+  --multi       Simulate multi-screen setup (for testing)
+  --help        Show this help message
+
+Examples:
+  ./monitor-displays.sh          # Auto-detect displays
+  ./monitor-displays.sh --single # Test single-screen config
+  ./monitor-displays.sh --multi  # Test multi-screen config
+EOF
+}
+
 get_external_display_count() {
   system_profiler SPDisplaysDataType 2>/dev/null | grep -c "^[[:space:]]*Resolution:" | grep -v "Built-in"
 }
@@ -20,13 +41,20 @@ get_total_displays() {
 }
 
 is_single_screen() {
-  local total=$(get_total_displays)
-  [[ $total -eq 1 ]]
+  if [[ -n "$FORCE_MODE" ]]; then
+    [[ "$FORCE_MODE" == "single" ]]
+  else
+    local total=$(get_total_displays)
+    [[ $total -eq 1 ]]
+  fi
 }
 
 stop_borders() {
-  if pgrep -f "/opt/homebrew/opt/borders/bin/borders" > /dev/null; then
-    pkill -f "/opt/homebrew/opt/borders/bin/borders"
+  if pgrep -f "borders" > /dev/null; then
+    pkill -9 borders 2>/dev/null
+    sleep 0.5
+    # Make sure it's really dead
+    pkill -9 -f "/opt/homebrew/opt/borders/bin/borders" 2>/dev/null
     sleep 1
   fi
 }
@@ -66,6 +94,30 @@ reload_aerospace() {
 }
 
 main() {
+  # Parse arguments
+  case "${1:-}" in
+    --single)
+      FORCE_MODE="single"
+      echo "TEST MODE: Simulating single-screen setup"
+      ;;
+    --multi)
+      FORCE_MODE="multi"
+      echo "TEST MODE: Simulating multi-screen setup"
+      ;;
+    --help|-h)
+      show_help
+      exit 0
+      ;;
+    "")
+      # Normal operation
+      ;;
+    *)
+      echo "Unknown option: $1"
+      show_help
+      exit 1
+      ;;
+  esac
+
   local current_state=""
 
   if [[ -f "$STATE_FILE" ]]; then
@@ -98,4 +150,4 @@ main() {
   fi
 }
 
-main
+main "$@"

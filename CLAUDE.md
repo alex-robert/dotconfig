@@ -2,8 +2,7 @@
 
 ## Plan
 - No need to start in plan mode for request in this project
-- just make a toto-list
-- no not save the tasks
+- Do not save the tasks
 
 ## Ask first, search after
 - You always need a doc or a source base, I can usually provide it

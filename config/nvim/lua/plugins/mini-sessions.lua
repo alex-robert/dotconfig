@@ -15,6 +15,20 @@ return {
       force = { read = false, write = true, delete = false },
     })
 
+    -- Exclude non-file buffers from sessions (UI, plugins, floating windows, etc.)
+    local function exclude_buffer()
+      local buftype = vim.bo.buftype
+      local bufname = vim.api.nvim_buf_get_name(0)
+
+      -- Exclude: non-file buffers, DAP terminal, and help buffers
+      if (buftype ~= "" and buftype ~= "help") or bufname:match("dap%-") or bufname:match("%zsh%") then
+        vim.b.minisessions_disable = true
+      end
+    end
+
+    vim.api.nvim_create_autocmd('BufNew', { callback = exclude_buffer })
+    vim.api.nvim_create_autocmd('BufEnter', { callback = exclude_buffer })
+
     -- Auto-restore local session on startup
     vim.api.nvim_create_autocmd('VimEnter', {
       nested = true,

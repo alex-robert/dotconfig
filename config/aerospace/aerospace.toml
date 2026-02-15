@@ -24,10 +24,10 @@ accordion-padding = 0
 automatically-unhide-macos-hidden-apps = true
 
 [gaps]
-outer.top        = 4
-outer.right      = 4
-outer.bottom     = 4
-outer.left       = 4
+outer.top        = -2
+outer.right      = -2
+outer.bottom     = -2
+outer.left       = -2
 inner.horizontal = 1 # gap beetween windows on Horizontal layout (window in vertival mode)
 inner.vertical   = 1  # same but when windows are on Horizontal mode (vertival layout)
 

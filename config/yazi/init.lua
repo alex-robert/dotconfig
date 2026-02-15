@@ -13,3 +13,9 @@ require("full-border"):setup {
   type = ui.Border.ROUNDED,
 }
 
+-- require("omp"):setup ( {
+--   -- config = "$HOME/.config/oh-my-posh/themes/hungry-compact-v3.omp.json"
+--   -- config = "Users/alex/.config/oh-my-posh/themes/hungry-compact-v2.omp"
+-- } )
+
+

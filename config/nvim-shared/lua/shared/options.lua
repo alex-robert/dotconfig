@@ -28,3 +28,5 @@ opt.swapfile = false
 
 opt.updatetime = 300
 opt.timeoutlen = 400
+
+opt.shortmess:append("I")

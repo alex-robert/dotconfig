@@ -9,6 +9,12 @@ return {
       keys = {
         { "<leader>mr", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle markdown rendering" },
       },
+      config = function()
+        require('render-markdown').setup({
+          render_modes = { 'n', 'c', 't' },
+          preset = 'obsidian',
+        })
+      end
     },
     {
       "iamcco/markdown-preview.nvim",

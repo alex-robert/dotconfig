@@ -160,9 +160,7 @@ function y() {
 alias ll="ls -lh"
 alias la="ls -lha"
 alias gs="git status"
-alias v="nvim"
-alias vdb="NVIM_APPNAME=nvim-db nvim"
-alias lz="lazygit"
+alias code="nvim"
 alias nvnuke="rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim"
 # alias code = "nvim"
 

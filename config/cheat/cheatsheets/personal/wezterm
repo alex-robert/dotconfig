@@ -2,66 +2,77 @@
 syntax: markdown
 tags: [ mac, keymap, terminal, wezterm ]
 ---
-# Leader Key
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `⌘` `a`                    | Leader key (timeout 1500ms)                  |
-
 # NORMAL Mode
+  *(Leader = ⌘a)*
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `⌃` `L`                    | show debug overlay                           |
+  | **Quick Actions**          |                                              |
+  | `LEADER` `d`               | show debug overlay                           |
+  | `LEADER` `r`               | reload configuration                         |
+  | `LEADER` `p`               | command palette                              |
   |                            |                                              |
+  | **Tabs**                   |                                              |
   | `⌘` `t`                    | new tab                                      |
-  | `⌘` `⇧` `l`                | next tab                                     |
-  | `⌘` `⇧` `h`                | previous tab                                 |
+  | `LEADER` `l`               | next tab                                     |
+  | `LEADER` `h`               | previous tab                                 |
   |                            |                                              |
-  | `⌘` `w`                    | close current pane                           |
-  | `⌘` `k`                    | focus pane up                                |
-  | `⌘` `j`                    | focus pane down                              |
+  | **Panes - Navigation**     |                                              |
   | `⌘` `h`                    | focus pane left                              |
+  | `⌘` `j`                    | focus pane down                              |
+  | `⌘` `k`                    | focus pane up                                |
   | `⌘` `l`                    | focus pane right                             |
   |                            |                                              |
+  | **Panes - Management**     |                                              |
+  | `⌘` `w`                    | close current pane                           |
+  | `LEADER` `z`               | toggle pane zoom                             |
+  |                            |                                              |
+  | **Panes - Resize**         |                                              |
+  | `⌘` `⇧` `H`                | resize pane left +5                          |
+  | `⌘` `⇧` `J`                | resize pane down +5                          |
+  | `⌘` `⇧` `K`                | resize pane up +5                            |
+  | `⌘` `⇧` `L`                | resize pane right +5                         |
+  |                            |                                              |
+  | **word & line navigation** |                                              |
   | `⌥` `←`                    | word navigation left                         |
   | `⌥` `→`                    | word navigation right                        |
   | `⌘` `←`                    | line beginning                               |
   | `⌘` `→`                    | line end                                     |
   |                            |                                              |
-  | `⌘` `⇧` `s`                | workspace switcher                           |
+  | **Quick Workspace**        |                                              |
+  | `LEADER` `s`               | Quick workspace switch                       |
 
 #  WORKSPACE Mode
   |                            |                                              |
   |----------------------------|----------------------------------------------|
   | `esc`                      | mode normal                                  |
-  | `n`                        | new workspace (auto-named from cwd)          |
-  | `⌃` `n`                    | new workspace (prompt for name)              |
   |                            |                                              |
   | `s`                        | save workspace state                         |
   | `r`                        | restore workspace (fuzzy finder)             |
-  |                            |                                              |
-  | `l`                        | workspace switcher; mode normal              |
 
 # LAYOUT Mode
+  *(Leader = ⌘a)*
   |                            |                                              |
   |----------------------------|----------------------------------------------|
   | `esc`                      | mode normal                                  |
-  | `k`                        | focus pane up                                |
-  | `j`                        | focus pane down                              |
-  | `h`                        | focus pane left                              |
-  | `l`                        | focus pane right                             |
   |                            |                                              |
-  | `⇧` `k`                    | resize pane up +5                            |
-  | `⇧` `j`                    | resize pane down +5                          |
-  | `⇧` `h`                    | resize pane left +5                          |
-  | `⇧` `l`                    | resize pane right +5                         |
+  | **Navigate Panes**         |                                              |
+  | `⌘` `h`                    | focus pane left                              |
+  | `⌘` `j`                    | focus pane down                              |
+  | `⌘` `k`                    | focus pane up                                |
+  | `⌘` `l`                    | focus pane right                             |
   |                            |                                              |
-  | `r`                        | rotate panes clockwise                       |
+  | **Manage Panes**           |                                              |
+  | `⇧` `r`                    | rotate panes clockwise                       |
+  | `⇧` `h`                    | split vertical                               |
+  | `⇧` `v`                    | split horizontal                             |
+  | `⌘` `w`                    | close current pane                           |
+  | `⌘` `z`                    | toggle pane zoom; return to main mode        |
   |                            |                                              |
-  | `u`                        | split vertical                               |
-  | `p`                        | split horizontal                             |
-  |                            |                                              |
-  | `x`                        | close current pane                           |
-  | `z`                        | toggle pane zoom; mode normal                |
+  | **Resize Panes**           |                                              |
+  | `⇧` `H`                    | resize pane left +5                          |
+  | `⇧` `J`                    | resize pane down +5                          |
+  | `⇧` `K`                    | resize pane up +5                            |
+  | `⇧` `L`                    | resize pane right +5                         |
   
 # COPY Mode
   |                            |                                              |

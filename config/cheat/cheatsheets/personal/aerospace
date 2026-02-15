@@ -2,69 +2,104 @@
 syntax: markdown
 tags: [ mac, keymap ]
 ---
-# Main Binding Mode
+# Main Mode
   |                            |                                              |
   |----------------------------|----------------------------------------------|
+  | **Quick Shortcuts**        |                                              |
+  | `⌥` `␣`                    | workspace 2 (terminal)                       |
+  | `⌥` `tab`                  | workspace back-and-forth                     |
   | `⌥` `⏎`                    | fullscreen                                   |
-  | `⌥` `␣`                    | workspace 2                                  |
-  | `⌥` `tab`                  | workspace-back-and-forth                     |
   |                            |                                              |
+  | **Window Focus**           |                                              |
+  | `⌥` `⌃` `←`                | focus previous window                        |
+  | `⌥` `⌃` `→`                | focus next window                            |
+  |                            |                                              |
+  | **Workspace Navigation**   |                                              |
   | `⌘` `⌥` `→`                | workspace next                               |
   | `⌘` `⌥` `←`                | workspace prev                               |
   |                            |                                              |
-  | `⇧` `⌃` `↑`                | focus up                                     |
-  | `⇧` `⌃` `←`                | focus left                                   |
-  | `⇧` `⌃` `↓`                | focus down                                   |
-  | `⇧` `⌃` `→`                | focus right                                  |
+  | **Monitor Focus**          |                                              |
+  | `⌘` `⌥` `⌃` `→`            | focus monitor next                           |
+  | `⌘` `⌥` `⌃` `←`            | focus monitor prev                           |
   |                            |                                              |
-  | `⌥` `⌃` `↑`                | focus-monitor up                             |
-  | `⌥` `⌃` `←`                | focus-monitor left                           |
-  | `⌥` `⌃` `↓`                | focus-monitor down                           |
-  | `⌥` `⌃` `→`                | focus-monitor right                          |
+  | **Window Movement**        |                                              |
+  | `⌘` `⇧` `↑`                | move window up                               |
+  | `⌘` `⇧` `←`                | move window left                             |
+  | `⌘` `⇧` `↓`                | move window down                             |
+  | `⌘` `⇧` `→`                | move window right                            |
+  |                            |                                              |
+  | **Merge Windows**          |                                              |
+  | `⌘` `⌥` `⇧` `↑`            | join-with left                              |
+  | `⌘` `⌥` `⇧` `←`            | join-with down                               |
+  | `⌘` `⌥` `⇧` `↓`            | join-with up                                 |
+  | `⌘` `⌥` `⇧` `→`            | join-with right                              |
+  |                            |                                              |
+  | **Layout Commands**        |                                              |
+  | `⌘` `⌥` `⌃` `f`            | toggle floating/tiling                       |
+  | `⌘` `⌥` `⌃` `t`            | toggle tiles/accordion                       |
+  | `⌘` `⌥` `⌃` `v`            | toggle horizontal/vertical                   |
+  | `⇧` `⌃` `/`                | balance window sizes                         |
+  |                            |                                              |
+  | **Resize Windows**         |                                              |
+  | `⌃` `⇧` `↑`                | resize +20                                   |
+  | `⌃` `⇧` `↓`                | resize -20                                   |
+  |                            |                                              |
+  | **Mode Switch**            |                                              |
+  | `⌘` `⌥` `⌃` `s`            | mode service                                 |
+  | `⌘` `⌥` `⌃` `/`            | mode layout                                  |
 
-# Switch binding mode
+# Layout Mode
+  *(Press esc to return to main mode)*
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `⌘` `⌥` `⌃` `⇧` `l`        | mode layout                                  |
-  | `⌘` `⌥` `⌃` `⇧` `s`        | mode service                                 |
-
-# Layout Biding mode
+  | **Window Focus**           |                                              |
+  | `⌥` `⌃` `←`                | focus previous window                        |
+  | `⌥` `⌃` `→`                | focus next window                            |
   |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `esc`                      | mode main                                    |
+  | **Window Movement**        |                                              |
+  | `⇧` `↑`                    | move window up                               |
+  | `⇧` `←`                    | move window left                             |
+  | `⇧` `↓`                    | move window down                             |
+  | `⇧` `→`                    | move window right                            |
   |                            |                                              |
-  | `⌥` `↓`                    | resize smart -50                             |
-  | `⌥` `↑`                    | resize smart +50                             |
-  |                            |                                              |
-  | `f`                        | layout floating tiling                       |
-  | `t`                        | layout horizontal vertical                   |
-  | `a`                        | layout tiles accordion                       |
-  |                            |                                              |
-  | `⇧` `↑`                    | move up                                      |
-  | `⇧` `←`                    | move left                                    |
-  | `⇧` `↓`                    | move down                                    |
-  | `⇧` `→`                    | move right                                   |
-  |                            |                                              |
-  | `⌥` `⇧` `↑`                | join-with up                                 |
-  | `⌥` `⇧` `←`                | join-with left                               |
-  | `⌥` `⇧` `↓`                | join-with down                               |
+  | **Merge Windows**          |                                              |
+  | `⌥` `⇧` `↑`                | join-with left                              |
+  | `⌥` `⇧` `←`                | join-with down                               |
+  | `⌥` `⇧` `↓`                | join-with up                                 |
   | `⌥` `⇧` `→`                | join-with right                              |
-  | `r`                        | flatten-workspace-tree                       |
   |                            |                                              |
-  | `⌘` `⌥` `→`                | move-node-to-workspace next                  |
-  | `⌘` `⌥` `←`                | move-node-to-workspace prev                  |
-  | `⇧` `⌘` `⌥` `←`            | move-node-to-monitor left                    |
-  | `⇧` `⌘` `⌥` `→`            | move-node-to-monitor right                   |
-  | `⇧` `⌘` `⌥` `↓`            | move-node-to-monitor down                    |
-  | `⇧` `⌘` `⌥` `↑`            | move-node-to-monitor up                      |
-  
-# Service Biding mode
+  | **Move to Workspace**      |                                              |
+  | `⌘` `⌥` `→`                | move window to next workspace                |
+  | `⌘` `⌥` `←`                | move window to prev workspace                |
+  |                            |                                              |
+  | **Move to Monitor**        |                                              |
+  | `⌘` `⌥` `⌃` `←`            | move window to monitor left                  |
+  | `⌘` `⌥` `⌃` `→`            | move window to monitor right                 |
+  | `⌘` `⌥` `⌃` `↑`            | move window to monitor up                    |
+  | `⌘` `⌥` `⌃` `↓`            | move window to monitor down                  |
+  |                            |                                              |
+  | **Layout Commands**        |                                              |
+  | `⌘` `⌥` `⌃` `f`            | toggle floating/tiling                       |
+  | `⌘` `⌥` `⌃` `t`            | toggle tiles/accordion                       |
+  | `⌘` `⌥` `⌃` `h`            | toggle horizontal/vertical                   |
+  | `⌘` `⌥` `⌃` `r`            | flatten workspace tree                       |
+  |                            |                                              |
+  | **Resize Windows**         |                                              |
+  | `⌃` `↑`                    | resize +50                                   |
+  | `⌃` `↓`                    | resize -50                                   |
+  | `⌃` `⇧` `↑`                | resize +10                                   |
+  | `⌃` `⇧` `↓`                | resize -10                                   |
+  |                            |                                              |
+  | `esc`                      | return to main mode                          |
+
+# Service Mode
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `backspace`                | close-all-windows-but-current; mode main     |
-  | `esc`                      | reload-config; mode main                     |
-
+  | `backspace`                | close all windows except current              |
+  | `esc`                      | reload config; return to main mode           |
 
 # CLI
 
-- Query keybindings: `aerospace config --get mode.service.binding --json`
+- Query main mode bindings: `aerospace config --get mode.main.binding --json`
+- Query layout mode bindings: `aerospace config --get mode.layout.binding --json`
+- Query service mode bindings: `aerospace config --get mode.service.binding --json`

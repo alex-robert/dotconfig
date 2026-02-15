@@ -31,6 +31,8 @@ local bindings = {
       SpawnTab = "CurrentPaneDomain"
     }
   },
+
+
   {
     key = 'l',
     mods = 'CMD|CTRL|ALT',
@@ -41,18 +43,20 @@ local bindings = {
     mods = 'CMD|CTRL|ALT',
     action = wezterm.action.ActivateTabRelative(-1)
   },
+
   {
     key = 'l',
-    mods = 'CMD|CTRL|ALT|SHIFT',
-    action = wezterm.action.MoveTabRelative(1)
+    mods = 'LEADER|CMD',
+    action = wezterm.action.ActivateTabRelative(1)
   },
   {
     key = 'h',
-    mods = 'CMD|CTRL|ALT|SHIFT',
-    action = wezterm.action.MoveTabRelative(-1)
+    mods = 'LEADER|CMD',
+    action = wezterm.action.ActivateTabRelative(-1)
   },
 
-  -- Panes
+
+  --- Panes ---
   {
     key = 'w',
     mods = 'CMD',
@@ -61,10 +65,13 @@ local bindings = {
     }
   },
   {
-    key = 'Enter',
-    mods = 'CMD|CTRL|ALT',
+    key = 'z',
+    mods = 'LEADER|CMD',
     action = wezterm.action.TogglePaneZoomState
   },
+
+
+  -- navigate Panes
   {
     key = 'k',
     mods = 'CMD',
@@ -86,25 +93,29 @@ local bindings = {
     action = wezterm.action.ActivatePaneDirection 'Right'
   },
 
-  {
-    key = 'I',
-    mods = 'CMD|SHIFT',
-    action = wezterm.action.AdjustPaneSize {'Up', 5}
-  }, {
-    key = 'K',
-    mods = 'CMD|SHIFT',
-    action = wezterm.action.AdjustPaneSize {'Down', 5}
-  },
+  -- Panes size
   {
     key = 'H',
     mods = 'CMD|SHIFT',
     action = wezterm.action.AdjustPaneSize {'Left', 5}
-  }, {
+  },
+  {
+    key = 'J',
+    mods = 'CMD|SHIFT',
+    action = wezterm.action.AdjustPaneSize {'Down', 5}
+  },
+  {
+    key = 'K',
+    mods = 'CMD|SHIFT',
+    action = wezterm.action.AdjustPaneSize {'Up', 5}
+  },
+  {
     key = 'L',
     mods = 'CMD|SHIFT',
     action = wezterm.action.AdjustPaneSize {'Right', 5}
   },
 
+  --- MacOS word & line navigation ---
   -- Word navigation (Option + arrows)
   {
     key = 'LeftArrow',

@@ -334,7 +334,9 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
 # File Operations
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `␣` `w`                    | save file                                    |
+  | `⌃` `s`                    | save current buffer                          |
+  | `␣` `sn`                   | new scratch buffer                           |
+  | `␣` `sw`                   | save buffer as...                            |
   | `␣` `q`                    | quit                                         |
   | `␣` `x`                    | save and quit                                |
   | `:q`                       | quit (command mode)                          |
@@ -361,23 +363,29 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
 # Buffer Management
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `⌃` `⌥` `l`                | next buffer (hold Caps Lock + l)             |
-  | `⌃` `⌥` `h`                | previous buffer (hold Caps Lock + h)         |
-  | `⌃` `x` `x`                | delete buffer                                |
+  | `⌃` `⌥` `l`                | next buffer                                  |
+  | `⌃` `⌥` `h`                | previous buffer                              |
+  | `⌃` `⌥` `x`                | delete buffer                                |
 
 # Window/Split Management
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `⌃` `w` `v`                | split vertically                             |
-  | `⌃` `w` `s`                | split horizontally                           |
-  | `⌃` `w` `e`                | equal window sizes                           |
-  | `⌃` `w` `t`                | send current window to new tab               |
-  | `⌃` `w` `x`                | close current window                         |
+  | **Navigation**             |                                              |
+  | `⌃` `h`                    | go to left split                             |
+  | `⌃` `j`                    | go to bottom split                           |
+  | `⌃` `k`                    | go to upper split                            |
+  | `⌃` `l`                    | go to right split                            |
   |                            |                                              |
-  | `⌃` `w` `h`                | go to left split                             |
-  | `⌃` `w` `j`                | go to bottom split                           |
-  | `⌃` `w` `k`                | go to upper split                            |
-  | `⌃` `w` `l`                | go to right split                            |
+  | **Create Splits**          |                                              |
+  | `⌃` `w` `v` or `⌃M-v`     | split vertically                             |
+  | `⌃` `w` `s` or `⌃M-h`     | split horizontally                           |
+  | `⌃` `w` `f`                | split vertical + find files                  |
+  | `⌃` `w` `F`                | split horizontal + find files                |
+  |                            |                                              |
+  | **Manage Splits**          |                                              |
+  | `⌃` `w` `e` or `⌃M-e`     | equal window sizes                           |
+  | `⌃` `w` `w` or `⌃M-w`     | close current split                          |
+  | `⌃` `w` `t`                | send current window to new tab               |
 
 # Tab Management
   |                            |                                              |
@@ -422,17 +430,7 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
   |----------------------------|----------------------------------------------|
   | **Lazygit (snacks)**       |                                              |
   | `␣` `gg`                   | open lazygit (root dir)                      |
-  | `␣` `gG`                   | open lazygit (cwd)                           |
   | `␣` `gl`                   | lazygit log                                  |
-  | `␣` `gf`                   | lazygit file history                         |
-  |                            |                                              |
-  | **Git Hunks (gitsigns)**   |                                              |
-  | `]c`                       | next git hunk                                |
-  | `[c`                       | previous git hunk                            |
-  | `␣` `gs`                   | stage hunk                                   |
-  | `␣` `gr`                   | reset hunk                                   |
-  | `␣` `gp`                   | preview hunk                                 |
-  | `␣` `gb`                   | blame line                                   |
 
 # Editing
   |                            |                                              |
@@ -455,6 +453,9 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
   | `gcc`                      | toggle comment line                          |
   | `gc` `(motion)`            | comment motion                               |
   | `gb` `(motion)`            | block comment motion                         |
+  |                            |                                              |
+  | **Markdown**               |                                              |
+  | `␣` `mr`                   | toggle markdown rendering                    |
 
 # Surround (mini.surround)
   |                            |                                              |
@@ -536,7 +537,7 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
   | `␣` `ed`                   | open root directory                          |
   | `␣` `eed`                  | open root directory (clean)                  |
   | `␣` `ef`                   | open current file directory                  |
-  | `␣` `eef`                  | open last used directory                     |
+  | `␣` `eef`                  | open current file directory (clean)          |
   |                            |                                              |
   | **In MiniFiles**           |                                              |
   | `h`                        | go out (parent directory)                    |
@@ -557,31 +558,28 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
 # Utility
   |                            |                                              |
   |----------------------------|----------------------------------------------|
+  | `␣` `ln`                   | toggle line numbers                          |
   | `␣` `ot`                   | trim all trailing whitespace                 |
   | `␣` `om`                   | toggle minimap                               |
+  | `␣` `sr`                   | rename file                                  |
+
+# Code Utilities (Trouble)
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | `␣` `oo`                   | toggle symbols                               |
+  | `␣` `ox`                   | toggle diagnostics                           |
+  | `␣` `oX`                   | toggle buffer diagnostics                    |
+  | `␣` `cl`                   | LSP definitions/references                   |
+  | `␣` `oL`                   | toggle location list                         |
+  | `␣` `oQ`                   | toggle quickfix list                         |
 
 # Plugins Management
   |                            |                                              |
   |----------------------------|----------------------------------------------|
+  | `␣` `?`                    | show buffer local keymaps (which-key)        |
   | `:Lazy`                    | open lazy.nvim (plugin manager)              |
   | `:Mason`                   | open mason (LSP installer)                   |
   | `:checkhealth`             | check neovim health                          |
-
-# Database (vim-dadbod-ui)
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `␣` `Do`                   | open database UI in new tab                  |
-  | `␣` `Dc`                   | close database tab                           |
-  | `␣` `Dt`                   | toggle database drawer                       |
-  | `␣` `Df`                   | find database buffer                         |
-  | `␣` `Da`                   | add database connection                      |
-  |                            |                                              |
-  | **In SQL files**           |                                              |
-  | `␣` `De`                   | execute query                                |
-  |                            |                                              |
-  | **In DBUI**                |                                              |
-  | `⏎`                        | expand/open item                             |
-  | `R`                        | refresh tree                                 |
 
 # Debugging (DAP)
   |                            |                                              |
@@ -591,10 +589,9 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
   | `␣` `di`                   | step into                                    |
   | `␣` `do`                   | step over                                    |
   | `␣` `dO`                   | step out                                     |
-  | `␣` `dr`                   | open debug REPL                              |
+  | `␣` `dr`                   | toggle debug REPL                            |
   | `␣` `dl`                   | run last debug session                       |
   | `␣` `dt`                   | terminate debugging                          |
-  | `␣` `du`                   | toggle DAP UI                                |
 
 # Scratch Buffers (snacks)
   |                            |                                              |
@@ -606,15 +603,6 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
   |                            |                                              |
   |----------------------------|----------------------------------------------|
   | `gS`                       | toggle split/join                            |
-
-# Trouble (Diagnostics)
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `␣` `xx`                   | toggle trouble                               |
-  | `␣` `xw`                   | workspace diagnostics                        |
-  | `␣` `xd`                   | document diagnostics                         |
-  | `␣` `xl`                   | location list                                |
-  | `␣` `xq`                   | quickfix list                                |
 
 # Tips
 - Standard HJKL movement with Shift for fast navigation (H/J/K/L)
