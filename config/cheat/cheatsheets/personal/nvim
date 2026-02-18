@@ -360,6 +360,31 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
   | `⏎`                        | select result                                |
   | `esc`                      | close telescope                              |
 
+# Quickfix (Search Results)
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | **In Telescope**           |                                              |
+  | `⌃` `q`                    | send all results to quickfix list            |
+  | `⌥` `q`                    | send selected item to quickfix               |
+  |                            |                                              |
+  | **Navigation**             |                                              |
+  | `:cfirst`                  | go to first quickfix result                  |
+  | `:cnext` or `:cn`          | go to next result                            |
+  | `:cprev` or `:cp`          | go to previous result                        |
+  | `:clast`                   | go to last result                            |
+  | `:cc`                      | show current result                          |
+  |                            |                                              |
+  | **Quickfix Window**        |                                              |
+  | `:copen`                   | open quickfix list in window                 |
+  | `:cclose`                  | close quickfix window                        |
+  | `:chistory`                | view quickfix history                        |
+  |                            |                                              |
+  | **Workflow**               |                                              |
+  | `␣` `fg` + search          | search with live grep                        |
+  | `⌃` `q`                    | send results to quickfix                     |
+  | `:copen`                   | view all matches in list                     |
+  | `:cnext`/`:cprev`          | navigate through files                       |
+
 # Buffer Management
   |                            |                                              |
   |----------------------------|----------------------------------------------|

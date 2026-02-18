@@ -45,45 +45,45 @@ return {
               'searchcount',
             },
             -- {
-            --   symbols.get,
-            --   cond = symbols.has,
-            -- }
-          },
-          lualine_x = {
-                'encoding',
-                'fileformat',
-                'filetype',
-              },
-              lualine_y = { 'progress' },
-              lualine_z = {
-                {
-                  'location',
-                  -- separator = { right = '' },
-                }
-              },
+              --   symbols.get,
+              --   cond = symbols.has,
+              -- }
             },
-            tabline = {
-              lualine_a = { tab_header },
-              lualine_b = {
-                {
-                  'buffers',
-                --   -- component_separators = ' | ',
-                buffers_color = {
-                  -- Same values as the general color option can be used here.
-                  active = 'lualine_a_normal',     -- Color for active buffer.
-                  inactive = 'lualine_c_inactive', -- Color for inactive buffer.
-                },
-                symbols = {
-                  modified = '●',      -- Text to show when the buffer is modified
-                  alternate_file = '', -- Text to show to identify the alternate file
-                  directory =  '',     -- Text to show when the buffer is a directory
-                },
-                }
-              },
-              lualine_c = {},
-              lualine_x = {},
-              lualine_y = {},
-              lualine_z = {
+            lualine_x = {
+              'encoding',
+              'fileformat',
+              'filetype',
+            },
+            lualine_y = { 'progress' },
+            lualine_z = {
+              {
+                'location',
+                -- separator = { right = '' },
+              }
+            },
+          },
+          tabline = {
+            lualine_a = { tab_header },
+            lualine_b = {
+              -- {
+              --   'buffers',
+              --   --   -- component_separators = ' | ',
+              --   buffers_color = {
+              --     -- Same values as the general color option can be used here.
+              --     active = 'lualine_a_normal',     -- Color for active buffer.
+              --     inactive = 'lualine_c_inactive', -- Color for inactive buffer.
+              --   },
+              --   symbols = {
+              --     modified = '●',      -- Text to show when the buffer is modified
+              --     alternate_file = '', -- Text to show to identify the alternate file
+              --     directory =  '',     -- Text to show when the buffer is a directory
+              --   },
+              -- }
+            },
+            lualine_c = {},
+            lualine_x = {},
+            lualine_y = {},
+            lualine_z = {
                 {
                   'tabs',
                   mode = 0,

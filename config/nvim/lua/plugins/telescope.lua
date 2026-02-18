@@ -8,28 +8,40 @@ return {
     },
     cmd = "Telescope",
     keys = {
-      { "<leader>ff", function() require("telescope.builtin").find_files() end, desc = "Find files" },
-      { "<leader>fF", function() require("telescope.builtin").find_files({no_ignore = true, hidden = true}) end, desc = "Find files" },
+      { "<leader>ff", function() require("telescope.builtin").find_files({no_ignore = true, hidden = true}) end, desc = "Find files" },
       { "<leader>fg", function() require("telescope.builtin").live_grep() end, desc = "Live grep" },
+
       { "<leader>fb", function() require("telescope.builtin").buffers() end, desc = "Find buffers" },
-      { "<leader>fh", function() require("telescope.builtin").help_tags() end, desc = "Find help" },
-      { "<leader>fr", function() require("telescope.builtin").oldfiles() end, desc = "Recent files" },
+      { "<leader>fB", ":Telescope scope buffers<CR>", desc = "Find all buffers" },
+      
+      {"<leader>fs", function() require("telescope.builtin").search_history() end, desc = "Search History" },
+      {"<leader>fh", function() require("telescope.builtin").oldfiles() end, desc = "Recent files" },
+      
       { "<leader>fc", function() require("telescope.builtin").git_commits() end, desc = "Git commits" },
-      { "<leader>fk", function() require("telescope.builtin").keymaps() end, desc = "Find keymaps" },
-      { "<leader>ft", function() require("telescope.builtin").colorscheme() end, desc = "Find theme" },
-      { "<leader>fab", ":Telescope scope buffers<CR>", desc = "Find all buffers" },
+
+      { "<leader>fC", function() require("telescope.builtin").commands() end, desc = "Find commands" },
+      { "<leader>fH", function() require("telescope.builtin").help_tags() end, desc = "Find help" },
+      { "<leader>fK", function() require("telescope.builtin").keymaps() end, desc = "Find keymaps" },
+      { "<leader>fT", function() require("telescope.builtin").colorscheme() end, desc = "Find theme" },
+
+      {"<S-Up>", function() require("telescope.builtin").cycle_history_prev() end},
+      {"<S-Down>", function() require("telescope.builtin").cycle_history_next() end},
     },
     config = function()
       local telescope = require("telescope")
 
       telescope.setup({
         defaults = {
+          history = {
+            limit = 50,
+            path = vim.fn.stdpath("data") .. "/telescope_history",
+          },
           layout_strategy = "horizontal",
           layout_config = {
             horizontal = {
-              preview_width = 0.65,
-              width = 0.92,
-              height = 0.92,
+              preview_width = 0.68,
+              width = 0.99,
+              height = 0.99,
               preview_cutoff = 120,
             },
           },
@@ -51,12 +63,18 @@ return {
           },
           mappings = {
             i = {
-              ["<Esc>"] = require("telescope.actions").close,
+              -- ["<Esc>"] = require("telescope.actions").close,
               ["<S-j>"] = require("telescope.actions").move_selection_next,
               ["<S-k>"] = require("telescope.actions").move_selection_previous,
               ["<C-h>"] = require("telescope.actions").select_horizontal,
               ["<C-v>"] = require("telescope.actions").select_vertical,
+              ["<C-Down>"] = require('telescope.actions').cycle_history_next,
+              ["<C-Up>"] = require('telescope.actions').cycle_history_prev,
             },
+            n = {
+              ["<C-Down>"] = require('telescope.actions').cycle_history_next,
+              ["<C-Up>"] = require('telescope.actions').cycle_history_prev,
+            }
           },
         },
         pickers = {

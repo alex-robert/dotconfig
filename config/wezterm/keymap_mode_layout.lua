@@ -34,16 +34,15 @@ return {
   -- Create new panes
   {
     key = 'h',
-    mods = 'SHIFT',
+    mods = 'CMD|SHIFT',
     action = wezterm.action.SplitVertical {
       domain = 'CurrentPaneDomain'
     },
 
   },
   {
-
     key = 'v',
-    mods = 'SHIFT',
+    mods = 'CMD|SHIFT',
     action = wezterm.action.SplitHorizontal {
       domain = 'CurrentPaneDomain'
     },

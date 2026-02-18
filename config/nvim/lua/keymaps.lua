@@ -3,14 +3,27 @@ local keymap = vim.keymap
 -- Save current buffer with Ctrl+S
 keymap.set({ "n", "i", "v" }, "<C-s>", "<Cmd>w<CR>", { desc = "Save current buffer" })
 
+-- Split + find file (C-w + f)
+keymap.set("n", "<C-w>f", function()
+  vim.cmd("vsplit")
+  require("telescope.builtin").find_files()
+end, { desc = "Vertical split + find file" })
+
+keymap.set("n", "<C-w>F", function()
+  vim.cmd("split")
+  require("telescope.builtin").find_files()
+end, { desc = "Horizontal split + find file" })
+
 vim.keymap.set("n", "<leader>tf", function()
   vim.cmd("tabnew")
   require("telescope.builtin").find_files()
 end, { desc = "New tab with file picker" })
 
+-- Tabs 
 keymap.set("n", "<leader>tp", "<Cmd>tabprevious<CR>", { desc = "Go to previous tab" })
 keymap.set("n", "<leader>tn", "<Cmd>tabnext<CR>", { desc = "Go to next tab" })
 
+-- Scratch buffer & new files
 keymap.set("n", "<leader>sn", "<Cmd>enew<CR>", { desc = "New scratch buffer" })
 keymap.set("n", "<leader>sw", function()
   vim.ui.input({ prompt = "Save as: " }, function(filename)

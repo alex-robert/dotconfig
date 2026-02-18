@@ -409,6 +409,8 @@ M.setup = function()
   -- Typescript
   hl(0, '@type.builtin.typescript', { link = '@type' })
   hl(0, '@type.builtin.tsx', { link = '@type' })
+  hl(0, 'typescriptIdentifierName', {fg = c.vscLightBlue, bg = 'NONE'})
+  hl(0, 'typescriptTypeBlock', {fg = c.vscLightBlue, bg = 'NONE'})
   hl(0, 'typescriptLabel', { fg = c.vscLightBlue, bg = 'NONE' })
   hl(0, 'typescriptExceptions', { fg = c.vscLightBlue, bg = 'NONE' })
   hl(0, 'typescriptBraces', { fg = c.vscFront, bg = 'NONE' })

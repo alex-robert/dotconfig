@@ -44,8 +44,11 @@ local default_config = {
     --   font_size = 13.0, 
     -- },
 
-    font = wezterm.font("FiraCode Nerd Font Mono", {
-        weight = "Medium",
+    font = wezterm.font(
+      -- "FiraCode Nerd Font Mono"
+      "MesloLGL Nerd Font Mono"
+    , {
+        weight = "Bold",
         stretch = "Normal",
         style = "Normal"
     }),

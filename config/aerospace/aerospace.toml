@@ -240,32 +240,16 @@ backspace = ['close-all-windows-but-current', 'mode main']
     run = ['layout tiling', 'move-node-to-workspace 2']
 
 [[on-window-detected]]
+    if.app-id = 'notion.id'
+    run = ['layout tiling', 'move-node-to-workspace 3']
+
+[[on-window-detected]]
+    if.app-id = 'md.obsidian'
+    run = ['layout tiling', 'move-node-to-workspace 3']
+
+[[on-window-detected]]
     if.app-id = 'com.postmanlabs.mac'
     run = ['move-node-to-workspace 3']
-
-[[on-window-detected]]
-    if.app-id = 'company.thebrowser.Browser'
-    run = ['layout tiling', 'move-node-to-workspace 4']
-
-[[on-window-detected]]
-    if.app-id = 'notion.id'
-    run = ['layout tiling', 'move-node-to-workspace 5']
-
-[[on-window-detected]]
-    if.app-id = 'com.tinyspeck.slackmacgap'
-    run = ['move-node-to-workspace 5']
-
-[[on-window-detected]]
-    if.app-id = 'com.deezer.deezer-desktop'
-    run = ['move-node-to-workspace 5']
-
-[[on-window-detected]]
-    if.app-id = 'com.apple.Music'
-    run = ['move-node-to-workspace 5']
-
-[[on-window-detected]]
-    if.app-id = 'com.spotify.client'
-    run = ['move-node-to-workspace 5']
 
 [[on-window-detected]]
     if.app-id = 'ai.elementlabs.lmstudio'
@@ -275,8 +259,43 @@ backspace = ['close-all-windows-but-current', 'mode main']
     if.app-id = 'teleportlabs.com.Dayflow'
     run = ['move-node-to-workspace 3']
 
+ [[on-window-detected]]
+    if.app-id = 'com.tinyspeck.slackmacgap'
+    run = ['move-node-to-workspace 4']
+
+ [[on-window-detected]]
+    if.app-id = 'com.deezer.deezer-desktop'
+    run = ['move-node-to-workspace 4']
+
+ [[on-window-detected]]
+    if.app-id = 'com.apple.Music'
+    run = ['move-node-to-workspace 4']
+
+ [[on-window-detected]]
+    if.app-id = 'com.spotify.client'
+    run = ['move-node-to-workspace 4']
+
 [[on-window-detected]]
     if.app-id = 'com.dashlane.dashlaneph1final'
+    run = ['layout floating', 'move-node-to-workspace 5']
+
+[[on-window-detected]]
+    if.app-id = 'company.thebrowser.Browser'
+    run = ['layout tiling', 'move-node-to-workspace 5']
+
+## Floating
+[[on-window-detected]]
+    if.app-id = 'unity.Blizzard Entertainment.Hearthstone'
+    check-further-callbacks = true
+    run = ['layout floating', 'move-node-to-workspace 2']
+
+[[on-window-detected]]
+    if.app-id = 'com.google.chrome.for.testing'
+    check-further-callbacks = true
+    run = ['layout floating', 'move-node-to-workspace 3']
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.finder'
     run = ['layout floating', 'move-node-to-workspace 3']
 
 [[on-window-detected]]
@@ -298,19 +317,5 @@ backspace = ['close-all-windows-but-current', 'mode main']
     if.app-id = 'com.codeweavers.CrossOver'
     check-further-callbacks = true
     run = ['layout floating']
-
-[[on-window-detected]]
-    if.app-id = 'unity.Blizzard Entertainment.Hearthstone'
-    check-further-callbacks = true
-    run = ['layout floating', 'move-node-to-workspace 2']
-
-[[on-window-detected]]
-    if.app-id = 'com.google.chrome.for.testing'
-    check-further-callbacks = true
-    run = ['layout floating', 'move-node-to-workspace 3']
-
-[[on-window-detected]]
-    if.app-id = 'com.apple.finder'
-    run = ['layout floating', 'move-node-to-workspace 3']
 
 
