@@ -51,7 +51,30 @@ return {
           },
         }
 
-        dap.configurations.typescript = dap.configurations.javascript
+        dap.configurations.javascriptreact = dap.configurations.javascript
+
+        dap.configurations.typescript = {
+          {
+            type = "pwa-node",
+            request = "launch",
+            name = "Launch file",
+            program = "${file}",
+            cwd = "${workspaceFolder}",
+            console = "integratedTerminal",
+          },
+          {
+            type = "pwa-node",
+            request = "launch",
+            name = "Mocha: current file",
+            program = "${workspaceFolder}/node_modules/.bin/mocha",
+            args = { "--require", "ts-node/register", "${file}", "--timeout", "0" },
+            cwd = "${workspaceFolder}",
+            console = "integratedTerminal",
+            skipFiles = { "<node_internals>/**" },
+          },
+        }
+
+        dap.configurations.typescriptreact = dap.configurations.typescript
 
         -- Auto-open REPL console when debugging starts
         dap.listeners.after.event_initialized["dap_repl"] = function()

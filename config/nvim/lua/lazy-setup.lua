@@ -16,12 +16,12 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-local no_vscode = function() return not vim.g.vscode end
-local no_light  = function() return not vim.g.light end
-local full_only = function() return not vim.g.vscode and not vim.g.light end
+local isNotVscodeDist = function() return not vim.g.vscode end
+local isNotLightDist  = function() return not vim.g.light end
+local isFullDist = function() return not vim.g.vscode and not vim.g.light end
 
 require("lazy").setup({
-  -- Core editing — always loaded (VSCode, light, full Neovim)
+  -- Always load
   {import = "plugins.mini-ai"},
   {import = "plugins.mini-keymap"},
   {import = "plugins.mini-move"},
@@ -31,31 +31,33 @@ require("lazy").setup({
   {import = "plugins.mini-trailspace"},
   {import = "plugins.mini-utils"},
 
-  -- VSCode + full Neovim (not light — too heavy for $EDITOR use)
-  {import = "plugins.treesitter",    cond = no_light},
-  {import = "plugins.ts-autotag",    cond = no_light},
 
-  -- Standalone Neovim only (light + full, not VSCode)
-  {import = "plugins.codestats",     cond = no_vscode},
+  -- Loads on terminal Nvim only (light + full, not in VSCode)
+  {import = "plugins.codestats",     cond = isNotVscodeDist},
 
-  -- Full Neovim only (not VSCode, not light)
-  {import = "plugins.ccc",           cond = full_only},
-  {import = "plugins.dap",           cond = full_only},
-  {import = "plugins.gitsigns",      cond = full_only},
-  {import = "plugins.ibl",           cond = full_only},
-  {import = "plugins.lsp",           cond = full_only},
-  {import = "plugins.lualine",       cond = full_only},
-  {import = "plugins.markdown",      cond = full_only},
-  {import = "plugins.mini-files",    cond = full_only},
-  {import = "plugins.mini-icons",    cond = full_only},
-  {import = "plugins.mini-sessions", cond = full_only},
+  -- Loads in Full Nvim + VSCode (no light, too heavy for $EDITOR)
+  {import = "plugins.treesitter",    cond = isNotLightDist},
+  {import = "plugins.ts-autotag",    cond = isNotLightDist},
+
+  -- Loads for Full Nvim only (not inside VSCode and no light light $EDITOR)
+  {import = "plugins.ccc",           cond = isFullDist},
+  {import = "plugins.dap",           cond = isFullDist},
+  {import = "plugins.gitsigns",      cond = isFullDist},
+  {import = "plugins.ibl",           cond = isFullDist},
+  {import = "plugins.lsp",           cond = isFullDist},
+  {import = "plugins.lualine",       cond = isFullDist},
+  {import = "plugins.markdown",      cond = isFullDist},
+  {import = "plugins.mini-files",    cond = isFullDist},
+  {import = "plugins.mini-icons",    cond = isFullDist},
+  {import = "plugins.mini-sessions", cond = isFullDist},
   -- {import = "plugins.mini-map",   cond = full_only},
-  {import = "plugins.noice",         cond = full_only},
-  {import = "plugins.scope",         cond = full_only},
-  {import = "plugins.snacks",        cond = full_only},
-  {import = "plugins.telescope",     cond = full_only},
-  {import = "plugins.themery",       cond = full_only},
-  {import = "plugins.trouble",       cond = full_only},
-  {import = "plugins.which-key",     cond = full_only},
+  {import = "plugins.noice",         cond = isFullDist},
+  {import = "plugins.scope",         cond = isFullDist},
+  {import = "plugins.snacks",        cond = isFullDist},
+  {import = "plugins.dressing",      cond = isFullDist},
+  {import = "plugins.telescope",     cond = isFullDist},
+  {import = "plugins.themery",       cond = isFullDist},
+  {import = "plugins.trouble",       cond = isFullDist},
+  {import = "plugins.which-key",     cond = isFullDist},
   -- {"https://github.com/Weyaaron/nvim-training", pin= true, opts = {}}
 })

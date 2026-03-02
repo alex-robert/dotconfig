@@ -90,3 +90,14 @@ keymap.set("n", "<leader>ln", function()
   vim.wo.number = not vim.wo.number
   vim.wo.relativenumber = not vim.wo.relativenumber
 end, { desc = "Toggle line numbers" })
+
+-- Close all auxiliary windows (help, quickfix, loclist, etc.)
+keymap.set("n", "<leader>cx", function()
+  local auxiliary = { help = true, quickfix = true, nofile = true }
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    if auxiliary[vim.bo[buf].buftype] and not vim.bo[buf].modifiable then
+      vim.api.nvim_win_close(win, false)
+    end
+  end
+end, { desc = "Close auxiliary windows" })
