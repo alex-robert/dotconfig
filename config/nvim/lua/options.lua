@@ -1,12 +1,40 @@
 local opt = vim.opt
 
-opt.relativenumber = false
 opt.number = true
+opt.relativenumber = false
+
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.expandtab = true
+opt.autoindent = true
+
+opt.ignorecase = true
+opt.smartcase = true
+opt.hlsearch = true
+opt.incsearch = true
+
+opt.termguicolors = true
+opt.wrap = true
+opt.linebreak = true
+
+opt.mouse = "a"
+opt.selectmode = ""
+
+opt.clipboard = "unnamedplus"
+opt.splitbelow = true
+opt.splitright = true
+opt.undofile = true
+opt.swapfile = false
+
+opt.updatetime = 300
+opt.timeoutlen = 400
+
+opt.shortmess:append("I")
 
 opt.signcolumn = "yes"
 opt.cursorline = true
 opt.cmdheight = 0
-opt.fillchars = { eob = " " }
+opt.fillchars = { eob = "~" }
 
 opt.list = true
 opt.listchars = {

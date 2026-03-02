@@ -17,9 +17,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local no_vscode = function() return not vim.g.vscode end
+local no_light  = function() return not vim.g.light end
+local full_only = function() return not vim.g.vscode and not vim.g.light end
 
 require("lazy").setup({
-  -- Editing enhancements — always loaded, work in VSCode too
+  -- Core editing — always loaded (VSCode, light, full Neovim)
   {import = "plugins.mini-ai"},
   {import = "plugins.mini-keymap"},
   {import = "plugins.mini-move"},
@@ -28,28 +30,32 @@ require("lazy").setup({
   {import = "plugins.mini-surround"},
   {import = "plugins.mini-trailspace"},
   {import = "plugins.mini-utils"},
-  {import = "plugins.treesitter"},
-  {import = "plugins.ts-autotag"},
+
+  -- VSCode + full Neovim (not light — too heavy for $EDITOR use)
+  {import = "plugins.treesitter",    cond = no_light},
+  {import = "plugins.ts-autotag",    cond = no_light},
+
+  -- Standalone Neovim only (light + full, not VSCode)
   {import = "plugins.codestats",     cond = no_vscode},
 
-  -- Standalone Neovim only
-  {import = "plugins.ccc",           cond = no_vscode},
-  {import = "plugins.dap",           cond = no_vscode},
-  {import = "plugins.gitsigns",      cond = no_vscode},
-  {import = "plugins.ibl",           cond = no_vscode},
-  {import = "plugins.lsp",           cond = no_vscode},
-  {import = "plugins.lualine",       cond = no_vscode},
-  {import = "plugins.markdown",      cond = no_vscode},
-  {import = "plugins.mini-files",    cond = no_vscode},
-  {import = "plugins.mini-icons",    cond = no_vscode},
-  {import = "plugins.mini-sessions", cond = no_vscode},
-  -- {import = "plugins.mini-map",   cond = no_vscode},
-  {import = "plugins.noice",         cond = no_vscode},
-  {import = "plugins.scope",         cond = no_vscode},
-  {import = "plugins.snacks",        cond = no_vscode},
-  {import = "plugins.telescope",     cond = no_vscode},
-  {import = "plugins.themery",       cond = no_vscode},
-  {import = "plugins.trouble",       cond = no_vscode},
-  {import = "plugins.which-key",     cond = no_vscode},
+  -- Full Neovim only (not VSCode, not light)
+  {import = "plugins.ccc",           cond = full_only},
+  {import = "plugins.dap",           cond = full_only},
+  {import = "plugins.gitsigns",      cond = full_only},
+  {import = "plugins.ibl",           cond = full_only},
+  {import = "plugins.lsp",           cond = full_only},
+  {import = "plugins.lualine",       cond = full_only},
+  {import = "plugins.markdown",      cond = full_only},
+  {import = "plugins.mini-files",    cond = full_only},
+  {import = "plugins.mini-icons",    cond = full_only},
+  {import = "plugins.mini-sessions", cond = full_only},
+  -- {import = "plugins.mini-map",   cond = full_only},
+  {import = "plugins.noice",         cond = full_only},
+  {import = "plugins.scope",         cond = full_only},
+  {import = "plugins.snacks",        cond = full_only},
+  {import = "plugins.telescope",     cond = full_only},
+  {import = "plugins.themery",       cond = full_only},
+  {import = "plugins.trouble",       cond = full_only},
+  {import = "plugins.which-key",     cond = full_only},
   -- {"https://github.com/Weyaaron/nvim-training", pin= true, opts = {}}
 })

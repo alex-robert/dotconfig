@@ -157,6 +157,7 @@ function y() {
 #-----------------------#
 #### --- Aliases --- ####
 #-----------------------#
+alias e="nvim --cmd 'let g:light=1'"
 alias ll="ls -lh"
 alias la="ls -lha"
 alias gs="git status"

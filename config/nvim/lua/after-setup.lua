@@ -1,11 +1,13 @@
 vim.cmd('colorscheme vscode')
 
-vim.api.nvim_create_autocmd("User", {
-  pattern = "MiniFilesActionRename",
-  callback = function(event)
-    Snacks.rename.on_rename_file(event.data.from, event.data.to)
-  end,
-})
+if not vim.g.vscode and not vim.g.light then
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "MiniFilesActionRename",
+    callback = function(event)
+      Snacks.rename.on_rename_file(event.data.from, event.data.to)
+    end,
+  })
+end
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
