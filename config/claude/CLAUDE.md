@@ -7,7 +7,7 @@
 - Remember: A working 80% solution tested beats a theoretically perfect 0% solution
 - When uncertain about approach, default to: simple → test → refine (not: plan → design → implement → test)
 
-## Plan and review
+## Session Workflow
 ### Before starting to work
 - Always start any request in plan mode
 - When the plan is ready, save it to .claude/tasks/TASK_NAME.md
@@ -16,14 +16,16 @@
 - Don't start implementation until the plan or a subset todo from it has been approved
 
 ### Task Implementation
+- Create a git branch for the current task cc-task/task_name
 - Ask: Do we start by implementing tests (TDD) or do we don't care for this session ?
 - Always disable auto-accept edits if previously enabled and ask again
 - Always check existing return types and exisiting methods first => do not invent methods/types
 - Always check existing patterns first to keep codebase consistent
 
 ### Finishing a tasks
-- Ask if can try to build the project to spot common errors.
-- Do not Run the tests (no npm run test) - user does.
+- Commit on the task branch
+- Ask if you can try to build the project to spot common errors.
+- Ask if you can run the tests 
 - If task is not done: Keep the task file updated (check the todos, update the plan if it has changed durring the session)
 - If task is done: Move the task to .claude/done/TASK_NAME.md with final task implementation details
 - Add a "Task Completion Summary" section at the end with:
@@ -32,17 +34,19 @@
   - Production readiness status
   - Optional next steps
 - Write some docs if revelant and approved in the plan
-- Let the user handle the chores (git, debug investigation, cleanup, ... )
+- Do not mark the task as completed before it has been fully reviewed and approved
+- Let the user handle the chores (git merge, debug investigation, cleanup, ... )
 
 ## Code Style and Guilelines
 ### Code style
 - No semicolons unless required
 - 2-space indentation
 - Always add trailing commas on objects/arrays
+- Group imports on single lines when possible
+
+### Naming Style
 - Interface names prefixed with `I` (e.g., `IMyInterface`)
 - private methods are prefixed with an `_`
-- File names use dashes for word separation
-- Group imports on single lines when possible
 
 ### Comments
 - Do not add comments to just repeat the function name

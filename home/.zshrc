@@ -160,9 +160,8 @@ function y() {
 alias ll="ls -lh"
 alias la="ls -lha"
 alias gs="git status"
-alias code="nvim"
+# alias code="nvim"
 alias nvnuke="rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim"
-# alias code = "nvim"
 
 #------------------------------#
 #### ---- Startup Flex ---- ####

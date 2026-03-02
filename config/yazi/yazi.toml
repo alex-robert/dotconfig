@@ -8,3 +8,13 @@ show_symlink   = false
 [preview]
 tab_size       = 2
 wrap           = "no"
+
+[[plugin.prepend_fetchers]]
+id  = "git"
+url = "*"
+run = "git"
+
+[[plugin.prepend_fetchers]]
+id  = "git"
+url = "*/"
+run = "git"

@@ -2,10 +2,10 @@ return {
   'nvim-mini/mini.files',
   version = '*',
   keys = {
-    { '<leader>ed', function() MiniFiles.open() end, desc = 'Root Directory' },
-    { '<leader>eed', function() MiniFiles.open(nil, false) end, desc = 'Root Directory (clean)' },
+    { '<leader>er', function() MiniFiles.open(nil, false) end, desc = 'Root Directory' },
+    -- { '<leader>eer', function() MiniFiles.open(nil, false) end, desc = 'Root Directory (clean)' },
     { '<leader>ef', function() MiniFiles.open(vim.api.nvim_buf_get_name(0)) end, desc = 'Current File Directory' },
-    { '<leader>eef', function() MiniFiles.open(vim.api.nvim_buf_get_name(0), false) end, desc = 'Current File Directory (clean)' },
+    -- { '<leader>eef', function() MiniFiles.open(vim.api.nvim_buf_get_name(0), false) end, desc = 'Current File Directory (clean)' },
   },
   config = function()
     local ignored_files = {

@@ -5,6 +5,41 @@ return {
     config = function()
 
 
+      local empty = require('lualine.component'):extend()
+      function empty:draw(default_highlight)
+        self.status = ''
+        self.applied_separator = ''
+        self:apply_highlights(default_highlight)
+        self:apply_section_separators()
+        return self.status
+      end
+
+      local colors = {
+        red = '#ca1243',
+        grey = '#a0a1a7',
+        black = '#383a42',
+        white = '#f3f3f3',
+        light_green = '#83a598',
+        orange = '#fe8019',
+        green = '#8ec07c',
+      }
+      -- Put proper separators and gaps between components in sections
+      local function process_sections(sections)
+        for name, section in pairs(sections) do
+          local left = name:sub(9, 10) < 'x'
+          for pos = 1, name ~= 'lualine_z' and #section or #section - 1 do
+            table.insert(section, pos * 2, { empty, color = { fg = colors.grey, bg = colors.grey } })
+          end
+          for id, comp in ipairs(section) do
+            if type(comp) ~= 'table' then
+              comp = { comp }
+              section[id] = comp
+            end
+            comp.separator = left and { right = '' } or { left = '' }
+          end
+        end
+        return sections
+      end
 
       local function diff_source()
         local gitsigns = vim.b.gitsigns_status_dict
@@ -26,16 +61,14 @@ return {
       require("lualine").setup({
         options = {
           theme = 'auto',
-          -- theme = 'bubbles_theme',
           component_separators = '',
           section_separators = { left = '', right = '' },
           globalstatus = true,
         },
-        sections = {
+        sections = process_sections {
           lualine_a = {
             {
               'mode',
-              -- separator = { left = '' },
               right_padding = 2,
             },
           },
@@ -44,55 +77,61 @@ return {
             {
               'searchcount',
             },
-            -- {
-              --   symbols.get,
-              --   cond = symbols.has,
-              -- }
-            },
-            lualine_x = {
-              'encoding',
-              'fileformat',
-              'filetype',
-            },
-            lualine_y = { 'progress' },
-            lualine_z = {
-              {
-                'location',
-                -- separator = { right = '' },
-              }
-            },
           },
-          tabline = {
-            lualine_a = { tab_header },
-            lualine_b = {
-              -- {
-              --   'buffers',
-              --   --   -- component_separators = ' | ',
-              --   buffers_color = {
-              --     -- Same values as the general color option can be used here.
-              --     active = 'lualine_a_normal',     -- Color for active buffer.
-              --     inactive = 'lualine_c_inactive', -- Color for inactive buffer.
-              --   },
-              --   symbols = {
-              --     modified = '●',      -- Text to show when the buffer is modified
-              --     alternate_file = '', -- Text to show to identify the alternate file
-              --     directory =  '',     -- Text to show when the buffer is a directory
-              --   },
-              -- }
-            },
-            lualine_c = {},
-            lualine_x = {},
-            lualine_y = {},
-            lualine_z = {
-                {
-                  'tabs',
-                  mode = 0,
-                  tab_max_length = 30,
-                  max_length = vim.o.columns / 2,
-                }
+          lualine_x = {
+            'encoding',
+            'fileformat',
+            'filetype',
+          },
+          lualine_y = { 'progress' },
+          lualine_z = {
+            {
+              'location',
+            }
+          },
+        },
+        tabline =  {
+          lualine_a = { tab_header },
+          lualine_b = {
+            {
+              'filename',
+              symbols = {
+                modified = '● ',      -- Text to show when the buffer is modified
+                unnamed = '[No Name]', -- Text to show for unnamed buffers.
+                newfile = '[New]',     -- Text to show for newly created file before first write
               },
             }
-          })
-        end,
-      },
-    }
+          },
+          lualine_c = {
+            -- {
+              --   'buffers',
+              --   separator = '',
+              --   max_length = vim.o.columns,
+              --   use_mode_colors = true,
+              --   buffers_color = {
+                --     active = 'lualine_a_normal',
+                --     inactive = 'lualine_c_inactive',
+                --   },
+                --   symbols = {
+                  --     modified = ' ●',      -- Text to show when the buffer is modified
+                  --     alternate_file = '', -- Text to show to identify the alternate file
+                  --     directory =  '',     -- Text to show when the buffer is a directory
+                  --   },
+                  -- }
+
+                },
+                lualine_x = {},
+                lualine_y = {},
+                lualine_z = {
+                  {
+                    'tabs',
+                    mode = 0,
+                    tab_max_length = 30,
+                    max_length = vim.o.columns / 2,
+                  }
+                },
+              }
+            })
+          end,
+        },
+      }

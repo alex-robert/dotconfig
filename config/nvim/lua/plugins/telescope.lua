@@ -8,10 +8,11 @@ return {
     },
     cmd = "Telescope",
     keys = {
-      { "<leader>ff", function() require("telescope.builtin").find_files({no_ignore = true, hidden = true}) end, desc = "Find files" },
+      { "<leader>ff", function() require("telescope.builtin").find_files({no_ignore = false, hidden = true}) end, desc = "Find files" },
+      { "<leader>fi", function() require("telescope.builtin").find_files({no_ignore = true, hidden = true}) end, desc = "Find files" },
       { "<leader>fg", function() require("telescope.builtin").live_grep() end, desc = "Live grep" },
 
-      { "<leader>fb", function() require("telescope.builtin").buffers() end, desc = "Find buffers" },
+      { "<leader><space>", function() require("telescope.builtin").buffers() end, desc = "Find buffers" },
       { "<leader>fB", ":Telescope scope buffers<CR>", desc = "Find all buffers" },
       
       {"<leader>fs", function() require("telescope.builtin").search_history() end, desc = "Search History" },
@@ -81,6 +82,14 @@ return {
           find_files = {
             -- no_ignore = true,
             -- hidden = true,
+          },
+          buffers = {
+            initial_mode = "normal",
+            mappings = {
+              n = {
+                 ["w"] = require("telescope.actions").delete_buffer,
+              }
+            }
           },
           oldfiles = {
             cwd_only = true,

@@ -43,6 +43,20 @@ return {
       -- no nvim-treesitter, maybe fresh install
       if not ok then return end
       nvim_treesitter.install(ensure_installed)
+
+      local highlighted_fts = {
+        'bash', 'c', 'css', 'html',
+        'javascript', 'javascriptreact',
+        'typescript', 'typescriptreact',
+        'json', 'toml', 'yaml',
+        'lua', 'python', 'vim', 'vimdoc',
+        'markdown',
+      }
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = highlighted_fts,
+        callback = function(args) pcall(vim.treesitter.start, args.buf) end,
+      })
     end,
   },
   {

@@ -195,6 +195,9 @@ M.setup = function()
   -- Treesitter
   hl(0, '@error', { fg = c.vscRed, bg = 'NONE' }) -- Legacy
   hl(0, '@punctuation.bracket', { fg = c.vscFront, bg = 'NONE' })
+  hl(0, '@ts.paren',            { fg = c.vscYellow, bg = 'NONE' })
+  hl(0, '@ts.brace',            { fg = c.vscBlue, bg = 'NONE' })
+  hl(0, '@ts.bracket',          { fg = c.vscPink, bg = 'NONE' })
   hl(0, '@punctuation.special', { fg = c.vscFront, bg = 'NONE' })
   hl(0, '@punctuation.delimiter', { fg = c.vscFront, bg = 'NONE' })
   hl(0, '@comment', { fg = c.vscGreen, bg = 'NONE', italic = true })

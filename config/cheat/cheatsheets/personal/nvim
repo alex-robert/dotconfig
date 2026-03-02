@@ -347,7 +347,7 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
   |----------------------------|----------------------------------------------|
   | `␣` `ff`                   | find files                                   |
   | `␣` `fg`                   | live grep (search in files)                  |
-  | `␣` `fb`                   | find buffers                                 |
+  | `␣` `␣`                    | find buffers                                 |
   | `␣` `fh`                   | find help tags                               |
   | `␣` `fr`                   | recent files                                 |
   | `␣` `fc`                   | git commits                                  |
@@ -433,6 +433,7 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
   | `gh`                       | hover documentation                          |
   |                            |                                              |
   | `␣` `ca`                   | code action                                  |
+  | `␣` `cf`                   | format buffer (LSP)                          |
   | `␣` `rn`                   | rename symbol                                |
   | `␣` `d`                    | show diagnostics                             |
   |                            |                                              |
@@ -492,10 +493,23 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
   | `sF` `(char)`              | find surrounding (left)                      |
   | `sh` `(char)`              | highlight surrounding                        |
   |                            |                                              |
+  | **Motions after `sa`**     |                                              |
+  | `w` / `W`                  | word / WORD                                  |
+  | `s`                        | sentence                                     |
+  | `p`                        | paragraph                                    |
+  | `ip` / `ap`                | inner/around `()`                            |
+  | `ib` / `ab`                | inner/around `{}`                            |
+  | `ir` / `ar`                | inner/around `[]`                            |
+  | `it` / `at`                | inner/around tag                             |
+  | `F`                        | function (mini.ai)                           |
+  | `B`                        | buffer (mini.ai)                             |
+  |                            |                                              |
   | **Examples**               |                                              |
   | `saiw"`                    | add quotes around word                       |
   | `sa2w)`                    | add parens around 2 words                    |
+  | `saip{`                    | wrap inner parens content with `{}`          |
   | `sd"`                      | delete surrounding quotes                    |
+  | `sdt`                      | delete surrounding HTML tag                  |
   | `sr"'`                     | replace double with single quotes            |
 
 # Text Objects
@@ -559,10 +573,8 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
 # File Explorer (MiniFiles)
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `␣` `ed`                   | open root directory                          |
-  | `␣` `eed`                  | open root directory (clean)                  |
+  | `␣` `er`                   | open root directory                          |
   | `␣` `ef`                   | open current file directory                  |
-  | `␣` `eef`                  | open current file directory (clean)          |
   |                            |                                              |
   | **In MiniFiles**           |                                              |
   | `h`                        | go out (parent directory)                    |
@@ -623,6 +635,13 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
   |----------------------------|----------------------------------------------|
   | `␣` `ss`                   | toggle scratch buffer                        |
   | `␣` `sl`                   | select scratch buffer                        |
+
+# Auto Tag (nvim-ts-autotag)
+  |                            |                                              |
+  |----------------------------|----------------------------------------------|
+  | Typing `<div`              | auto-closes to `<div></div>`                 |
+  | Renaming opening tag       | closing tag renames on mode change           |
+  | Filetypes                  | html, jsx/tsx, markdown                      |
 
 # Split/Join (mini.splitjoin)
   |                            |                                              |

@@ -44,18 +44,16 @@ local default_config = {
     --   font_size = 13.0, 
     -- },
 
-    font = wezterm.font(
-      -- "FiraCode Nerd Font Mono"
-      "MesloLGL Nerd Font Mono"
-    , {
-        weight = "Bold",
-        stretch = "Normal",
-        style = "Normal"
-    }),
+    -- font = wezterm.font( "Menlo" , { weight = "Bold", stretch = "Normal", style = "Normal", }),
+    -- font_size = 12.3,
+    -- line_height = 1.1
+
+    font = wezterm.font( "MesloLGL Nerd Font Mono" , { weight = "Bold", stretch = "Normal", style = "Normal", }),
+    font_size = 12.8,
+    line_height = 1.0
+
     -- font = wezterm.font("DepartureMono Nerd Font", {weight="Regular", stretch="Normal", style="Normal"}),
     -- font = wezterm.font('JetBrains Mono', { weight = 'Medium' }),
-    font_size = 13,
-
 }
 
 return default_config

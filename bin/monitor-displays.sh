@@ -1,15 +1,14 @@
 #!/bin/bash
 
-# Display monitoring script - toggles borders and aerospace gaps based on connected displays
+# Display monitoring script - updates aerospace gaps based on connected displays
 # Run via launchd agent for continuous monitoring
 
 STATE_FILE="/tmp/aerospace_display_state.txt"
-AEROSPACE_CONFIG="/Users/alex/Workspace/dotconfig/config/aerospace/aerospace.toml"
-BORDERS_CMD="/opt/homebrew/bin/borders"
+AEROSPACE_CONFIG="$HOME/.config/aerospace/aerospace.toml"
 
 # Gap configuration (in pixels)
 SINGLE_SCREEN_GAP=-2
-MULTI_SCREEN_GAP=4
+MULTI_SCREEN_GAP=3
 
 # Test mode override
 FORCE_MODE=""
@@ -49,23 +48,6 @@ is_single_screen() {
   fi
 }
 
-stop_borders() {
-  if pgrep -f "borders" > /dev/null; then
-    pkill -9 borders 2>/dev/null
-    sleep 0.5
-    # Make sure it's really dead
-    pkill -9 -f "/opt/homebrew/opt/borders/bin/borders" 2>/dev/null
-    sleep 1
-  fi
-}
-
-start_borders() {
-  if ! pgrep -f "/opt/homebrew/opt/borders/bin/borders" > /dev/null; then
-    "$BORDERS_CMD" active_color=0xffe1ede4 inactive_color=0xff494d64 width=10.0 > /dev/null 2>&1 &
-    sleep 1
-  fi
-}
-
 update_gaps() {
   local gap_size=$1
   local tmp_file="${AEROSPACE_CONFIG}.tmp"
@@ -88,8 +70,8 @@ update_gaps() {
 }
 
 reload_aerospace() {
-  if command -v aerospace > /dev/null; then
-    aerospace reload-config
+  if [[ -x "/opt/homebrew/bin/aerospace" ]]; then
+    /opt/homebrew/bin/aerospace reload-config
   fi
 }
 
@@ -135,16 +117,14 @@ main() {
     echo "Display state changed: $current_state → $new_state"
 
     if [[ "$new_state" == "single" ]]; then
-      echo "Single screen detected - disabling borders and removing gaps"
-      stop_borders
+      echo "Single screen detected - removing gaps"
       update_gaps "$SINGLE_SCREEN_GAP"
-      reload_aerospace
     else
-      echo "Multi-screen setup detected - enabling borders and adding gaps"
-      start_borders
+      echo "Multi-screen setup detected - adding gaps"
       update_gaps "$MULTI_SCREEN_GAP"
-      reload_aerospace
     fi
+
+    reload_aerospace
 
     echo "$new_state" > "$STATE_FILE"
   fi

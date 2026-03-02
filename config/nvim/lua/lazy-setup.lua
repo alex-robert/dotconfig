@@ -16,33 +16,40 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+local no_vscode = function() return not vim.g.vscode end
+
 require("lazy").setup({
+  -- Editing enhancements — always loaded, work in VSCode too
   {import = "plugins.mini-ai"},
-  {import = "plugins.mini-files"},
-  {import = "plugins.mini-icons"},
   {import = "plugins.mini-keymap"},
-  -- {import = "plugins.mini-map"},
-  {import = "plugins.mini-utils"},
   {import = "plugins.mini-move"},
   {import = "plugins.mini-pairs"},
-  {import = "plugins.mini-sessions"},
   {import = "plugins.mini-splitjoin"},
   {import = "plugins.mini-surround"},
   {import = "plugins.mini-trailspace"},
-  {import = "plugins.which-key"},
+  {import = "plugins.mini-utils"},
   {import = "plugins.treesitter"},
-  {import = "plugins.lsp"},
-  {import = "plugins.dap"},
-  {import = "plugins.ccc"},
-  {import = "plugins.telescope"},
-  {import = "plugins.markdown"},
-  {import = "plugins.codestats"},
-  {import = "plugins.lualine"},
-  {import = "plugins.snacks"},
-  {import = "plugins.gitsigns"},
-  {import = "plugins.trouble"},
-  {import = "plugins.noice"},
-  {import = "plugins.ibl"},
-  {import = "plugins.scope"},
-  {import = "plugins.themery"},
+  {import = "plugins.ts-autotag"},
+  {import = "plugins.codestats",     cond = no_vscode},
+
+  -- Standalone Neovim only
+  {import = "plugins.ccc",           cond = no_vscode},
+  {import = "plugins.dap",           cond = no_vscode},
+  {import = "plugins.gitsigns",      cond = no_vscode},
+  {import = "plugins.ibl",           cond = no_vscode},
+  {import = "plugins.lsp",           cond = no_vscode},
+  {import = "plugins.lualine",       cond = no_vscode},
+  {import = "plugins.markdown",      cond = no_vscode},
+  {import = "plugins.mini-files",    cond = no_vscode},
+  {import = "plugins.mini-icons",    cond = no_vscode},
+  {import = "plugins.mini-sessions", cond = no_vscode},
+  -- {import = "plugins.mini-map",   cond = no_vscode},
+  {import = "plugins.noice",         cond = no_vscode},
+  {import = "plugins.scope",         cond = no_vscode},
+  {import = "plugins.snacks",        cond = no_vscode},
+  {import = "plugins.telescope",     cond = no_vscode},
+  {import = "plugins.themery",       cond = no_vscode},
+  {import = "plugins.trouble",       cond = no_vscode},
+  {import = "plugins.which-key",     cond = no_vscode},
+  -- {"https://github.com/Weyaaron/nvim-training", pin= true, opts = {}}
 })
