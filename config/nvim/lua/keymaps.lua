@@ -91,6 +91,9 @@ keymap.set("n", "<leader>ln", function()
   vim.wo.relativenumber = not vim.wo.relativenumber
 end, { desc = "Toggle line numbers" })
 
+-- Search and replace (very magic)
+keymap.set("n", "<C-f>", ":%s/\\v", { desc = "Search & replace (very magic)" })
+
 -- Close all auxiliary windows (help, quickfix, loclist, etc.)
 keymap.set("n", "<leader>cx", function()
   local auxiliary = { help = true, quickfix = true, nofile = true }

@@ -39,18 +39,18 @@ require("lazy").setup({
   {import = "plugins.treesitter",    cond = isNotLightDist},
   {import = "plugins.ts-autotag",    cond = isNotLightDist},
 
-  -- Loads for Full Nvim only (not inside VSCode and no light light $EDITOR)
-  {import = "plugins.ccc",           cond = isFullDist},
-  {import = "plugins.dap",           cond = isFullDist},
-  {import = "plugins.gitsigns",      cond = isFullDist},
-  {import = "plugins.ibl",           cond = isFullDist},
-  {import = "plugins.lsp",           cond = isFullDist},
-  {import = "plugins.lualine",       cond = isFullDist},
-  {import = "plugins.markdown",      cond = isFullDist},
-  {import = "plugins.mini-files",    cond = isFullDist},
-  {import = "plugins.mini-icons",    cond = isFullDist},
-  {import = "plugins.mini-sessions", cond = isFullDist},
-  -- {import = "plugins.mini-map",   cond = full_only},
+  -- Loads for Full Nvim only (not inside VSCode and no light $EDITOR)
+  {import = "plugins.dap",             cond = isFullDist},
+  {import = "plugins.gitsigns",        cond = isFullDist},
+  {import = "plugins.ibl",             cond = isFullDist},
+  {import = "plugins.lsp",             cond = isFullDist},
+  {import = "plugins.lualine",         cond = isFullDist},
+  {import = "plugins.markdown",        cond = isFullDist},
+  {import = "plugins.mini-files",      cond = isFullDist},
+  {import = "plugins.mini-icons",      cond = isFullDist},
+  {import = "plugins.mini-sessions",   cond = isFullDist},
+  {import = "plugins.mini-hipatterns", cond = isFullDist},
+  {import = "plugins.mini-map",      cond = isFullDist},
   {import = "plugins.noice",         cond = isFullDist},
   {import = "plugins.scope",         cond = isFullDist},
   {import = "plugins.snacks",        cond = isFullDist},
@@ -59,5 +59,5 @@ require("lazy").setup({
   {import = "plugins.themery",       cond = isFullDist},
   {import = "plugins.trouble",       cond = isFullDist},
   {import = "plugins.which-key",     cond = isFullDist},
-  -- {"https://github.com/Weyaaron/nvim-training", pin= true, opts = {}}
+  {import = "plugins.yazi",          cond = isFullDist},
 })

@@ -335,25 +335,25 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
   |                            |                                              |
   |----------------------------|----------------------------------------------|
   | `⌃` `s`                    | save current buffer                          |
-  | `␣` `sn`                   | new scratch buffer                           |
-  | `␣` `sw`                   | save buffer as...                            |
-  | `␣` `q`                    | quit                                         |
-  | `␣` `x`                    | save and quit                                |
+  | `<leader>` `sn`                   | new scratch buffer                           |
+  | `<leader>` `sw`                   | save buffer as...                            |
+  | `<leader>` `q`                    | quit                                         |
+  | `<leader>` `x`                    | save and quit                                |
   | `:q`                       | quit (command mode)                          |
   | `:w`                       | save (command mode)                          |
 
 # Fuzzy Finder (Telescope)
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `␣` `ff`                   | find files                                   |
-  | `␣` `fg`                   | live grep (search in files)                  |
-  | `␣` `␣`                    | find buffers                                 |
-  | `␣` `fh`                   | find help tags                               |
-  | `␣` `fr`                   | recent files                                 |
-  | `␣` `fc`                   | git commits                                  |
-  | `␣` `fk`                   | find keymaps                                 |
-  | `␣` `ft`                   | find theme/colorscheme                       |
-  | `␣` `fab`                  | find all buffers (scope)                     |
+  | `<leader>` `ff`                   | find files                                   |
+  | `<leader>` `fg`                   | live grep (search in files)                  |
+  | `<leader>` `␣`                    | find buffers                                 |
+  | `<leader>` `fh`                   | find help tags                               |
+  | `<leader>` `fr`                   | recent files                                 |
+  | `<leader>` `fc`                   | git commits                                  |
+  | `<leader>` `fk`                   | find keymaps                                 |
+  | `<leader>` `ft`                   | find theme/colorscheme                       |
+  | `<leader>` `fab`                  | find all buffers (scope)                     |
   |                            |                                              |
   | `⇧` `j`                    | next result (in telescope)                   |
   | `⇧` `k`                    | previous result (in telescope)               |
@@ -380,7 +380,7 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
   | `:chistory`                | view quickfix history                        |
   |                            |                                              |
   | **Workflow**               |                                              |
-  | `␣` `fg` + search          | search with live grep                        |
+  | `<leader>` `fg` + search          | search with live grep                        |
   | `⌃` `q`                    | send results to quickfix                     |
   | `:copen`                   | view all matches in list                     |
   | `:cnext`/`:cprev`          | navigate through files                       |
@@ -418,10 +418,10 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
   | `⌃` `c` `l`                | go to next tab                               |
   | `⌃` `c` `h`                | go to previous tab                           |
   | `⌃` `c` `x`                | close tab                                    |
-  | `␣` `tf`                   | new tab with file picker                     |
+  | `<leader>` `tf`                   | new tab with file picker                     |
   |                            |                                              |
-  | `␣` `tp`                   | go to previous tab                           |
-  | `␣` `tn`                   | go to next tab                               |
+  | `<leader>` `tp`                   | go to previous tab                           |
+  | `<leader>` `tn`                   | go to next tab                               |
 
 # LSP (Language Server)
   |                            |                                              |
@@ -432,10 +432,10 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
   | `gt`                       | go to type definition                        |
   | `gh`                       | hover documentation                          |
   |                            |                                              |
-  | `␣` `ca`                   | code action                                  |
-  | `␣` `cf`                   | format buffer (LSP)                          |
-  | `␣` `rn`                   | rename symbol                                |
-  | `␣` `d`                    | show diagnostics                             |
+  | `<leader>` `ca`                   | code action                                  |
+  | `<leader>` `cf`                   | format buffer (LSP)                          |
+  | `<leader>` `rn`                   | rename symbol                                |
+  | `<leader>` `d`                    | show diagnostics                             |
   |                            |                                              |
   | `[d`                       | previous diagnostic                          |
   | `]d`                       | next diagnostic                              |
@@ -443,7 +443,7 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
 # Autocompletion (nvim-cmp)
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `⌃` `␣`                    | trigger completion                           |
+  | `⌃` `<leader>`                    | trigger completion                           |
   | `⏎`                        | confirm selection                            |
   | `⇥`                        | next completion item                         |
   | `⇧` `⇥`                    | previous completion item                     |
@@ -455,8 +455,8 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
   |                            |                                              |
   |----------------------------|----------------------------------------------|
   | **Lazygit (snacks)**       |                                              |
-  | `␣` `gg`                   | open lazygit (root dir)                      |
-  | `␣` `gl`                   | lazygit log                                  |
+  | `<leader>` `gg`                   | open lazygit (root dir)                      |
+  | `<leader>` `gl`                   | lazygit log                                  |
 
 # Editing
   |                            |                                              |
@@ -481,7 +481,7 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
   | `gb` `(motion)`            | block comment motion                         |
   |                            |                                              |
   | **Markdown**               |                                              |
-  | `␣` `mr`                   | toggle markdown rendering                    |
+  | `<leader>` `mr`                   | toggle markdown rendering                    |
 
 # Surround (mini.surround)
   |                            |                                              |
@@ -569,12 +569,34 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
   | `:s/old/new/g`             | replace in line                              |
   | `:%s/old/new/g`            | replace in file                              |
   | `:%s/old/new/gc`           | replace with confirmation                    |
+  | `⌃` `f`                    | open `:%s/\v` (very magic replace)           |
+
+## Regex Modes
+  | Prefix | Mode            | Description                                       |
+  |--------|-----------------|---------------------------------------------------|
+  | `\v`   | very magic      | most chars special — closest to Perl/Python regex |
+  | `\m`   | magic (default) | `.` `*` `[]` `^` `$` are special, rest literal   |
+  | `\M`   | no magic        | only `^` and `$` are special                      |
+  | `\V`   | very no magic   | nothing special except `\` — pure literal search  |
+
+  **Use `\v` for most patterns, `\V` for literal strings (paths, code with brackets)**
+
+## Regex Examples (very magic `\v`)
+  | Pattern                          | Matches                                    |
+  |----------------------------------|--------------------------------------------|
+  | `/\v(foo\|bar)+`                 | one or more "foo" or "bar"                 |
+  | `/\vfunction \w+`                | any function declaration                   |
+  | `/\v^\s*$`                       | blank lines (only whitespace)              |
+  | `/\v<word>`                      | exact word boundary match                  |
+  | `:%s/\v(\w+)\()/\1Args()/g`      | rename all no-arg calls to `Args()` calls  |
+  | `:%s/\vconst (\w+) = .+/let \1/g`| strip const assignments to bare `let`     |
+  | `/\V./some/path[0]`              | literal search for path with brackets      |
 
 # File Explorer (MiniFiles)
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `␣` `er`                   | open root directory                          |
-  | `␣` `ef`                   | open current file directory                  |
+  | `<leader>` `er`                   | open root directory                          |
+  | `<leader>` `ef`                   | open current file directory                  |
   |                            |                                              |
   | **In MiniFiles**           |                                              |
   | `h`                        | go out (parent directory)                    |
@@ -585,35 +607,38 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
   | `q`                        | close                                        |
   | `=`                        | synchronize changes                          |
   | `@`                        | reveal cwd                                   |
+  | `⌃` `h`                    | open in horizontal split                     |
+  | `⌃` `v`                    | open in vertical split                       |
 
 # Session Management (MiniSessions)
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `␣` `Sr`                   | restore latest session                       |
-  | `␣` `Ss`                   | save session                                 |
+  | `<leader>` `Sr`                   | restore latest session                       |
+  | `<leader>` `Ss`                   | save session                                 |
 
 # Utility
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `␣` `ln`                   | toggle line numbers                          |
-  | `␣` `ot`                   | trim all trailing whitespace                 |
-  | `␣` `om`                   | toggle minimap                               |
-  | `␣` `sr`                   | rename file                                  |
+  | `<leader>` `ln`                   | toggle line numbers                          |
+  | `<leader>` `cx`                   | close all auxiliary windows (help, qf, etc.) |
+  | `<leader>` `ot`                   | trim all trailing whitespace                 |
+  | `<leader>` `om`                   | toggle minimap                               |
+  | `<leader>` `sr`                   | rename file                                  |
 
 # Code Utilities (Trouble)
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `␣` `oo`                   | toggle symbols                               |
-  | `␣` `ox`                   | toggle diagnostics                           |
-  | `␣` `oX`                   | toggle buffer diagnostics                    |
-  | `␣` `cl`                   | LSP definitions/references                   |
-  | `␣` `oL`                   | toggle location list                         |
-  | `␣` `oQ`                   | toggle quickfix list                         |
+  | `<leader>` `oo`                   | toggle symbols                               |
+  | `<leader>` `ox`                   | toggle diagnostics                           |
+  | `<leader>` `oX`                   | toggle buffer diagnostics                    |
+  | `<leader>` `cl`                   | LSP definitions/references                   |
+  | `<leader>` `oL`                   | toggle location list                         |
+  | `<leader>` `oQ`                   | toggle quickfix list                         |
 
 # Plugins Management
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `␣` `?`                    | show buffer local keymaps (which-key)        |
+  | `<leader>` `?`                    | show buffer local keymaps (which-key)        |
   | `:Lazy`                    | open lazy.nvim (plugin manager)              |
   | `:Mason`                   | open mason (LSP installer)                   |
   | `:checkhealth`             | check neovim health                          |
@@ -621,20 +646,20 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
 # Debugging (DAP)
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `␣` `db`                   | toggle breakpoint                            |
-  | `␣` `dc`                   | continue/start debugging                     |
-  | `␣` `di`                   | step into                                    |
-  | `␣` `do`                   | step over                                    |
-  | `␣` `dO`                   | step out                                     |
-  | `␣` `dr`                   | toggle debug REPL                            |
-  | `␣` `dl`                   | run last debug session                       |
-  | `␣` `dt`                   | terminate debugging                          |
+  | `<leader>` `db`                   | toggle breakpoint                            |
+  | `<leader>` `dc`                   | continue/start debugging                     |
+  | `<leader>` `di`                   | step into                                    |
+  | `<leader>` `do`                   | step over                                    |
+  | `<leader>` `dO`                   | step out                                     |
+  | `<leader>` `dr`                   | toggle debug REPL                            |
+  | `<leader>` `dl`                   | run last debug session                       |
+  | `<leader>` `dt`                   | terminate debugging                          |
 
 # Scratch Buffers (snacks)
   |                            |                                              |
   |----------------------------|----------------------------------------------|
-  | `␣` `ss`                   | toggle scratch buffer                        |
-  | `␣` `sl`                   | select scratch buffer                        |
+  | `<leader>` `ss`                   | toggle scratch buffer                        |
+  | `<leader>` `sl`                   | select scratch buffer                        |
 
 # Auto Tag (nvim-ts-autotag)
   |                            |                                              |
