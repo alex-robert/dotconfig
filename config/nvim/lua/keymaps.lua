@@ -94,6 +94,10 @@ end, { desc = "Toggle line numbers" })
 -- Search and replace (very magic)
 keymap.set("n", "<C-f>", ":%s/\\v", { desc = "Search & replace (very magic)" })
 
+-- Center screen on search result navigation
+keymap.set("n", "n", "nzz", { desc = "Next search result (centered)" })
+keymap.set("n", "N", "Nzz", { desc = "Prev search result (centered)" })
+
 -- Close all auxiliary windows (help, quickfix, loclist, etc.)
 keymap.set("n", "<leader>cx", function()
   local auxiliary = { help = true, quickfix = true, nofile = true }

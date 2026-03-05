@@ -31,6 +31,8 @@ opt.timeoutlen = 400
 
 opt.shortmess:append("I")
 
+opt.scrolloff = 8
+
 opt.signcolumn = "yes"
 opt.cursorline = true
 opt.cmdheight = 0

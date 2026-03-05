@@ -7,6 +7,12 @@ return {
       lazygit = {
         enabled = true,
         configure = true,
+        win = {
+          style = {
+            width = 0.96,
+            height = 0.96,
+          }
+        }
       },
       statuscolumn = {
         enabled = true,
@@ -24,12 +30,15 @@ return {
       scratch = {
         win = {
           style = {
-            width = 0.94,
-            height = 0.9,
+            width = 0.96,
+            height = 0.96,
           }
         }
       },
       rename = { enabled = true },
+    },
+    scroll = {
+
     },
     keys = {
       { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit (Root Dir)" },

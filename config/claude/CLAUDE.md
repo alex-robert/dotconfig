@@ -16,7 +16,9 @@
 - Don't start implementation until the plan or a subset todo from it has been approved
 
 ### Task Implementation
-- Create a git branch for the current task cc-task/task_name
+- Create a worktree for the current task: `command wt switch --create --no-cd cc-task/task_name`
+- Parse the worktree path from the output (printed as "worktree @ ~/path") and use it as the base for all file operations
+- Use `cd <worktree_path>` for git commands; use the absolute worktree path for Read/Edit/Glob/Grep operations
 - Ask: Do we start by implementing tests (TDD) or do we don't care for this session ?
 - Always disable auto-accept edits if previously enabled and ask again
 - Always check existing return types and exisiting methods first => do not invent methods/types

@@ -43,6 +43,9 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 ## Zsh Hooks
 autoload -U add-zsh-hook
 
+## Worktrunk
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
 
 #-----------------------#
 #### --- Plugins --- ####
@@ -145,13 +148,15 @@ fi
 #### --- Yazi Finder --- ####
 #---------------------------#
 
-function y() {
+function yc() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
   command yazi "$@" --cwd-file="$tmp"
   IFS= read -r -d '' cwd < "$tmp"
   [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
   rm -f -- "$tmp"
 }
+
+alias yy="yazi"
 
 
 #-----------------------#
@@ -161,10 +166,12 @@ alias e="nvim --cmd 'let g:light=1'"
 alias ll="ls -lh"
 alias la="ls -lha"
 alias gs="git status"
-# alias code="nvim"
+alias gg="lazygit"
+alias v="nvim"
 alias nvnuke="rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim"
 
 #------------------------------#
 #### ---- Startup Flex ---- ####
 #------------------------------#
 # neofetch
+
