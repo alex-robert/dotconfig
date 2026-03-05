@@ -1,5 +1,6 @@
 vim.cmd('colorscheme vscode')
 
+-- TODO: using lazy, n mini.files, so needs to triggers on Yazi Rename
 if not vim.g.vscode and not vim.g.light then
   vim.api.nvim_create_autocmd("User", {
     pattern = "MiniFilesActionRename",

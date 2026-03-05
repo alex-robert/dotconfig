@@ -1,0 +1,198 @@
+# vim:fileencoding=utf-8:foldmethod=marker
+
+# : Manager {{{
+
+[mgr]
+cwd = { fg = "#569CD6" }
+
+# Find
+find_keyword  = { fg = "#F44747", bold = true, italic = true, underline = true }
+find_position = { fg = "#C586C0", bg = "reset", bold = true, italic = true }
+
+# Marker
+marker_copied   = { fg = "#B5CEA8", bg = "#B5CEA8" }
+marker_cut      = { fg = "#DCDCAA", bg = "#F44747" }
+marker_marked   = { fg = "#569CD6", bg = "#9CDCFE" }
+marker_selected = { fg = "#DCDCAA", bg = "#DCDCAA" }
+
+# Count
+count_copied   = { fg = "#1F1F1F", bg = "#B5CEA8" }
+count_cut      = { fg = "#1F1F1F", bg = "#DCDCAA" }
+count_selected = { fg = "#1F1F1F", bg = "#569CD6" }
+
+# Border
+border_symbol = "│"
+border_style  = { fg = "#444444" }
+
+# : }}}
+
+
+# : Tabs {{{
+
+[tabs]
+active   = { fg = "#1F1F1F", bg = "#569CD6", bold = true }
+inactive = { fg = "#569CD6", bg = "#252526" }
+
+# : }}}
+
+
+# : Mode {{{
+
+[mode]
+
+normal_main = { fg = "#1F1F1F", bg = "#B5CEA8", bold = true }
+normal_alt  = { fg = "#D4D4D4", bg = "#252526" }
+
+select_main = { fg = "#1F1F1F", bg = "#4EC9B0", bold = true }
+select_alt  = { fg = "#D4D4D4", bg = "#252526" }
+
+unset_main = { fg = "#1F1F1F", bg = "#C586C0", bold = true }
+unset_alt  = { fg = "#D4D4D4", bg = "#252526" }
+
+# : }}}
+
+
+# : Status bar {{{
+
+[status]
+overall = { fg = "#569CD6" }
+sep_left  = { open = "", close = "" }
+sep_right = { open = "", close = "" }
+
+# Progress
+progress_label  = { fg = "#1F1F1F", bold = true }
+progress_normal = { fg = "#569CD6", bg = "#252526" }
+progress_error  = { fg = "#F44747", bg = "#252526" }
+
+# Permissions
+perm_sep   = { fg = "#569CD6" }
+perm_type  = { fg = "#B5CEA8" }
+perm_read  = { fg = "#DCDCAA" }
+perm_write = { fg = "#F44747" }
+perm_exec  = { fg = "#C586C0" }
+
+# : }}}
+
+
+# : Pick {{{
+
+[pick]
+border   = { fg = "#569CD6" }
+active   = { fg = "#C586C0", bold = true }
+inactive = {}
+
+# : }}}
+
+
+# : Input {{{
+
+[input]
+border   = { fg = "#569CD6" }
+title    = {}
+value    = {}
+selected = { reversed = true }
+
+# : }}}
+
+
+# : Completion {{{
+
+[cmp]
+border = { fg = "#569CD6" }
+
+# : }}}
+
+
+# : Tasks {{{
+
+[tasks]
+border  = { fg = "#569CD6" }
+title   = {}
+hovered = { fg = "#C586C0", underline = true }
+
+# : }}}
+
+
+# : Which {{{
+
+[which]
+mask            = { bg = "#252526" }
+cand            = { fg = "#B5CEA8" }
+rest            = { fg = "#D4D4D4" }
+desc            = { fg = "#C586C0" }
+separator       = "  "
+separator_style = { fg = "#444444" }
+
+# : }}}
+
+
+# : Help {{{
+
+[help]
+on      = { fg = "#B5CEA8" }
+run     = { fg = "#C586C0" }
+hovered = { reversed = true, bold = true }
+footer  = { fg = "#1F1F1F", bg = "#D4D4D4" }
+
+# : }}}
+
+
+# : Spotter {{{
+
+[spot]
+border   = { fg = "#569CD6" }
+title    = { fg = "#569CD6" }
+tbl_col  = { fg = "#B5CEA8" }
+tbl_cell = { fg = "#C586C0", bg = "#252526" }
+
+# : }}}
+
+
+# : Notify {{{
+
+[notify]
+title_info  = { fg = "#B5CEA8" }
+title_warn  = { fg = "#DCDCAA" }
+title_error = { fg = "#F44747" }
+
+# : }}}
+
+
+# : File-specific styles {{{
+
+[filetype]
+
+rules = [
+  # Images
+  { mime = "image/*", fg = "#DCDCAA" },
+
+  # Media
+  { mime = "video/*", fg = "#C586C0" },
+  { mime = "audio/*", fg = "#C586C0" },
+
+  # Archives
+  { mime = "application/zip",             fg = "#4EC9B0" },
+  { mime = "application/x-tar",           fg = "#4EC9B0" },
+  { mime = "application/x-bzip*",         fg = "#4EC9B0" },
+  { mime = "application/x-bzip2",         fg = "#4EC9B0" },
+  { mime = "application/x-7z-compressed", fg = "#4EC9B0" },
+  { mime = "application/x-rar",           fg = "#4EC9B0" },
+  { mime = "application/x-xz",            fg = "#4EC9B0" },
+
+  # Documents
+  { mime = "application/doc",      fg = "#6A9955" },
+  { mime = "application/epub+zip", fg = "#6A9955" },
+  { mime = "application/pdf",      fg = "#6A9955" },
+  { mime = "application/rtf",      fg = "#6A9955" },
+  { mime = "application/vnd.*",    fg = "#6A9955" },
+
+  # Special files
+  { mime = "*", is = "orphan", fg = "#F44747", bg = "#4B1818" },
+  { mime = "application/*exec*", fg = "#F44747" },
+
+  # Fallback
+  { url = "*",  fg = "#D4D4D4" },
+  { url = "*/", fg = "#569CD6" },
+]
+
+# : }}}

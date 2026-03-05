@@ -52,28 +52,28 @@ keymap.set("x", "ar", "a[", { desc = "Around brackets" })
 keymap.set({ "n", "i", "v" }, "<C-s>", "<Cmd>w<CR>", { desc = "Save current buffer" })
 
 -- Split + find file (C-w + f)
-keymap.set("n", "<C-w>f", function()
-  vim.cmd("vsplit")
-  require("telescope.builtin").find_files()
-end, { desc = "Vertical split + find file" })
-
-keymap.set("n", "<C-w>F", function()
-  vim.cmd("split")
-  require("telescope.builtin").find_files()
-end, { desc = "Horizontal split + find file" })
+-- keymap.set("n", "<C-w>f", function()
+--   vim.cmd("vsplit")
+--   require("telescope.builtin").find_files()
+-- end, { desc = "Vertical split + find file" })
+--
+-- keymap.set("n", "<C-w>F", function()
+--   vim.cmd("split")
+--   require("telescope.builtin").find_files()
+-- end, { desc = "Horizontal split + find file" })
 
 vim.keymap.set("n", "<leader>tf", function()
   vim.cmd("tabnew")
   require("telescope.builtin").find_files()
 end, { desc = "New tab with file picker" })
 
--- Tabs 
+-- Tabs
 keymap.set("n", "<leader>tp", "<Cmd>tabprevious<CR>", { desc = "Go to previous tab" })
 keymap.set("n", "<leader>tn", "<Cmd>tabnext<CR>", { desc = "Go to next tab" })
 
--- Scratch buffer & new files
-keymap.set("n", "<leader>sn", "<Cmd>enew<CR>", { desc = "New scratch buffer" })
-keymap.set("n", "<leader>sw", function()
+-- Buffer & new files
+keymap.set("n", "<leader>bn", "<Cmd>enew<CR>", { desc = "New buffer" })
+keymap.set("n", "<leader>bw", function()
   vim.ui.input({ prompt = "Save as: " }, function(filename)
     if filename and filename ~= "" then
       vim.cmd("saveas " .. filename)
@@ -81,25 +81,8 @@ keymap.set("n", "<leader>sw", function()
   end)
 end, { desc = "Save buffer as..." })
 
--- Paste in visual mode without yanking deleted text
-vim.keymap.set('x', 'p', '"0p', { desc = 'Paste without yanking' })
-vim.keymap.set('x', 'P', '"0P', { desc = 'Paste before without yanking' })
-
--- Toggle line numbers
-keymap.set("n", "<leader>ln", function()
-  vim.wo.number = not vim.wo.number
-  vim.wo.relativenumber = not vim.wo.relativenumber
-end, { desc = "Toggle line numbers" })
-
--- Search and replace (very magic)
-keymap.set("n", "<C-f>", ":%s/\\v", { desc = "Search & replace (very magic)" })
-
--- Center screen on search result navigation
-keymap.set("n", "n", "nzz", { desc = "Next search result (centered)" })
-keymap.set("n", "N", "Nzz", { desc = "Prev search result (centered)" })
-
 -- Close all auxiliary windows (help, quickfix, loclist, etc.)
-keymap.set("n", "<leader>cx", function()
+keymap.set("n", "<leader>bx", function()
   local auxiliary = { help = true, quickfix = true, nofile = true }
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     local buf = vim.api.nvim_win_get_buf(win)
@@ -108,3 +91,38 @@ keymap.set("n", "<leader>cx", function()
     end
   end
 end, { desc = "Close auxiliary windows" })
+
+-- Search and replace (very magic)
+keymap.set("n", "<C-f>", ":%s/\\v", { desc = "Search & replace (very magic)" })
+
+-- Center screen on search result navigation
+keymap.set("n", "n", "nzz", { desc = "Next search result (centered)" })
+keymap.set("n", "N", "Nzz", { desc = "Prev search result (centered)" })
+
+-- Paste in visual mode without yanking deleted text
+vim.keymap.set('x', 'p', '"0p', { desc = 'Paste without yanking' })
+vim.keymap.set('x', 'P', '"0P', { desc = 'Paste before without yanking' })
+
+-- Toggle line numbers
+keymap.set("n", "<leader>oln", function()
+ -- If any line number are visible, toggle to not visible
+ if vim.wo.number or vim.wo.relativenumber then
+  vim.wo.number = false
+  vim.wo.relativenumber = false
+ -- If no line numbers are visible, reset only absolute numbers
+ elseif not vim.wo.number and not vim.wo.relativenumber then
+  vim.wo.number = true
+ end
+end, { desc = "Toggle line numbers" })
+
+keymap.set('n', '<leader>ola', function()
+  vim.wo.relativenumber = false
+  vim.wo.number = true
+end, {desc = 'Show absolute line numbers'})
+
+keymap.set('n', '<leader>olr', function()
+  vim.wo.number = false
+  vim.wo.relativenumber = true
+end, {desc = 'Show relative line numbers'})
+
+

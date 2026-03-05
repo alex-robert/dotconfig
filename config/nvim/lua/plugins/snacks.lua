@@ -47,7 +47,7 @@ return {
       -- { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit File History" },
       { "<leader>ss",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
       { "<leader>sl",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
-      { "<leader>sr",  function() Snacks.rename.rename_file() end, desc = "Rename File" },
+      { "<leader>br",  function() Snacks.rename.rename_file() end, desc = "Rename File" },
     },
   }
 }

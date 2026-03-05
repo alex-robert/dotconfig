@@ -1,6 +1,7 @@
 [flavor]
 # dark = "catppuccin-mocha"
 # dark = "bluloco-dark"
+# dark = "tokyo-night"
 # light = "catppuccin-latte"
-use = "tokyo-night"
-dark = "tokyo-night"
+use = "vscode-dark"
+dark = "vscode-dark"

@@ -14,10 +14,10 @@ return {
 
       { "<leader><space>", function() require("telescope.builtin").buffers() end, desc = "Find buffers" },
       { "<leader>fB", ":Telescope scope buffers<CR>", desc = "Find all buffers" },
-      
+
       {"<leader>fs", function() require("telescope.builtin").search_history() end, desc = "Search History" },
       {"<leader>fh", function() require("telescope.builtin").oldfiles() end, desc = "Recent files" },
-      
+
       { "<leader>fc", function() require("telescope.builtin").git_commits() end, desc = "Git commits" },
 
       { "<leader>fC", function() require("telescope.builtin").commands() end, desc = "Find commands" },
@@ -69,10 +69,14 @@ return {
               ["<S-k>"] = require("telescope.actions").move_selection_previous,
               ["<C-h>"] = require("telescope.actions").select_horizontal,
               ["<C-v>"] = require("telescope.actions").select_vertical,
+
               ["<C-Down>"] = require('telescope.actions').cycle_history_next,
               ["<C-Up>"] = require('telescope.actions').cycle_history_prev,
             },
             n = {
+              ["<C-h>"] = require("telescope.actions").select_horizontal,
+              ["<C-v>"] = require("telescope.actions").select_vertical,
+
               ["<C-Down>"] = require('telescope.actions').cycle_history_next,
               ["<C-Up>"] = require('telescope.actions').cycle_history_prev,
             }

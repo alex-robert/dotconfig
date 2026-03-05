@@ -43,7 +43,7 @@ return {
         end
       end,
     })
-    vim.keymap.set('n', '<leader>om', '<Cmd>lua MiniMap.toggle()<CR>', { desc = 'Toggle minimap' })
+    vim.keymap.set('n', '<leader>omm', '<Cmd>lua MiniMap.toggle()<CR>', { desc = 'Toggle minimap' })
   end
 }
 
