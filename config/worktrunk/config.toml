@@ -20,6 +20,12 @@
 # # Creates: ~/worktrees/myproject/feature-auth
 worktree-path = "~/Workspace/worktrees/{{ repo }}.{{ branch | sanitize }}"
 
+## Hooks
+
+[post-create]
+env = "[ -f {{ repo_path }}/.env ] && ln -sf {{ repo_path }}/.env .env || true"
+npm = "[ -f bun.lock ] || [ -f bun.lockb ] && bun install || [ -f pnpm-lock.yaml ] && pnpm install || [ -f yarn.lock ] && yarn install || [ -f package-lock.json ] && npm install || true"
+
 ## Command config
 
 [list]

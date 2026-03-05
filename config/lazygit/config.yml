@@ -210,8 +210,8 @@ git:
   # for more information.
   pagers:
     - colorArg: never
-      pager: ydiff -p cat -s --no-wrap --width={{columnWidth}} --tab-width=2 --theme=default
-    - pager: ydiff -p cat --no-wrap --tab-width=2
+      pager: ydiff -p cat -s --no-wrap --width={{columnWidth}} --tab-width=2 --theme=vscode
+    - pager: ydiff -p cat --no-wrap --tab-width=2 --theme=vscode
 
   # Config relating to committing
   commit:

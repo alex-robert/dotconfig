@@ -160,6 +160,14 @@ alias yy="yazi"
 
 
 #-----------------------#
+#### --- Claude  --- ####
+#-----------------------#
+
+function claude() {
+  command claude --add-dir ~/Workspace/worktrees "$@"
+}
+
+#-----------------------#
 #### --- Aliases --- ####
 #-----------------------#
 alias e="nvim --cmd 'let g:light=1'"
