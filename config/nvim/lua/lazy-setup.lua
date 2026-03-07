@@ -57,7 +57,7 @@ require("lazy").setup({
   {import = "plugins.mini-clue",       cond = isFullDist},
   -- {import = "plugins.mini-completion", cond = isFullDist},
   -- {import = "plugins.which-key",       cond = isFullDist},
-  {import = "plugins.noice",           cond = isFullDist},
+  -- {import = "plugins.noice",           cond = isFullDist},
   {import = "plugins.scope",           cond = isFullDist},
   {import = "plugins.snacks",          cond = isFullDist},
   {import = "plugins.dressing",        cond = isFullDist},

@@ -37,7 +37,7 @@ return {
           if is_code and not is_excluded then
             local line_count = vim.api.nvim_buf_line_count(0)
             if line_count > 50 and line_count < 5000 then
-              MiniMap.open()
+              -- MiniMap.open()
             end
           end
         end

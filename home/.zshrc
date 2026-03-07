@@ -148,7 +148,7 @@ fi
 #### --- Yazi Finder --- ####
 #---------------------------#
 
-function yc() {
+function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
   command yazi "$@" --cwd-file="$tmp"
   IFS= read -r -d '' cwd < "$tmp"
@@ -171,12 +171,17 @@ function claude() {
 #### --- Aliases --- ####
 #-----------------------#
 alias e="nvim --cmd 'let g:light=1'"
-alias ll="ls -lh"
-alias la="ls -lha"
-alias gs="git status"
-alias gg="lazygit"
 alias v="nvim"
 alias nvnuke="rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim"
+# alias ll="ls -lh"
+# alias la="ls -lha"
+alias ll="eza -1l -T -L 1 --color=always --icons=always --no-quotes --group-directories-first"
+alias la="eza -1l -L 1 --color=always --icons=always --no-quotes --group-directories-first --all --all"
+
+alias gs="git status"
+alias gg="lazygit"
+
+alias dock="lazydocker"
 
 #------------------------------#
 #### ---- Startup Flex ---- ####

@@ -8,25 +8,25 @@ return {
     },
     cmd = "Telescope",
     keys = {
-      { "<leader>ff", function() require("telescope.builtin").find_files({no_ignore = false, hidden = true}) end, desc = "Find files" },
-      { "<leader>fi", function() require("telescope.builtin").find_files({no_ignore = true, hidden = true}) end, desc = "Find files" },
-      { "<leader>fg", function() require("telescope.builtin").live_grep() end, desc = "Live grep" },
+      { "<leader>ff",      function() require("telescope.builtin").find_files({ no_ignore = false, hidden = true }) end, desc = "Find files" },
+      { "<leader>fi",      function() require("telescope.builtin").find_files({ no_ignore = true, hidden = true }) end, desc = "Find files" },
+      { "<leader>fg",      function() require("telescope.builtin").live_grep() end,                                    desc = "Live grep" },
 
-      { "<leader><space>", function() require("telescope.builtin").buffers() end, desc = "Find buffers" },
-      { "<leader>fB", ":Telescope scope buffers<CR>", desc = "Find all buffers" },
+      { "<leader><space>", function() require("telescope.builtin").buffers() end,                                      desc = "Find buffers" },
+      { "<leader>fB",      ":Telescope scope buffers<CR>",                                                             desc = "Find all buffers" },
 
-      {"<leader>fs", function() require("telescope.builtin").search_history() end, desc = "Search History" },
-      {"<leader>fh", function() require("telescope.builtin").oldfiles() end, desc = "Recent files" },
+      { "<leader>fs",      function() require("telescope.builtin").search_history() end,                               desc = "Search History" },
+      { "<leader>fh",      function() require("telescope.builtin").oldfiles() end,                                     desc = "Recent files" },
 
-      { "<leader>fc", function() require("telescope.builtin").git_commits() end, desc = "Git commits" },
+      { "<leader>fc",      function() require("telescope.builtin").git_commits() end,                                  desc = "Git commits" },
 
-      { "<leader>fC", function() require("telescope.builtin").commands() end, desc = "Find commands" },
-      { "<leader>fH", function() require("telescope.builtin").help_tags() end, desc = "Find help" },
-      { "<leader>fK", function() require("telescope.builtin").keymaps() end, desc = "Find keymaps" },
-      { "<leader>fT", function() require("telescope.builtin").colorscheme() end, desc = "Find theme" },
+      { "<leader>fC",      function() require("telescope.builtin").commands() end,                                     desc = "Find commands" },
+      { "<leader>fH",      function() require("telescope.builtin").help_tags() end,                                    desc = "Find help" },
+      { "<leader>fK",      function() require("telescope.builtin").keymaps() end,                                      desc = "Find keymaps" },
+      { "<leader>fT",      function() require("telescope.builtin").colorscheme() end,                                  desc = "Find theme" },
 
-      {"<S-Up>", function() require("telescope.builtin").cycle_history_prev() end},
-      {"<S-Down>", function() require("telescope.builtin").cycle_history_next() end},
+      { "<S-Up>",          function() require("telescope.builtin").cycle_history_prev() end },
+      { "<S-Down>",        function() require("telescope.builtin").cycle_history_next() end },
     },
     config = function()
       local telescope = require("telescope")
@@ -64,7 +64,6 @@ return {
           },
           mappings = {
             i = {
-              -- ["<Esc>"] = require("telescope.actions").close,
               ["<S-j>"] = require("telescope.actions").move_selection_next,
               ["<S-k>"] = require("telescope.actions").move_selection_previous,
               ["<C-h>"] = require("telescope.actions").select_horizontal,
@@ -74,6 +73,8 @@ return {
               ["<C-Up>"] = require('telescope.actions').cycle_history_prev,
             },
             n = {
+              ["q"] = require("telescope.actions").close,
+
               ["<C-h>"] = require("telescope.actions").select_horizontal,
               ["<C-v>"] = require("telescope.actions").select_vertical,
 
@@ -91,7 +92,7 @@ return {
             initial_mode = "normal",
             mappings = {
               n = {
-                 ["w"] = require("telescope.actions").delete_buffer,
+                ["x"] = require("telescope.actions").delete_buffer,
               }
             }
           },

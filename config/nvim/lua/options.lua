@@ -1,5 +1,7 @@
 local opt = vim.opt
 
+opt.showtabline = 0
+
 opt.number = true
 opt.relativenumber = false
 
@@ -36,18 +38,38 @@ opt.scrolloff = 8
 opt.signcolumn = "yes"
 opt.cursorline = true
 opt.cmdheight = 0
-opt.fillchars = { eob = "~" }
+
+opt.fillchars = {
+  eob = "~",
+  vert = "▌",
+  horiz = "▃",
+  vertright = '▌',
+  horizup = "▃",
+  horizdown = "▃",
+  vertleft = '▌',
+  verthoriz = '█',
+}
+
+--   vert = '│',
+--   horiz = '─',
+--   horizup = '┴',
+--   horizdown = '┬',
+--   vertleft = '┤',
+--   vertright = '├',
+--   verthoriz = '┼',
 
 opt.list = true
+
 opt.listchars = {
   space = "·",
   tab = "→ ",
-  trail = "•",
+  trail = "·",
 }
+
 opt.showbreak = "↪ "
 
-vim.api.nvim_set_hl(0, "Whitespace", { fg = "#3a3a3a" })
-vim.api.nvim_set_hl(0, "NonText", { fg = "#3a3a3a" })
+-- vim.api.nvim_set_hl(0, "Whitespace", { fg = "#3a3a3a" })
+-- vim.api.nvim_set_hl(0, "NonText", { fg = "#3a3a3a" })
 
 opt.foldmethod = "syntax"
 opt.foldenable = false
@@ -55,4 +77,3 @@ opt.foldminlines = 20
 opt.foldcolumn = "auto"
 
 opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-

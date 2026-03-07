@@ -1,8 +1,18 @@
 [mgr]
 
 prepend_keymap = [
-  { on = "k", run = "arrow -1", desc = "Previous file" },
   { on = "j", run = "arrow 1", desc = "Next file" },
-  { on = ["g", "c"], run = "plugin git-files", desc="Show Git file changes"}
+  { on = "k", run = "arrow -1", desc = "Previous file" },
+
+  { on = "J", run = "seek 10", desc = "Scroll down preview"},
+  { on = "K", run = "seek -10", desc = "Scroll up preview"},
+
+  { on = "H", run = "plugin smart-pane leave", desc = "smart-pane leave"},
+  { on = "L", run = "plugin smart-pane enter", desc = "smart-pane enter"},
+
+  { on = ["g", "c"], run = "plugin git-files", desc = "Show Git file changes"},
+  { on = ["g", "o"], run = "plugin duckdb -open", desc = "Open with duckdb"},
+  
+  { on = "P", run = "plugin mux next", desc = "Cycle through mux previewers" },
 ]
 

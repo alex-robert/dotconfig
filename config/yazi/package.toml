@@ -13,22 +13,25 @@ use = "yazi-rs/plugins:git"
 rev = "25918dc"
 hash = "270915fa8282a19908449530ff66f7e2"
 
-[[flavor.deps]]
-use = "yazi-rs/flavors:catppuccin-latte"
-rev = "4c57537"
-hash = "c6b710b2aa0fb9c6c7f1ec4db6146104"
+[[plugin.deps]]
+use = "tpsteiner/smart-pane"
+rev = "1136945"
+hash = "ac00c6350eb5853b6756720a5d47857d"
 
-[[flavor.deps]]
-use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "4c57537"
-hash = "8eabb4e88096f10905a6df62cfaadbf4"
+[[plugin.deps]]
+use = "yazi-rs/plugins:piper"
+rev = "1962818"
+hash = "384464b6df8cb807425c521f8cd790f3"
 
-[[flavor.deps]]
-use = "hankertrix/bluloco-yazi:bluloco-dark"
-rev = "dc47a6d"
-hash = "aaa55b7bf1fa60e9da0df36e0771b610"
+[[plugin.deps]]
+use = "peterfication/mux"
+rev = "e76edd5"
+hash = "8e49c6f9b24993239c4d03a1aaabce80"
 
-[[flavor.deps]]
-use = "BennyOe/tokyo-night"
-rev = "8e6296f"
-hash = "d9da921c3bd37ba32ee27a8a7a40461f"
+[[plugin.deps]]
+use = "wylie102/duckdb"
+rev = "3f8c863"
+hash = "87b9233a74325e95011670ed20bbd0d4"
+
+[flavor]
+deps = []

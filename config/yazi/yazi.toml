@@ -1,7 +1,7 @@
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
 [mgr]
-ratio          = [ 2, 2, 5 ]
+ratio          = [ 2, 2, 6 ]
 show_hidden    = false
 show_symlink   = false
 
@@ -9,12 +9,27 @@ show_symlink   = false
 tab_size       = 2
 wrap           = "no"
 
-[[plugin.prepend_fetchers]]
-id  = "git"
-url = "*"
-run = "git"
+[plugin]
+prepend_previewers = [
+  { url = "*.csv", run = "mux code duckdb " },
+  { url = "*.tsv", run = "mux code duckdb " },
+  { url = "*.json", run = "mux code duckdb" },
+  { url = "*.xlsx", run = "mux file duckdb" },
+  { name = "*.db", run = "mux file duckdb" },
+  { name = "*.duckdb", run = "duckdb" },
+  { url = "*/", run = "mux eza_tree_1 eza_tree_2 eza_tree_3 eza_tree_4" },
+  { mime = "application/sqlite3",  run  = 'piper -- sqlite3 "$1" ".schema --indent"' },
+  # { url = "*.md", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"' },
+]
 
-[[plugin.prepend_fetchers]]
-id  = "git"
-url = "*/"
-run = "git"
+prepend_preloaders = [
+  { name = "*.csv", run = "duckdb", multi = false },
+  { name = "*.tsv", run = "duckdb", multi = false },
+  { name = "*.json", run = "duckdb", multi = false },
+  { name = "*.xlsx", run = "duckdb", multi = false }
+]
+
+prepend_fetchers = [
+  {id = "git", url = "*", run = "git"},
+  {id = "git", url = "*/", run = "git"},
+]

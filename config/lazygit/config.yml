@@ -209,9 +209,8 @@ git:
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Pagers.md
   # for more information.
   pagers:
-    - colorArg: never
-      pager: ydiff -p cat -s --no-wrap --width={{columnWidth}} --tab-width=2 --theme=vscode
-    - pager: ydiff -p cat --no-wrap --tab-width=2 --theme=vscode
+    - pager: ydiff -p cat -s --no-wrap --width={{columnWidth}} --tab-width=2 --theme=vsdark
+      colorArg: never
 
   # Config relating to committing
   commit:

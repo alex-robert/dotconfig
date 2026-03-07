@@ -1,0 +1,34 @@
+gui:
+  border: "rounded" # one of 'rounded' | 'single' | 'double' | 'hidden'
+  sidePanelWidth: 0.3
+  expandFocusedSidePanel: true 
+  theme:
+    activeBorderColor:
+      - '#89b4fa'
+      - bold
+    inactiveBorderColor:
+      - '#a6adc8'
+    selectedLineBgColor:
+      - '#313244'
+    optionsTextColor:
+      - '#89b4fa'
+
+stats:
+  graphs:
+    - caption: CPU (%)
+      statPath: DerivedStats.CPUPercentage
+      color: blue
+    - caption: Memory (%)
+      statPath: DerivedStats.MemoryPercentage
+      color: green
+
+customCommands:
+  containers:
+    - name: bash
+      attach: true
+      command: 'docker exec -it {{ .Container.ID }} bash'
+      serviceNames: []
+    - name: "Show environments var"
+      attach: false
+      command: 'docker exec {{ .Container.ID }} env'
+      serviceNames: []

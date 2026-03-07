@@ -3,8 +3,6 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-
-
       local empty = require('lualine.component'):extend()
       function empty:draw(default_highlight)
         self.status = ''
@@ -15,13 +13,7 @@ return {
       end
 
       local colors = {
-        red = '#ca1243',
         grey = '#a0a1a7',
-        black = '#383a42',
-        white = '#f3f3f3',
-        light_green = '#83a598',
-        orange = '#fe8019',
-        green = '#8ec07c',
       }
       -- Put proper separators and gaps between components in sections
       local function process_sections(sections)
@@ -54,7 +46,24 @@ return {
 
 
       local function tab_header()
-        return ''
+        return ' '
+      end
+
+
+      local function file_name()
+        return {
+          'filename',
+          symbols = {
+            modified = '● ', -- Text to show when the buffer is modified
+            unnamed = '[No Name]', -- Text to show for unnamed buffers.
+            newfile = '[New]', -- Text to show for newly created file before first write
+          },
+        }
+      end
+
+
+      local function is_zen()
+       return Snacks.zen.win ~= nil
       end
 
 
@@ -72,66 +81,89 @@ return {
               right_padding = 2,
             },
           },
-          lualine_b = { 'branch', { 'diff', source = diff_source } , 'diagnostics' },
+          lualine_b = {
+            'branch',
+            { 'diff', source = diff_source },
+            'diagnostics'
+          },
           lualine_c = {
-            {
-              'searchcount',
-            },
+            'selectioncount',
+            'searchcount',
           },
           lualine_x = {
+            {
+              'tabs',
+              mode = 1,
+              tab_max_length = 30,
+              max_length = vim.o.columns / 2,
+              show_modified_status = false,
+              tabs_color = {
+                active = 'lualine_a_normal',
+                inactive = 'lualine_c_inactive',
+              },
+              cond = function()
+                if vim.fn.tabpagenr('$') > 1 then
+                  return true
+                end
+                return false
+              end
+            },
+            'lsp_status',
             'encoding',
             'fileformat',
             'filetype',
           },
           lualine_y = { 'progress' },
           lualine_z = {
-            {
-              'location',
-            }
+            'location',
           },
         },
-        tabline =  {
-          lualine_a = { tab_header },
-          lualine_b = {
-            {
-              'filename',
-              symbols = {
-                modified = '● ',      -- Text to show when the buffer is modified
-                unnamed = '[No Name]', -- Text to show for unnamed buffers.
-                newfile = '[New]',     -- Text to show for newly created file before first write
-              },
-            }
-          },
-          lualine_c = {
-            -- {
-              --   'buffers',
-              --   separator = '',
-              --   max_length = vim.o.columns,
-              --   use_mode_colors = true,
-              --   buffers_color = {
-                --     active = 'lualine_a_normal',
-                --     inactive = 'lualine_c_inactive',
-                --   },
-                --   symbols = {
-                  --     modified = ' ●',      -- Text to show when the buffer is modified
-                  --     alternate_file = '', -- Text to show to identify the alternate file
-                  --     directory =  '',     -- Text to show when the buffer is a directory
-                  --   },
-                  -- }
 
-                },
-                lualine_x = {},
-                lualine_y = {},
-                lualine_z = {
-                  {
-                    'tabs',
-                    mode = 0,
-                    tab_max_length = 30,
-                    max_length = vim.o.columns / 2,
-                  }
-                },
-              }
-            })
-          end,
+        winbar = {
+          lualine_a = { tab_header },
+          lualine_b =  { file_name() },
+          lualine_c = {},
+
+
+          lualine_x = {},
+          lualine_y = {},
+          lualine_z = {}
         },
-      }
+
+        inactive_winbar = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = { file_name() },
+          lualine_x = {},
+          lualine_y = {},
+          lualine_z = {}
+        },
+
+        -- tabline = {
+        --   lualine_a = {},
+        --   lualine_b = {
+        --     {
+        --       'buffers',
+        --       separator = '',
+        --       max_length = vim.o.columns,
+        --       use_mode_colors = true,
+        --       buffers_color = {
+        --         active = 'lualine_a_normal',
+        --         inactive = 'lualine_c_inactive',
+        --       },
+        --       symbols = {
+        --         modified = ' ●', -- Text to show when the buffer is modified
+        --         alternate_file = '', -- Text to show to identify the alternate file
+        --         directory = '', -- Text to show when the buffer is a directory
+        --       },
+        --     },
+        --   },
+        --   lualine_c = {},
+        --   lualine_x = {},
+        --   lualine_y = {},
+        --   lualine_z = {},
+        -- }
+      })
+    end,
+  },
+}
