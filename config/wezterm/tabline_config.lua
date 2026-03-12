@@ -5,19 +5,10 @@ local leader_ext = require 'tabline_leader_ext'
 local theme_ext = require 'tabline_theme_ext'
 
 
-local highlighted_processes = {
-  nvim = true,
-  claude = true,
-}
-
 local tabline_config = {
   options = {
     icons_enabled = true,
-
-    -- theme = 'Tokyo Night Storm',
-    -- theme = 'Catppuccin Mocha',
-    -- theme = 'GruvboxDark',
-    theme = 'Monokai Soda',
+    theme = 'Tokyo Night Storm',
 
     tabs_enabled = true,
     section_separators = {

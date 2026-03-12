@@ -47,9 +47,13 @@ return {
           vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = ev.buf, desc = "Code action" })
           vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { buffer = ev.buf, desc = "Format buffer" })
           vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = ev.buf, desc = "Rename" })
-          vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { buffer = ev.buf, desc = "Show diagnostics" })
-          vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { buffer = ev.buf, desc = "Previous diagnostic" })
-          vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { buffer = ev.buf, desc = "Next diagnostic" })
+
+          vim.keymap.set("n", "<leader>xd", vim.diagnostic.open_float, { buffer = ev.buf, desc = "Show diagnostic" })
+          -- vim.keymap.set("n", "xd", vim.diagnostic.open_float, { buffer = ev.buf, desc = "Show diagnostic" })
+
+
+          vim.keymap.set("n", "<leader>xn", function() vim.diagnostic.jump({ count = 1 }) end, { buffer = ev.buf, desc = "Next diagnostic" })
+          vim.keymap.set("n", "<leader>xp", function() vim.diagnostic.jump({ count = -1 }) end, { buffer = ev.buf, desc = "Previous diagnostic" })
         end,
       })
 

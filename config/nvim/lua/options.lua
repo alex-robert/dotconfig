@@ -1,5 +1,7 @@
 local opt = vim.opt
 
+
+opt.termguicolors = true
 opt.showtabline = 0
 
 opt.number = true
@@ -15,9 +17,17 @@ opt.smartcase = true
 opt.hlsearch = true
 opt.incsearch = true
 
-opt.termguicolors = true
+
 opt.wrap = true
 opt.linebreak = true
+opt.breakindent = false
+
+opt.sidescroll = 0
+opt.showbreak = "↪ "
+
+opt.sidescrolloff = 8
+opt.scrolloff = 8
+
 
 opt.mouse = "a"
 opt.selectmode = ""
@@ -33,7 +43,6 @@ opt.timeoutlen = 400
 
 opt.shortmess:append("I")
 
-opt.scrolloff = 8
 
 opt.signcolumn = "yes"
 opt.cursorline = true
@@ -66,10 +75,6 @@ opt.listchars = {
   trail = "·",
 }
 
-opt.showbreak = "↪ "
-
--- vim.api.nvim_set_hl(0, "Whitespace", { fg = "#3a3a3a" })
--- vim.api.nvim_set_hl(0, "NonText", { fg = "#3a3a3a" })
 
 opt.foldmethod = "syntax"
 opt.foldenable = false

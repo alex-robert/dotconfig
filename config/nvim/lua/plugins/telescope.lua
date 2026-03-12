@@ -44,6 +44,8 @@ return {
               width = 0.99,
               height = 0.99,
               preview_cutoff = 120,
+              prompt_position = 'bottom',
+              mirror = true,
             },
           },
           file_ignore_patterns = {

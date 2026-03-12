@@ -3,34 +3,34 @@ return {
   cmd = "Trouble",
   keys = {
     {
-      "<leader>oo",
+      "<leader>oO",
       "<cmd>Trouble symbols toggle focus=false<cr>",
-      desc = "Symbols (Trouble)",
+      desc = "Toggle  Symbols",
     },
     {
-      "<leader>ox",
+      "<leader>xX",
       "<cmd>Trouble diagnostics toggle<cr>",
-      desc = "Diagnostics (Trouble)",
+      desc = "Toggle All Diagnostics",
     },
     {
-      "<leader>oX",
+      "<leader>xx",
       "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-      desc = "Buffer Diagnostics (Trouble)",
+      desc = "Toggle Buffer Diagnostics",
     },
+    -- {
+    --   "<leader>cl",
+    --   "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+    --   desc = "LSP Definitions ",
+    -- },
+    -- {
+    --   "<leader>oL",
+    --   "<cmd>Trouble loclist toggle<cr>",
+    --   desc = "Location List",
+    -- },
     {
-      "<leader>cl",
-      "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-      desc = "LSP Definitions / references / ... (Trouble)",
-    },
-    {
-      "<leader>oL",
-      "<cmd>Trouble loclist toggle<cr>",
-      desc = "Location List (Trouble)",
-    },
-    {
-      "<leader>oQ",
+      "<leader>xQ",
       "<cmd>Trouble qflist toggle<cr>",
-      desc = "Quickfix List (Trouble)",
+      desc = "Quickfix Diagnostics",
     },
   },
   config = function()

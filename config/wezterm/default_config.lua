@@ -14,9 +14,21 @@ local default_config = {
     -- window_close_confirmation = 'NeverPrompt',
 
     -- -- Appearance
-    -- color_scheme = "Tokyo Night Storm",
-    color_scheme = 'Monokai Soda',
-    force_reverse_video_cursor = true,
+    color_scheme = 'Vs Code Dark+ (Gogh)',
+    --'Moonfly (Gogh)', 'Monokai Soda', 'Operator Mono Dark', 'Rapture', 'Tomorrow (dark) (terminal.sexy)'
+
+    colors = {
+      split = '#71F075',
+
+      -- cursor_fg
+     cursor_bg = '#71F075',
+      cursor_border = '#71F075',
+     cursor_fg = '#290530' -- text color inside cursor block when hover text
+    },
+
+    force_reverse_video_cursor = false,
+    cursor_thickness = '2pt',
+    underline_thickness = '2pt',
 
     window_decorations = "RESIZE",
 
@@ -43,17 +55,9 @@ local default_config = {
     --   font = wezterm.font('DepartureMono Nerd Font', { weight = 'Medium' }),
     --   font_size = 13.0, 
     -- },
-
-    -- font = wezterm.font( "Menlo" , { weight = "Bold", stretch = "Normal", style = "Normal", }),
-    -- font_size = 12.3,
-    -- line_height = 1.1
-
     font = wezterm.font( "MesloLGL Nerd Font Mono" , { weight = "Bold", stretch = "Normal", style = "Normal", }),
     font_size = 12.8,
     line_height = 1.0
-
-    -- font = wezterm.font("DepartureMono Nerd Font", {weight="Regular", stretch="Normal", style="Normal"}),
-    -- font = wezterm.font('JetBrains Mono', { weight = 'Medium' }),
 }
 
 return default_config

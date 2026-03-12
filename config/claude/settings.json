@@ -2,7 +2,7 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:github.com)",
-      "Bash(command wt:*)"
+      "Bash(wt *)"
     ],
     "deny": [],
     "ask": [],

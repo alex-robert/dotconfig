@@ -1,65 +1,37 @@
 # Main CLAUDE.md
 
-## Avoid Circular Planning
-- **STOP and test basic workflows FIRST** before planning advanced features or exploring edge cases
-- If you find yourself planning multiple "what ifs" or "future possibilities", pause and ask: "Can we test a simple end-to-end flow first?"
-- Avoid bikeshedding on architecture, tooling, or patterns - implement the simple version, test it, THEN refine
-- Remember: A working 80% solution tested beats a theoretically perfect 0% solution
-- When uncertain about approach, default to: simple → test → refine (not: plan → design → implement → test)
+## Core Rule
+simple → test → refine: implement the minimum that works, verify it, then extend — never the other way around
 
 ## Session Workflow
-### Before starting to work
-- Always start any request in plan mode
-- When the plan is ready, save it to .claude/tasks/TASK_NAME.md
-- Task plan should contain detailed reasoning as well as tasks breakdown
-- Do not include code snippets or full implementation in the plan, just the theorie
-- Don't start implementation until the plan or a subset todo from it has been approved
+### Plan task
+- For multi-step or multi-file tasks: use `/wt-task task-name` to create a worktree, then write a brief `TASK.md` at the worktree root before implementing
+- For simple/single-concern tasks: proceed directly
+- Read `ARCHITECTURE.md` at the project root if it exists — it contains patterns, types, and conventions to follow
+- Avoid bikeshedding on architecture, tooling, or patterns - plan implement the simplest version first
+- Do not include code snippets or full implementation in the plan, just human readable instructions
+- Ask if the plan should contains specific details for types or class / functions signatures
 
 ### Task Implementation
-- Create a worktree for the current task: `command wt switch --create --no-cd cc-task/task_name`
-- Parse the worktree path from the output (printed as "worktree @ ~/path") and use it as the base for all file operations
-- Use `cd <worktree_path>` for git commands; use the absolute worktree path for Read/Edit/Glob/Grep operations
-- Ask: Do we start by implementing tests (TDD) or do we don't care for this session ?
+- Don't start implementation until the approach is clear (a Todos or a TASK.md exists, context files are scoped)
+- Use `/wt-task task-name` to create the worktree and get its absolute path
+- Use the absolute worktree path as the base for all file operations (Read, Edit, Glob, Grep)
+- Use `cd <worktree_path>` for git commands
+- Ask: Do we start by implementing tests (TDD) or implementation first ?
+- Implement the minimum working version first
+- Stop and verify it works before adding anything else — ask if refinement is needed
 - Always disable auto-accept edits if previously enabled and ask again
-- Always check existing return types and exisiting methods first => do not invent methods/types
-- Always check existing patterns first to keep codebase consistent
 
-### Finishing a tasks
-- Commit on the task branch
-- Ask if you can try to build the project to spot common errors.
-- Ask if you can run the tests 
-- If task is not done: Keep the task file updated (check the todos, update the plan if it has changed durring the session)
-- If task is done: Move the task to .claude/done/TASK_NAME.md with final task implementation details
-- Add a "Task Completion Summary" section at the end with:
-  - Major features delivered
-  - Architecture improvements
-  - Production readiness status
-  - Optional next steps
-- Write some docs if revelant and approved in the plan
+
+### Finishing a task
+- Update `ARCHITECTURE.md` if the task introduced new patterns, types, or conventions
+- Commit on the task branch (include TASK.md if it was created)
+- Do not add `co-Authored-By` in the commit message
+- Ask if you can try to build the project to spot common errors
+- Ask if you can run the tests
+- Write docs if relevant and approved in the plan
 - Do not mark the task as completed before it has been fully reviewed and approved
-- Let the user handle the chores (git merge, debug investigation, cleanup, ... )
+- Let the user handle the chores (git merge, debug investigation, cleanup, ...)
 
-## Code Style and Guilelines
-### Code style
-- No semicolons unless required
-- 2-space indentation
-- Always add trailing commas on objects/arrays
-- Group imports on single lines when possible
-
-### Naming Style
-- Interface names prefixed with `I` (e.g., `IMyInterface`)
-- private methods are prefixed with an `_`
-
-### Comments
-- Do not add comments to just repeat the function name
-- Only add code comments when it adds context 
-- Never just add comment to describe the next lines of code in human langage
-- Do not use emojis
-
-### Coding Guidelines 
-- Always favor expressions style over statements
-- Never use `switch` block
-- Never use `let`, only `const`
-- Never use loop control flow directives: `for`, `while`, `do {...} while (...)`
-- Never use `else` or `else if` directives. 
-- Use `if` when there is no functional expression possibility or for an early return
+## Code Style
+- Read `CODING_GUIDELINES.md` at the project root if it exists

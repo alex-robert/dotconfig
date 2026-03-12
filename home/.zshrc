@@ -104,7 +104,10 @@ export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 export LESS_TERMCAP_ue=$'\E[0m'
 
-## NVM
+
+#----------------------#
+## nvm
+#----------------------#
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/hom/ebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
@@ -132,7 +135,6 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-
 #----------------------#
 #### --- Prompt --- ####
 #----------------------#
@@ -158,7 +160,6 @@ function y() {
 
 alias yy="yazi"
 
-
 #-----------------------#
 #### --- Claude  --- ####
 #-----------------------#
@@ -170,11 +171,10 @@ function claude() {
 #-----------------------#
 #### --- Aliases --- ####
 #-----------------------#
-alias e="nvim --cmd 'let g:light=1'"
+alias e="nvimlight"
 alias v="nvim"
 alias nvnuke="rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim"
-# alias ll="ls -lh"
-# alias la="ls -lha"
+
 alias ll="eza -1l -T -L 1 --color=always --icons=always --no-quotes --group-directories-first"
 alias la="eza -1l -L 1 --color=always --icons=always --no-quotes --group-directories-first --all --all"
 

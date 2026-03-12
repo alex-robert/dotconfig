@@ -250,326 +250,358 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
 ---
 
 # Leader Key
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `␣`                        | Leader key                                   |
+  |                            |                                              |      |
+  |----------------------------|----------------------------------------------|------|
+  | `␣`                        | Leader key                                   |      |
 
 # Movement (Standard HJKL)
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `h`                        | move left                                    |
-  | `j`                        | move down                                    |
-  | `k`                        | move up                                      |
-  | `l`                        | move right                                   |
-  |                            |                                              |
-  | `H`                        | word backward                                |
-  | `J`                        | move down 5 lines                            |
-  | `K`                        | move up 5 lines                              |
-  | `L`                        | word forward                                 |
-  |                            |                                              |
-  | `w`                        | move to start of next word                   |
-  | `e`                        | move to end of word                          |
-  | `b`                        | move to start of previous word               |
-  |                            |                                              |
-  | `0`                        | start of line                                |
-  | `$`                        | end of line                                  |
-  | `gg`                       | start of file                                |
-  | `G`                        | end of file                                  |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | `h`                        | move left                                    | `n`  |
+  | `j`                        | move down                                    | `n`  |
+  | `k`                        | move up                                      | `n`  |
+  | `l`                        | move right                                   | `n`  |
+  |                            |                                              |      |
+  | `H`                        | word backward                                | `n`  |
+  | `J`                        | move down 5 lines                            | `n`  |
+  | `K`                        | move up 5 lines                              | `n`  |
+  | `L`                        | word forward                                 | `n`  |
+  |                            |                                              |      |
+  | `w`                        | move to start of next word                   | `n`  |
+  | `e`                        | move to end of word                          | `n`  |
+  | `b`                        | move to start of previous word               | `n`  |
+  |                            |                                              |      |
+  | `0`                        | start of line                                | `n`  |
+  | `$`                        | end of line                                  | `n`  |
+  | `gg`                       | start of file                                | `n`  |
+  | `G`                        | end of file                                  | `n`  |
 
 # Insert Mode
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `i`                        | enter insert mode                            |
-  | `I`                        | insert at beginning of line                  |
-  | `a`                        | append after cursor                          |
-  | `A`                        | append at end of line                        |
-  | `o`                        | open line below                              |
-  | `O`                        | open line above                              |
-  |                            |                                              |
-  | `esc`                      | exit insert mode                             |
-  | `jj` / `kk`                | exit insert mode (mini.keymap combo)         |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | `i`                        | enter insert mode                            | `n`  |
+  | `I`                        | insert at beginning of line                  | `n`  |
+  | `a`                        | append after cursor                          | `n`  |
+  | `A`                        | append at end of line                        | `n`  |
+  | `o`                        | open line below                              | `n`  |
+  | `O`                        | open line above                              | `n`  |
+  |                            |                                              |      |
+  | `esc`                      | exit current mode                            | `i`  |
+  | `jk` / `kj`                | escape shortcut                              | `i`  |
 
 # Visual Mode
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | **Entering Visual Mode**   |                                              |
-  | `v`                        | visual character mode                        |
-  | `V`                        | visual line mode                             |
-  | `⌃` `v`                    | visual block mode (column editing!)          |
-  | `gv`                       | re-select last visual selection              |
-  |                            |                                              |
-  | **Movement (HJKL)**        |                                              |
-  | `h/j/k/l`                  | extend selection left/down/up/right          |
-  | `H/L`                      | extend word back/forward                     |
-  | `J/K`                      | extend 5 lines down/up                       |
-  | `w/e/b`                    | extend by word                               |
-  | `0/$`                      | extend to start/end of line                  |
-  | `gg/G`                     | extend to start/end of file                  |
-  |                            |                                              |
-  | **Operations**             |                                              |
-  | `c`                        | change (delete and enter insert)             |
-  | `d`                        | delete selection                             |
-  | `y`                        | yank (copy) selection                        |
-  | `p`                        | paste over selection                         |
-  | `u`                        | make lowercase                               |
-  | `U`                        | make UPPERCASE                               |
-  | `~`                        | toggle case                                  |
-  | `<`                        | indent left (keeps selection)                |
-  | `>`                        | indent right (keeps selection)               |
-  | `o`                        | move to other end of selection               |
-  | `:`                        | command mode on selection                    |
-  |                            |                                              |
-  | **Block Mode (⌃v)**        | rectangular selections                       |
-  | `⌃` `v` then `j j j`       | select column down                           |
-  | `I` (in block)             | insert at start of block                     |
-  | `A` (in block)             | append at end of block                       |
-  | `c` (in block)             | change block                                 |
-  | `d` (in block)             | delete block                                 |
-  |                            |                                              |
-  | **Advanced**               |                                              |
-  | `V` then `:norm A;`        | add `;` to end of each line                  |
-  | `V` then `:norm I//`       | comment each line with `//`                  |
-  | `V` then `:s/old/new/g`    | replace in selection only                    |
+  |                            |                                              | Mode  |
+  |----------------------------|----------------------------------------------|-------|
+  | **Entering Visual Mode**   |                                              |       |
+  | `v`                        | visual character mode                        | `n`   |
+  | `V`                        | visual line mode                             | `n`   |
+  | `⌃` `v`                    | visual block mode (column editing!)          | `n`   |
+  | `gv`                       | re-select last visual selection              | `n`   |
+  |                            |                                              |       |
+  | **Movement (HJKL)**        |                                              |       |
+  | `h/j/k/l`                  | extend selection left/down/up/right          | `v`   |
+  | `H/L`                      | extend word back/forward                     | `v`   |
+  | `J/K`                      | extend 5 lines down/up                       | `v`   |
+  | `w/e/b`                    | extend by word                               | `v`   |
+  | `0/$`                      | extend to start/end of line                  | `v`   |
+  | `gg/G`                     | extend to start/end of file                  | `v`   |
+  |                            |                                              |       |
+  | **Operations**             |                                              |       |
+  | `c`                        | change (delete and enter insert)             | `v`   |
+  | `d`                        | delete selection                             | `v`   |
+  | `y`                        | yank (copy) selection                        | `v`   |
+  | `p`                        | paste over selection                         | `v`   |
+  | `u`                        | make lowercase                               | `v`   |
+  | `U`                        | make UPPERCASE                               | `v`   |
+  | `~`                        | toggle case                                  | `v`   |
+  | `<`                        | indent left (keeps selection)                | `v`   |
+  | `>`                        | indent right (keeps selection)               | `v`   |
+  | `o`                        | move to other end of selection               | `v`   |
+  | `:`                        | command mode on selection                    | `v`   |
+  |                            |                                              |       |
+  | **Block Mode (⌃v)**        | rectangular selections                       |       |
+  | `⌃` `v` then `j j j`       | select column down                           | `n/v` |
+  | `I` (in block)             | insert at start of block                     | `n/v` |
+  | `A` (in block)             | append at end of block                       | `n/v` |
+  | `c` (in block)             | change block                                 | `n/v` |
+  | `d` (in block)             | delete block                                 | `n/v` |
+  |                            |                                              |       |
+  | **Advanced**               |                                              |       |
+  | `V` then `:norm A;`        | add `;` to end of each line                  | `v`   |
+  | `V` then `:norm I//`       | comment each line with `//`                  | `v`   |
+  | `V` then `:s/old/new/g`    | replace in selection only                    | `v`   |
 
 # File Operations
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `⌃` `s`                    | save current buffer                          |
-  | `<leader>` `sn`                   | new scratch buffer                           |
-  | `<leader>` `sw`                   | save buffer as...                            |
-  | `<leader>` `q`                    | quit                                         |
-  | `<leader>` `x`                    | save and quit                                |
-  | `:q`                       | quit (command mode)                          |
-  | `:w`                       | save (command mode)                          |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | `⌃` `s`                    | save current buffer                          | `n`  |
+  | `<leader>` `sn`                   | new scratch buffer                           | `n`  |
+  | `<leader>` `sw`                   | save buffer as...                            | `n`  |
+  | `<leader>` `q`                    | quit                                         | `n`  |
+  | `<leader>` `x`                    | save and quit                                | `n`  |
+  | `:q`                       | quit (command mode)                          | `c`  |
+  | `:w`                       | save (command mode)                          | `c`  |
 
 # Fuzzy Finder (Telescope)
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `<leader>` `ff`                   | find files                                   |
-  | `<leader>` `fg`                   | live grep (search in files)                  |
-  | `<leader>` `␣`                    | find buffers                                 |
-  | `<leader>` `fh`                   | find help tags                               |
-  | `<leader>` `fr`                   | recent files                                 |
-  | `<leader>` `fc`                   | git commits                                  |
-  | `<leader>` `fk`                   | find keymaps                                 |
-  | `<leader>` `ft`                   | find theme/colorscheme                       |
-  | `<leader>` `fab`                  | find all buffers (scope)                     |
-  |                            |                                              |
-  | `⇧` `j`                    | next result (in telescope)                   |
-  | `⇧` `k`                    | previous result (in telescope)               |
-  | `⏎`                        | select result                                |
-  | `esc`                      | close telescope                              |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | `<leader>` `ff`                   | find files                                   | `n`  |
+  | `<leader>` `fg`                   | live grep (search in files)                  | `n`  |
+  | `<leader>` `␣`                    | find buffers                                 | `n`  |
+  | `<leader>` `fh`                   | find help tags                               | `n`  |
+  | `<leader>` `fr`                   | recent files                                 | `n`  |
+  | `<leader>` `fc`                   | git commits                                  | `n`  |
+  | `<leader>` `fk`                   | find keymaps                                 | `n`  |
+  | `<leader>` `ft`                   | find theme/colorscheme                       | `n`  |
+  | `<leader>` `fab`                  | find all buffers (scope)                     | `n`  |
+  |                            |                                              |      |
+  | `⇧` `j`                    | next result (in telescope)                   | `n`  |
+  | `⇧` `k`                    | previous result (in telescope)               | `n`  |
+  | `⏎`                        | select result                                | `n`  |
+  | `esc`                      | close telescope                              | `n`  |
 
 # Quickfix (Search Results)
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | **In Telescope**           |                                              |
-  | `⌃` `q`                    | send all results to quickfix list            |
-  | `⌥` `q`                    | send selected item to quickfix               |
-  |                            |                                              |
-  | **Navigation**             |                                              |
-  | `:cfirst`                  | go to first quickfix result                  |
-  | `:cnext` or `:cn`          | go to next result                            |
-  | `:cprev` or `:cp`          | go to previous result                        |
-  | `:clast`                   | go to last result                            |
-  | `:cc`                      | show current result                          |
-  |                            |                                              |
-  | **Quickfix Window**        |                                              |
-  | `:copen`                   | open quickfix list in window                 |
-  | `:cclose`                  | close quickfix window                        |
-  | `:chistory`                | view quickfix history                        |
-  |                            |                                              |
-  | **Workflow**               |                                              |
-  | `<leader>` `fg` + search          | search with live grep                        |
-  | `⌃` `q`                    | send results to quickfix                     |
-  | `:copen`                   | view all matches in list                     |
-  | `:cnext`/`:cprev`          | navigate through files                       |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | **In Telescope**           |                                              |      |
+  | `⌃` `q`                    | send all results to quickfix list            | `n`  |
+  | `⌥` `q`                    | send selected item to quickfix               | `n`  |
+  |                            |                                              |      |
+  | **Navigation**             |                                              |      |
+  | `:cfirst`                  | go to first quickfix result                  | `c`  |
+  | `:cnext` or `:cn`          | go to next result                            | `c`  |
+  | `:cprev` or `:cp`          | go to previous result                        | `c`  |
+  | `:clast`                   | go to last result                            | `c`  |
+  | `:cc`                      | show current result                          | `c`  |
+  |                            |                                              |      |
+  | **Quickfix Window**        |                                              |      |
+  | `:copen`                   | open quickfix list in window                 | `c`  |
+  | `:cclose`                  | close quickfix window                        | `c`  |
+  | `:chistory`                | view quickfix history                        | `c`  |
+  |                            |                                              |      |
+  | **Workflow**               |                                              |      |
+  | `<leader>` `fg` + search          | search with live grep                        |      |
+  | `⌃` `q`                    | send results to quickfix                     |      |
+  | `:copen`                   | view all matches in list                     |      |
+  | `:cnext`/`:cprev`          | navigate through files                       |      |
 
 # Buffer Management
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `⌃` `⌥` `l`                | next buffer                                  |
-  | `⌃` `⌥` `h`                | previous buffer                              |
-  | `⌃` `⌥` `x`                | delete buffer                                |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | `⌃` `⌥` `l`                | next buffer                                  | `n`  |
+  | `⌃` `⌥` `h`                | previous buffer                              | `n`  |
+  | `⌃` `⌥` `x`                | delete buffer                                | `n`  |
 
 # Window/Split Management
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | **Navigation**             |                                              |
-  | `⌃` `h`                    | go to left split                             |
-  | `⌃` `j`                    | go to bottom split                           |
-  | `⌃` `k`                    | go to upper split                            |
-  | `⌃` `l`                    | go to right split                            |
-  |                            |                                              |
-  | **Create Splits**          |                                              |
-  | `⌃` `w` `v` or `⌃M-v`     | split vertically                             |
-  | `⌃` `w` `s` or `⌃M-h`     | split horizontally                           |
-  | `⌃` `w` `f`                | split vertical + find files                  |
-  | `⌃` `w` `F`                | split horizontal + find files                |
-  |                            |                                              |
-  | **Manage Splits**          |                                              |
-  | `⌃` `w` `e` or `⌃M-e`     | equal window sizes                           |
-  | `⌃` `w` `w` or `⌃M-w`     | close current split                          |
-  | `⌃` `w` `t`                | send current window to new tab               |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | **Navigation**             |                                              |      |
+  | `⌃` `h`                    | go to left split                             | `n`  |
+  | `⌃` `j`                    | go to bottom split                           | `n`  |
+  | `⌃` `k`                    | go to upper split                            | `n`  |
+  | `⌃` `l`                    | go to right split                            | `n`  |
+  |                            |                                              |      |
+  | **Create Splits**          |                                              |      |
+  | `⌃` `w` `v` or `⌃M-v`     | split vertically                             | `n`  |
+  | `⌃` `w` `s` or `⌃M-h`     | split horizontally                           | `n`  |
+  | `⌃` `w` `f`                | split vertical + find files                  | `n`  |
+  | `⌃` `w` `F`                | split horizontal + find files                | `n`  |
+  |                            |                                              |      |
+  | **Manage Splits**          |                                              |      |
+  | `⌃` `w` `e` or `⌃M-e`     | equal window sizes                           | `n`  |
+  | `⌃` `w` `w` or `⌃M-w`     | close current split                          | `n`  |
+  | `⌃` `w` `t`                | send current window to new tab               | `n`  |
 
 # Tab Management
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `⌃` `c` `l`                | go to next tab                               |
-  | `⌃` `c` `h`                | go to previous tab                           |
-  | `⌃` `c` `x`                | close tab                                    |
-  | `<leader>` `tf`                   | new tab with file picker                     |
-  |                            |                                              |
-  | `<leader>` `tp`                   | go to previous tab                           |
-  | `<leader>` `tn`                   | go to next tab                               |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | `⌃` `c` `l`                | go to next tab                               | `n`  |
+  | `⌃` `c` `h`                | go to previous tab                           | `n`  |
+  | `⌃` `c` `x`                | close tab                                    | `n`  |
+  | `<leader>` `tf`                   | new tab with file picker                     | `n`  |
+  |                            |                                              |      |
+  | `<leader>` `tp`                   | go to previous tab                           | `n`  |
+  | `<leader>` `tn`                   | go to next tab                               | `n`  |
 
 # LSP (Language Server)
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `gd`                       | go to definition                             |
-  | `gr`                       | go to references                             |
-  | `gD`                       | go to declaration                            |
-  | `gt`                       | go to type definition                        |
-  | `gh`                       | hover documentation                          |
-  |                            |                                              |
-  | `<leader>` `ca`                   | code action                                  |
-  | `<leader>` `cf`                   | format buffer (LSP)                          |
-  | `<leader>` `rn`                   | rename symbol                                |
-  | `<leader>` `d`                    | show diagnostics                             |
-  |                            |                                              |
-  | `[d`                       | previous diagnostic                          |
-  | `]d`                       | next diagnostic                              |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | `gd`                       | go to definition                             | `n`  |
+  | `gr`                       | go to references                             | `n`  |
+  | `gD`                       | go to declaration                            | `n`  |
+  | `gt`                       | go to type definition                        | `n`  |
+  | `gh`                       | hover documentation                          | `n`  |
+  |                            |                                              |      |
+  | `<leader>` `ca`                   | code action                                  | `n`  |
+  | `<leader>` `cf`                   | format buffer (LSP)                          | `n`  |
+  | `<leader>` `rn`                   | rename symbol                                | `n`  |
+  | `<leader>` `d`                    | show diagnostics                             | `n`  |
+  |                            |                                              |      |
+  | `[d`                       | previous diagnostic                          | `n`  |
+  | `]d`                       | next diagnostic                              | `n`  |
 
 # Autocompletion (nvim-cmp)
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `⌃` `<leader>`                    | trigger completion                           |
-  | `⏎`                        | confirm selection                            |
-  | `⇥`                        | next completion item                         |
-  | `⇧` `⇥`                    | previous completion item                     |
-  | `⌃` `e`                    | abort completion                             |
-  | `⌃` `f`                    | scroll docs forward                          |
-  | `⌃` `b`                    | scroll docs backward                         |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | `⌃` `<leader>`                    | trigger completion                           | `i`  |
+  | `⏎`                        | confirm selection                            | `i`  |
+  | `⇥`                        | next completion item                         | `i`  |
+  | `⇧` `⇥`                    | previous completion item                     | `i`  |
+  | `⌃` `e`                    | abort completion                             | `i`  |
+  | `⌃` `f`                    | scroll docs forward                          | `i`  |
+  | `⌃` `b`                    | scroll docs backward                         | `i`  |
 
 # Git
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | **Lazygit (snacks)**       |                                              |
-  | `<leader>` `gg`                   | open lazygit (root dir)                      |
-  | `<leader>` `gl`                   | lazygit log                                  |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | **Lazygit (snacks)**       |                                              |      |
+  | `<leader>` `gg`                   | open lazygit (root dir)                      | `n`  |
+  | `<leader>` `gl`                   | lazygit log                                  | `n`  |
 
 # Editing
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `u`                        | undo                                         |
-  | `⌃` `r`                    | redo                                         |
-  | `dd`                       | delete line                                  |
-  | `yy`                       | yank (copy) line                             |
-  | `cc`                       | change line                                  |
-  | `p`                        | paste after cursor                           |
-  | `P`                        | paste before cursor                          |
-  |                            |                                              |
-  | **Move Lines (mini.move)** |                                              |
-  | `⌥` `h`                    | move selection left                          |
-  | `⌥` `j`                    | move line/selection down                     |
-  | `⌥` `k`                    | move line/selection up                       |
-  | `⌥` `l`                    | move selection right                         |
-  |                            |                                              |
-  | **Comments**               |                                              |
-  | `gcc`                      | toggle comment line                          |
-  | `gc` `(motion)`            | comment motion                               |
-  | `gb` `(motion)`            | block comment motion                         |
-  |                            |                                              |
-  | **Markdown**               |                                              |
-  | `<leader>` `mr`                   | toggle markdown rendering                    |
+  |                            |                                              | Mode  |
+  |----------------------------|----------------------------------------------|-------|
+  | `u`                        | undo                                         | `n`   |
+  | `⌃` `r`                    | redo                                         | `n`   |
+  | `dd`                       | delete line                                  | `n`   |
+  | `yy`                       | yank (copy) line                             | `n`   |
+  | `cc`                       | change line                                  | `n`   |
+  | `p`                        | paste after cursor                           | `n`   |
+  | `P`                        | paste before cursor                          | `n`   |
+  |                            |                                              |       |
+  | **Move Lines (mini.move)** |                                              |       |
+  | `⌥` `h`                    | move selection left                          | `n/v` |
+  | `⌥` `j`                    | move line/selection down                     | `n/v` |
+  | `⌥` `k`                    | move line/selection up                       | `n/v` |
+  | `⌥` `l`                    | move selection right                         | `n/v` |
+  |                            |                                              |       |
+  | **Comments**               |                                              |       |
+  | `gcc`                      | toggle comment line                          | `n/v` |
+  | `gc` `(motion)`            | comment motion                               | `n/v` |
+  | `gb` `(motion)`            | block comment motion                         | `n/v` |
+  |                            |                                              |       |
+  | **Markdown**               |                                              |       |
+  | `<leader>` `mr`                   | toggle markdown rendering                    | `n`   |
+
+# Registers
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | `"` `{reg}`                | prefix to use a named register               | `n`  |
+  | `:reg`                     | view all registers                           | `n`  |
+  |                            |                                              |      |
+  | **Special Registers**      |                                              |      |
+  | `""`                       | default (last yank or delete)                | `n`  |
+  | `"0`                       | last yank only (safe from deletes)           | `n`  |
+  | `"1`–`"9`                  | delete history (1 = most recent)             | `n`  |
+  | `"a`–`"z`                  | named registers (manual use)                 | `n`  |
+  | `"A`–`"Z`                  | append to named register                     | `n`  |
+  | `"+`                       | system clipboard                             | `n`  |
+  | `"_`                       | black hole (discard without saving)          | `n`  |
+  | `"%`                       | current filename                             | `n`  |
+  | `":`                       | last command                                 | `n`  |
+  | `"/`                       | last search pattern                          | `n`  |
+  | `".`                       | last inserted text                           | `n`  |
+  |                            |                                              |      |
+  | **Usage**                  |                                              |      |
+  | `"ayy`                     | yank line into register `a`                  | `n`  |
+  | `"ap`                      | paste from register `a`                      | `n`  |
+  | `"_dd`                     | delete without clobbering default register   | `n`  |
+  | `"0p`                      | paste last yank (safe after deletes)         | `n`  |
+  | `"+p`                      | paste from system clipboard                  | `n`  |
+  | `"Ayy`                     | append line to register `a`                  | `n`  |
+  |                            |                                              |      |
+  | **Insert Mode**            |                                              |      |
+  | `⌃` `r` `0`                | paste last yank                              | `i`  |
+  | `⌃` `r` `+`                | paste system clipboard                       | `i`  |
+  | `⌃` `r` `a`                | paste from register `a`                      | `i`  |
 
 # Surround (mini.surround)
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `sa` `(motion)` `(char)`   | add surrounding                              |
-  | `sd` `(char)`              | delete surrounding                           |
-  | `sr` `(old)` `(new)`       | replace surrounding                          |
-  | `sf` `(char)`              | find surrounding (right)                     |
-  | `sF` `(char)`              | find surrounding (left)                      |
-  | `sh` `(char)`              | highlight surrounding                        |
-  |                            |                                              |
-  | **Motions after `sa`**     |                                              |
-  | `w` / `W`                  | word / WORD                                  |
-  | `s`                        | sentence                                     |
-  | `p`                        | paragraph                                    |
-  | `ip` / `ap`                | inner/around `()`                            |
-  | `ib` / `ab`                | inner/around `{}`                            |
-  | `ir` / `ar`                | inner/around `[]`                            |
-  | `it` / `at`                | inner/around tag                             |
-  | `F`                        | function (mini.ai)                           |
-  | `B`                        | buffer (mini.ai)                             |
-  |                            |                                              |
-  | **Examples**               |                                              |
-  | `saiw"`                    | add quotes around word                       |
-  | `sa2w)`                    | add parens around 2 words                    |
-  | `saip{`                    | wrap inner parens content with `{}`          |
-  | `sd"`                      | delete surrounding quotes                    |
-  | `sdt`                      | delete surrounding HTML tag                  |
-  | `sr"'`                     | replace double with single quotes            |
+  |                            |                                              | Mode  |
+  |----------------------------|----------------------------------------------|-------|
+  | `sa` `(motion)` `(char)`   | add surrounding                              | `n/v` |
+  | `sd` `(char)`              | delete surrounding                           | `n/v` |
+  | `sr` `(old)` `(new)`       | replace surrounding                          | `n/v` |
+  | `sf` `(char)`              | find surrounding (right)                     | `n/v` |
+  | `sF` `(char)`              | find surrounding (left)                      | `n/v` |
+  | `sh` `(char)`              | highlight surrounding                        | `n/v` |
+  |                            |                                              |       |
+  | **Motions after `sa`**     |                                              |       |
+  | `w` / `W`                  | word / WORD                                  | `n/v` |
+  | `s`                        | sentence                                     | `n/v` |
+  | `p`                        | paragraph                                    | `n/v` |
+  | `ip` / `ap`                | inner/around `()`                            | `n/v` |
+  | `ib` / `ab`                | inner/around `{}`                            | `n/v` |
+  | `ir` / `ar`                | inner/around `[]`                            | `n/v` |
+  | `it` / `at`                | inner/around tag                             | `n/v` |
+  | `F`                        | function (mini.ai)                           | `n/v` |
+  | `B`                        | buffer (mini.ai)                             | `n/v` |
+  |                            |                                              |       |
+  | **Examples**               |                                              |       |
+  | `saiw"`                    | add quotes around word                       | `n/v` |
+  | `sa2w)`                    | add parens around 2 words                    | `n/v` |
+  | `saip{`                    | wrap inner parens content with `{}`          | `n/v` |
+  | `sd"`                      | delete surrounding quotes                    | `n/v` |
+  | `sdt`                      | delete surrounding HTML tag                  | `n/v` |
+  | `sr"'`                     | replace double with single quotes            | `n/v` |
 
 # Text Objects
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | **Format**                 | `operator` + `text-object`                   |
-  |                            |                                              |
-  | **Operators**              |                                              |
-  | `d`                        | delete                                       |
-  | `c`                        | change (delete + insert mode)                |
-  | `y`                        | yank (copy)                                  |
-  | `v`                        | visual select                                |
-  | `>`                        | indent right                                 |
-  | `<`                        | indent left                                  |
-  | `=`                        | auto-indent/format                           |
-  |                            |                                              |
-  | **AZERTY Shortcuts**       | (easier than brackets on AZERTY)             |
-  | `ip` / `ap`                | inner/around parentheses `()`                |
-  | `ib` / `ab`                | inner/around braces `{}`                     |
-  | `ir` / `ar`                | inner/around brackets `[]`                   |
-  |                            |                                              |
-  | **Standard Objects**       |                                              |
-  | `iw` / `aw`                | inner/around word                            |
-  | `iW` / `aW`                | inner/around WORD                            |
-  | `is` / `as`                | inner/around sentence                        |
-  | `i"` / `a"`                | inner/around double quotes                   |
-  | `i'` / `a'`                | inner/around single quotes                   |
-  | `i(` / `a(`                | inner/around parentheses                     |
-  | `i{` / `a{`                | inner/around braces                          |
-  | `i[` / `a[`                | inner/around brackets                        |
-  | `it` / `at`                | inner/around tag (HTML/XML)                  |
-  |                            |                                              |
-  | **Mini.ai Extended**       |                                              |
-  | `iB` / `aB`                | inner/around buffer                          |
-  | `iF` / `aF`                | inner/around function (treesitter)           |
-  | `in` / `an`                | inner/around next text object                |
-  | `il` / `al`                | inner/around last text object                |
-  |                            |                                              |
-  | **Examples**               |                                              |
-  | `diw`                      | delete inner word                            |
-  | `ci"`                      | change inside double quotes                  |
-  | `yap`                      | yank around parentheses                      |
-  | `dib`                      | delete inside braces                         |
-  | `viF`                      | visual select inner function                 |
-  | `daF`                      | delete around function                       |
+  |                            |                                              | Mode  |
+  |----------------------------|----------------------------------------------|-------|
+  | **Format**                 | `operator` + `text-object`                   |       |
+  |                            |                                              |       |
+  | **Operators**              |                                              |       |
+  | `d`                        | delete                                       | `n/v` |
+  | `c`                        | change (delete + insert mode)                | `n/v` |
+  | `y`                        | yank (copy)                                  | `n/v` |
+  | `v`                        | visual select                                | `n/v` |
+  | `>`                        | indent right                                 | `n/v` |
+  | `<`                        | indent left                                  | `n/v` |
+  | `=`                        | auto-indent/format                           | `n/v` |
+  |                            |                                              |       |
+  | **AZERTY Shortcuts**       | (easier than brackets on AZERTY)             |       |
+  | `ip` / `ap`                | inner/around parentheses `()`                | `n/v` |
+  | `ib` / `ab`                | inner/around braces `{}`                     | `n/v` |
+  | `ir` / `ar`                | inner/around brackets `[]`                   | `n/v` |
+  |                            |                                              |       |
+  | **Standard Objects**       |                                              |       |
+  | `iw` / `aw`                | inner/around word                            | `n/v` |
+  | `iW` / `aW`                | inner/around WORD                            | `n/v` |
+  | `is` / `as`                | inner/around sentence                        | `n/v` |
+  | `i"` / `a"`                | inner/around double quotes                   | `n/v` |
+  | `i'` / `a'`                | inner/around single quotes                   | `n/v` |
+  | `i(` / `a(`                | inner/around parentheses                     | `n/v` |
+  | `i{` / `a{`                | inner/around braces                          | `n/v` |
+  | `i[` / `a[`                | inner/around brackets                        | `n/v` |
+  | `it` / `at`                | inner/around tag (HTML/XML)                  | `n/v` |
+  |                            |                                              |       |
+  | **Mini.ai Extended**       |                                              |       |
+  | `iB` / `aB`                | inner/around buffer                          | `n/v` |
+  | `iF` / `aF`                | inner/around function (treesitter)           | `n/v` |
+  | `in` / `an`                | inner/around next text object                | `n/v` |
+  | `il` / `al`                | inner/around last text object                | `n/v` |
+  |                            |                                              |       |
+  | **Examples**               |                                              |       |
+  | `diw`                      | delete inner word                            | `n/v` |
+  | `ci"`                      | change inside double quotes                  | `n/v` |
+  | `yap`                      | yank around parentheses                      | `n/v` |
+  | `dib`                      | delete inside braces                         | `n/v` |
+  | `viF`                      | visual select inner function                 | `n/v` |
+  | `daF`                      | delete around function                       | `n/v` |
 
 # Search & Replace
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `/pattern`                 | search forward                               |
-  | `?pattern`                 | search backward                              |
-  | `n`                        | next match                                   |
-  | `N`                        | previous match                               |
-  | `*`                        | search word under cursor forward             |
-  | `#`                        | search word under cursor backward            |
-  |                            |                                              |
-  | `:s/old/new/g`             | replace in line                              |
-  | `:%s/old/new/g`            | replace in file                              |
-  | `:%s/old/new/gc`           | replace with confirmation                    |
-  | `⌃` `f`                    | open `:%s/\v` (very magic replace)           |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | `/pattern`                 | search forward                               | `n`  |
+  | `?pattern`                 | search backward                              | `n`  |
+  | `n`                        | next match                                   | `n`  |
+  | `N`                        | previous match                               | `n`  |
+  | `*`                        | search word under cursor forward             | `n`  |
+  | `#`                        | search word under cursor backward            | `n`  |
+  |                            |                                              |      |
+  | `:s/old/new/g`             | replace in line                              | `c`  |
+  | `:%s/old/new/g`            | replace in file                              | `c`  |
+  | `:%s/old/new/gc`           | replace with confirmation                    | `c`  |
+  | `⌃` `f`                    | open `:%s/\v` (very magic replace)           | `n`  |
 
 ## Regex Modes
   | Prefix | Mode            | Description                                       |
@@ -593,85 +625,85 @@ Vim commands follow a grammar: **verb + modifier + noun** (or **operator + count
   | `/\V./some/path[0]`              | literal search for path with brackets      |
 
 # File Explorer (MiniFiles)
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `<leader>` `er`                   | open root directory                          |
-  | `<leader>` `ef`                   | open current file directory                  |
-  |                            |                                              |
-  | **In MiniFiles**           |                                              |
-  | `h`                        | go out (parent directory)                    |
-  | `l`                        | go in (open file/directory)                  |
-  | `H`                        | go out and close                             |
-  | `L`                        | go in and close                              |
-  | `j` / `k`                  | move down/up                                 |
-  | `q`                        | close                                        |
-  | `=`                        | synchronize changes                          |
-  | `@`                        | reveal cwd                                   |
-  | `⌃` `h`                    | open in horizontal split                     |
-  | `⌃` `v`                    | open in vertical split                       |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | `<leader>` `er`                   | open root directory                          | `n`  |
+  | `<leader>` `ef`                   | open current file directory                  | `n`  |
+  |                            |                                              |      |
+  | **In MiniFiles**           |                                              |      |
+  | `h`                        | go out (parent directory)                    | `n`  |
+  | `l`                        | go in (open file/directory)                  | `n`  |
+  | `H`                        | go out and close                             | `n`  |
+  | `L`                        | go in and close                              | `n`  |
+  | `j` / `k`                  | move down/up                                 | `n`  |
+  | `q`                        | close                                        | `n`  |
+  | `=`                        | synchronize changes                          | `n`  |
+  | `@`                        | reveal cwd                                   | `n`  |
+  | `⌃` `h`                    | open in horizontal split                     | `n`  |
+  | `⌃` `v`                    | open in vertical split                       | `n`  |
 
 # Session Management (MiniSessions)
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `<leader>` `Sr`                   | restore latest session                       |
-  | `<leader>` `Ss`                   | save session                                 |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | `<leader>` `Sr`                   | restore latest session                       | `n`  |
+  | `<leader>` `Ss`                   | save session                                 | `n`  |
 
 # Utility
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `<leader>` `ln`                   | toggle line numbers                          |
-  | `<leader>` `cx`                   | close all auxiliary windows (help, qf, etc.) |
-  | `<leader>` `ot`                   | trim all trailing whitespace                 |
-  | `<leader>` `om`                   | toggle minimap                               |
-  | `<leader>` `sr`                   | rename file                                  |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | `<leader>` `ln`                   | toggle line numbers                          | `n`  |
+  | `<leader>` `cx`                   | close all auxiliary windows (help, qf, etc.) | `n`  |
+  | `<leader>` `ot`                   | trim all trailing whitespace                 | `n`  |
+  | `<leader>` `om`                   | toggle minimap                               | `n`  |
+  | `<leader>` `sr`                   | rename file                                  | `n`  |
 
 # Code Utilities (Trouble)
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `<leader>` `oo`                   | toggle symbols                               |
-  | `<leader>` `ox`                   | toggle diagnostics                           |
-  | `<leader>` `oX`                   | toggle buffer diagnostics                    |
-  | `<leader>` `cl`                   | LSP definitions/references                   |
-  | `<leader>` `oL`                   | toggle location list                         |
-  | `<leader>` `oQ`                   | toggle quickfix list                         |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | `<leader>` `oo`                   | toggle symbols                               | `n`  |
+  | `<leader>` `ox`                   | toggle diagnostics                           | `n`  |
+  | `<leader>` `oX`                   | toggle buffer diagnostics                    | `n`  |
+  | `<leader>` `cl`                   | LSP definitions/references                   | `n`  |
+  | `<leader>` `oL`                   | toggle location list                         | `n`  |
+  | `<leader>` `oQ`                   | toggle quickfix list                         | `n`  |
 
 # Plugins Management
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `<leader>` `?`                    | show buffer local keymaps (which-key)        |
-  | `:Lazy`                    | open lazy.nvim (plugin manager)              |
-  | `:Mason`                   | open mason (LSP installer)                   |
-  | `:checkhealth`             | check neovim health                          |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | `<leader>` `?`                    | show buffer local keymaps (which-key)        | `n`  |
+  | `:Lazy`                    | open lazy.nvim (plugin manager)              | `c`  |
+  | `:Mason`                   | open mason (LSP installer)                   | `c`  |
+  | `:checkhealth`             | check neovim health                          | `c`  |
 
 # Debugging (DAP)
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `<leader>` `db`                   | toggle breakpoint                            |
-  | `<leader>` `dc`                   | continue/start debugging                     |
-  | `<leader>` `di`                   | step into                                    |
-  | `<leader>` `do`                   | step over                                    |
-  | `<leader>` `dO`                   | step out                                     |
-  | `<leader>` `dr`                   | toggle debug REPL                            |
-  | `<leader>` `dl`                   | run last debug session                       |
-  | `<leader>` `dt`                   | terminate debugging                          |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | `<leader>` `db`                   | toggle breakpoint                            | `n`  |
+  | `<leader>` `dc`                   | continue/start debugging                     | `n`  |
+  | `<leader>` `di`                   | step into                                    | `n`  |
+  | `<leader>` `do`                   | step over                                    | `n`  |
+  | `<leader>` `dO`                   | step out                                     | `n`  |
+  | `<leader>` `dr`                   | toggle debug REPL                            | `n`  |
+  | `<leader>` `dl`                   | run last debug session                       | `n`  |
+  | `<leader>` `dt`                   | terminate debugging                          | `n`  |
 
 # Scratch Buffers (snacks)
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `<leader>` `ss`                   | toggle scratch buffer                        |
-  | `<leader>` `sl`                   | select scratch buffer                        |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | `<leader>` `ss`                   | toggle scratch buffer                        | `n`  |
+  | `<leader>` `sl`                   | select scratch buffer                        | `n`  |
 
 # Auto Tag (nvim-ts-autotag)
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | Typing `<div`              | auto-closes to `<div></div>`                 |
-  | Renaming opening tag       | closing tag renames on mode change           |
-  | Filetypes                  | html, jsx/tsx, markdown                      |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | Typing `<div`              | auto-closes to `<div></div>`                 | `i`  |
+  | Renaming opening tag       | closing tag renames on mode change           | `i`  |
+  | Filetypes                  | html, jsx/tsx, markdown                      | `i`  |
 
 # Split/Join (mini.splitjoin)
-  |                            |                                              |
-  |----------------------------|----------------------------------------------|
-  | `gS`                       | toggle split/join                            |
+  |                            |                                              | Mode |
+  |----------------------------|----------------------------------------------|------|
+  | `gS`                       | toggle split/join                            | `n`  |
 
 # Tips
 - Standard HJKL movement with Shift for fast navigation (H/J/K/L)

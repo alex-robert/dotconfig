@@ -53,7 +53,7 @@ require("lazy").setup({
   {import = "plugins.mini-icons",      cond = isFullDist},
   {import = "plugins.mini-sessions",   cond = isFullDist},
   {import = "plugins.mini-hipatterns", cond = isFullDist},
-  {import = "plugins.mini-map",        cond = isFullDist},
+  -- {import = "plugins.mini-map",        cond = isFullDist},
   {import = "plugins.mini-clue",       cond = isFullDist},
   -- {import = "plugins.mini-completion", cond = isFullDist},
   -- {import = "plugins.which-key",       cond = isFullDist},

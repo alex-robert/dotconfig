@@ -26,33 +26,46 @@ keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right split" })
 keymap.set("n", "<C-w>e", "<C-w>=", { desc = "Equalize split sizes" })
 keymap.set("n", "<C-w>w", ":close<CR>", { desc = "Close current split" })
 
-keymap.set("n", "<C-w>V", ":vsplit<CR>", { desc = "Split vertically" })
+keymap.set("n", "<C-M-e>", "<C-w>=", { desc = "Equalize split sizes" })
+keymap.set("n", "<C-M-w>", ":close<CR>", { desc = "Close current split" })
 
-keymap.set("n", "<C-w>H", ":split<CR>", { desc = "Split horizontally" })
+
+
+keymap.set("n", "<C-w>V", function()
+  vim.cmd("vsplit")
+  require("telescope.builtin").buffers()
+end, { desc = "Split vertically with existing buffer" })
+
+keymap.set("n", "<C-w>H", function()
+  vim.cmd("split")
+  require("telescope.builtin").buffers()
+end, { desc = "Split horizontally with existing buffer" })
 
 keymap.set("n", "<C-w>v", function()
   vim.cmd("vsplit")
   require("telescope.builtin").find_files()
-end, { desc = "Vertical split + find file" })
+end, { desc = "Split vertically with new file" })
 
 keymap.set("n", "<C-w>h", function()
   vim.cmd("split")
   require("telescope.builtin").find_files()
-end, { desc = "Horizontal split + find file" })
+end, { desc = "Split horizontally with new file" })
 
 ---------------------
 -- Manages buffers --
 ---------------------
+
+local function delbuf_in_split() 
+  Snacks.bufdelete.delete()
+end
+
 keymap.set("n", "<C-M-h>", ":bprevious<CR>", { desc = "Previous buffer" })
 keymap.set("n", "<C-M-l>", ":bnext<CR>", { desc = "Next buffer" })
-keymap.set("n", "<C-M-x>", ":bdelete<CR>", { desc = "Delete buffer" })
+keymap.set("n", "<C-M-x>", delbuf_in_split, { desc = "Delete buffer in split" })
 
--- Manage buffers in splits
-keymap.set("n", "<C-w>x", function()
-  Snacks.bufdelete.delete()
-end, { desc = "Delete buffer in split" })
+keymap.set("n", "<C-w>x", delbuf_in_split, { desc = "Delete buffer in split" })
 
-keymap.set("n", "<C-w>X", function()
+keymap.set("n", "<C-w>X", function()   
   Snacks.bufdelete.all()
 end, { desc = "Delete All buffers in splits" })
 
@@ -158,4 +171,6 @@ keymap.set('n', '<leader>olr', function()
   vim.wo.relativenumber = true
 end, {desc = 'Show relative line numbers'})
 
-
+keymap.set('n', '<leader>ow', function()
+  vim.opt.wrap = not vim.opt.wrap:get()
+end, {desc = 'Toggle line wrap'})

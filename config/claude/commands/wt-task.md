@@ -1,33 +1,22 @@
 ---
-description: Create a worktrunk worktree and start a task
+description: Create a worktree and start a task
 argument-hint: [task-name]
-allowed-tools: Bash(command wt:*), Bash(git worktree:*), Bash(cd:*)
+allowed-tools: Bash(wt:*), Bash(git:*), Bash(cd:*), Bash(awk:*)
 ---
 
 ## Setup
 
-Create the worktree for this task:
+!`wt switch --create --no-cd --yes cc-task/$ARGUMENTS 2>&1`
 
-```
-command wt switch --create --no-cd cc-task/$ARGUMENTS
-```
-
-Output: !`command wt switch --create --no-cd cc-task/$ARGUMENTS 2>&1`
-
-Parse the worktree path from the output above (the path after "worktree @ ").
-Expand `~` to the full home directory path.
-
-Current worktrees: !`git worktree list`
+Worktree path: !`git worktree list | grep "cc-task/$ARGUMENTS" | awk '{print $1}'`
 
 ## Your task
 
-You are now set up to work in the worktree at the parsed path above.
-Use that absolute path as the base directory for all file operations (Read, Edit, Glob, Grep).
+Use the absolute worktree path above as the base for all file operations (Read, Edit, Glob, Grep).
 Use `cd <worktree_path>` before any git commands.
 
-Ask the user: what should we work on in this task?
+Ask the user: what should we work on?
 
-Remind them that when done, they can:
-- `wt list` to see the worktree
-- `wt merge cc-task/$ARGUMENTS` to merge and clean up
-- `wt switch cc-task/$ARGUMENTS` to navigate to the worktree
+When done:
+- `wt merge cc-task/$ARGUMENTS` to squash, merge and clean up
+- `wt list` to see all worktrees

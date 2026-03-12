@@ -18,10 +18,8 @@ export HOME_CONFIG="$HOME/.config"
 export HISTFILE="$ZDOTDIR/.zsh_history"
 export HISTSIZE=50000
 export SAVEHIST=50000
-
-export EDITOR="nvim --cmd 'let g:light=1'"
-
 export CLAUDE_CONFIG_DIR="$HOME/.config/claude"
+export EDITOR=nvimlight
 
 ## My Little secret
 [ -f ~/.zsecret ] && source ~/.zsecret
